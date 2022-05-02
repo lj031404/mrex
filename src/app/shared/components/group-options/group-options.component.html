@@ -1,0 +1,8 @@
+<div class="group-option-title" *ngIf="title">
+	{{ title }}
+</div>
+<div class="group-options d-flex align-items-center" *ngIf="options.length">
+	<div *ngFor="let type of options;index as idx" (click)="valueChange(type)" class="group-option text-center" [class.active]="control.value === type.value">
+		{{ type.title }}
+	</div>
+</div>

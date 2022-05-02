@@ -1,0 +1,74 @@
+<div class="modal-header">
+    <app-toolbar>
+        <a class="left-button" appStepperPrev [stepper]="stepper" *ngIf="stepper && stepper?.canStepBack">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <a class="left-button" appModalClose [modalRef]="modalRef" *ngIf="stepper && stepper?.isFirstStep">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+
+        <div class="title" *ngIf="step===0">
+            {{ 'helper.property-add.components.property-info.title' | translate }}
+        </div>
+        <div class="title" *ngIf="step===1">
+            {{ 'helper.property-add.components.purchase-info.title' | translate }}
+        </div>
+        <div class="title" *ngIf="step===2">
+            {{ 'helper.property-add.components.cash-flow.title' | translate }}
+        </div>
+    </app-toolbar>
+</div>
+
+<div class="modal-footer">
+    <div class="stepper-controller-wrapper">
+        <a class="arrow-icon" appStepperPrev [stepper]="stepper" [class.d-none]="!stepper?.canStepBack">
+            <img src="assets/icons/left-arrow-footer.svg">
+        </a>
+        <app-step-controller [stepper]="stepper">
+            <app-step-trigger>
+                <a class="trigger-icon">
+                    <i class="fas fa-home"></i>
+                </a>
+            </app-step-trigger>
+            <app-step-trigger>
+                <a class="trigger-icon">
+                    <i class="fas fa-dollar-sign"></i>
+                </a>
+            </app-step-trigger>
+            <app-step-trigger>
+                <a class="trigger-icon">
+                    <i class="fas fa-th-list"></i>
+                </a>
+            </app-step-trigger>
+        </app-step-controller>
+        <a class="arrow-icon" appStepperNext [stepper]="stepper" [class.d-none]="!stepper?.canStepForward">
+            <img src="assets/icons/right-arrow-footer.svg">
+        </a>
+        <a class="arrow-icon" [class.d-none]="step!==2" (click)="completePropertyForm()" *ngIf="!(propertiesService.addingWatchListData | async)">
+            <img src="assets/icons/green-check-footer.svg">
+        </a>
+        <a class="arrow-icon spinner-icon position-relative" [class.d-none]="step!==2">
+            <app-progress-spinner [enabled]="true" [class.d-none]="!(propertiesService.addingWatchListData | async)" ></app-progress-spinner>
+        </a>
+    </div>
+</div>
+
+<div class="modal-content" #modalContent>
+    <app-stepper #stepper (changed)="step=$event">
+        <!-- Property info tab -->
+        <app-step [(stepControl)]="propertyAddForm?.controls.property" (interacted)="validate('property')" (activated)="propertyInfoComponent.onActive()">
+            <app-property-info #propertyInfoComponent [propertyAddForm]="propertyAddForm" [isBaseModel]="isBaseModel" [propertyInfoConfig]="config?.property"></app-property-info>
+        </app-step>
+
+        <!-- Purchase info tab -->
+        <app-step [(stepControl)]="propertyAddForm?.controls.purchase" (interacted)="validate('purchase')" (activated)="purchaseInfoComponent.onActive()">
+            <app-purchase-info #purchaseInfoComponent [propertyAddForm]="propertyAddForm" [isBaseModel]="isBaseModel" [purchaseInfoConfig]="config?.purchase"></app-purchase-info>
+        </app-step>
+
+        <!-- Cashflow tab -->
+        <app-step (activated)="cashFlowComponent.onActive()">
+            <app-property-cash-flow #cashFlowComponent [propertyAddForm]="propertyAddForm" [isBaseModel]="isBaseModel" [cashflow]="config?.cashflow"></app-property-cash-flow>
+        </app-step>
+    </app-stepper>
+</div>
+<app-footer-navigate (clickPage)="modalRef.closeModal()"></app-footer-navigate>

@@ -1,0 +1,401 @@
+{
+    "propertyData": {
+        "address": {
+            "coordinates": {
+                "type": "Point",
+                "coordinates": [
+                    -73.48529,
+                    45.53488
+                ]
+            },
+            "civicNumber": "335",
+            "street": "Rue Lamarre",
+            "city": "Longueuil",
+            "state": "Quebec",
+            "postalCode": "J4J1T1"
+        },
+        "name": "335 Lamarre",
+        "propertyType": "MultifamilyResidential",
+        "yearOfConstruction": 1969,
+        "floors": null,
+        "lotDimension": "0x0",
+        "residentialUnits": 8,
+        "residentialDistribution": {
+            "_1": 0,
+            "_2": 0,
+            "_3": 0,
+            "_4": 0,
+            "_5": 0,
+            "_6": 0
+        },
+        "buildingArea": 0,
+        "buildingDimension": "0x0",
+        "grossIncome": {
+            "totalIncome": 67560,
+            "rentalIncome": 67560,
+            "incomeBreakdown": [
+                {
+                    "rent": 0,
+                    "unit": "$/month",
+                    "suite": "Apt 1",
+                    "currency": "CAD",
+                    "type": "residential"
+                },
+                {
+                    "rent": 0,
+                    "unit": "$/month",
+                    "suite": "Apt 2",
+                    "currency": "CAD",
+                    "type": "residential"
+                },
+                {
+                    "rent": 0,
+                    "unit": "$/month",
+                    "suite": "Apt 3",
+                    "currency": "CAD",
+                    "type": "residential"
+                },
+                {
+                    "rent": 0,
+                    "unit": "$/month",
+                    "suite": "Apt 4",
+                    "currency": "CAD",
+                    "type": "residential"
+                },
+                {
+                    "rent": 0,
+                    "unit": "$/month",
+                    "suite": "Apt 5",
+                    "currency": "CAD",
+                    "type": "residential"
+                },
+                {
+                    "rent": 0,
+                    "unit": "$/month",
+                    "suite": "Apt 6",
+                    "currency": "CAD",
+                    "type": "residential"
+                },
+                {
+                    "rent": 0,
+                    "unit": "$/month",
+                    "suite": "Apt 7",
+                    "currency": "CAD",
+                    "type": "residential"
+                },
+                {
+                    "rent": 0,
+                    "unit": "$/month",
+                    "suite": "Apt 8",
+                    "currency": "CAD",
+                    "type": "residential"
+                }
+            ],
+            "currency": "CAD",
+            "year": 2020
+        },
+        "expenses": [
+            {
+                "currency": "CAD",
+                "year": 2020,
+                "municipalTax": 7149,
+                "schoolTax": 1181,
+                "totalTaxes": 8330,
+                "insurance": 2657,
+                "electricity": null,
+                "naturalGas": 6748,
+                "oil": null,
+                "totalUtilities": 6748,
+                "energy": 6748,
+                "others": [],
+                "totalOthers": 0,
+                "landscaping": 500,
+                "snowRemoval": 600
+            }
+        ],
+        "askPrice": 835000,
+        "leases": [
+            {
+                "rent": 0,
+                "unit": "$/month",
+                "suite": "Apt 1",
+                "currency": "CAD",
+                "type": "residential"
+            },
+            {
+                "rent": 0,
+                "unit": "$/month",
+                "suite": "Apt 2",
+                "currency": "CAD",
+                "type": "residential"
+            },
+            {
+                "rent": 0,
+                "unit": "$/month",
+                "suite": "Apt 3",
+                "currency": "CAD",
+                "type": "residential"
+            },
+            {
+                "rent": 0,
+                "unit": "$/month",
+                "suite": "Apt 4",
+                "currency": "CAD",
+                "type": "residential"
+            },
+            {
+                "rent": 0,
+                "unit": "$/month",
+                "suite": "Apt 5",
+                "currency": "CAD",
+                "type": "residential"
+            },
+            {
+                "rent": 0,
+                "unit": "$/month",
+                "suite": "Apt 6",
+                "currency": "CAD",
+                "type": "residential"
+            },
+            {
+                "rent": 0,
+                "unit": "$/month",
+                "suite": "Apt 7",
+                "currency": "CAD",
+                "type": "residential"
+            },
+            {
+                "rent": 0,
+                "unit": "$/month",
+                "suite": "Apt 8",
+                "currency": "CAD",
+                "type": "residential"
+            }
+        ],
+        "revision": 14,
+        "image": "https://maps.googleapis.com/maps/api/streetview?size=400x400&location=335+Rue+Lamarre,+Longueuil,+J4J1T1&key=AIzaSyCUKj24F9NwpRI-Z1pA-zN3c8xzwsGnup0",
+        "createdAt": "2020-02-12T19:13:46.552Z",
+        "__v": 0,
+        "updatedAt": "2020-02-12T21:09:28.940Z"
+    },
+    "hypothesisData": {
+        "input": {
+            "rentMethod" : 3,
+            "askPrice" : 835000,
+            "numberOfUnits" : 8,
+            "municipalTaxes" : 7149,
+            "schoolTaxes" : 1181,
+            "insurance":2657,
+            "electricity":0,
+            "naturalGas":6748,
+            "yearlyMaintenancePerUnit":500,
+            "yearlySalariesPerUnit":175,
+            "landscaping":500,
+            "snowRemoval":600,
+            "otherExpenses":0,
+            "thirdMethodCurrentGrossIncome":67560,
+            "vacancyRate":0.03,
+            "managementRate":0.04, 
+            "rentIncreaseRate": [0.25,0.2,0.02,0.02,0.02,0.02],
+            "economicValues":[{
+                  "financingCompany": "CHMC",
+                  "DCR": 1.3,
+                  "LTV": 0.85,
+                  "amortization": 30,
+                  "yearlyMaintenancePerUnit": 500,
+                  "yearlySalariesPerUnit": 175,
+                  "vacancyRate": 0.03,
+                  "managementRate": 0.04,
+                  "interestRate": 0.028,
+                  "term": 5
+                },
+                {
+                  "financingCompany": "ConventionalCustom",
+                  "DCR": 1.15,
+                  "LTV": 0.75,
+                  "amortization": 25,
+                  "yearlyMaintenancePerUnit": 500,
+                  "yearlySalariesPerUnit": 175,
+                  "vacancyRate": 0.03,
+                  "managementRate": 0.05
+                },
+                {
+                  "financingCompany": "BNC",
+                  "DCR": 1.2,
+                  "LTV": 0.75,
+                  "amortization": 25,
+                  "yearlyMaintenancePerUnit": 500,
+                  "yearlySalariesPerUnit": 125,
+                  "vacancyRate": 0.015,
+                  "managementRate": 0.03
+                },
+                {
+                  "financingCompany": "Desjardins",
+                  "DCR": 1.07,
+                  "LTV": 0.75,
+                  "amortization": 25,
+                  "yearlyMaintenancePerUnit": 500,
+                  "yearlySalariesPerUnit": 125,
+                  "vacancyRate": 0.015,
+                  "managementRate": 0.04
+                },
+                {
+                  "financingCompany": "RBC",
+                  "DCR": 0.2,
+                  "LTV": 0.8,
+                  "amortization": 25,
+                  "yearlyMaintenancePerUnit": 500,
+                  "yearlySalariesPerUnit": 125,
+                  "vacancyRate": 0.04,
+                  "managementRate": 0.03
+                }
+                ],
+            "refinancingEconomicValues":[{
+                  "financingCompany": "CHMC",
+                  "DCR": 1.3,
+                  "LTV": 0.85,
+                  "amortization": 30,          
+                  "vacancyRate": 0.03,
+                  "managementRate": 0.04
+                },
+                {
+                  "financingCompany": "ConventionalCustom",
+                  "DCR": 1.15,
+                  "LTV": 0.75,
+                  "amortization": 25,          
+                  "vacancyRate": 0.03,
+                  "managementRate": 0.05
+                },
+                {
+                  "financingCompany": "BNC",
+                  "DCR": 1.2,
+                  "LTV": 0.75,
+                  "amortization": 25,          
+                  "vacancyRate": 0.015,
+                  "managementRate": 0.03
+                },
+                {
+                  "financingCompany": "Desjardins",
+                  "DCR": 1.07,
+                  "LTV": 0.75,
+                  "amortization": 25,          
+                  "vacancyRate": 0.015,
+                  "managementRate": 0.04
+                },
+                {
+                  "financingCompany": "RBC",
+                  "DCR": 0.2,
+                  "LTV": 0.8,
+                  "amortization": 25,          
+                  "vacancyRate": 0.04,
+                  "managementRate": 0.03
+                }
+                ],               
+            "financingCompany":"CHMC",
+            
+            "cmbRates":[{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":4,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":4,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":4,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":4,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35},{"cmbRates":2,"veSpreadCHMC":0.8, "veSpreadConventionalCustom":2.5, "veSpreadBNC":2.5,"veSpreadDesjardins":2.5,
+                         "veSpreadRBC": 2.5,"realSpreadCHMC":0.65, "realSpreadConventionalCustom":2.35, "realSpreadBNC": 2.35, 
+                         "realSpreadDesjardins": 2.35, "realSpreadRBC":2.35} ],
+            "term": [5,5,5,5,5,5,5,5,5,5],  
+            "secondaryFinance":[{"loanAmount":10000,"interestRate":0.06,"paymentsPerYear":12,"term":4,
+                              "loanType":2,"amortization":30},
+                             {"loanAmount":0,"interestRate":0.15,"paymentsPerYear":12,"term":5,
+                              "loanType":3,"amortization":30},
+                             {"loanAmount":0,"interestRate":0.15,"paymentsPerYear":12,"term":4,
+                              "loanType":4,"amortization":30}, 
+                             {"loanAmount":0,"interestRate":0.08,"paymentsPerYear":12,"term":5,
+                              "loanType":1,"amortization":30} 
+                            ],
+            "refinance": [
+                          {"timing":60,"loanAmount":613534,"paymentsPerYear":12,"term":5, 
+                           "loanType":4,"amortization":30,"refinancingOption":"CHMC"},
+                          {"timing":24,"loanAmount":0,"paymentsPerYear":12,"term":30, 
+                           "loanType":3,"amortization":30,"refinancingOption":"CHMC"},
+                          {"timing":36,"loanAmount":0,"paymentsPerYear":12,"term":30, 
+                           "loanType":2,"amortization":30,"refinancingOption":"CHMC"}
+                          ],
+            "monthlyMaintenanceBreakdown": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            "monthlyCapitalExpendituresBreakdown": [0,0,0,0,0,25000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,15000,0,0],
+            "expensesIncreaseRate":0.02,
+            "propertyTransferTax": 9000,
+            "notary": 2000,
+            "financingAndEscrowFee": 1000,
+            "refinanceFee": 0,
+            "buildingInspection": 1200,
+            "chmc": 0,
+            "otherAcquisitionCosts": 0,
+            "landToBuildingRatio": 0.7,
+            "refinanceNumberOfUnits":8,
+            "capRateYearOne":0.0449,
+            "capRateYearTwo":0.055,
+            "capRateYearThreeAndUp":0.055,
+            "stabilizedRentIncreaseRate":0.02,
+            "personalIncomeTax":0.45,
+            "commission":0.03,
+            "capitalGainsTax":0.27,
+            "expenseProjectionMethod":2,
+            "reinvestmentRate":0.1 ,
+            "npvDiscountRate": 0.25,
+            "amortizingTax": [0.02,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04,0.04],
+            "timingLiquidationMonth":24  
+        }        
+    }
+}

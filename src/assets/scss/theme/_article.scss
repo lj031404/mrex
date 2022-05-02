@@ -1,0 +1,21 @@
+app-blog-article {
+	.blog-article__description {
+		figure img {
+			width: 100%!important;
+		}
+
+		h1, h2, h3, h4 {
+			color: black!important;
+		}
+
+		h3 {
+			font-size: 1.43rem;
+			font-weight: 700;
+			margin-bottom: 1.14rem!important;
+		}
+
+		p {
+			margin-bottom: 0.85rem!important;
+		}
+	}
+}

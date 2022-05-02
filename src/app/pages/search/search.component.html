@@ -1,0 +1,25 @@
+<app-header>
+	<app-go-back-button [classes]="['nav-link', 'nav-menu-main']" [action]="navigateToHomeScreen" slot="left-button"></app-go-back-button>
+	<p slot="title">{{'page.search.title' | translate}}</p>
+</app-header>
+<div class="search-screen">
+	<div class="search-alert-bar">
+		<div class="address-search">
+			<app-autocomplete 
+				(chosenAddress)="addressClick($event)" 
+				(chosenPlace)="onUpdatePlace($event)" 
+				[address]="address"
+				[isAutoFocus]="true"
+				icon="assets/images/search.png" 
+				placeholder="{{ 'literals.searchAddress' | translate }}"></app-autocomplete>  
+		</div>
+	</div>
+	<app-market-list additionalHeight="1.85" [external]="true" class="full-height"></app-market-list>	
+</div>
+
+<div class="map-loading-status d-flex align-items-center" *ngIf="isLoading">
+    <div class="position-relative spinner-container">
+        <app-progress-spinner class="position-absolute" [align]="left" [enabled]="true" class="fb-loading-spinner"></app-progress-spinner>
+    </div>
+    <span class="spinner-loading">{{ 'spinner.loading' | translate}}</span>
+</div>

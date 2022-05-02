@@ -1,0 +1,103 @@
+
+    <app-header *ngIf="portfolioProperty">
+        <app-go-back-button [action]="navigateToSummaryScreen" [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+        <p slot="title">{{portfolioProperty.addressStr}}</p>
+    </app-header>
+    
+    <app-content [noPadding]="true">
+        <div class="portfolio-property-content">
+            <ng-container *ngIf="portfolioProperty">
+                <div class="processing" *ngIf="portfolioProperty.isProcessing" class="processing-bar">
+                    <div class="fa">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                    </div>&nbsp;
+                    <span>{{ 'literals.processing' | translate }}</span>
+                </div>
+                <div class="back">
+                    <img [src]="portfolioProperty.imageUrl" class="portfolio-image">
+                    <div class="property-actions">
+                        <button class="btn btn-white-outline d-flex align-items-center" [disabled]="portfolioService && !portfolioService.portfolioPropertyDetailData" (click)="update()">
+                            <img src="assets/icons/update_icon.svg"> {{ 'page.portfolio.portfolio-property.update_property' | translate }} <img src="assets/icons/arr-right.png" /></button>
+                        <button (click)="removePortfolio()" class="btn btn-white-outline d-flex align-items-center">
+                            <img src="assets/icons/delete_icon.svg"> {{ 'page.portfolio.portfolio-property.remove_property' | translate }} <img src="assets/icons/arr-right.png" /></button>
+                    </div>
+                </div>
+        
+                <div class="summary-section section--probability" *ngIf="portfolioProperty.portfolio && portfolioProperty.portfolio.length">
+                    <div class="probability-item" *ngFor="let portfolio of portfolioProperty.portfolio">
+                        <span class="category">{{'page.home.your_portfolio.' + portfolio.type | translate}}</span>
+                        <p class="value" *ngIf="portfolio.value !== null">{{ portfolio.value | shortNumber: '2' }} $</p>
+                        <p class="value" *ngIf="portfolio.value === null"> - </p>
+                    </div>
+                </div>
+        
+                <div class="address">
+                    <div class="street" [innerHTML]="addressLine1"></div>
+                    <div class="street" [innerHTML]="addressLine2"></div>
+                </div>
+        
+                <div class="listing-calculator p-1">
+                    <div class="portfolio-content">
+                        <div class="portfolio text-center" [class.disabled]="option.disabled" *ngFor="let option of boxes" (click)="option.onClick()">
+                            <img [src]="option.icon" width="30" height="29">
+                            <div class="value">{{ option.label }}</div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="status d-flex align-items-center justify-content-between ">
+                    <div class="title">{{ 'page.portfolio.portfolio-property.status' | translate }}</div>
+                    <div class="select mr-1">
+                     
+                        <div class="select">
+                            <select tabindex="2" class="purchase-offerkeys" [(ngModel)]="portfolioProperty.status" (ngModelChange)="updateStatus()">
+                                <option value="">
+                                </option>
+                                <option *ngFor="let key of ReceivePurchaseToOfferKeys" [value]="key">{{ ReceivePurchaseToOfferTypes[key] | translate }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="refinances mb-2" *ngIf="feed && feed.length">
+                    <div class="title">{{ 'page.portfolio.portfolio-property.activity_feed' | translate }}</div>
+                    <app-listing-activity-feed [feedData$] = "feed$"></app-listing-activity-feed>
+                </div>
+        
+        
+                <div class="chartarea">
+                    <ng-container *ngFor="let item of portfolioProperty.chartInputDataList">
+                        <div>
+                            <app-chart-collapse [showData]="item.showData" [label]="item.label | translate" [value]="item.value" [chartData]="item.chartData"></app-chart-collapse>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+    
+            <div class="p-1" *ngIf="!portfolioProperty">
+                <app-skeleton Cwidth="100%" Cheight="269"></app-skeleton>
+    
+                <div class="activity-options-skeleton pt-1">
+                    <div>
+                        <app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+                    </div>
+                    <div>
+                        <app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+                    </div>
+                    <div>
+                        <app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+                    </div>
+                </div>
+    
+                <div class="d-flex align-items-start mt-1" *ngFor="let empty of emptyProps">
+                    <div class="mr-2">
+                        <app-skeleton Cwidth="113px" Cheight="113"></app-skeleton>
+                    </div>
+                    <div class="w-100">
+                        <app-skeleton Cwidth="100%" Cheight="35"></app-skeleton>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+    </app-content>

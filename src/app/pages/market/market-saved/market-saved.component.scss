@@ -1,0 +1,9 @@
+@import "../../../../assets/scss/variables.scss";
+
+.saved-search-content {
+	height: calc(100vh - 8.71rem - 4.39rem);
+	padding: 1.142rem 0.71rem;
+	background-color: $color-gray-18;
+	overflow: auto;
+	
+}

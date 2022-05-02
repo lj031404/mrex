@@ -1,0 +1,17 @@
+@import "../../../../assets/scss/variables.scss";
+
+button {
+    background-color: $color-green;
+    padding: 0;
+    border-radius: 50%;
+    color: white;
+    width: 1.5em;
+    height: 1.5em;
+    font-size: 80%;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    outline-style: none;
+    border: none;
+    justify-content: center;
+}

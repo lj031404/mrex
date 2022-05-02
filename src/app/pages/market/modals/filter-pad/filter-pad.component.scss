@@ -1,0 +1,76 @@
+@import "../../../../../assets/scss/mixin";
+
+:host {
+  .modal-content {
+    height: calc(100% - 7rem);
+
+    ::ng-deep {
+      .content {
+        height: 100%;
+      }
+    }
+  }
+
+  .modal-footer {
+    display: flex !important;
+    justify-content: stretch;
+    align-items: center;
+  }
+
+  ::ng-deep {
+    .btn-clear {
+      padding: 0.5rem!important;
+      margin-right: -4px;
+      border: 1px solid white;
+      border-radius: 4px;
+      background-color: transparent;
+      font-size: $font-size-text !important;
+      color: white;
+
+      &:focus, &:active {
+        outline: none;
+      }
+    }
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .app-item {
+    margin: 2px 6px;
+    padding: 7px 14px;
+    border-bottom: 1px solid $color-silver;
+    display: flex;
+    flex-direction: column;
+
+    ::ng-deep {
+      label {
+        margin-bottom: 4px;
+      }
+
+      input {
+        border: none;
+        border-bottom: 1px solid $color-silver;
+      }
+
+      .button-group {
+        display: flex;
+        flex-direction: row;
+
+        .btn {
+          box-shadow: none !important;
+          font-weight: bold;
+          font-size: $font-size-text;
+        }
+      }
+
+      .btn-listing-type {
+        margin: 0 2px;
+        flex: 1;
+      }
+    }
+  }
+}

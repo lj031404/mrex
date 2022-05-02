@@ -1,0 +1,29 @@
+<app-header>
+	<app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+	<p slot="title">
+		{{ 'pages.videos.all_series' | translate }}
+	</p>
+</app-header>
+
+<div class="list all-series" #content id="listContent">
+
+
+	<div class="pagination-view">
+		<cdk-virtual-scroll-viewport itemSize="145" (scrolledIndexChange)="onScrollIndexChange($event)" minBufferPx="1000" maxBufferPx="1000">
+			<div class="playlist-item mr-1 ml-1"*cdkVirtualFor="let playlist of playList" >
+				<app-playlist-item [playlist]="playlist" (click)="openPlayListVideosDlg(playlist)"></app-playlist-item>
+			</div>
+		</cdk-virtual-scroll-viewport>
+	</div>
+
+	<ng-container *ngIf="!playList">
+		<div class="d-flex align-items-start mb-2 pr-1 pl-1" *ngFor="let empty of emptyVideos">
+			<div class="mr-2">
+				<app-skeleton Cwidth="113px" Cheight="113"></app-skeleton>
+			</div>
+			<div class="w-100">
+				<app-skeleton Cwidth="100%" Cheight="35"></app-skeleton>
+			</div>
+		</div>
+	</ng-container>
+</div>

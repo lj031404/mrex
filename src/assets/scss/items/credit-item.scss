@@ -1,0 +1,34 @@
+.item--credits {
+
+  .control {
+    height: 50px;
+
+    label {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+
+      &::after {
+        top: 11px;
+      }
+
+      .price  {
+        margin-left: auto;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+
+        .unit-price {
+          font-size: 12px;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}

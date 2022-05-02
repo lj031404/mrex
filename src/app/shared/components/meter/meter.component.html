@@ -1,0 +1,46 @@
+<div class="meter">
+
+	<mwl-gauge
+		[min]="meter.low"
+		[max]="meter.high"
+		[dialStartAngle]="210"
+		[dialEndAngle]="-30"
+		[value]="meter.value"
+		[showValue]="false"
+		[animated]="true"
+		[animationDuration]="1">
+	</mwl-gauge>
+
+	<div class="meter-value" [ngStyle]="{marginLeft: marginLeft}">
+		<div class="val">
+			<span>{{meter.value | number}} {{meter.units}}</span>
+		</div>
+		<div class="block">
+			<div class="line" [ngStyle]="{height: lineHeight}"></div>
+		</div>
+		<div class="circle">
+			<div class="dot"></div>
+		</div>
+	</div>
+</div>
+
+<div class="label-value">
+	<div>
+		<div class="low wrap">
+			<div class="value">{{meter.low | number }} {{meter.units}}</div>
+			<div class="label">{{meter.labels[0]}}</div>
+		</div>
+	</div>
+	<div>
+		<div class="media wrap">
+			<div class="value">{{meter.media | number }} {{meter.units}}</div>
+			<div class="label">{{meter.labels[1]}}</div>
+		</div>
+	</div>
+	<div>
+		<div class="high wrap">
+			<div class="value">{{meter.high | number }} {{meter.units}}</div>
+			<div class="label">{{meter.labels[2]}}</div>
+		</div>
+	</div>
+</div>

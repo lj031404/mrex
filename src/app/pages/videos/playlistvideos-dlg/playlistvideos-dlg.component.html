@@ -1,0 +1,74 @@
+<div *ngIf="data">
+	<app-header>
+		<app-go-back-button [action]="back" [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+		<p slot="title">
+			{{ data?.title }}
+		</p>
+	</app-header>
+	<div class="playlist-videos">
+		<app-content class="full-height" [noPadding]="true" [customClassName]="'playlist-videos-content'">
+		
+			<div class="p-2 media-article-card" *ngIf="playListItem">
+				<div class="media-title mb-1" >{{ playListItem.title}}</div>
+				<div class="d-flex align-items-start">
+					<div class="media-thumbnail">
+						<img class="thumbnail-image"
+							[src]="playListItem.thumbnailUrl" height="116" width="116" />		
+					</div>
+				
+					<div class="media-article-information d-flex flex-column ">
+						<div class="media-summary" [class.more]="isMoreDescription">
+							<span id="articleDescription" [innerHTML]='playListItem.summary'></span>
+						</div>
+					
+						<div class="text-right more-btn" *ngIf="isShowMoreBtn | async">
+							<span class="more-collapse" (click)="isMoreDescription = !isMoreDescription">
+								<ng-container *ngIf="isMoreDescription">
+									{{ 'pages.article.video_article.more' | translate }}
+								</ng-container>
+								<ng-container *ngIf="!isMoreDescription">
+									{{'pages.article.video_article.collapse' |  translate }}
+								</ng-container>
+							</span>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="d-flex align-items-start p-2" *ngIf="!playListItem">
+				<div class="mr-2">
+					<app-skeleton Cwidth="113px" Cheight="113"></app-skeleton>
+				</div>
+				<div class="w-100">
+					<app-skeleton Cwidth="100%" Cheight="35"></app-skeleton>
+				</div>
+			</div>
+			
+			<div class="latest-playvideos p-2" *ngIf="videoListItem && videoListItem.length">
+				<div class="latest-title mb-2">
+					{{ 'pages.videos.playlist_videos.latest' |  translate }}
+				</div>
+				<div class="playlist-item mb-1" *ngFor="let playlist of videoListItem" >
+					<app-media-article-card [article]="playlist"></app-media-article-card>
+				</div>
+			</div>
+			<div class="mt-3" *ngIf="!videoListItem">
+				<div class="d-flex align-items-start p-2" *ngFor="let video of emptyVideos">
+					<div class="mr-2">
+						<app-skeleton Cwidth="113px" Cheight="113"></app-skeleton>
+					</div>
+					<div class="w-100">
+						<app-skeleton Cwidth="100%" Cheight="35"></app-skeleton>
+					</div>
+				</div>
+			</div>
+
+			<div *ngIf="videoListItem && !videoListItem.length" class="p-2 pt-4 d-flex align-items-center justify-content-center">
+				<span>
+					{{ 'pages.video.playlist.no_videos' | translate }}
+				</span>
+			</div>
+		</app-content>
+	</div>
+</div>

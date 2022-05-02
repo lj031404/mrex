@@ -1,0 +1,21 @@
+<div class="full-height" [class.has-footer]="authenticationService.isAuthenticated && syncService.isSynced && enableFooter">
+    <app-menu [class.d-none]="!authenticationService.isAuthenticated">
+        <app-menu-header>
+            <app-user-profile></app-user-profile>
+        </app-menu-header>
+    
+        <app-menu-container [items]="menuItems">
+        </app-menu-container>
+    </app-menu>
+    <div class="app-main" #contentArea>
+        <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+    
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+</div>
+
+<div *ngIf="authenticationService.isAuthenticated && syncService.isSynced && enableFooter" class="footer-section">
+    <app-footer-navigate ></app-footer-navigate>
+</div>
+<app-spinner></app-spinner>

@@ -1,0 +1,30 @@
+:host {
+  ::ng-deep {
+    .app-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 14px;
+
+      .icon-wrapper {
+        width: 32px;
+        min-width: 32px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i {
+          font-size: 24px;
+        }
+      }
+      .form-field {
+        flex-grow: 1;
+
+        .form-field-flex {
+          padding-left: 4px;
+          padding-right: 4px;
+        }
+      }
+    }
+  }
+}

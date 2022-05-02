@@ -1,0 +1,57 @@
+
+$height: 9.1rem;
+
+.slider-card {
+	position: absolute;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	background-color: white;
+	padding-left: 0.25rem;
+	border-bottom: 1px solid #ddd;
+}
+
+.icons-bar {
+	position: absolute;
+	right: 0;
+	height: calc(#{$height} - 1px);
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+
+	.icons-container {
+		width: 50%;
+		display: flex;
+		justify-content: space-around;
+
+		.tool-item {
+			height: 100%;
+			flex-grow: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;                
+		}
+
+		.color-1 {
+			background-color: aqua;
+			color: black;
+		}
+		.color-2 {
+			background-color: #57C8B1;
+			color: white;
+		}
+		.color-3 {
+			background-color: red;
+			color: white;
+		}
+	}
+
+}
+
+app-model-card {
+	.icons-bar {
+		position: unset!important;
+		height: 7.07rem;
+	}
+}

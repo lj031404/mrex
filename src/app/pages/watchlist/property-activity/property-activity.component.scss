@@ -1,0 +1,89 @@
+@import "../../../../assets/scss/mixin.scss";
+@import '../../../../assets/scss/variables.scss';
+
+:host {
+
+	.back-button {
+		padding: 0.25em;
+	}
+
+	.activity-main {
+		background-color: white;
+		height: calc(100% - 19rem) !important;
+	}
+
+	.address {
+		width: 100%;
+		height: auto;
+		padding: 1.2rem 1rem 1.2rem 1.6rem;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+
+		.street {
+			font-size: 1.7rem;
+			color: black;
+			line-height: 106%;
+		}
+
+		.city {
+			font-size: 1.2rem;
+			line-height: 150%;
+			color: rgba(0, 0, 0, 0.4);
+		}
+
+	}
+
+	.activity-feed {
+		background-color: white;
+		
+		p {
+			font-family: Arial;
+			font-style: normal;
+			font-weight: bold;
+			font-size: 1rem;
+			line-height: 114%;
+			margin: 2rem 1rem 0.8rem 1rem;
+		}
+	}
+
+	.list-cal-model {
+		width: 100%;
+		padding: 0 1.1rem;
+		display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 1rem;
+        justify-content: space-between;
+		align-items: center;
+		
+		.item {
+			
+			background-color: $color-cadet-blue;				
+
+			&.disabled {
+				background-color: $color-gray-11;
+			}
+			
+			border-radius: 0.57rem;
+			padding: 0.57rem;
+			text-align: center;
+	
+			img {
+				margin-bottom: 0.42rem;
+			}
+	
+			.value {
+				color: white;
+				font-size: 1.14rem;
+				font-weight: bold;
+			}
+		}
+	}
+
+}
+
+.activity-options-skeleton {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 1.5rem;
+}

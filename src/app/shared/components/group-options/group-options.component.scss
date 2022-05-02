@@ -1,0 +1,46 @@
+
+@import "../../../../assets/scss/variables.scss";
+
+.group-options {
+	border-radius: 0.3rem;
+	background-color: white;
+    text-transform: capitalize;
+
+	.group-option {
+		font-size: 1.285rem;
+		line-height: 1.5rem;
+		font-weight: 600;
+		padding: 0.7rem 0.57rem;
+		flex: 1;
+		color: $color-gray-19;
+		white-space: nowrap;
+
+		&.active {
+			background-color: $color-cadet-blue;
+			color: white;
+		}
+	}
+
+	> div {
+		&:first-child {
+			border-radius: 0.3rem 0 0 0.3rem;
+		}
+	
+		&:last-child {
+			border-radius: 0 0.3rem 0.3rem 0;
+		}
+	}
+}
+
+.group-option-title {
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1rem;
+	color: $color-gray-19;
+	font-style: normal;
+	margin-bottom: 0.3rem;
+}
+:host(.ng-touched.ng-invalid .group-options) {
+	background-color: rgba(238, 88, 88, 0.2);
+  }
+  

@@ -1,0 +1,86 @@
+<div class="position-relative d-flex w-100 ">
+    <div #sliderCard [style.transform]="transformXValue" class="slider-card propertycard-item" (click)="onPropertyClicked(portfolioCard.portfolioId)" >
+        <div class="left-rail"
+                [class.public-sale]="portfolioCard.receiveOfferStatus === 'ForSalePublicly'"
+                [class.open-offers]="portfolioCard.receiveOfferStatus === 'OpenToReceiveOffers' || portfolioCard.receiveOfferStatus === 'NotOpenToReceiveOffers'"
+            >
+                <img [src]="portfolioCard.imageUrl" appDefaultImage alt="PortfolioCard PropertyImage">
+                <span class="header-text">{{ offerStatus }}</span>
+                <span *ngIf="portfolioCard.isProcessing" class="footer">
+                    <app-progress-spinner [enabled]="true"></app-progress-spinner>
+                    <span>{{ 'literals.processing' | translate }}</span>
+                </span>
+            </div>
+            <div class="main-rail">
+                <div class="type-buildings">
+                    <p class="property-type">{{ PropertyType[portfolioCard.propertyType] |  translate }}</p>
+
+                    <div class="buildings" *ngIf="countModels">
+                        <img src="assets/icons/calculator_black.png">
+                        <span class="value">{{ countModels }}</span>
+                    </div>
+                </div>
+            
+                <p class="price">{{ portfolioCard.price | appNumber:'1.0-0':'':'':'$'}}</p>
+                
+                <div class="address">
+                    <ng-container>
+                        {{ first }}<br />
+                    </ng-container>
+                    <span [innerHTML]="second"></span>
+                </div>
+
+
+                <!-- Portfolio property -->
+                <!--
+                    <div class="status">
+                        <div>{{ 'page.portfolio.status' | translate }}</div>
+                        <div class="select">
+                            <select tabindex="2" style="width: 150px;" [(ngModel)]="portfolioCard.receiveOfferStatus" (click)="matSelectEvent($event)">
+                                <option value="">
+                                </option>
+                                <option *ngFor="let key of ReceivePurchaseToOfferKeys" [value]="key">{{ReceivePurchaseToOfferTypes[key] |  translate }}</option>
+                            </select>
+                        </div>
+                    </div>
+                -->
+                <div class="eye-calc">
+                    <!-- <div>
+                        <img *ngIf="false" src="assets/images/viewicon.png" alt="" class="icon">
+                    </div> -->
+                    <!-- <div class="calc">
+                        <img *ngIf="true" src="assets/images/calculator.png" alt="" class="icon">
+                        <p class="calc-number">3</p>
+                    </div> -->
+                </div>
+
+                <div class="icons">
+                    <div class="mr building-date">
+                        <img src="assets/icons/home.png">
+                        <span class="value">
+                            <ng-container *ngIf="portfolioCard.residentialUnits">{{ portfolioCard.residentialUnits }}</ng-container>
+                            <ng-container *ngIf="!portfolioCard.residentialUnits">{{ 'literals.na' | translate }}</ng-container>
+                        </span> 
+                    </div>
+
+                    <div class="mr building-date">
+                        <img src="assets/icons/home.png">
+                        <span class="value">
+                            <ng-container *ngIf="portfolioCard.yearOfConstruction">{{ portfolioCard.yearOfConstruction }}</ng-container>
+                            <ng-container *ngIf="!portfolioCard.yearOfConstruction">{{ 'literals.na' | translate }}</ng-container>
+                        </span>              
+                    </div>
+                </div>     
+            </div>
+    </div>
+
+    <!--Tools-->
+    <div class="align-self-stretch align-items-stretch mrex-green.lighten-3 icons-bar">
+
+        <div class="align-items-center h-100 right-margin icons-container">
+            <div (click)="delete()" class="tool-item color-3">
+                <i class="material-icons">delete</i>
+            </div>
+        </div>
+    </div>
+</div>

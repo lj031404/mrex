@@ -1,0 +1,15 @@
+<div class="your-portfolio">
+    <div class="your-portfolio__title">{{ 'page.home.your_portfolio' | translate }}</div>
+    <div class="portfolio-content" [class.add-first-prop]="!totalSum">
+        <ng-container *ngIf="totalSum">
+            <div class="portfolio text-center" *ngFor="let item of portfolio">
+                <div class="value">${{ item.value | shortNumber }}</div>
+                <div class="label">{{ 'page.home.your_portfolio.' + item.type | translate }}</div>
+            </div>
+        </ng-container>
+      
+        <div *ngIf="!totalSum" class="" (click)="isDev ? gotoPortfolioSummary() : ''">
+            {{ 'pages.home.add_first_property' | translate }}
+        </div>
+    </div>
+</div>

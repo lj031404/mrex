@@ -1,0 +1,34 @@
+
+
+    <div class="sales-comparison-content bg-white">
+        <app-header>
+            <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button" [action]="back.bind(this)"></app-go-back-button>
+            <p slot="title">{{'page.sales_comparison.title' | translate}}</p>
+        </app-header>
+        <ng-container *ngIf="salesComparison">
+            <app-sales-comparison-overview [salesComparison]="salesComparison"></app-sales-comparison-overview>
+            <app-sales-comparables 
+                [salesComparison]="salesComparison"
+                [propertyId]="propertyId"
+            ></app-sales-comparables>
+        </ng-container>
+      
+        <div *ngIf="!salesComparison" class="p-1">
+            <div class="mb-2">
+                <app-skeleton Cwidth="100%" Cheight="240" ></app-skeleton>
+            </div>
+           
+            <div class="mb-2">
+                <app-skeleton Cwidth="100%" Cheight="91"></app-skeleton>
+            </div>
+            
+            <div class="d-flex align-items-start mb-2" *ngFor="let empty of emptyProps">
+                <div class="mr-2">
+                    <app-skeleton Cwidth="113px" Cheight="113"></app-skeleton>
+                </div>
+                <div class="w-100">
+                    <app-skeleton Cwidth="100%" Cheight="35"></app-skeleton>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,17 @@
+<div class="financing-chart">
+    <div class="group-bar-chart" *ngFor="let item of _data">
+        <label>{{ item.label | translate }}</label>
+        <div class="group-bar">
+            <div class="bar-wrapper" *ngFor="let bar of item.values; let i=index">
+                <span class="value">{{ bar[1] | currency: 'CAD':'symbol-narrow':'1.0-0' }}</span>
+                <div class="bar">
+                    <span class="bar-span"
+                          [style.width.%]="bar[2] * 100"
+                          [style.background-color]="bar[3]"
+                    ></span>
+                    <span class="bar-label">{{ bar[0] | translate }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

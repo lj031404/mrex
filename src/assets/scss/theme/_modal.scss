@@ -1,0 +1,37 @@
+.app-modal {
+  .modal-overlay,
+  .modal {
+    z-index: 1040;
+  }
+
+  .modal .modal-header {
+    height: 3.5rem;
+
+    .toolbar {
+      height: 3.5rem;
+      @include flex-row();
+      @include flex-align(flex-start, center);
+
+      .left-button {
+        margin-left: 0;
+      }
+
+      .right-button {
+        margin-left: auto;
+      }
+
+      .title {
+      }
+    }
+  }
+
+  .modal .modal-content {
+    .app-content {
+      padding-top: 0;
+    }
+  }
+
+  .modal .modal-footer {
+    height: 3.5rem;
+  }
+}

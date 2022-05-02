@@ -1,0 +1,73 @@
+@import "../../../../../assets/scss/variables";
+
+:host {
+  .performance-chart {
+    width: 100%;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+
+    .year-show {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+
+      .decrease-wrapper {
+        flex-grow: 1;
+        justify-content: flex-end;
+
+        .decrease-span {
+          background-color: red;
+          color: white;
+          text-align: center;
+        }
+      }
+
+      .amount-wrapper {
+        width: 80px;
+        min-width: 80px;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .year {
+          font-weight: bold;
+        }
+      }
+
+      .increase-wrapper {
+        width: 50%;
+
+        .increase-span {
+          background-color: $color-green;
+          color: white;
+          text-align: center;
+        }
+
+        .black {
+          color: black;
+        }
+      }
+
+      .decrease-wrapper,
+      .increase-wrapper {
+        display: flex;
+        align-items: center;        
+      }
+
+      .decrease-wrapper.blank,
+      .increase-wrapper.blank {
+        visibility: hidden;
+      }
+    }
+
+    .year-show:first-child {
+      .amount-wrapper {
+        border-top: 1px solid #ccc;
+      }
+    }
+  }
+}

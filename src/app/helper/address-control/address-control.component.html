@@ -1,0 +1,77 @@
+<form class="address-form" [formGroup]="form" *ngIf="isNew">
+    <div class="form-group pt-0">
+        <app-form-field [span]="4" class="mr-1">
+            <label>
+                <input type="text" [tabindex]="startTabIndex" placeholder="{{'helper.property-add.components.property-info.civicNum.placeholder' | translate}}" formControlName="civicNumber">
+            </label>
+        </app-form-field>
+
+        <app-form-field [span]="8">
+            <label>
+                <input type="text" [tabindex]="startTabIndex + 2" placeholder="{{'helper.property-add.components.property-info.street.placeholder' | translate}}" formControlName="street">
+            </label>
+        </app-form-field>
+    </div>
+
+    <div class="form-group">
+        <app-form-field [span]="6" class="mr-1">
+            <label>
+                <input type="text" [tabindex]="startTabIndex + 3" placeholder="{{'helper.property-add.components.property-info.city.placeholder' | translate}}" formControlName="city">
+            </label>
+        </app-form-field>
+
+        <!-- <app-form-field [span]="2" class="mr-1">
+            <label>
+                <input type="text" [tabindex]="startTabIndex + 4" placeholder="{{'helper.property-add.components.property-info.state.placeholder' | translate}}" formControlName="state">
+            </label>
+        </app-form-field> -->
+
+        <app-form-field [span]="3" class="mr-1">
+            <div class="select-dropdown-list">
+                <select tabindex="2" formControlName="stateCode">
+                    <option *ngFor="let state of statesOfCA" [value]="state.isoCode">{{ state.isoCode }}</option>
+                </select>
+            </div>
+        </app-form-field>
+
+        <app-form-field [span]="4">
+            <label>
+                <input type="text" [tabindex]="startTabIndex + 5" placeholder="{{'helper.property-add.components.property-info.postalCode.placeholder' | translate}}" formControlName="postalCode">
+            </label>
+        </app-form-field>
+    </div>
+</form>
+
+<form class="address-form" [formGroup]="form" *ngIf="!isNew">
+    <div class="form-group">
+        <app-form-field [span]="6">
+            <label>
+                <input type="text" [tabindex]="startTabIndex" placeholder="{{'helper.property-add.components.property-info.civicNum.placeholder' | translate}}" formControlName="civicNumber">
+            </label>
+        </app-form-field>
+
+        <app-form-field [span]="6">
+            <label>
+                <input type="text" [tabindex]="startTabIndex + 2" placeholder="{{'helper.property-add.components.property-info.street.placeholder' | translate}}" formControlName="street">
+            </label>
+        </app-form-field>
+    </div>
+
+    <app-form-field>
+        <label>
+            <input type="text" [tabindex]="startTabIndex + 3" placeholder="{{'helper.property-add.components.property-info.city.placeholder' | translate}}" formControlName="city">
+        </label>
+    </app-form-field>
+
+    <app-form-field>
+        <label>
+            <input type="text" [tabindex]="startTabIndex + 4" placeholder="{{'helper.property-add.components.property-info.province.placeholder' | translate}}" formControlName="state">
+        </label>
+    </app-form-field>
+
+    <app-form-field>
+        <label>
+            <input type="text" [tabindex]="startTabIndex + 5" placeholder="{{'helper.property-add.components.property-info.zipcode.placeholder' | translate}}" formControlName="postalCode">
+        </label>
+    </app-form-field>
+</form>

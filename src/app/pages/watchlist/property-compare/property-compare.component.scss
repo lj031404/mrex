@@ -1,0 +1,80 @@
+@import '../../../../assets/scss/theme/common';
+
+.header {
+    display: flex;
+    padding: 1em 0;
+    font-size: 90%;
+    color: white;    
+
+    .property-container {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        align-items: center;        
+        
+        &.align-left {
+            text-align: right;        
+        }
+
+        &.align-right {
+            text-align: right;        
+        }
+
+        &.align-center {
+            text-align: center;        
+        }
+    }
+
+    img {
+        width: 4em;
+        height: 4em;
+        border-radius: 4em;
+        margin: 0.75em;
+        border: 3px solid white;
+    }
+}
+
+.name {
+    font-weight: 600;
+    text-align: center;
+}
+
+.indicators {
+    padding: 1em 0;
+
+    h4 {
+        text-align: center;
+    }
+
+    span {
+        font-size: 95%;
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 1.5em;
+
+        td {
+            text-align: center !important;
+            padding: 0.4em;
+            max-width: 0;
+        }
+    }
+
+    span {
+        font-size: 80%;
+        padding: 0.25em 0.25em;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        max-width: 12em;
+        display: inline-block;
+    }
+
+    // disable button hover
+    .btn-outline-mrex-green:hover {
+        pointer-events: none;
+    }
+}

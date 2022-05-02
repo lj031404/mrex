@@ -1,0 +1,79 @@
+
+	<div class="add-unregister-property-content">
+		<div class="add-new-unregister--header">
+			<img src="assets/icons/arrow_back_24px.svg" (click)="back()">
+		</div>
+		<div class="modal-content" #modalContent>
+			<div class="modal-content__title">
+				{{ data.title }}
+			</div>
+			<div class="modal-content__description">
+				{{ data.descriptiveText }}
+			</div>
+		
+			<ng-container *ngIf="!data.isHideAddress">
+				<div class="address">
+					<div class="address__title">
+						{{ 'helper.add_unregister_property.address' | translate }}
+					</div>
+			
+					<div class="address-search">
+						<app-autocomplete
+							[address]="addressStr"
+							(chosenAddress)="addressClick($event)"
+							icon="assets/images/search.png" 
+							placeholder="{{ 'helper.add_unregister_property.enter_property_address' | translate }}"></app-autocomplete>  
+					</div>
+				</div>
+			
+				<div class="or-section">
+					<div class="d-flex align-items-center justify-content-center w-100">
+						<div class="line-or"></div>
+						<span class="mr-1 ml-1">{{ 'helper.add_unregister_property.or' | translate }}</span>
+						<div class="line-or"></div>
+					</div>
+				</div>
+			</ng-container>
+			
+		
+			<div class="attachment-list" *ngIf="documents && documents.length">
+				<div class="attachment-list__title">
+					{{ documents.length }} {{ 'helper.add_unregister_property.attached_files' | translate }}
+				</div>
+		
+				<div class="attachments mt-1">
+					<div class="attachment mt-1" *ngFor="let doc of documents; index as idx">
+						<span class="attachment__name">
+							{{ doc.filename }}
+							<app-progress-spinner [enabled]="!doc.id && doc.isUploading"></app-progress-spinner>
+						</span>
+						<img src="assets/icons/delete.png" (click)="removeDocument(idx)">
+					</div>
+				</div>
+			</div>
+			<div class="add-new-attachment mt-1" (click)="fileInput.click()">
+				<i class="fa fa-plus"></i>
+				<span>{{ 'helper.add_unregister_property.add_attachment' | translate }}</span>
+			</div>
+			<input type="file" #fileInput accept="application/msword, text/plain, application/pdf" style="display: none;" (change)="uploadFile($event)">
+		
+			<div class="accepted-file-formats">
+				<div class="accepted-file-formats__title">
+					{{ 'helper.add_unregister_property.accepted_file_formats' | translate }}
+				</div>
+				<div class="accepted-file-formats__list">
+					<ul class="mt-1">
+						<li> PDF, JPG, PNG, BMP, TIFF </li>
+						<li>Maximum 10MB per file</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal-footer">
+			<button [disabled]="!address" *ngIf="!data.isHideAddress" class="btn btn-primary w-100" (click)="registerNewProperty()">{{ 'helper.add_unregister_property.submit_property' | translate }}</button>
+			<button [disabled]="!documents.length" *ngIf="data.isHideAddress" class="btn btn-primary w-100" (click)="uploadDocumentClose()">{{ 'helper.add_unregister_property.submit_property' | translate }}</button>
+		</div>
+	</div>
+
+

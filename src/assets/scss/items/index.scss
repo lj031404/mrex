@@ -1,0 +1,33 @@
+@import "./property-item";
+@import "./settings-item";
+@import "./payment-item";
+@import "./subscription-item";
+@import "./credit-item";
+@import "./subscription-require.scss";
+@import "./locked.scss";
+@import "./tabs.scss";
+
+.app-item {
+  color: black;
+  margin-bottom: 14px;
+}
+
+.app-item.item-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-item.item-gray {
+  color: $color-gray-8;
+}
+
+:disabled {
+  color: $color-gray-15 !important;
+}
+
+app-xy-line-chart {
+  a {
+    display: none !important;
+  }
+}

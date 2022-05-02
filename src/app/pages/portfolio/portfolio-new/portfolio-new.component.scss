@@ -1,0 +1,137 @@
+@import "../../../../assets/scss/mixin";
+@import "../../../../assets/scss/variables.scss";
+
+.property-form2 {
+	background-color: $color-gray-18;
+	height: calc(100% - 3.45rem);
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.property-form-content {
+	padding: 1.2rem 1.1rem;
+}
+
+.form-section-name {
+	font-size: 1.71rem;
+	line-height: 2.057rem;
+	font-weight: 600;
+	color: $color-gray-19;
+	margin-bottom: 0.78rem;
+	margin-top: .7rem;
+}
+
+
+.contact-btn {
+	background: $color-green;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+	color: white;
+}
+
+.contact-us-form {
+	padding: 1rem 0;
+
+	span {
+		font-size: 1rem;
+		color: black;
+		line-height: 18px;
+	}
+}
+
+::ng-deep .inclusion-list {
+	flex-wrap: wrap;
+	margin-top: 0.78rem;
+
+	app-form-field {
+		width: 50%;
+	}
+	.inclusion-item {
+		width: 50%;
+		background-color: white;
+		margin-bottom: 0.7rem;
+
+		.mat-slide-toggle-bar{
+			width: 49px!important;
+			height: 26px!important;
+		}
+		.app-slide-toggle.mat-checked .mat-slide-toggle-thumb-container {
+			transform: translate3d(24px, 0, 0) !important;
+		}
+		.mat-slide-toggle-content {
+			font-size: 1.14rem;
+		}
+	}
+}
+
+app-group-options {
+	margin-bottom: 0.78rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.subtitle-14 {
+	font-size: 1.142rem;
+	line-height: 1.37rem;
+	color: $color-gray-19;
+}
+
+.modal-footer {
+	display: flex !important;
+	justify-content: stretch;
+	align-items: center;
+	position: static;
+	bottom: 0;
+	position: sticky;
+    background-color: white;
+    border-top: 1px solid #bfbfbf;
+    height: 3.5rem;
+	padding: 0.5rem 1rem;
+	z-index: 2;
+	.stepper-controller-wrapper {
+		flex: 1 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	
+		.app-step-controller {
+			margin: 0 60px;
+		}
+	}
+}
+
+.change-suite {
+	font-size: 0.9rem;
+	color: $color-green;
+	font-weight: 400;
+	margin-left: 1rem;
+}
+
+.suite-form {
+	margin-bottom: 0.78rem;
+	margin-top: .7rem;
+
+	input {
+		background-color: unset;
+		border: unset;
+		font-size: 1.71rem;
+		line-height: 2.057rem;
+		font-weight: 600;
+		color: $color-gray-19;
+		width: 100%;
+
+		&.form-editable {
+			background-color: white;
+		}
+
+		&.ng-touched.ng-invalid {
+			background-color: rgba(238, 88, 88, 0.2)!important;
+		}
+	}
+}
+
+:host(.ng-touched.ng-invalid) {
+	background-color: rgba(238, 88, 88, 0.2)!important;
+}
+  

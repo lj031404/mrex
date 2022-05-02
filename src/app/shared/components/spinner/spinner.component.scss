@@ -1,0 +1,12 @@
+.loading{
+    color: white;
+    font-size: 150%;
+    position: relative;
+    text-align: center;
+    padding-top: 8em;
+    min-width: 320px;
+}
+
+.overlay[_ngcontent-hax-c2] > div[_ngcontent-hax-c2]:not(.loading-text) {
+    top: 40% !important;
+}

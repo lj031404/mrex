@@ -1,0 +1,36 @@
+.navigation > li > a i {
+    &.fa {
+        position: relative;
+        top: 0.25rem !important;
+        font-size: 1.3rem;
+    }
+}
+
+.navigation {
+    a > i {
+        transform: translateX(0px) !important;
+    }
+}
+
+.navigation > li.active > a > span {
+    transform: translateX(0px);
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+
+.menu-name {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.05em;
+    color: #000000;
+    text-align: center !important;
+    vertical-align: middle !important;
+}

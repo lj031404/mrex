@@ -1,0 +1,90 @@
+@import '../../../../assets/scss/variables.scss';
+
+.market-stats-content {
+	.location-section {
+		padding: 1rem 1.14rem 2.57rem 1.14rem;
+		
+		.location-province {
+			font-size: 1.7rem;
+			line-height: 2.57rem;
+			font-weight: 700;
+			color: black;
+		}
+
+		.location-community {
+			font-size: 1.14rem;
+			color: black;
+			font-weight: 400;
+			line-height: 1.7rem;
+		}
+
+		.change-location {
+			font-size: 1.14rem;
+			line-height: 1.7rem;
+			font-weight: 700;
+			color: $color-green;
+		}
+	}
+
+	.market-stats-tabs {
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid #349E89;
+		justify-content: space-between;
+
+		.market-stats-tab {
+			font-size: 1.14rem;
+			line-height: 1.7rem;
+			font-weight: 400;
+			color: black;
+			padding-bottom: 0.85rem;
+			padding-right: 1.1rem;
+			padding-left: 1.1rem;
+
+			&.active {
+				border-bottom: 4px solid #349E89;
+				font-weight: 700;
+				color: $color-green;
+			}
+		}
+	}
+
+	.city-neighbourhood {
+		padding: 1.7rem 3.64rem 4.57rem 3.42rem;
+		.city-title {
+			font-size: 1.142rem;
+			line-height: 1.7rem;
+			font-weight: 700;
+			color: black;
+
+		}
+
+		.neighbourhood-picker {
+			margin-top: 1.7rem;
+			margin-bottom: 2.285rem;
+		}
+
+		.btn-search {
+			width: 100%;
+			font-size: 1.14rem;
+			line-height: 1.7rem;
+			font-weight: 700;
+			box-shadow: unset;
+			padding: unset;
+		}
+
+		select {
+			display: block;
+			width: 100%;
+			padding: 0.82rem 1.08rem;
+			font-size: 1.14rem;
+			line-height: 1.7;
+			color: $color-gray-15;
+			background-color: #fff;
+			background-clip: padding-box;
+			border: 1px solid rgba(52, 158, 137, 0.2);
+			border-radius: .25rem;
+			transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		}
+	}
+}

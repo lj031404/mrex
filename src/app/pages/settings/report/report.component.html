@@ -1,0 +1,88 @@
+
+    <app-header>
+        <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+        <p slot="title">{{'page.settings.report.title' | translate}}</p>
+    </app-header>
+    
+    <app-content>
+        <div class="spacer spacer-2"></div>
+    
+        <div class="alert alert-success text-center" *ngIf="isSent && !error">
+            <div>{{ "page.settings.report.sent" | translate }} </div>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="error">
+            {{ error }}
+        </div>
+    
+        <form [formGroup]="formGroup" (ngSubmit)="onFormGroupSubmit()">        
+            <div class="type-list">
+                <app-item class="item--report-type">
+                    <div class="control custom-control custom-radio">
+                        <input id="billing" [attr.disabled]="(isLoading || isSent) ? '' : null" name="type" [value]="ReportType.Billing" type="radio" class="custom-control-input" formControlName="type">
+                        <label class="custom-control-label" for="billing">{{'page.settings.report.billing' | translate}}</label>
+                    </div>
+                </app-item>
+                <app-item class="item--report-type">
+                    <div class="control custom-control custom-radio">
+                        <input id="bug" [attr.disabled]="(isLoading || isSent) ? '' : null" name="type" [value]="ReportType.Bug" type="radio" class="custom-control-input" formControlName="type">
+                        <label class="custom-control-label" for="bug">{{'page.settings.report.bug' | translate}}</label>
+                    </div>
+                </app-item>
+                <app-item class="item--report-type">
+                    <div class="control custom-control custom-radio">
+                        <input id="dataInconsistency" [attr.disabled]="(isLoading || isSent) ? '' : null" name="type" [value]="ReportType.DataInconsistency" type="radio" class="custom-control-input" formControlName="type">
+                        <label class="custom-control-label" for="dataInconsistency">{{'page.settings.report.dataInconsistency' | translate}}</label>
+                    </div>
+                </app-item>
+                <app-item class="item--report-type">
+                    <div class="control custom-control custom-radio">
+                        <input id="featureRequest" [attr.disabled]="(isLoading || isSent) ? '' : null" name="type" [value]="ReportType.FeatureRequest" type="radio" class="custom-control-input" formControlName="type">
+                        <label class="custom-control-label" for="featureRequest">{{'page.settings.report.featureRequest' | translate}}</label>
+                    </div>
+                </app-item>
+                <app-item class="item--report-type">
+                    <div class="control custom-control custom-radio">
+                        <input id="other" [attr.disabled]="(isLoading || isSent) ? '' : null" name="type" [value]="ReportType.Other" type="radio" class="custom-control-input" formControlName="type">
+                        <label class="custom-control-label" for="other">{{'page.settings.report.other' | translate}}</label>
+                    </div>
+                </app-item>
+                <app-item class="item--report-type">
+                    <div class="control custom-control custom-radio">
+                        <input id="suggestion" [attr.disabled]="(isLoading || isSent) ? '' : null" name="type" [value]="ReportType.Suggestion" type="radio" class="custom-control-input" formControlName="type">
+                        <label class="custom-control-label" for="suggestion">{{'page.settings.report.suggestion' | translate}}</label>
+                    </div>
+                </app-item>
+                <app-item class="item--report-type">
+                    <div class="control custom-control custom-radio">
+                        <input id="support" [attr.disabled]="(isLoading || isSent) ? '' : null" name="type" [value]="ReportType.Support" type="radio" class="custom-control-input" formControlName="type">
+                        <label class="custom-control-label" for="support">{{'page.settings.report.support' | translate}}</label>
+                    </div>
+                </app-item>
+            </div>
+    
+            <label class="subject-box">
+                <input 
+                    [class.disabled]="isLoading || isSent"
+                    [placeholder]="'page.settings.report.subject' | translate" 
+                    formControlName="subject"/>
+            </label>
+    
+            <label class="message-box">
+                <textarea class="app-textarea" 
+                    [class.disabled]="isLoading || isSent"
+                    [placeholder]="'page.settings.report.your_message' | translate" 
+                    formControlName="message"></textarea>
+            </label>
+    
+            <button class="btn text-uppercase w-100 mb-2" 
+                [ngClass]="formGroup.invalid || isLoading || isSent ? 'btn-inactive-gray' : 'btn-green'"
+                [disabled]="formGroup.invalid || isLoading || isSent ">
+                <ng-container *ngIf="!isLoading && !isSent">{{'literals.send' | translate}}</ng-container>
+                <ng-container *ngIf="!isLoading && isSent">{{'literals.sent' | translate}}</ng-container>
+                <app-progress-spinner [enabled]="isLoading"></app-progress-spinner>
+            </button>
+        </form>
+    </app-content>
+    
+    
+

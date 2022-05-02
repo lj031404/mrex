@@ -1,0 +1,65 @@
+@import '../../../assets/scss/variables.scss';
+
+.msg-error {
+  background-color: red !important;
+  color: white !important;
+  margin: $standard-message-margin 0px !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+.msg-error-no-margin {
+  background-color: red !important;
+  color: white !important;
+  margin: 0!important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+.msg-info {
+  background-color: #349E89 !important;
+  color: white !important;
+  margin: $standard-message-margin 0px !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+.msg-info-no-margin {
+  background-color: #349E89 !important;
+  color: white !important;
+  margin: 0 !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+.msg-warning {
+  background-color: $color-dark-orange2 !important;
+  color: white !important;
+  margin: $standard-message-margin 0px !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+.msg-warning-no-margin {
+  background-color: $color-dark-orange2 !important;
+  color: white !important;
+  margin: 0 !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+.cdk-virtual-scroll-content-wrapper {
+  width: 100%;
+}
+
+app-add-unregister-property-dlg {
+  app-autocomplete {
+    input {
+      height: 4rem!important;
+      border-style: unset!important;
+      font-size: 1.2rem!important;
+      border: 1px solid rgba(52, 158, 137, 0.2)!important;
+      box-shadow: unset!important;
+    }
+  }
+}

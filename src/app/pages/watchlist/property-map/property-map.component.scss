@@ -1,0 +1,9 @@
+:host {
+  ::ng-deep {
+    .content-body {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 71.4px);
+    }
+  }
+}

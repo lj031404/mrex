@@ -1,0 +1,24 @@
+
+<form [formGroup]="form" class="w-100">
+	<div class="input-number2">
+		<div class="input-number2__title" [innerHTML]="title | translate">
+		</div>
+		<div class="input-number2__content">
+			<i class="fa fa-minus" aria-hidden="true" (click)="decrease()"></i>
+			<input 
+				type="text" 
+				class="form-control text-center w-100"
+				pattern="[0-9,.-]*"
+				inputmode="decimal"                
+				placeholder="0" 
+				step="1"
+				min="0"
+				placeholder="{{placeholder}}"
+				formControlName="field"
+				(keyup)="format()"  
+				(focusout)="format(true)"        
+				[attr.disabled]="disabled ? '' : null">
+			<i class="fa fa-plus" aria-hidden="true" (click)="increase()"></i>
+		</div>
+	</div>
+</form>

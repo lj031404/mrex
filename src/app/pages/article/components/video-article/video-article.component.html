@@ -1,0 +1,75 @@
+<div [class.p-2]="!articleInformation?.id">
+	<div *ngIf="!articleInformation?.id">
+		<app-skeleton  Cwidth="100%" Cheight="116"></app-skeleton>
+	</div>
+</div>
+
+<div class="media-article" #mediaArticle>
+	<div class="media-article__thumbnail" 
+	*ngIf="videoId">
+		<iframe height="270"
+			[src]="'https://www.youtube.com/embed/' + videoId + '?autoplay=1' | safe" sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation" allow="autoplay" allowfullscreen>
+		</iframe>
+	</div>
+
+	<div class="media-article__info">
+		<div class="media-article__posted text-right" *ngIf="articleInformation.publishDate">
+			<span>{{ articleInformation.publishDate | timeAgo }}</span>
+		</div>
+	
+		<div class="media-article__title position-relative" *ngIf="articleInformation.title">
+			<div [innerHTML]="articleInformation?.title">
+			</div>
+			<img class="position-absolute share-icon" (click)="openSocialShareDlg(articleInformation)" *ngIf="!articleInformation?.disableSocialShare" [src]="!articleInformation.isPlayVideoItem ? 'assets/icons/share.svg' : 'assets/icons/playvideoupload.png'" />
+		</div>
+	
+		<div class="media-article__description clearfix" [class.d-none]="!articleInformation.summary" [class.more]="isMoreDescription" [class.pr-0]="!isMoreDescription" #articleSummary>
+			<span [innerHTML]="articleInformation?.summary + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'" id="articleDescription" #articleDescription></span>
+			<span class="more-collapse ml-1 float-right" [class.d-none]="articleSummary.scrollHeight < 61" (click)="isMoreDescription = !isMoreDescription">
+				<ng-container *ngIf="!isMoreDescription">
+					{{'pages.article.video_article.collapse' |  translate }}
+				</ng-container>
+			</span>
+		</div>
+		<div class="text-right more-collapse-txt" [class.d-none]="articleSummary.scrollHeight < 61">
+			<span class="more-collapse" (click)="isMoreDescription = !isMoreDescription">
+				<ng-container *ngIf="isMoreDescription">
+					{{ 'pages.article.video_article.more' | translate }}
+				</ng-container>
+			</span>
+		</div>
+	</div>
+
+	<div class="media-article__body">
+		<div *ngIf="!recommandedVideos.length && loading" class="mt-2">
+			<div class="d-flex align-items-start mb-2" *ngFor="let empty of ['','','','','']">
+				<div class="mr-2">
+					<app-skeleton Cwidth="113px" Cheight="113"></app-skeleton>
+				</div>
+				<div class="w-100">
+					<app-skeleton Cwidth="100%" Cheight="35"></app-skeleton>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="other-recomended-articles" [class.d-none]="!recommandedVideos?.length">
+		<div class="other-recomended-articles__title" #recommendedArticle>
+			{{ 'page.article.other_recommended_videos' | translate }}
+		</div>
+
+		<div class="pagination-view" #paginationView>
+			<cdk-virtual-scroll-viewport 
+				(scrolledIndexChange)="onScrollIndexChange($event)" 
+				itemSize="108" 
+				minBufferPx="800"
+				maxBufferPx="800"
+				class="overflow-hidden">
+				<app-recommended-article 
+					[article]="article" 
+					(selectRecommendArticle)="selectRecommendArticle($event)" 
+					*ngFor="let article of recommandedVideos">
+				</app-recommended-article>
+			</cdk-virtual-scroll-viewport>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,437 @@
+<app-header>
+    <app-go-back-button [action]="back" [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+    <p slot="title" *ngIf="!portfolioId">{{ 'page.portfolio.new.header' | translate }}</p>
+    <p slot="title" *ngIf="portfolioId">{{ 'page.portfolio.edit.header' | translate }}</p>
+    <img  slot="right-button" src="assets/icons/exclamation.svg" (click)="draftPortfolio()">
+</app-header>
+
+<div class="bg-white">
+	<div class="stepper-controller-wrapper">
+		<div class="d-flex align-items-center stepper-content w-100 justify-content-between">
+			<div class="stepper-item " [class.actived]="step === 1" (click)="step = 1">{{ step === 1 ? 1 : ''}}</div>
+			<div class="stepper-line"></div>
+			<div class="stepper-item" [class.actived]="step === 2" (click)="step = 2">{{ step === 2 ? 2 : ''}}</div>
+			<div class="stepper-line"></div>
+			<div class="stepper-item" [class.actived]="step === 3" (click)="step = 3">{{ step === 3 ? 3 : ''}}</div>
+		</div>
+		<div class="d-flex  align-items-center  stepper-labels w-100 justify-content-between">
+			<div class="stepper-label" [class.actived]="step === 1" (click)="step = 1">{{ 'pages.portfolio.portfolio_confirm_info' | translate }}</div>
+			<div class="stepper-label" [class.actived]="step === 2" (click)="step = 2">{{ 'pages.portfolio.portfolio_apartment_data' | translate }}</div>
+			<div class="stepper-label" [class.actived]="step === 3" (click)="step = 3">{{ 'pages.portfolio.portfolio_building_expenses' | translate }}</div>
+		</div>
+	</div>
+	
+	<form class="portfolio-form" [formGroup]="form" *ngIf="form">
+		<div [class.d-none]="step !== 1">
+			<div class="address-information d-flex align-items-start">
+				<img src="assets/icons/office_1.svg">
+				<div class="street-address-info">
+					<div class="street">
+						{{ form.get('address').value.civicNumber }} {{ form.get('address').value.street }} {{ form.get('address').value.city }}
+					</div>
+					<div class="state">
+						{{ form.get('address').value.state }}
+					</div>
+				</div>
+			</div>
+
+			<div class="form-field">
+				<div class="form-field__title">{{ 'pages.portfolio.portfolio_right_type_of_portfolio' |  translate }}</div>
+				<div class="form-field__content d-flex align-items-center">
+					<div class="square-option flex-1" [class.activated]="form.get('propertyType').value === 'multifamilyResidential'" (click)="updateProprtyFormValue('multifamilyResidential')">
+						{{ 'literals.property_type.multifamilyResidential' | translate }}
+					</div>
+					<div class="or-str">{{ 'pages.portfolio.portfolio_or' | translate}}</div>
+					<div class="square-option flex-1" [class.activated]="form.get('propertyType').value === 'multifamilyMixedUse'" (click)="updateProprtyFormValue('multifamilyMixedUse')">
+						{{ 'literals.property_type.multifamilyMixedUse' | translate }}
+					</div>
+				</div>
+			</div>
+			<div class="form-field">
+				<div class="form-field__title">{{ 'pages.portfolio.portfolio_yearofpropertybuild' |  translate }}</div>
+				<div class="form-field__content">
+					<input type="text" pattern="[0-9,.-]*" step="1" min="0" class="form-control input-form" formControlName="yearOfConstruction">
+				</div>
+			</div>
+			<div class="form-field">
+				<div class="form-field__title">{{ 'pages.portfolio.portfolio_number_floors_excluding_basement' |  translate }}</div>
+				<div class="form-field__content">
+					<input type="text" pattern="[0-9,.-]*" step="1" min="0" class="form-control input-form">
+				</div>
+			</div>
+			<div class="form-field">
+				<div class="form-field__title">{{ 'pages.portfolio.portfolio_right_number_unit' |  translate }}</div>
+				<div class="form-field__content">
+					<input type="text" pattern="[0-9,.-]*" step="1" min="0" class="form-control input-form">
+				</div>
+			</div>
+			<div class="form-field">
+				<div class="form-field__title">{{ 'pages.portfolio.portfolio_want_enter' |  translate }}</div>
+				<div class="form-field__content d-flex align-items-center">
+					<div class="square-option flex-1">
+						Estimated Anual Revenue
+					</div>
+					<div class="or-str">{{ 'pages.portfolio.portfolio_or' | translate}}</div>
+					<div class="square-option flex-1">
+						Specific unit revenue
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div [class.d-none]="step !== 2">
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'pages.portfolio.portfolio.select_unit' | translate }}</div>
+				<div class="form-field__content income-form">
+					<div class="select-dropdown-list">
+						<select tabindex="2" >
+							<option *ngFor="let choice of loanTypes; let i = index" [value]="choice.value">
+								{{ choice.label | translate }}
+							</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-field">
+				<div class="form-field__content d-flex align-items-center">
+					<div class="date-option flex-1">
+						<div class="d-flex align-items-center justify-content-between">
+							<span>{{ 'page.label.start_dt' | translate }}</span>
+							<img src="assets/icons/date_green_icon.svg">
+						</div>
+						
+					</div>
+					<div class="or-str">{{ 'pages.portfolio.portfolio_or' | translate}}</div>
+					<div class="date-option flex-1">
+						<div class="d-flex align-items-center justify-content-between">
+							<span>{{ 'page.label.end_dt' | translate }}</span>
+							<img src="assets/icons/date_green_icon.svg">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-field mb-32">
+				<div class="form-field__title">{{ 'pages.portfolio.portfolio_unittype' | translate }}</div>
+				<div class="form-field__content unittypes">
+					<div *ngFor="let unit of unitTypes" class="unit-type">{{ unit.title }}</div>
+				</div>
+			</div>
+
+			<div class="form-field mb-32">
+				<div class="form-field__title">{{ 'pages.portfolio.included_utilites' | translate }}</div>
+				<div class="form-field__content included_utilites">
+
+				</div>
+			</div>
+
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black mb-0">{{ 'pages.portfolio.portfolio.montly_rent' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+
+			<div class="form-field">
+				<div class="form-field__title">{{ 'pages.portfolio.portfolio_how_many_units_these_characteristics' | translate }}</div>
+				<div class="form-field__content ">
+					<mat-radio-group aria-label="Select an option">
+						<div class="apply-to-all-units">
+							<span>{{ 'pages.portfolio.portfolio_apply_to_all' | translate: { units: 15 } }}</span>
+							<mat-radio-button value="1"></mat-radio-button>
+						</div>
+	
+						<div class="apply-to-all-units">
+							<span>{{ 'pages.portfolio.portfolio_select_separataly' | translate }}</span>
+							<mat-radio-button value="2"></mat-radio-button>
+						</div>
+					</mat-radio-group>
+				
+				</div>
+			</div>
+
+			<div class="unit-edit-list">
+				<div class="unit-edit-description text-center">
+					{{ 'pages.portfolio.portfolio.select_which_unit_apply' | translate }}
+				</div>
+				<div class="unit-item d-flex align-items-center justify-content-between">
+					<div class="custom-control custom-checkbox" >
+						<input type="checkbox" class="custom-control-input">
+						<label class="custom-control-label mb-0"> Unit 6
+						</label>
+					</div>
+					<img src="assets/icons/edit_gray.svg">
+				</div>
+
+				<div class="unit-item d-flex align-items-center justify-content-between">
+					<div class="custom-control custom-checkbox" >
+						<input type="checkbox" class="custom-control-input">
+						<label class="custom-control-label mb-0"> Unit 6
+						</label>
+					</div>
+					<img src="assets/icons/edit_gray.svg">
+				</div>
+			</div>
+		</div>
+
+		<div [class.d-none]="step !== 3">
+			<!-- Other Income-->
+			<div class="portfolio-form__subtitle">
+				{{ 'page.portfolio.other_income' |  translate }}
+			</div>
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black mb-0">{{ 'pages.portfolio.parking_income' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+			
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black mb-0">{{ 'pages.portfolio.internet' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+			
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black mb-0">{{ 'pages.portfolio.laundry_income' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+			
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'pages.portfolio.other_income' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+
+			<div class="portfolio-form__subtitle">
+				{{ 'pages.portfolio.portfolio_new.expenses' |  translate }}
+			</div>
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black mb-0">{{ 'page.portfolio.municipal_taxes' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+			
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black mb-0">{{ 'page.portfolio.school_taxes' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+			
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black mb-0">{{ 'page.portfolio.insurance' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+			
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'page.portfolio.utilities' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+
+			<!--Acquisition-->
+			<div class="portfolio-form__subtitle">
+				{{ 'page.portfolio.acquisition' |  translate }}
+			</div>
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'page.portfolio.purchasedPrice' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'page.portfolio.purchasedDate' | translate }}</div>
+				<div class="form-field__content income-form position-relative">
+					<input type="text" class="form-control income-form-input text-left" [placeholder]="'Date'" [matDatepicker]="purchasedDate" (click)="purchasedDate.open()" tabindex="23" placeholder="04/03/20" >
+					<mat-datepicker #purchasedDate></mat-datepicker>
+					<img src="assets/icons/calendar.svg" class="position-absolute calendar-icon" (click)="purchasedDate.open()" />
+				</div>
+			</div>
+
+			<div class="form-field">
+				<div class="form-field__title">{{ 'pages.portfolio.portfolio_lender' |  translate }}</div>
+				<div class="form-field__content">
+					<app-banks-selector
+						[title] = "''"
+						[itemClick]="updateFinancingParameters.bind(this)"
+						[onReset]="reset.bind(this)"
+						[excludeBank]="['ConventionalCustom', 'CHMC']"
+						[activeItem] = "null"
+						[showResetButton]=false
+					></app-banks-selector>
+				</div>
+			</div>
+
+			<div class="form-field">
+				<div class="form-field__title">{{ 'pages.portfolio.most_recent_loan_initial_amount' |  translate }}</div>
+				<div class="form-field__content">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'page.portfolio.primary_financing.term' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'page.portfolio.primary_financing.interest_rate' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+
+			<div class="form-field">
+				<div class="form-field__title">{{ 'page.portfolio.primary_financing.years_amortized' |  translate }}</div>
+				<div class="form-field__content unittypes">
+					<div *ngFor="let unit of yearsAmortizedOptions" class="unit-type">{{ unit.title }}</div>
+				</div>
+			</div>
+
+			<!--CHMC insured-->
+			<div class="form-field d-flex align-items-center  justify-content-between">
+				<div class="form-field__title">{{ 'pages.portfolio.portfolio_cmhc_insured' |  translate }}</div>
+				<div class="form-field__content text-right">
+					<mat-slide-toggle  class="app-slide-toggle"></mat-slide-toggle>
+				</div>
+			</div>
+
+			<div class="form-field d-flex align-items-center  justify-content-between">
+				<div class="form-field__title">{{ 'pages.portfolio.first_payment' |  translate }}</div>
+				<div class="form-field__content income-form position-relative">
+					<input type="text" class="form-control income-form-input text-left" [placeholder]="'Date'" [matDatepicker]="payment_dt" (click)="payment_dt.open()" tabindex="23" placeholder="04/03/20" >
+					<mat-datepicker #payment_dt></mat-datepicker>
+					<img src="assets/icons/calendar.svg" class="position-absolute calendar-icon" (click)="payment_dt.open()" />
+				</div>
+			</div>
+
+			<!--Secondary financing-->
+			<div class="portfolio-form__subtitle d-flex align-items-center justify-content-between">
+				<span>{{ 'pages.portfolio.portfolio_new.second-financing' |  translate }}</span>
+				<mat-slide-toggle  class="app-slide-toggle"></mat-slide-toggle>
+			</div>
+
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'pages.portfolio.initial_loan_amount' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+			
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'pages.portfolio.initial_loan_amount' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'pages.portfolio.portfolio_new.secondary-financing.interestRate' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+
+			<div class="form-field d-flex align-items-center  justify-content-between">
+				<div class="form-field__title">{{ 'pages.portfolio.first_payment' |  translate }}</div>
+				<div class="form-field__content income-form position-relative">
+					<input type="text" class="form-control income-form-input text-left" [placeholder]="'Date'" [matDatepicker]="first_payment_dt" (click)="first_payment_dt.open()" tabindex="23" placeholder="04/03/20" >
+					<mat-datepicker #first_payment_dt></mat-datepicker>
+					<img src="assets/icons/calendar.svg" class="position-absolute calendar-icon" (click)="first_payment_dt.open()" />
+				</div>
+			</div>
+
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'page.portfolio.primary_financing.term' | translate }}</div>
+				<div class="form-field__content income-form">
+					<input type="text" class="form-control income-form-input text-right" [placeholder]="'pages.portfolio.portfolio_add_amount' | translate">
+				</div>
+			</div>
+
+			<div class="form-field d-flex align-items-center justify-content-between">
+				<div class="form-field__title text-black  mb-0">{{ 'page.portfolio.loan_type' | translate }}</div>
+				<div class="form-field__content income-form">
+					<div class="select-dropdown-list">
+						<select tabindex="2" >
+							<option *ngFor="let choice of loanTypes; let i = index" [value]="choice.value">
+								{{ choice.label | translate }}
+							</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="unit-remain-section">
+				<div class="text-center">
+					<img src="assets/icons/office_big.svg">
+				</div>
+
+				<div class="remain-items text-center">
+					7 {{ 'pages.portfolio.portfolio.units_remain' | translate }}
+				</div>
+				<div class="remain-description text-center">
+					{{ 'pages.portfolio.portfolio.completed_unit' | translate }}
+				</div>
+			</div>
+		</div>
+		<div class="progress-content">
+			<div class="progress-status">0% {{ 'pages.portfolio.portfolio_iscompleted' | translate }}</div>
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="0" style="width: 25%;" aria-valuemin="0" aria-valuemax="100">
+					<img src="assets/icons/scroll_pointer.svg" class="position-absolute"  style="left: 23%" >
+				</div>
+			</div>
+		</div>
+	
+		<div class="next-step">
+			<button class="btn btn-primary w-100">{{ 'pages.portfolio.next_step'| translate }}</button>
+		</div>
+
+		<div class="apply-to-all-units border-0">
+			<span>{{ 'pages.portfolio.portfolio_select_separataly' | translate }}</span>
+			<div class="custom-control custom-checkbox" >
+				<input type="checkbox" class="custom-control-input">
+				<label class="custom-control-label mb-0">
+				</label>
+			</div>
+		</div>
+		<div class="finial-step">
+			<div class="text-center ">
+				<img src="assets/icons/stair.svg">
+			</div>
+			<div class="congrate-txt text-center">
+				{{'pages.portfolio.portfolio.congratulations' | translate }}
+			</div>
+			<div class="congrate-description text-center">
+				{{'pages.portfolio.portfolio.property_added_successfully' | translate }}
+			</div>
+			<div class="progress-content">
+				<div class="progress-status">100% {{ 'pages.portfolio.portfolio_iscompleted' | translate }}</div>
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="0" style="width:100%;" aria-valuemin="0" aria-valuemax="100">
+						<img src="assets/icons/scroll_pointer.svg" class="position-absolute"  style="left:98%" >
+					</div>
+				</div>
+			</div>
+			<div class="next-step">
+				<button class="btn btn-primary w-100">{{ 'pages.portfolio.portoflio.add_another_property'| translate }}</button>
+			</div>
+			<div class="back-to-portfolio">
+				{{ 'pages.portfolio.portfolio.go_back_portfolio' | translate }}
+			</div>
+		</div>
+	</form>
+
+
+</div>

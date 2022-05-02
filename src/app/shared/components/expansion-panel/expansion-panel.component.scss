@@ -1,0 +1,44 @@
+@import "../../../../assets/scss/mixin";
+
+:host {
+	.expansion-panel {
+		display: block;
+		box-sizing: content-box;
+		position: relative;
+		width: 100%;
+
+		.panel-toggle-icon {
+			position: absolute;
+			top: 4px;
+			right: 4px;
+			font-size: 24px;
+			color: black;
+		}
+
+		::ng-deep {
+			.panel-header {
+				cursor: pointer;
+				width: 100%;
+				height: 42px;
+				padding-right: 80px;
+				display: flex;
+				align-items: center;
+
+				.title {
+					font-size: $font-size-title;
+					line-height: $line-height-title;
+				}
+			}
+
+			.disabled {
+				i, .title {
+					color: #bbb !important;
+				}
+			}
+		}
+
+		.panel-body {
+			width: 100%;
+		}		
+	}
+}

@@ -1,0 +1,91 @@
+
+.left-rail {
+	position: relative;
+	width: 36%;
+	max-height: 100%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	background-color: transparent;
+	border-radius: 12px;
+	font-family: Arial;
+	font-size: 10px;
+	line-height: 16px;
+	text-align: center;
+	background: rgba(52, 158, 137, 0.1);
+	color: rgba(37, 45, 58, 0.8);
+	flex-direction: column;
+	height: 9.07rem;
+
+	&__type {
+		font-size: 0.7rem;
+		padding-top: 2px;
+	}
+
+	&__status {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 0 20px;
+		.processing-txt {
+			font-size: 1.1rem;
+		}
+		.upsoon-txt {
+			font-size: 0.7rem;
+			line-height: 0.8rem;
+		}
+	}
+
+	.draft-status {
+		color: red;
+		font-size: 1.1rem;
+		text-align: center;
+		
+	}
+}
+
+.main-rail {
+	position: relative;
+	width: 63%;
+	padding: 0 8px;
+	font-family: Arial;
+	color: black;
+	display: flex;
+	flex-direction: column;
+
+	.address {
+		font-size: 0.93rem;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.submitted {
+		font-size: 0.9rem;
+		text-align: right;
+		.submitted-date {
+			font-weight: 600;
+		}
+	}
+
+}
+.pending-item {
+	width: 100%;
+    min-height: 9.1rem !important;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.4em 0.2em;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+}
+
+.pending-propertycard-item {
+	position: relative!important;
+	width: 100%;
+	padding: 0.5rem 0.5rem;
+	height: 9.1rem;
+}

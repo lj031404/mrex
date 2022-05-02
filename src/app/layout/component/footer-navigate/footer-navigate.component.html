@@ -1,0 +1,30 @@
+<div class="d-flex align-items-center nav-items justify-content-between position-relative">
+	<div *ngFor="let nav of tabs" (click)="openPage(nav)" [class.ios-mb]="os === 'iOS'">
+		<div class="active-nav" [class.d-none]="!nav.active">
+			<div class="icon-content">
+				<img [src]="'assets/icons/footer/'+nav.activeIcon+'.svg'">
+			</div>
+			
+			<span>{{ nav.title | translate }}</span>
+		</div>
+
+		<div class="normal-nav" [class.d-none]="nav.active" >
+			<div class="icon-content">
+				<img [src]="'assets/icons/footer/'+nav.icon+'.svg'">
+			</div>
+		
+			<span>{{ nav.title | translate }}</span>
+		</div>
+	</div>
+
+	<div [class.ios-mb]="os === 'iOS'">
+		<div class="normal-nav">
+			<app-menu-button></app-menu-button>
+		</div>
+	</div>
+
+	<div class="position-absolute w-100 text-center footer-spinner" [class.d-none]="globalService.logOutEventListener$ | async">
+		<app-progress-spinner [enabled]="true"></app-progress-spinner>
+	</div>
+	
+</div>

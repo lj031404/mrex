@@ -1,0 +1,34 @@
+<div (click)="expanded = !expanded" class="main">
+    <span *ngIf="sub && sub.length" class="collapsible">
+        <i class="fas fa-chevron-down" *ngIf="expanded"></i> 
+        <i class="fas fa-chevron-right" *ngIf="!expanded"></i> 
+    </span> 
+    <span *ngIf="sub && sub.length === 0" class="collapsible"></span>    
+    <span class="label" [class.right-align]="!sub">
+        {{ label }}
+        <app-tooltip [text]="tooltip" *ngIf="tooltip"></app-tooltip>
+    </span>
+    <span class="bold right value" *ngIf="value; else blankValue;">
+        <ng-container *ngIf="!isNumber">{{ value }}</ng-container>
+        <ng-container *ngIf="isNumber">{{ value | number: format }}</ng-container>
+        <span [innerHTML]="unit | translate"></span>
+    </span>
+</div>
+
+<ng-container *ngIf="expanded && sub && sub.length">
+    <div class="indent">
+        <app-property-overview-accordion 
+            *ngFor="let item of sub"            
+            [label]="item.label"
+            [value]="item.value"
+            [unit]="item.unit"
+            [precision]="item.precision"
+            [tooltip]="item.tooltip"
+            [sub]="item.sub">
+        </app-property-overview-accordion>      
+    </div>
+</ng-container>
+
+<ng-template #blankValue>
+    <span class="right blank-right">-</span>
+</ng-template>

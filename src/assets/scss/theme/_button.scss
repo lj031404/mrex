@@ -1,0 +1,112 @@
+
+.btn {
+  height: $button-height;
+  background-image: none !important;
+  text-transform: unset;
+}
+
+.btn-sm {
+  height: $button-height-sm;
+}
+.btn-lg {
+}
+
+.btn-primary,
+.btn-green {
+  border-color: $color--primary !important;
+  background-color: $color--primary !important;
+  color: white !important;
+
+  &:hover, &.hover,
+  &:focus, &.focus,
+  &:active, &.active {
+    border-color: $color--primary !important;
+    background-color: $color--primary !important;
+    color: white !important;
+  }
+
+  &:disabled, &.disabled {
+    background-color: $color-gray-8 !important;
+    color: #ddd !important;
+  }
+}
+
+.btn-orange {
+  border-color: $color-dark-orange !important;
+  background-color: $color-dark-orange !important;
+  color: white !important;
+
+  &:hover, &.hover,
+  &:focus, &.focus,
+  &:active, &.active {
+    border-color: $color-dark-orange !important;
+    background-color: $color-dark-orange !important;
+    color: white !important;
+  }
+
+  &:disabled, &.disabled {
+    background-color: $color-soft-orange !important;
+  }
+}
+
+.btn-outline-green {
+  border: 1px solid $color-green !important;
+  background-color: white !important;
+  color: $color-green !important;
+
+  &:hover, &.hover,
+  &:focus, &.focus,
+  &:active, &.active {
+    border: 1px solid $color-green !important;
+    background-color: white !important;
+    color: $color-green !important;
+  }
+
+  &:disabled, &.disabled {
+    $border-color: $color-silver !important;
+    color: $color-silver !important;
+  }
+}
+
+.btn-inactive-gray {
+  border-color: $color-gainsboro !important;
+  background-color: $color-gainsboro !important;
+  color: $color-gray-7 !important;
+
+  &:hover, &.hover,
+  &:focus, &.focus,
+  &:active, &.active {
+    border-color: $color-gainsboro !important;
+    background-color: $color-gainsboro !important;
+    color: $color-gray-7 !important;
+  }
+}
+
+.btn-white {
+  border-color: white !important;
+  background-color: white !important;
+  color: black !important;
+
+  &:hover, &.hover,
+  &:focus, &.focus,
+  &:active, &.active {
+    background-color: $color--primary !important;
+    color: white !important;
+  }
+}
+
+.btn-outline-grey {
+  color: $color-gray-7 !important;
+  background-color: white !important;
+  border: 1px solid $color-gray-7 !important;
+}
+
+.btn-outline-none {
+  color: $color-gray-7 !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.btn-outline-light:hover {
+  color: #000000!important;
+}

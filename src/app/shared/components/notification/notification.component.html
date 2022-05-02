@@ -1,0 +1,25 @@
+<div class="notifications">
+	<div *ngFor="let notification of notifications" class="notification">
+		<ng-container *ngTemplateOutlet="notificationTemplate; context: { notificationContext: notification }"></ng-container>
+	</div>
+</div>
+
+<ng-template #notificationTemplate let-notification="notificationContext">
+	<div class="header">
+		<div class="mrex-alert">
+			<b>MREX</b><span>Alert Notification</span>
+		</div>
+		<div class="close" (click)="hide(notification)">
+			<img src="./assets/images/close.svg" alt="close">
+		</div>
+	</div>
+	<div class="contents">
+		<div class="image">
+			<img [src]="notification?.imageUrl" appImgFallback="assets/images/notification.png" alt="">
+		</div>
+		<div class="title-msg">
+			<div class="title" [innerHTML]="notification.title"></div>
+			<div class="msg" [innerHTML]="notification.message"></div>
+		</div>
+	</div>
+</ng-template>

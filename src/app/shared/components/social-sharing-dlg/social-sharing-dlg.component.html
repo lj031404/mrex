@@ -1,0 +1,10 @@
+
+	<div class="social-sharing-modal">
+		<div class="social-sharing-modal--header">
+			<i class="fa fa-arrow-left" aria-hidden="true" (click)="back()"></i>
+		</div>
+	
+		<div class="modal-content" #modalContent>
+			<button *ngFor="let opt of socialShareOption" class="btn btn-primary w-100 mb-2" (click)="shareVia(opt)">{{ opt.title | translate }}</button>
+		</div>
+	</div>

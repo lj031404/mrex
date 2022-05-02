@@ -1,0 +1,15 @@
+{
+  "name": "MREX",
+  "short_name": "MREX",
+  "theme_color": "#488aff",
+  "background_color": "#488aff",
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/mrex-couleur.png",
+    "sizes": "447x496",
+    "type": "image/png"
+  }],
+  "gcm_sender_id": "824013910552"
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>824013910552-utfks7qa24pfb24a3jmbn16utpckgpdd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.824013910552-utfks7qa24pfb24a3jmbn16utpckgpdd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD5JBkOr7-5Dxf3o7sOkl24VhXxi8oCIBE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>824013910552</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.app.mrex</string>
+	<key>PROJECT_ID</key>
+	<string>mrex-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mrex-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:824013910552:ios:74e72ea5d610c30437096d</string>
+	<key>CFBundleURLTypes</key>
+		<array>
+    		<dict>
+				<key>CFBundleURLSchemes</key>
+    			<string>com.googleusercontent.apps.824013910552-utfks7qa24pfb24a3jmbn16utpckgpdd</string>
+			</dict>
+		</array>
+</dict>
+</plist>

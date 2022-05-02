@@ -1,0 +1,5 @@
+<button class="btn btn-unlock btn-green" (click)="onClick()" [disabled]="!enabled">
+	<i class="far fa-hand-paper mr-1"></i>
+	<ng-container *ngIf="enabled">{{ 'page.market.summary.make_offer' | translate }}</ng-container>
+	<ng-container *ngIf="!enabled">{{ 'page.market.summary.noticeSent' | translate }}</ng-container> 
+</button>

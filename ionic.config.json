@@ -1,0 +1,8 @@
+{
+  "name": "MREX-app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular",
+  "id": "97d497dc"
+}

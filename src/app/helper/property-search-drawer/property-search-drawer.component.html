@@ -1,0 +1,107 @@
+<div #searchcontainer class="property-search-wrapper" (window:resize)="onResize($event)">
+    <div class="search-form-container bg-mrex-green p-1">
+        <form [formGroup]="searchForm">
+            <div class="form-group mb-0 row">
+                <div class="col-lg-10">
+                    <input #searchInput type="text" class="search-input form-control bg-white semi-round c-right-space"
+                        formControlName="search" [placeholder]="'drawer.searchAddress' | translate">
+                    <div class="close-btn">
+                        <button type="button" class="close" aria-label="Close" (click)="searchClose()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="spacer--custom"></div>
+
+    <ng-container *ngIf="firstLoad">
+        <div class="message-card">
+            <div class="card">
+                <div class="card-body">
+                    <label class="w-100 text-align-center">
+                        {{ 'drawer.helpBox' | translate }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!firstLoad">
+        <cdk-virtual-scroll-viewport class="property-search-viewport" [class.empty-content]="getDataSource === 0"
+            [style.height.px]="maxHeight - 64" [style.max-height.px]="maxHeight - 64" itemSize="110" minBufferPx="880"
+            maxBufferPx="880">
+            <div class="no-result" [style.height.px]="maxHeight - 64 - 98"
+                *ngIf="(propertyDataSource.data$ | async)[0] === 'NOT_IN_LIST'">
+                {{ 'helper.property-search-drawer.no-result' | translate }}
+            </div>
+            <ng-container *cdkVirtualFor="let property of propertyDataSource">
+                <!-- If property not found -->
+                <!--
+                    <app-item class="item--property item--create" *ngIf="property === 'NOT_IN_LIST'">
+                        <div class="col-left">
+                            <i class="material-icons">help_outline</i>
+                        </div>
+                        <div class="information">
+                            <p>{{ 'drawer.notInList' | translate }}</p>
+                        </div>
+                        <div class="action">
+                            <button
+                                class="btn-add btn btn-lg btn--icon-lg"
+                                [ngClass]="searchForm.valid ? 'btn-primary' : 'btn-inactive-gray'"
+                                [disabled]="!searchForm.valid"
+                                (click)="searchByAddressString()">
+                                <i class="material-icons">add</i>
+                            </button>
+                        </div>
+                    </app-item>
+                -->
+                <app-item class="item--property" *ngIf="property.address">
+                    <div class="item-container">
+                        <div class="col-left">
+                            <img [src]="property.image" alt="Property Picture">
+                        </div>
+                        <div class="information">
+                            <p class="address-1">{{property.address | propertyAddress: 'first'}}</p>
+                            <p class="address-2">{{property.address | propertyAddress: 'second'}}</p>
+                            <div class="indicators">
+                                <ng-container *ngIf="property.residentialUnits">
+                                    <img src="assets/icons/units.png">
+                                    <span class="value">{{ property.residentialUnits }} {{
+                                        'helper.property-search-drawer.residentialUnits' | translate }}</span>
+                                </ng-container>
+                                <ng-container *ngIf="property.yearOfConstruction">
+                                    <img src="assets/icons/home.png">
+                                    <span class="value">{{ property.yearOfConstruction }}</span>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="action">
+                            <button class="btn-add btn btn-primary btn-lg btn--icon-lg"
+                                (click)="importFromDatabase(property)">
+                                <i class="material-icons">add</i>
+                            </button>
+                        </div>
+                    </div>
+                </app-item>
+            </ng-container>
+            <app-item class="item--property add-new-unregister">
+                <div class="item-container h-100 d-flex align-items-center justify-content-between w-100">
+                    <div class="mr-1 d-flex flex-column justify-content-between h-100">
+                        <div class="add-unregister-property">{{
+                            'helper.property-search-property.add_unregister_property' | translate }}</div>
+                        <div class="click-add">{{ 'helper.property-search-property.dont_see_db' | translate }}</div>
+                    </div>
+                    <div class="action">
+                        <button class="btn-add btn btn-primary btn-lg btn--icon-lg" (click)="addUnregisterProperty()">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </div>
+                </div>
+            </app-item>
+        </cdk-virtual-scroll-viewport>
+    </ng-container>
+
+</div>

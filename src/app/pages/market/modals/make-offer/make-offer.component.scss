@@ -1,0 +1,31 @@
+:host {
+	::ng-deep {
+		.form-group {
+			label {
+				margin-left: 0;
+				margin-bottom: 0.75rem;
+				font-weight: 600;
+			}
+		
+			input {
+				border: solid #ccc 1px;
+			}
+			
+			textarea {
+				line-height: 150%;
+				border: solid #ccc 1px;
+			}
+		
+			&.checkboxes {
+				div > label {
+					margin: 0 0 1rem 0;				
+					font-weight: 100;
+				}
+			}
+			.custom-control {
+				margin: 1rem 0 !important;
+			}
+		}	
+	}
+}
+

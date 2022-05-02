@@ -1,0 +1,25 @@
+<div class="media-article-card d-flex align-items-center" (click)="showArticle()" *ngIf="article">
+	<div class="media-thumbnail" [class.placeholder-img]="!article.imageLoadErr">
+		<img class="thumbnail-image" appDefaultImage [src]="article.thumbnailUrl" height="95" (error)="article.imageLoadErr = true" />
+		<div class="position-absolute img-placeholder-text" *ngIf="!article.imageLoadErr">
+			{{ 'literals.loading' | translate }}
+		</div>
+		<div class="play" *ngIf="article.type === 'video'">
+			<span>
+				<img src="assets/icons/play.png" class="play-icon">
+			</span>
+			
+		</div>
+	</div>
+
+	<div class="media-article-information d-flex flex-column ">
+		<div class="media-title" [innerHTML]="article.title"></div>
+
+		<div class="posted-date d-flex align-items-center justify-content-between">
+			<div>
+				<span>{{ 'page.home.posted' | translate }}</span>
+				<span> {{ article.publishDate | timeAgo }}</span>
+			</div>
+		</div>
+	</div>
+</div>

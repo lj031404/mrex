@@ -1,0 +1,398 @@
+<div class="market-summary-content" #content>
+    <div class="primary-header {{property?.listingType}}" *ngIf="!secondaryHeaderVisibility">
+        <a class="back-button" (click)="back()">
+            <i class="fa fa-times"></i>
+        </a>
+        <a class="fav-button" (click)="favorite()">
+            <i class="far fa-heart"  *ngIf="!isFavorite"></i>
+            <i class="fas fa-heart" *ngIf="isFavorite"></i>
+        </a>
+    </div>
+    <div class="secondary-header" [class.bg-black]="hideFields" *ngIf="secondaryHeaderVisibility">
+        <a class="back-button" (click)="back()">
+            <i class="fa fa-arrow-left"></i>
+        </a>
+        <div class="title">{{ addressTitle }}</div>
+    </div>
+
+    <div class="contents pb-1" [hidden]="loading">
+        <div class="summary-section section--address">
+            <div #imageGallery class="image-gallery-wrapper">
+                <app-picture-slider [slider]="slider" [isImageBlur] = "true" (clickedImgIdx)="openImageViewDlg($event)"></app-picture-slider>
+                <div class="banner {{property?.listingType}}">
+                    <div class="d-flex align-items-center justify-content-between price-type">
+                        <span class="price" *ngIf="property?.listingType === ListingType.Public">{{ property.askPrice | currency: 'CAD': 'symbol-narrow': '1.0-0' }}</span>
+                        <label *ngIf="property?.listingType">{{ 'market_listing_type.' + property?.listingType | translate }}</label>
+                    </div>
+
+                    <div class="property-actions" *ngIf="isPropertyActionsEnabled && isDev">
+                        <button class="btn btn-white-outline d-flex align-items-center" (click)="sendNotice()">{{ 'page.market.summary.indicate_interest' | translate }}</button>
+                        <button class="btn btn-white-outline d-flex align-items-center" (click)="createPortfolioProperty()" >{{ 'page.market.summary.claim_property' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <ng-container>
+                <div class="address-wrapper">
+                    <div >
+                        <p [class.d-none]="hideFields">{{ addressLine1 }}</p>
+                        <p [class.city-label]="!hideFields" >{{ property?.address?.city }}</p>
+                    </div>
+                    <span class="calc">
+                        <span>{{modelsCount}}</span>
+                        <img src="assets/images/calculator_black.png" (click)="calculator()" *ngIf="config">
+                    </span>
+                    <div class="position-relative" *ngIf="!config">
+                        <app-progress-spinner [enabled]="true"></app-progress-spinner>
+                    </div>
+                </div>
+                <div class="doors-year">
+                    <div>
+                        <img src="assets/icons/units.png">
+                        <span class="value">
+                            <ng-container *ngIf="property?.residentialUnits">{{ property.residentialUnits }}</ng-container>
+                            <ng-container *ngIf="!property?.residentialUnits">{{ 'literals.na' | translate }}</ng-container>
+                        </span>
+                    </div>
+
+                    <div class="mr building-date">
+                        <img src="assets/icons/home.png">
+                        <span class="value">
+                            <ng-container *ngIf="property?.yearOfConstruction">{{ property?.yearOfConstruction }}</ng-container>
+                            <ng-container *ngIf="!property?.yearOfConstruction">{{ 'literals.na' | translate }}</ng-container>
+                        </span>
+                    </div>
+                </div>
+
+            </ng-container>
+        </div>
+
+        <div class="summary-section section--probability" *ngIf="property?.listingType === ListingType.Public">
+            <div class="probability-item">
+                <span class="category">{{ 'market_listing.metrics.profitability' | translate }}  <app-tooltip [text]="'market_listing.metrics.profitability' | translate"></app-tooltip></span>
+                <p class="value" *ngIf="property?.metrics?.profitability">{{ property?.metrics?.profitability | number: '1.1-1'  }} %</p>
+                <p class="value" *ngIf="property?.metrics?.profitability === null">{{ 'literals.na' | translate }}</p>
+                <p class="value" *ngIf="property?.metrics?.profitability === 0">0 %</p>
+            </div>
+            <div class="probability-item">
+                <span class="category">{{ 'market_listing.metrics.yield' | translate }} <app-tooltip [text]="'tooltips.IRR.meaning' | translate"></app-tooltip></span>
+                <p class="value" *ngIf="property?.metrics?.annualYield">{{ property?.metrics?.annualYield | number: '1.1-1' }} %</p>
+                <p class="value" *ngIf="property?.metrics?.annualYield === null">{{ 'literals.na' | translate }}</p>
+                <p class="value" *ngIf="property?.metrics?.annualYield === 0">0 %</p>
+            </div>
+            <div class="probability-item">
+                <span class="category">{{ 'market_listing.metrics.caprate' | translate }} <app-tooltip [text]="'tooltips.CapRate.meaning' | translate"></app-tooltip></span>
+                <p class="value" *ngIf="property?.metrics?.caprate">{{ property?.metrics?.caprate | number: '1.2-2' }} %</p>
+                <p class="value" *ngIf="property?.metrics?.caprate === null">{{ 'literals.na' | translate }}</p>
+                <p class="value" *ngIf="property?.metrics?.caprate === 0">0 %</p>
+            </div>
+            <div class="probability-item">
+                <span class="category">{{ 'market_listing.metrics.avg_rent' | translate }} <app-tooltip [text]="'tooltips.NRM.avg_rent' | translate"></app-tooltip></span>
+                <p class="value" *ngIf=" property?.metrics?.averageRent">{{ property?.metrics?.averageRent | number: '1.0-0' }} $/m</p>
+                <p class="value" *ngIf="property?.metrics?.averageRent === null">{{ 'literals.na' | translate }}</p>
+                <p class="value" *ngIf="property?.metrics?.averageRent === 0">0$/m</p>
+            </div>
+        </div>
+
+        <!-- Map / Streetview selector -->
+        <div class="summary-section section--map" *ngIf="!hideFields">
+            <app-agm-map
+                    *ngIf="property"
+                    [propertyData$]="property$"
+                    [zoomControlOptions]="{ position: 1 }"
+                    [streetViewControl]="false"
+                    [style.visibility]="mapView === 'map' ? 'visible' : 'hidden'"
+            ></app-agm-map>
+            <app-street-view #streetView
+                             *ngIf="property"
+                             class="market-street-view"
+                             [address]="property?.address"
+                             [style.visibility]="mapView === 'street-view' ? 'visible' : 'hidden'"
+            ></app-street-view>
+            <div class="button-toggle-group">
+                <button class="btn" (click)="onViewMapClicked()" [class.btn-primary]="mapView === MapViewButtons.Map">{{ 'page.market.summary.map.view_map' | translate }}</button>
+                <button class="btn" (click)="onStreetViewClicked()" [class.btn-primary]="mapView === MapViewButtons.StretView">{{ 'page.market.summary.map.street_view' | translate }}</button>
+            </div>
+        </div>
+
+        <div class="related-articles" *ngIf="false">
+            <div class="related-articles__title">
+                Expert Analysis: Nikolai Ray
+            </div>
+            <div class="related-articles__slider">
+                <div #imageGalleryw class="image-gallery-wrapper" *ngIf="slider && slider.pictures.length">
+                    <app-picture-slider [slider]="slider"></app-picture-slider>
+                </div>
+            </div>
+            <div class="related-articles__descrpition">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s simply lorem Ipsum.
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="summary-section section--feature">
+            <app-expansion-panel  [expandEvents]="eventExpands.asObservable()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.feature.title' | translate }}</span>
+                </div>
+                <app-market-data-table
+                    [columns]="featureColumns"
+                    [data]="property?.views?.features"
+                ></app-market-data-table>
+            </app-expansion-panel>
+        </div>
+
+        <!-- Unit details -->
+        <div class="summary-section section--units">
+            <app-expansion-panel   [expandEvents]="eventExpands.asObservable()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.units.title' | translate }}</span>
+                </div>
+                <app-market-data-table
+                    [columns]="['unit', 'value']"
+                    [data]="property?.views?.units"
+                ></app-market-data-table>
+            </app-expansion-panel>
+        </div>
+
+        <!-- Acquisition costs -->
+        <div class="summary-section section--acquisition" *ngIf="property?.listingType === ListingType.Public">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()"  [disabled]="hideFields" (click)="clickForbiddenPanel()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.acquisition.title' | translate }}</span>
+                </div>
+                <app-market-data-table
+                    [columns]="acquisitionCostColumns"
+                    [data]="property?.views?.acquisitionCosts"
+                ></app-market-data-table>
+            </app-expansion-panel>
+        </div>
+
+        <!-- Income -->
+        <div class="summary-section section--income" *ngIf="property?.listingType === ListingType.Public">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()"  [disabled]="hideFields" (click)="clickForbiddenPanel()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.income.title' | translate }}</span>
+                </div>
+                <app-market-data-table
+                    [columns]="incomeColumns"
+                    [data]="property?.views?.income"
+                ></app-market-data-table>
+
+            </app-expansion-panel>
+        </div>
+
+        <!-- Expenses -->
+        <div class="summary-section section--expenses" *ngIf="property?.listingType === ListingType.Public">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()" [disabled]="hideFields" (click)="clickForbiddenPanel()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.expenses.title' | translate }}</span>
+                </div>
+                <app-market-data-table
+                    [columns]="expensesColumns"
+                    [data]="property?.views?.expenses"
+                ></app-market-data-table>
+
+            </app-expansion-panel>
+        </div>
+
+        <!-- Financing -->
+        <div class="summary-section section--financing" *ngIf="property?.listingType === ListingType.Public">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()" [disabled]="hideFields" (click)="clickForbiddenPanel()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.financing.title' | translate }}</span>
+                </div>
+                <app-financing-chart [staticData]="property?.views?.financing"></app-financing-chart>
+
+                <div class="no-data" *ngIf="!property?.views?.financing?.length">
+                    {{ 'page.market.market-data-table.no-data' | translate }}
+                </div>
+
+            </app-expansion-panel>
+
+        </div>
+
+        <!-- Qualification -->
+        <div class="summary-section section--qualification" *ngIf="property?.listingType === ListingType.Public">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.qualification.title' | translate }}</span>
+                </div>
+
+                <ng-container *ngFor="let qualification of property?.views?.qualification">
+                    <label>{{ 'literals.financing.' + qualification.bank | translate }}</label>
+                    <app-market-data-table
+                        [columns]="qualificationColumns"
+                        [data]="qualification.data"
+                    ></app-market-data-table>
+                </ng-container>
+
+                <div class="no-data" *ngIf="!(property?.views?.qualification?.length)">
+                    {{ 'page.market.market-data-table.no-data' | translate }}
+                </div>
+
+            </app-expansion-panel>
+        </div>
+
+        <!-- Performance -->
+        <div class="summary-section section--performance">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.performance.title' | translate  }}</span>
+                </div>
+                <app-xy-line-chart *ngIf="historicalPerformanceChartData && historicalPerformanceChartData.graphData?.length" [xyChartData]="historicalPerformanceChartData"></app-xy-line-chart>
+
+                <div class="no-data" *ngIf="!(property?.views?.historicalPerformance?.length)">
+                    {{ 'page.market.market-data-table.no-data' | translate }}
+                </div>
+
+            </app-expansion-panel>
+        </div>
+
+        <!-- Valuation Meter-->
+        <div class="summary-section section--performance" *ngIf="isDev && property?.listingType === ListingType.Public">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.valuation.title' | translate  }}</span>
+                </div>
+                <ng-container *ngIf="valuationMeter">
+                    <div class="panel-description" >
+                        {{ 'page.market.listing.valuation.description' | translate }}
+                    </div>
+                    <app-meter [meter]="valuationMeter"></app-meter>
+                </ng-container>
+
+                <div *ngIf="!valuationMeter" class="text-center p-2">
+                    {{ 'literals.no_data_available' | translate }}
+                </div>
+            </app-expansion-panel>
+        </div>
+
+        <!-- Rent Meter-->
+        <div class="summary-section section--performance" *ngIf="isDev && property?.listingType === ListingType.Public">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.rent.title' | translate  }}</span>
+                </div>
+                <ng-container *ngIf="rentMeter">
+                    <div class="panel-description">
+                        {{ 'page.market.listing.valuation.description' | translate }}
+                    </div>
+                    <app-meter [meter]="rentMeter"></app-meter>
+                </ng-container>
+
+                <div *ngIf="!rentMeter" class="text-center p-2">
+                    {{ 'literals.no_data_available' | translate }}
+                </div>
+            </app-expansion-panel>
+        </div>
+
+        <!-- Property History -->
+        <div class="summary-section section--propertyhistory">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.property_history.title' | translate  }}</span>
+                </div>
+                <div class="property-history-list" *ngIf="property?.activityHistory">
+                    <div class="property-history d-flex align-items-center" *ngFor="let property of property?.activityHistory">
+                        <div class="value-status flex-column flex-1">
+                            <span class="property-value">{{ property.amount | currency: 'CAD': 'symbol-narrow': '1.0-0' }} </span>
+                            <span class="property-date">
+                                {{ 'page.market.listing.date.title' | translate }}: {{ property.date | date: 'yyyy-MM-dd' }}
+                            </span>
+                        </div>
+
+                        <span class="property-status">{{ translate.instant('pages.marketlist.activityType.' + property.activityType) }}</span>
+                    </div>
+                </div>
+                <div *ngIf="( property && !property.activityHistory) || (property && property.activityHistory && !property.activityHistory.length)" class="text-center p-2">
+                    {{ 'literals.no_data_available' | translate }}
+                </div>
+            </app-expansion-panel>
+        </div>
+
+        <!-- Goto to Notes -->
+        <div class="summary-section section--portfolio" (click)="property?.note ? '' : addNotes()">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()" [togglable]="property?.note ? true : false">
+                <div class="panel-header" >
+                    <span class="title">{{ 'page.market.listing.notes.title' | translate }}</span>
+                </div>
+                <div class="listing-note d-flex align-items-start" *ngIf="property?.note">
+                    <div class="w-100 mr-2" (click)="addNotes()">
+                        {{ property?.note }}
+                    </div>
+                    <span class="d-flex align-items-center">
+                        <i class="fa fa-edit mr-1" (click)="addNotes(false)"></i>
+                        <i class="fa fa-trash" aria-hidden="true" (click)="removeNotes()"></i>
+                    </span>
+                </div>
+
+            </app-expansion-panel>
+        </div>
+
+        <!-- Calculator -->
+        <div class="summary-section section--calculation" *ngIf="scopes && scopes.includes('calculator')" (click)="calculator()">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()" [togglable]="false">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.calculator.title' | translate }}</span>
+                </div>
+            </app-expansion-panel>
+        </div>
+
+        <!-- Add to Portfolio -->
+        <div class="summary-section section--portfolio" (click)="createPortfolioProperty()"  *ngIf="scopes && scopes.includes('portfolio') && isPropertyActionsEnabled && isDev">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()" [togglable]="false">
+                <div class="panel-header" >
+                    <span class="title">{{ 'page.market.listing.add_to_portfolio.title' | translate }}</span>
+                </div>
+            </app-expansion-panel>
+        </div>
+
+        <!-- Goto to Portfolio -->
+        <div class="summary-section section--portfolio" [routerLink]="'/portfolio/summary'" *ngIf="scopes && scopes.includes('portfolio') && !isPropertyActionsEnabled && isDev">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()"  [togglable]="false">
+                <div class="panel-header">
+                    <span class="title">{{ 'page.market.listing.go_to_portfolio.title' | translate }}</span>
+                </div>
+            </app-expansion-panel>
+        </div>
+
+        <div class="summary-section section--calculation" (click)="openSalesComps()" *ngIf="isDev">
+            <app-expansion-panel [expandEvents]="eventExpands.asObservable()" [togglable]="false">
+                <div class="panel-header">
+                    <span class="title">{{ 'pages.market.market_listing.sales_comps' | translate }}</span>
+                </div>
+            </app-expansion-panel>
+        </div>
+    </div>
+
+    <div class="p-1"  *ngIf="loading">
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="269"></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="73" ></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="73" ></app-skeleton>
+        </div>
+        <div>
+            <app-skeleton Cwidth="100%" Cheight="269"></app-skeleton>
+        </div>
+    </div>
+
+</div>
+
+<ng-template #noticeOfInterest>
+    <div class="unlock-button" *ngIf="property?.listingType === ListingType.OffMarket">
+        <app-notice-of-interest-button
+            [onClick]="sendNotice.bind(this)"
+            [enabled]="isNoticeEnabled">
+        </app-notice-of-interest-button>
+    </div>
+</ng-template>
+

@@ -1,0 +1,69 @@
+<form [formGroup]="form">
+
+    <h3 style="text-transform: capitalize">{{step}}. {{ 'page.forgot.reset-pwd' | translate}}</h3>
+    <div class="alert alert-danger" role="alert" *ngIf="errResetPassword">
+        {{ errResetPassword }}
+    </div>
+    <div class="w-100 fields-block">
+        <!-- password -->
+        <div class="floating-label w-100">
+           <!-- password -->
+            <ng-container *ngFor="let error of error_messages.password">
+                <div class="text-danger small"  *ngIf="form.get('password').hasError(error.type) && (form.get('password').dirty || form.get('password').touched) && passMoved">
+                    {{ error.message | translate }}
+                </div>
+            </ng-container>
+            <div class="floating-label w-100">
+                <label>{{ "page.signup.your-password" | translate }}</label>
+                <div class="input-field-icon">
+                    <!--Eye image  -->
+                    <img
+                        src="assets/icons/footer/eye.svg"
+                        alt="eye.svg"
+                        *ngIf="passwordType == 'password'"
+                        (click)="passwordShow('text')"
+                    />
+                    <img
+                        src="assets/icons/footer/eye_active.svg"
+                        alt="eye_active.svg"
+                        *ngIf="passwordType == 'text'"
+                        (click)="passwordShow('password')"
+                    />
+                </div>
+                <input [type]="passwordType" class="form-control" formControlName="password" (blur)="passwordMoved(true)" (focus)="passwordMoved(false)" />
+            </div>
+
+            <ng-container *ngFor="let error of error_messages.confirmPassword">
+                <div class="text-danger small"  *ngIf="form.get('confirmPassword').hasError(error.type) && (form.get('confirmPassword').dirty || form.get('confirmPassword').touched) && confirmPassMoved">
+                    {{ error.message | translate }}
+                </div>
+            </ng-container>
+            <div class="floating-label w-100">
+                <label>{{ "page.signup.confirm-password" | translate }}</label>
+                <div class="input-field-icon">
+                    <!--Eye image  -->
+                    <img
+                        src="assets/icons/footer/eye.svg"
+                        alt="eye.svg"
+                        *ngIf="conformPasswordType == 'password'"
+                        (click)="conformPasswordShow('text')"
+                    />
+                    <img
+                        src="assets/icons/footer/eye_active.svg"
+                        alt="eye_active.svg"
+                        *ngIf="conformPasswordType == 'text'"
+                        (click)="conformPasswordShow('password')"
+                    />
+                </div>
+                <input [type]="conformPasswordType" class="form-control" formControlName="confirmPassword" (blur)="confirmMoved(true)" (focus)="confirmMoved(false)"/>
+            </div>
+
+            <div class="text-danger small" *ngIf="(form.get('confirmPassword').dirty || form.get('confirmPassword').touched) && !password(form)">
+                {{ "page.signup.password-not-match" | translate }}
+            </div>
+        </div>
+    </div>
+
+</form>
+
+

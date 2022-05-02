@@ -1,0 +1,97 @@
+// font
+$font-regular: 400;
+$font-medium: 500;
+$font-bold: 700;
+
+$font-size-title: 18px;
+$font-size-title-md: 20px;
+$font-size-title-lg: 24px;
+$font-size-title-sm: 16px;
+$font-size-text: 14px;
+$font-size-text-lg: 16px;
+$font-size-text-md: 12px;
+$font-size-text-sm: 10px;
+
+$line-height-title: 22px;
+$line-height-title-lg: 30px;
+$line-height-title-sm: 18px;
+$line-height-text: 17px;
+$line-height-text-lg: 16px;
+
+// button
+$button-height: 40px;
+$button-height-sm: 34px;
+
+// colors
+$color-orange-red: #f93324; //rgb(249, 51, 36)
+$color-light-red: #ff828c; //rgb(255, 130, 140)
+$color-cadet-blue: #5cb09f; //rgb(92, 176, 159)
+$color-light-sea-green: #5cb09f; //rgb(4,201, 142)
+$color-light-green: rgba(92, 176, 159, 0.7);
+$color-forest-green: #419e32; //rgb(65, 158, 50)
+$color-green: #349e89;
+$color-soft-orange: #f58b6e; //rgb(245, 139, 110)
+$color-dark-orange: #f28500; //rgb(242, 133, 0)
+$color-dark-orange2: #f2c94c;
+$color-whisper: #ededed;
+$color-gainsboro: #e0e0e0;
+$color-silver: #bfbfbf; //
+$color-gray-7: #777777; //rgb(117, 117, 117)
+$color-gray-8: #888888;
+$color-gray-9: #757575;
+$color-gray-10: #7c7c7c;
+$color-gray-11: #b9b9b9;
+$color-gray-12: #808080;
+$color-dark-gray: #242c39; //rgb(36, 44, 57)
+$color-light-gray: #7f8293; //rgb(127, 131, 148)
+$color-green-20: rgba(52, 158, 137, 0.2);
+$color-green-30: rgba(52, 158, 137, 0.3);
+$color-green-50: rgba(52, 158, 137, 0.5);
+$color-green-80: rgba(52, 158, 137, 0.8);
+$color-black-50: rgba(0, 0, 0, 0.5);
+$color-dark-60: #f2f2f2;
+$color-gray-14: #595959;
+$color-gray-bold: #2d8976;
+$color-gray-15: #252d3a;
+$color-gray-16: #3d3d3d;
+$color-gray-17: #4e4e4e;
+$color-gray-18: #e5e5e5;
+$color-gray-19: #171717;
+$color-gray-20: #464646;
+$color-gray-21: #d4d4d4;
+$color-gray-22: #4b4b4b;
+$color-gray-23: #e6e6e6;
+$color-gray-24: #a39e9e;
+$color-green-heavy: #65b2a2;
+$color-green-90: #c6e3dd;
+$color-gray-25: #c4c4c4;
+
+// Listing colors
+$color-public: rgba(92, 176, 159, 0.7);
+$color-offMarket: rgba(44, 50, 49, 0.7);
+$color-pocket: rgba(92, 121, 176, 0.7);
+
+$color-public1: rgba(92, 176, 159, 1);
+$color-offMarket1: rgba(44, 50, 49, 1);
+$color-pocket1: rgba(92, 121, 176, 1);
+
+// theme colors
+$color--primary: $color-green;
+$color--secondary: $color-dark-gray;
+$color--danger: #ee5858;
+$color--info: #eceff1;
+$color--success: #28d094;
+$color--warning: #ff9149;
+$color-tab-grey: #efefef;
+$header-height: 3.5rem;
+$footer-height: 4.2rem;
+$header-market-height: 4.8rem;
+$color-warning-red: #ff647c;
+
+$standard-footer-height: 4.4rem;
+$standard-message-margin: 4.5rem;
+
+$property-header-height: 15rem; // height of property header on watchlist
+$slider-placeholder-height: 15rem; // height of the slider placeholder
+$description-line-height: 1.43rem; // line height of the home page article detail
+$market-search-result-height: 16.5rem; // height of the market search reasult section height

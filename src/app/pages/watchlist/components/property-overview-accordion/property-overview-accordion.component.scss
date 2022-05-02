@@ -1,0 +1,29 @@
+:host {
+  p {    
+    font-weight: 300;
+  }
+  .bold {
+    font-weight: 700;
+  }
+  .right {    
+    float: right;
+  }
+  .label {
+    width: 55%;
+    display: inline-block;
+    font-size: 95%;
+  }
+  .right-align {
+    text-align: right;
+  }
+  .value {
+    font-size: 115%;
+  }
+  .indent {
+      margin-left: 1.5em;
+  }
+  .collapsible {
+    width: 1em;
+    display: inline-block;
+  }
+}

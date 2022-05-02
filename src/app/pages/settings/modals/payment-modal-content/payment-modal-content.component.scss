@@ -1,0 +1,22 @@
+// TODO: Refine styles
+:host {
+  .modal-content {
+    height: calc(100% - 7rem);
+
+    ::ng-deep {
+      .content {
+        height: 100%;
+      }
+    }
+  }
+
+  .modal-footer {
+    display: flex !important;
+    justify-content: stretch;
+    align-items: center;
+  }
+
+  button {
+    margin-top: 2em;
+  }
+}

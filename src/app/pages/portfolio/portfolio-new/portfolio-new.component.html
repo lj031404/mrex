@@ -1,0 +1,518 @@
+
+	<app-header>
+		<app-go-back-button [action]="back" [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+		<p slot="title" *ngIf="!portfolioId">{{ 'page.portfolio.new.header' | translate }}</p>
+		<p slot="title" *ngIf="portfolioId">{{ 'page.portfolio.edit.header' | translate }}</p>
+		<img  slot="right-button" src="assets/icons/draft.svg" (click)="draftPortfolio()">
+	</app-header>
+	
+	<form class="property-form2" [formGroup]="form" *ngIf="form">
+		<div class="property-form-content">
+			 <!-- Address -->
+			<label class="form-section-name">
+				{{ 'pages.portfolio.portfolio_new.location' | translate }}
+			</label>
+			<app-address-control [isNew]="true" [startTabIndex]="2" [form]="form.get('address')"></app-address-control>
+	
+			<!-- Features -->
+			<label class="form-section-name">
+				{{ 'pages.portfolio.portfolio_new.features' | translate }}
+			</label>
+	
+			<!-- Features: propertyType -->
+			<app-form-field2>
+				<div class="select-dropdown-list">
+					<select tabindex="2" formControlName="propertyType" >
+						<option value="">
+							{{ 'pages.portfolio.portfolio_new.select_type' | translate}}
+						</option>
+						<option *ngFor="let key of propertyOptionKeys" [ngValue]="key">{{PropertyType[key] |  translate }}</option>
+					</select>
+				</div>
+			</app-form-field2>
+	
+			<div class="form-group mb-0">
+				<div class="flex-1 mr-05">
+					<app-form-field2>
+						<div appFormFieldLabel [span]="12">
+							{{ 'pages.portfolio.portfolio_new.construction' | translate }}
+						</div>
+						<div class="select-dropdown-list">
+							<select tabindex="2" formControlName="yearOfConstruction" >
+								<option *ngFor="let key of constructionYears" [ngValue]="key">{{key}}</option>
+							</select>
+						</div>
+					</app-form-field2>
+				</div>
+	
+				<div class="flex-1 ml-05">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.0-0'"
+						[title]="'pages.portfolio.portfolio_new.floors'"
+						[control]="form.get('floors')">
+					></app-input-number2>
+				</div>
+			</div>
+			
+			<!--SQ footage & Number of units -->
+			<div class="form-group mb-0">
+				<div class="flex-1 mr-05 ">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.2-2'"
+						[title]="'pages.portfolio.portfolio_new.area'"
+						[control]="form.get('floorArea')">
+					></app-input-number2>
+				</div>
+	
+				<div class="flex-1 ml-05">
+					<app-input-number2
+						[digitsFormat]="'1.0-0'"
+						[title]="'pages.portfolio.portfolio_new.units'" 
+						[control]="form.get('residentialUnits')">
+					></app-input-number2>
+				</div>
+			</div>
+	
+			<!-- Contact Us -->
+			<div class="d-flex flex-column w-100 contact-us-form" *ngIf="form.value.residentialUnits > 5 && form.value.residentialUnits <= 12">
+				<span appFormFieldLabel [span]="11">
+					{{ 'page.portfolio.new_portfolio.clients_qualify_units' | translate: {count: 5} }}
+				</span>
+	
+				<button class="btn w-100 btn text-uppercase contact-btn mt-1" (click)="uploadProperty()" [disabled]="isDisableContactUs" [class.btn-inactive-gray]="isDisableContactUs">
+					{{ 'page.portfolio.new_portfolio.upload_property_information' | translate }}
+				</button>
+			</div>
+	
+			<div class="d-flex flex-column w-100 contact-us-form" *ngIf="form.value.residentialUnits > 12">
+				<span appFormFieldLabel [span]="11">
+					{{ 'page.portfolio.new_portfolio.clients_qualify_units' | translate:  {count: 12} }}
+				</span>
+	
+				<button class="btn w-100 btn text-uppercase contact-btn mt-1" (click)="contactUs()" [disabled]="isDisableContactUs" [class.btn-inactive-gray]="isDisableContactUs">
+					{{ 'page.portfolio.new_portfolio.contact_us' | translate }}
+				</button>
+			</div>
+	
+			<!-- Leases -->
+			<ng-container *ngIf="getLeases(form)">
+				<ng-container formArrayName="leases" *ngFor="let lease  of getLeases(form); let i = index" >
+					<ng-container [formGroupName]="i">
+						<div class="d-flex align-items-center suite-form">
+							<div class="w-50">
+								<input type="text" tabindex="11" class="w-100" [class.form-editable]="lease.isChangeSuite" [readonly]="!lease.isChangeSuite" placeholder="" formControlName="suite" class="">
+							
+							</div>
+							<div class="change-suite w-50" (click)="lease.isChangeSuite = !lease.isChangeSuite">
+								<ng-container *ngIf="!lease.isChangeSuite">{{ 'pages.portfolio.click_to_change' | translate }}</ng-container>
+								<ng-container *ngIf="lease.isChangeSuite">{{ 'pages.portfolio.save' | translate }}</ng-container>
+							</div>
+						</div>
+	
+						<!--Rental Income -->
+						<div class="d-flex">
+							<div class="w-50 pr-05">
+								<app-input-number2
+									placeholder="0"
+									[digitsFormat]="'1.0-0'"
+									[title]="'page.portfolio.rent'" 
+									[control]="lease.get('rent')">
+								></app-input-number2>
+							</div>
+							<div></div>
+						</div>
+	
+						<!-- Lease from / to -->
+						<div class="d-flex align-items-center">
+							<app-form-field2 class="mr-05">
+								<span appFormFieldLabel [span]="6">
+									{{ 'page.label.start_dt' | translate }}
+								</span>
+								<label>
+									<input type="text" [matDatepicker]="start_dt" (dateChange)=" getLeases(form).length > 1 ? leaseDateChange($event, lease, i) : ''" (click)="start_dt.open()" tabindex="9" placeholder="{{ 'page.label.start_dt' | translate }}" formControlName="from">
+									<mat-datepicker #start_dt></mat-datepicker>
+								</label>
+								<span appFormFieldSuffix>
+									<img src="assets/icons/calendar.svg" (click)="start_dt.open()" />
+								</span>
+							</app-form-field2>
+						
+							<app-form-field2 class="ml-05">
+								<span appFormFieldLabel [span]="6">
+									{{ 'page.label.end_dt' | translate }}
+								</span>
+								<label>
+									<input type="text" tabindex="10" placeholder="{{ 'page.label.end_dt' | translate }}" (dateChange)="getLeases(form).length > 1 ? leaseDateChange($event, lease, i) : ''" [matDatepicker]="end_dt" (click)="end_dt.open()" formControlName="to">
+									<mat-datepicker #end_dt></mat-datepicker>
+								</label>
+								<span appFormFieldSuffix>
+									<img src="assets/icons/calendar.svg" (click)="end_dt.open()" />
+								</span>
+							</app-form-field2>
+						</div>
+	
+						<app-group-options
+							title="{{ 'page.portfolio.type_of_unit' | translate }}"
+							[options]="unitTypes"
+							[control]="lease.get('rooms')"
+							>
+						</app-group-options>
+	
+						<!--Included Utilites-->
+						<app-form-field2>
+							<div appFormFieldLabel [span]="12">
+								{{ 'pages.portfolio.included_utilites' | translate }}
+							</div>
+							<label>
+								<div class="d-flex align-items-center inclusion-list">
+									<ng-container formArrayName="inclusion" *ngFor="let data of getInclusion(lease); let j = index" >
+										<div class="inclusion-item">
+											<ng-container  [formGroupName]="j">
+												<mat-slide-toggle  class="app-slide-toggle" [formControlName]="getInclusionsName(j)" [id]="i + getInclusionsName(j) + j"> {{ getInclusionTitle(j) }} </mat-slide-toggle>
+											</ng-container>
+										</div>
+									</ng-container>
+								</div>
+							</label>
+						</app-form-field2>
+	
+					</ng-container>
+				</ng-container>
+			</ng-container>
+	
+			<!-- Expenses Section -->
+			<label class="form-section-name">
+				{{ 'pages.portfolio.portfolio_new.expenses' | translate }}
+			</label>
+			<div class="d-flex form-group">
+				<div class="w-50 pr-05">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.2-2'"
+						[title]="'pages.portfolio.municipal_taxes'" 
+						[control]="form.get('expenses.municipalTax')">
+					></app-input-number2>
+				</div>
+				<div class="w-50 pl-05">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.2-2'"
+						[title]="'pages.portfolio.school_taxes'" 
+						[control]="form.get('expenses.schoolTax')">
+					></app-input-number2>
+				</div>
+			</div>
+	
+			<div class="d-flex form-group">
+				<div class="w-50 pr-05">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.2-2'"
+						[title]="'pages.portfolio.insurance'" 
+						[control]="form.get('expenses.insurance')">
+					></app-input-number2>
+				</div>
+				<div class="w-50 pl-05">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.2-2'"
+						[title]="'pages.portfolio.utilites'" 
+						[control]="form.get('expenses.totalUtilities')">
+					></app-input-number2>
+				</div>
+			</div>
+	
+			<!-- Acquisition Section -->
+			<label class="form-section-name">
+				{{ 'pages.portfolio.acquisition' | translate }}
+			</label>
+			<div class="d-flex form-group">
+				<div class="w-50 pr-05">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.2-2'"
+						[title]="'page.portfolio.purchasedPrice'" 
+						[control]="form.get('purchasePrice')">
+					></app-input-number2>
+				</div>
+				<div class="w-50 pl-05">
+					<app-form-field2  *ngIf="!listPropertyEvents.length">
+						<span appFormFieldLabel>
+							{{ 'page.portfolio.purchasedDate' | translate }}
+						</span>
+						<label>
+							<input type="text" readonly [matDatepicker]="purchasedDate" (click)="purchasedDate.open()" tabindex="23" placeholder="04/03/20" formControlName="purchaseDate">
+							<mat-datepicker #purchasedDate></mat-datepicker>
+						</label>
+						<span appFormFieldSuffix>
+							<img src="assets/icons/calendar.svg" (click)="purchasedDate.open()" />
+						</span>
+					</app-form-field2>
+					<app-form-field2 *ngIf="listPropertyEvents.length">
+						<span appFormFieldLabel>
+							{{ 'page.portfolio.purchasedDate' | translate }}
+						</span>
+						<div class="select-dropdown-list">
+							<select tabindex="2" formControlName="purchaseDate">
+								<option value="">
+								</option>
+								<option *ngFor="let event of listPropertyEvents" [value]="event.date">{{ event.date | date: 'MM/dd/yyyy' }}</option>
+							</select>
+						</div>
+					</app-form-field2>
+				</div>
+			</div>
+	
+			<div formGroupName="primaryFinancing" class="primary_financing">
+				<!-- Current Obligations -->
+				<label class="form-section-name">
+					{{ 'pages.portfolio.current_obligations' | translate }}
+				</label>
+				<app-banks-selector
+					[title] = "'page.portfolio.bank'"
+					[itemClick]="updateFinancingParameters.bind(this)"
+					[onReset]="reset.bind(this)"
+					[excludeBank]="['ConventionalCustom', 'CHMC']"
+					[activeItem] = "form.get('primaryFinancing.financingType').value"
+					[showResetButton]=false
+				></app-banks-selector>
+				<!--Most recent loan initial amount-->
+				<div class="form-group">
+					<div class="w-100">
+						<app-input-number2
+							placeholder="0"
+							[digitsFormat]="'1.2-2'"
+							[title]="'pages.portfolio.most_recent_loan_initial_amount'" 
+							[control]="form.get('primaryFinancing.initialAmount')">
+						></app-input-number2>
+					</div>
+				</div>
+				<!--Term / Interest Rate-->
+				<div class="form-group">
+					<div class="w-50 mr-05">
+						<app-form-field2 >
+							<span appFormFieldLabel>
+								{{ 'page.portfolio.primary_financing.term' | translate }}
+							</span>
+							<div class="select-dropdown-list">
+								<select tabindex="2" formControlName="term">
+									<option value=''></option>
+									<option value=1>1</option>
+									<option value=2>2</option>
+									<option value=3>3</option>
+									<option value=4>4</option>
+									<option value=5>5</option>
+									<option value=10>10</option>
+								</select>
+							</div>
+						</app-form-field2>
+					</div>
+					<div class="w-50 ml-05">
+						<app-input-number2
+							placeholder="0"
+							[digitsFormat]="'1.2-2'"
+							[title]="'page.portfolio.primary_financing.interest_rate'" 
+							[control]="form.get('primaryFinancing.interestRate')">
+						></app-input-number2>
+					</div>
+				</div>
+				<!--Years Amortized-->
+				<div class="form-group">
+					<div class="w-100">
+						<app-group-options
+							title="{{ 'page.portfolio.primary_financing.years_amortized' | translate }}"
+							[options]="yearsAmortizedOptions"
+							[control]="form.get('primaryFinancing.amortization')"
+							>
+						</app-group-options>
+					</div>
+				</div>
+				<!--CHMC insured/First payment-->
+				<div class="form-group  align-items-center">
+					<div class="w-50 mr-05 d-flex align-items-center justify-content-between">
+						<span class="subtitle-14">  {{ 'page.portfolio.primary_financing.cmhc_insured' | translate }}</span>
+						<mat-slide-toggle  class="app-slide-toggle" formControlName="insured"></mat-slide-toggle>
+					</div>
+					<div class="w-50 ml-05">
+						<app-form-field2 class="mb-0">
+							<label>
+								<input type="text" readonly [matDatepicker]="payment_dt" (click)="payment_dt.open()" tabindex="10" placeholder="Date" formControlName="firstPaymentDate">
+								<mat-datepicker #payment_dt></mat-datepicker>
+							</label>
+							<span appFormFieldSuffix>
+								<img src="assets/icons/calendar.svg" (click)="payment_dt.open()" />
+							</span>
+						</app-form-field2>
+					</div>
+				</div>
+			</div>
+	
+			<!-- Secondary financing -->
+			<div formGroupName="secondaryFinancing">
+				<div class="d-flex align-items-center justify-content-between">
+					<label class="form-section-name" [innerHTML] = "'pages.portfolio.portfolio_new.second-financing' | translate">
+					</label>
+					<mat-slide-toggle  [checked]="enabled" class="app-slide-toggle" (change)="toggleCheck($event)"></mat-slide-toggle>
+				</div>
+				<ng-container *ngIf="enabled">
+					<!--Loan amount-->
+					<div class="form-group">
+						<div class="w-100">
+							<app-input-number2
+								placeholder="0"
+								[digitsFormat]="'1.2-2'"
+								[title]="'page.portfolio.initial_loan_amount'" 
+								[control]="form.get('secondaryFinancing.initialAmount')">
+							></app-input-number2>
+						</div>
+					</div>
+					<!--Interest Rate/First payment-->
+					<div class="form-group align-items-start">
+						<div class="w-50 mr-05">
+							<app-input-number2
+								placeholder="0"
+								[digitsFormat]="'1.2-2'"
+								[title]="'pages.portfolio.portfolio_new.secondary-financing.interestRate'" 
+								[control]="form.get('secondaryFinancing.interestRate')">
+							></app-input-number2>
+						</div>
+	
+						<div class="w-50 ml-05">
+							<app-form-field2 class="mb-0">
+								<span appFormFieldLabel [class.invisible]="true">
+									{{ 'pages.portfolio.first_payment' | translate }}
+								</span>
+								<label>
+									<input type="text" readonly [matDatepicker]="first_payment_dt" (click)="first_payment_dt.open()" tabindex="10" placeholder="{{ 'pages.portfolio.first_payment' | translate}}" formControlName="firstPaymentDate">
+									<mat-datepicker #first_payment_dt></mat-datepicker>
+								</label>
+								<span appFormFieldSuffix>
+									<img src="assets/icons/calendar.svg" (click)="first_payment_dt.open()" />
+								</span>
+							</app-form-field2>
+						</div>
+					</div>
+					<!--Term/Loan Type-->
+					<div class="form-group">
+						<div class="w-50 mr-05">
+							<app-input-number2
+								placeholder="0"
+								[digitsFormat]="'1.2-2'"
+								[title]="'page.portfolio.primary_financing.term'" 
+								[control]="form.get('secondaryFinancing.term')">
+							></app-input-number2>
+						</div>
+						<div class="w-50 ml-05">
+							<app-form-field2 >
+								<span appFormFieldLabel>
+									{{ 'pages.portfolio.portfolio_new.secondary-financing.type' | translate }}
+								</span>
+								<div class="select-dropdown-list">
+									<select tabindex="2" formControlName="loanType">
+										<option *ngFor="let choice of loanTypes; let i = index" [value]="choice.value">
+											{{ choice.label | translate }}
+										</option>
+									</select>
+								</div>
+							</app-form-field2>
+						</div>
+					</div>
+					<!--Years Amortized-->
+					<div class="form-group">
+						<div class="w-100">
+							<app-group-options
+								title="{{ 'pages.portfolio.portfolio_new.secondary-financing.amortization' | translate }}"
+								[options]="yearsAmortizedOptions"
+								[control]="form.get('secondaryFinancing.amortization')"
+								>
+							</app-group-options>
+						</div>
+					</div>
+	
+					<app-form-field2 [rtl]="true">
+						<span appFormFieldLabel>
+							{{ 'pages.portfolio.portfolio_new.secondary-financing.description' | translate }}
+						</span>
+						<label>      
+							<input 
+								type="text" 
+								class="form-control" 
+								formControlName="description">
+						</label>
+					</app-form-field2>
+				</ng-container>
+			</div>
+	
+			<!-- Receive Offer Status -->
+			<label class="form-section-name">
+				{{ 'page.portfolio.receive_purchase_to_offer' | translate }}
+			</label>
+			<div class="form-group">
+				<app-form-field2 [span]="12" class="w-100">
+					<div class="select-dropdown-list">
+						<select tabindex="2" formControlName="receiveOfferStatus">
+							<option value="">
+							</option>
+							<option *ngFor="let key of ReceivePurchaseToOfferKeys" [value]="key">{{ReceivePurchaseToOfferTypes[key] |  translate }}</option>
+						</select>
+					</div>
+				</app-form-field2>
+			</div>
+	
+			<!--Other Income -->
+			<label class="form-section-name">
+				{{ 'page.portfolio.other_income' | translate }}
+			</label>
+			<div class="form-group">
+				<div class="w-50 mr-05">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.2-2'"
+						[title]="'pages.portfolio.parking_income'" 
+						[control]="form.get('otherIncome.parking')">
+					></app-input-number2>
+				</div>
+				<div class="w-50 ml-05">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.2-2'"
+						[title]="'pages.portfolio.internet'" 
+						[control]="form.get('otherIncome.internet')">
+					></app-input-number2>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="w-50 mr-05">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.2-2'"
+						[title]="'pages.portfolio.laundry_income'" 
+						[control]="form.get('otherIncome.laundry')">
+					></app-input-number2>
+				</div>
+				<div class="w-50 ml-05">
+					<app-input-number2
+						placeholder="0"
+						[digitsFormat]="'1.2-2'"
+						[title]="'pages.portfolio.other_income'" 
+						[control]="form.get('otherIncome.other')">
+					></app-input-number2>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<div class="stepper-controller-wrapper">
+				<a appStepperPrev>
+					<i class="fas fa-arrow-left fa-lg" (click)="back()"></i>
+				</a>
+			   
+				<a appStepperNext>
+					<i class="fas fa-check fa-lg" (click)="submitPortfolio()"></i>
+				</a>
+			</div>
+		</div>
+	</form>
+	
+

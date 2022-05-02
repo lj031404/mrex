@@ -1,0 +1,9 @@
+<app-header>
+    <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+    <p slot="title">{{'college.course.title' | translate}}</p>
+</app-header>
+<app-content>
+    <ng-container *ngFor="let data of cardData">
+        <app-course-card [course]="data" (click)="gotoLink(data.link)"></app-course-card>
+    </ng-container>
+</app-content>

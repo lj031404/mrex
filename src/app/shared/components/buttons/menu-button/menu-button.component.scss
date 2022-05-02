@@ -1,0 +1,31 @@
+::ng-deep {
+  .menu-toggle {
+    color: white !important;
+    height: 3.21rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .menu-title {
+    color: black;
+    font-size: 1rem;
+    line-height: 1.14rem;
+  }
+
+  .icon-content {
+    height: 1.785rem;
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
+
+
+.user-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid white;
+}

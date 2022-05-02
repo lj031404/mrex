@@ -1,0 +1,58 @@
+<div class="home-properties">
+    <div class="home-properties__title" *ngIf="property.key">
+        {{ 'page.home.section.' + property.key | translate }}
+        <span *ngIf="property.key === 'watchlistProperties' && !property.list.length" class="no-watchlist-label">({{ 'pages.home.no_watchlist' | translate }}.)</span>
+    </div>
+    <div [class.d-none]="property.isLoading"  [class]="'scrolling-wrapper ' + property.key" (scroll)="onScroll($event)" #content>
+        <div [class]="'item ' + item.listingType" *ngFor="let item of property.list" [routerLink]="RouterMap.Market.url([RouterMap.Market.PROPERTIES, item.propertyId])" [queryParams]="{redirect: 'home'}">
+            <img [src]="item.image" width="310" height="160" class="property-img" appDefaultImage>
+            <div class="item-caption">
+
+                <div class="listed-time">
+                    <span *ngIf="item.publishDate">
+                        <ng-container *ngIf="property.key === 'recentListings'">
+                            {{ 'page.home.section.property_listed' | translate }}
+                            {{ item.publishDate | timeAgo }}
+                        </ng-container>
+                    </span>
+                </div>
+                
+                <div class="item-detail-info">
+                    <div class="ellipsis">{{ item.address.civicNumber }}<span *ngIf="item.address.civicNumber && item.address.civicNumber2">-</span>{{ item.address.civicNumber2 }}, {{ item.address.street }}, {{ item.address.city }}</div>
+                    <div class="d-flex align-items-center">
+                        <div class="room-counter mr-2 d-flex align-items-center">
+                            <img src="assets/rooms.png"> <span>{{ item.residentialUnits }}</span>
+                        </div>
+                        <div class="construction-year mr-2 d-flex align-items-center">
+                            <img src="assets/house-icon.png"> <span>{{ item.yearOfConstruction }}</span>
+                        </div>
+                        <div [class.d-none]="property.key === 'watchlistProperties'">
+                            {{ 'page.home.item_caption' | translate }}: 
+                            <ng-container *ngIf="item.capRate">{{ item.capRate }} %</ng-container>
+                            <ng-container *ngIf="!item.capRate">{{ 'literals.na' | translate }}</ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="property.isLoading"  class="d-flex mb-2">
+        <app-skeleton Cwidth="310px" Cheight="113" class="mr-2"></app-skeleton>
+        <app-skeleton Cwidth="310px" Cheight="113"></app-skeleton>
+    </div>
+    <div *ngIf="property.key === 'watchlistProperties' && !property.list.length" class="watchlist-empty">
+        <img src="assets/icons/watchlist_empty.svg">
+
+        <div>
+            <div class="text-right become-superuser">
+                {{ 'pages.home.become_superuser' | translate }}
+            </div>
+            <div class="text-right mt-1">
+                <button class="btn btn-primary" (click)="openWatchList()">
+                    {{ 'pages.home.add' | translate }}
+                    <span class="font-weight-bold"> {{ 'pages.home.now' | translate }} !</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

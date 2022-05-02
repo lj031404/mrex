@@ -1,0 +1,12 @@
+<h1 mat-dialog-title class="txt pb-1 text-center">{{ 'literals.language' |  translate }}</h1>
+<div mat-dialog-content>
+	<div class="d-flex align-items-center languages">
+		<div class="language-btn" (click)="switchLanguage(AppLanguage.English)" [class.current-language]="language === 'en-US'" >
+			{{ 'language.english' | translate }}
+		</div>
+
+		<div class="language-btn" (click)="switchLanguage(AppLanguage.French_CA)" [class.current-language]="language === 'fr-CA'">
+			{{ 'language.french' | translate }}
+		</div>
+	</div>
+</div>

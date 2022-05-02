@@ -1,0 +1,30 @@
+.playlist-item {
+	padding-bottom: 1rem;
+    border-bottom: 1px solid rgb(0 0 0 / 80%);
+	margin-bottom: 1rem;
+}
+
+.spinner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list {
+    overflow-y: auto;
+    width: 100%;
+    background: white;
+    height: calc(100vh - 8rem);
+    padding: 1rem 0;
+}
+
+.pagination-view {
+    height: 100%;
+    width: 100%;
+}
+
+cdk-virtual-scroll-viewport {
+    height: 100%;
+    width: 100%;
+}

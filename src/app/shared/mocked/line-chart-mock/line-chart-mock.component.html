@@ -1,0 +1,17 @@
+<div class="p-2">
+	<div class="options">
+		<button class="btn btn-green" (click)="curTab = 'total_gain'">Total Gain</button>
+		<button class="btn btn-inactive-gray" (click)="curTab = 'equity_built'">Equity Built</button>
+		<button class="btn btn-inactive-gray" (click)="curTab = 'cash_flow'">Cash Flow</button>
+	</div>
+	<div class="mt-2 mb-2 filter-option">
+		<!-- <i class="fa fa-chevron-left" aria-hidden="true" (click)="gotoPrevYear()" *ngIf="curIdxOfYear > 0"></i>
+			<ng-container *ngFor="let data of lineAreaChartData.graphData; index as idx">
+				<span class="pr-2 pl-2" *ngIf="curIdxOfYear === idx">{{ data.date }}</span>
+			</ng-container>
+		<i class="fa fa-chevron-right" aria-hidden="true" (click)="gotoPNextYear()" *ngIf="curIdxOfYear < lineAreaChartData.graphData.length -1"></i> -->
+	</div>
+	<app-line-area-chart [lineAreaChartData]=lineAreaChartData *ngIf="curTab == 'total_gain'"></app-line-area-chart>
+	<app-line-area-chart [lineAreaChartData]=equityBuiltChartData *ngIf="curTab == 'equity_built'"></app-line-area-chart>
+	<app-line-area-chart [lineAreaChartData]=cashFlowChartData *ngIf="curTab == 'cash_flow'"></app-line-area-chart>
+</div>

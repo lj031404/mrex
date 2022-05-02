@@ -1,0 +1,94 @@
+@import '../../../../assets/scss/variables.scss';
+
+:host {
+  swiper {
+    ::ng-deep {
+      &>.swiper.s-wrapper {
+        background-color: white;
+      }
+
+      .swipper-wrapper {
+        width: 100%;
+
+        .swiper-slide {
+          overflow: hidden;
+        }
+      }
+
+      .swiper-button-prev,
+      .swiper-button-next {
+        background-image: none;
+        top: 50%;
+        width: 34px;
+        height: 64px;
+        margin-top: -32px;
+        background-size: 19px 35px!important;
+      }
+
+      .swiper-button-next {
+        background-image: url(assets/icons/v-right.png);
+      }
+
+      .swiper-button-prev {
+        background-image: url(assets/icons/v-left.png);
+      }
+
+      .image-wrapper {
+        overflow-y: hidden!important; 
+      }
+
+      .contain {
+        width: 100%;
+        height: 15rem;
+        object-fit: cover;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+.skeleton {
+  position: relative;
+	background-color: rgb(92 176 159 / 20%);
+	width: 200px;
+	height: 20px;
+	overflow: hidden;
+	border-radius: 4px;
+}
+
+.skeleton::after {
+	display: block;
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transform: translateX(-100%);
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+	animation: loading 1s infinite;
+}
+
+@keyframes loading {
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+.loading-img {
+  height: 100%;
+  position: relative;
+  width: 100%;
+  top: -15rem;
+  z-index: 1;
+
+  span {
+    margin-top: 5.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+.no-image {
+  z-index: 2;
+  span {
+    color: white;
+  }
+}

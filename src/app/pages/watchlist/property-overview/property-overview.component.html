@@ -1,0 +1,85 @@
+
+    <app-header>
+        <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" [action]="navigateToListScreen" slot="left-button"></app-go-back-button>
+        <p slot="title">{{ 'page.watchlist.property-overview.pageTitle' | translate }}</p>
+    </app-header>
+    
+    <app-content [noPadding]="true" *ngIf="_propertyDoc">
+    
+        <div class="property-section">
+            <app-property-summary [property]="_propertyDoc.propertyData" [hypothesisData]="_propertyDoc.hypothesisData"></app-property-summary>
+        </div>
+    
+        <!-- Pictures slider -->
+        <!--
+        <ng-container *ngIf="property.pictures?.length">
+            <app-picture-slider></app-picture-slider>
+        </ng-container>
+        <ng-container *ngIf="!property.pictures || property.pictures?.length === 0">
+            <app-upload-image></app-upload-image>
+        </ng-container>
+        -->
+    
+        <!--
+            <div class="card m-1">
+                <div class="card-body">
+                    <h4>TIP</h4>
+                    Completing your investor profile can help you screen properties quickly based on your investment goals. Tap to set up.
+                </div>
+            </div>
+        -->
+    
+        <div class="property-section p-1">
+            <div class="section-title text-uppercase">{{ 'page.watchlist.property-overview.summaryOverview' | translate }}</div>
+            <app-property-financial-info [propertyDoc]="_propertyDoc" [change]="_propertyDoc$"></app-property-financial-info>
+    
+        </div>
+    
+    </app-content>
+    
+    <app-footer>
+        <app-tab-controller>
+            <app-tab-indicator [routerLink]="propertyUrl + '/' + PropertyMap.OVERVIEW" routerLinkActive="active">
+                <i class="indicator-icon fas fa-chart-pie fa-lg"></i>
+                <span class="indicator-label text-uppercase">{{'page.watchlist.property-overview.report' | translate}}</span>
+            </app-tab-indicator>
+            <app-tab-indicator [routerLink]="propertyUrl + '/' + PropertyMap.MAP">
+                <i class="indicator-icon fas fa-map-marked-alt fa-lg"></i>
+                <span class="indicator-label text-uppercase">{{'page.watchlist.property-overview.map' | translate}}</span>
+            </app-tab-indicator>
+    
+            <app-tab-indicator [routerLink]="propertyUrl + '/' + PropertyMap.MODELING">
+                <i class="indicator-icon fas fa-sync-alt fa-lg"></i>
+                <span class="indicator-label text-uppercase">{{'page.watchlist.property-overview.modeling' | translate}}</span>
+            </app-tab-indicator>
+    
+            <app-tab-indicator [matMenuTriggerFor]="more_menu">
+                <i class="indicator-icon fas fa-ellipsis-v fa-lg"></i>
+                <span class="indicator-label text-uppercase">{{'page.watchlist.property-overview.more' | translate}}</span>
+            </app-tab-indicator>
+        </app-tab-controller>
+    
+        <mat-menu #more_menu="matMenu">
+            <button mat-menu-item (click)="editProperty()">
+                <i class="material-icons mr-2">edit</i>
+                <span>{{'literals.edit' | translate}}</span>
+            </button>
+    
+            <button mat-menu-item [routerLink]="propertyUrl + '/' + PropertyMap.COMPARE">
+                <i class="indicator-icon fas fa-exchange-alt fa-lg mr-2"></i>
+                <span>{{'literals.compare' | translate}}</span>
+            </button>
+    
+            <button mat-menu-item [routerLink]="propertyUrl + '/' + PropertyMap.ACTIVITY">
+                <i class="indicator-icon fas fa-history fa-lg mr-2"></i>
+                <span>{{'literals.activity' | translate}}</span>
+            </button>
+    
+            <button mat-menu-item (click)="deleteProperty()">
+                <i class="material-icons mr-2">delete</i>
+                <span>{{'literals.delete' | translate}}</span>
+            </button>
+        </mat-menu>
+    </app-footer>
+    
+

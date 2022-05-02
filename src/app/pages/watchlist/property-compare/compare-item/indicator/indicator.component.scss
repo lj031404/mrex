@@ -1,0 +1,30 @@
+
+.indicator {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    &.align-left {
+        text-align: left;
+    }
+
+    &.align-right {
+        text-align: right;
+    }
+    
+    .bold {
+        font-weight: 900;
+    }
+    .red {
+        color: red;
+    }
+    .green {
+        color: green;
+    }    
+    .value {
+        font-size: 120%;
+    }
+    .trend {
+        font-size: 90%;
+    }
+}

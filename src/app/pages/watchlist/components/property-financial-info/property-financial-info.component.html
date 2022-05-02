@@ -1,0 +1,42 @@
+<div class="information-wrapper">
+    <ng-container *ngFor="let item of summaryOverview">
+        <ng-container *ngIf="item.type === 'data'">
+            <app-property-overview-accordion 
+                [label]="item.label"
+                [value]="item.value"
+                [precision]="item.precision"
+                [unit]="item.unit"
+                [tooltip]="item.tooltip"
+                [sub]="item.sub">
+            </app-property-overview-accordion>      
+        </ng-container>         
+
+        <!-- chart expenses -->
+        <ng-container *ngIf="item.type === 'chart-expenses'">
+            <app-property-expenses 
+                [hypothesis]="propertyDoc.hypothesisData"
+                [property]="propertyDoc.propertyData">
+            </app-property-expenses>
+        </ng-container>
+
+        <!-- chart money -->
+        <ng-container *ngIf="item.type === 'chart-money'">
+                <app-property-money-chart 
+                    [hypothesis]="propertyDoc.hypothesisData"
+                    [property]="propertyDoc.propertyData">
+                </app-property-money-chart>
+        </ng-container>
+
+        <!-- IRR histogram -->    
+        <ng-container *ngIf="item.type === 'chart-irr-histogram'">
+            <app-property-irr-histogram
+                [propertyDoc]="propertyDoc">
+            </app-property-irr-histogram>
+        </ng-container>
+
+        <ng-container *ngIf="item.type === 'projections'">
+            <app-projection-chart [propertyDoc]="propertyDoc"></app-projection-chart>
+        </ng-container>
+    </ng-container>    
+
+</div>

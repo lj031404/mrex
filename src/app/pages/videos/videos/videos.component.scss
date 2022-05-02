@@ -1,0 +1,99 @@
+
+@import '../../../../assets/scss/variables.scss';
+
+.video-portal {
+    background-color: white;
+    overflow-y: auto;
+    height: calc(100vh - #{$header-height} - #{$footer-height});
+}
+
+.btn-showall {
+	height: 1.7rem;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid white;
+    color: white;
+	border-radius: 4px;
+}
+.latest-image {
+    border-radius: 0.57rem;
+    width: 100%;    
+}
+
+.latest-media {
+    iframe {
+        width: 100%;
+        border: unset!important;
+    }
+
+    &__description {
+        margin-top: 0.5rem;
+        padding: 0 1.3rem;
+    }
+    &__title {
+        font-size: 1.4rem;
+        color: black;
+        font-weight: 700;
+        line-height: 1.6rem;
+        margin-bottom: 0.5rem;
+    }
+
+    &__date {
+        font-size: 0.84rem;
+        color: black;
+        font-weight: 400;
+        line-height: 1.1rem;
+    }
+}
+
+.trending-videos {
+    margin-top: 1.7rem;
+   
+    &__title {
+        color: black;
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: 1.7rem;
+        margin-bottom: 0.8rem;
+        padding: 0 1.3rem;
+    }
+
+    &__item {
+        margin-bottom: 1.1rem;
+        padding: 0 1.3rem;
+    }
+}
+
+.no-video {
+    color: #000;
+    font-size: 1rem;
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.spinner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-view {
+    height: 55rem;
+    width: 100%;
+}
+
+cdk-virtual-scroll-viewport {
+    height: 100%;
+    width: 100%;
+}
+
+.fixed-tab {
+    position: fixed;
+    top: 3.5rem;
+    width: 100%;
+    z-index: 10;
+    background: white;
+    padding: 0.8rem 1.3rem;
+}

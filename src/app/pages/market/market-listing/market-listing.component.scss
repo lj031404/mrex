@@ -1,0 +1,463 @@
+@import "../../../../assets/scss/mixin.scss";
+@import "../../../../assets/scss/variables.scss";
+
+:host {
+	.market-summary-content {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow-y: auto;
+
+		.contents {
+			position: relative;
+			overflow: hidden;
+			background-color: white;
+		}
+
+		.back-button {
+			padding: 0.25em;
+		}
+	}
+
+	.primary-header {
+		background-color: rgba(92, 176, 159, 0.7);
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 50px;
+		padding: 0 16px;
+		z-index: 2;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.back-button,
+		.fav-button {
+			font-size: 28px;
+			color: white;
+		}
+
+		.fav-button {
+			margin-left: auto;
+		}
+
+		.fas.fa-heart {
+			color: red!important;
+		}
+
+		.far.fa-heart {
+			color: white!important;
+		}
+
+		&.public {
+			background-color: $color-public!important;
+		}
+		&.offMarket {
+			background-color: $color-offMarket!important;
+		}
+		&.pocket {
+			background-color: $color-pocket!important;
+		}
+	}
+
+	.secondary-header {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 50px;
+		padding: 0 16px;
+		z-index: 2;
+		background-color: $color-green;
+		display: flex;
+		align-items: center;
+		font-size: 16px;
+		font-weight: bold;
+		color: white;
+
+		.back-button {
+			margin-right: 10px;
+		}
+
+		.title {
+			line-height: 1.1;
+		}
+
+		&.bg-black {
+			background-color: black !important;
+		}
+	}
+
+	app-picture-slider {
+		::ng-deep {
+			.s-wrapper {
+				height: 100%;
+			}
+		}
+	}
+
+	.summary-section {
+		width: 100%;
+		border-bottom: 1px solid #ccc;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	.summary-section.section--unlock {
+		padding: 16px 12px;
+	}
+
+	.summary-section.section--address {
+		.image-gallery-wrapper {
+			position: relative;
+
+			.banner {
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				min-height: 2.714rem;
+				padding: 0.9rem 0.5rem 0;
+				z-index: 1;				
+				display: flex;
+				justify-content: space-between;
+				flex-direction: column;
+
+				.price-type {
+					padding-bottom: 8px;
+				}
+
+				label {
+					color: white;
+					font-size: 18px!important;
+				}
+				.price {
+					color: white;
+					font-weight: 400;
+    				font-size: 1.5rem;
+				}
+				.btn-offer {
+					color: white;
+					border: 1px solid white;
+					border-radius: 3px;
+				}
+
+				&.public {
+					background-color: $color-public1;
+				}
+				&.offMarket {
+					background-color: $color-offMarket1;
+				}
+				&.pocket {
+					background-color: $color-pocket1;
+				}
+			}
+
+		}
+
+		.address-wrapper {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex: 1 auto;
+			min-height: 6rem;
+
+			padding: 16px;
+			font-size: $font-size-title;
+
+			.city-label {
+				color: #ccc;
+			}
+
+			img {
+				cursor: pointer;
+			}
+
+			.calc {
+				display:flex;
+				justify-content: end;
+				font-size: 1rem;
+				img {
+					margin-left: 0.5rem;
+				}
+			}
+		}
+	}
+
+	.summary-section.section--probability {
+		padding: 16px;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+
+		.probability-item {
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+
+			.category {
+				font-size: $font-size-text-md;
+				color: $color-green;
+			}
+			.value {
+				font-size: 20px;
+			}
+		}
+	}
+
+	.summary-section.section--map {
+		position: relative;
+
+		::ng-deep {
+			agm-map {
+				width: 100%;
+				height: 240px !important;
+
+				.agm-map-container-inner {
+					.gmnoprint.gm-bundled-control {
+						& > div > div {
+							background-color: transparent !important;
+							box-shadow: none !important;
+
+							button {
+								margin-bottom: 16px !important;
+								box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+								border-radius: 51%;
+								border: none !important;
+								background-color: white !important;
+							}
+
+							& > div {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.market-street-view {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 240px;
+			display: block;
+		}
+
+		.button-toggle-group {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: stretch;
+
+			.btn {
+				flex-grow: 1;
+				background-color: white;
+				color: $color-gray-8;
+
+				&:focus,
+				&:active {
+					color: black;
+				}
+			}
+		}
+	}
+
+	.summary-section.section--qualification {
+		::ng-deep {
+			label {
+				padding: 0 10px;
+				font-size: $font-size-text;
+				font-weight: bold;
+				height: 40px;
+				line-height: 40px;
+				color: black;
+			}
+		}
+	}
+
+	.summary-bottom-panel {
+		position: fixed;
+		z-index: 1;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		padding: 24px 12px 16px;
+		border-top: 1px solid #ccc;
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.hide-panel {
+			position: absolute;
+			top: 6px;
+			right: 8px;
+			font-size: $font-size-text-md;
+		}
+
+		label {
+			text-align: center;
+			margin-bottom: 6px;
+		}
+
+		.btn {
+			width: 100%;
+		}
+	}
+	.summary-bottom-panel.hide {
+		display: none;
+	}
+
+	::ng-deep {
+		.expansion-panel .panel-header {
+			height: 40px;
+			padding: 0 10px;
+
+			.title {
+				font-size: $font-size-title;
+				font-weight: bold;
+				color: black;
+			}
+		}
+
+		.panel-body {
+			.unlock-button {
+				padding: 0 1rem 1rem 1rem;
+			}
+		}
+
+		.market-data-table {
+			.cdk-cell.cdk-column-value.computed:before {
+				content: "= ";
+			}
+
+			.cdk-cell.cdk-column-value.total {
+				font-weight: bold;
+				border-top: 2px solid black;
+			}
+
+			.cdk-cell.cdk-column-share {
+				opacity: 0.5;
+			}
+
+			.cdk-cell.cdk-column-share.null-value {
+				opacity: 0;
+			}
+		}		
+	}
+
+	.no-data {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: 1rem;
+	}
+
+	.listing-note {
+		display: flex;
+		padding: 1rem;
+		> div {
+			line-break: anywhere;
+		 }
+	}
+
+	
+}
+
+app-tooltip {
+	font-size: 11px!important;
+}
+
+.property-actions {
+	width: 100%;
+	bottom: 0;
+	padding-bottom: 11px;
+	display: flex;
+	align-items: center;
+	// flex-wrap: wrap;
+	
+	.btn-white-outline {
+		border: 1px solid #FFFFFF;
+		box-sizing: border-box;
+		border-radius: 3px;
+		margin: 0 5px;
+		font-size: 12px;
+		text-transform: uppercase;
+		color: #FFFFFF;
+		padding-right: 17px;
+		flex: 1;
+		justify-content: center;
+	
+		img {
+			margin-left: 5px;
+		}
+	}
+}
+
+.doors-year {
+	display: flex;
+	padding: 0 16px 16px 16px;
+	
+	> div {
+		margin-right: 10px;
+	}
+	img {
+		margin-right: 8px;
+	}
+}
+
+.panel-description {
+	font-size: 1rem;
+	color: $color-silver;
+	padding: 0 1rem;
+}
+.property-history-list {
+	padding: 1rem;
+	.property-history {
+		margin-bottom: 1.7rem;
+
+		.value-status {
+			display: flex;
+			justify-content: space-between;
+			color: black;
+			font-size: 1.3rem;
+			line-height: 1.5rem;
+		}
+
+		.property-status {
+			color: black;
+			font-size: 1.3rem;
+			text-transform: capitalize;
+		}
+
+		.property-date {
+			color: rgba(0, 0, 0, 0.5);
+			font-size: 1rem;
+			line-height: 1.8rem;
+		}
+	}
+}
+
+.related-articles {
+	padding: 1.92rem 1.4rem 1.72rem 1.4rem ;
+	border-bottom: 1px solid $color-gray-22;
+	&__title {
+		font-weight: 700;
+		font-size: 1.42rem;
+		margin-bottom: 1.5rem;
+		color: black;
+	}
+
+	&__descrpition {
+		font-weight: 400;
+		font-size: 0.86rem;
+		color: black;
+		margin-top: 0.8rem;
+	}
+}

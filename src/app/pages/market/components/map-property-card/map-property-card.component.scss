@@ -1,0 +1,267 @@
+@import '../../../../../assets/scss/variables.scss';
+
+:host {
+
+  .app-item {
+    width: 100%;
+    min-height: 9.1rem !important;
+    max-width: 100%;
+    margin: 0;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+    ::ng-deep {
+      .left-rail {
+        position: relative;
+        width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+        // display: flex;
+        align-items: center;
+        background-color: transparent;
+        font-family: Arial;
+        font-size: 10px;
+        line-height: 16px;
+        text-align: center;
+        background-color: black;
+
+        .header-text {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 1.8em;
+          line-height: 1.8em;
+          text-transform: capitalize;
+          color: white;
+          font-size: 1rem;
+          z-index: 1;
+        }
+
+        .footer-text {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          color: white;
+        }
+
+        &.public-listing {
+          .header-text,
+          .footer-text {
+            background: $color-public;
+          }
+        }
+        &.offMarket-listing {
+          .header-text,
+          .footer-text {
+            background: $color-offMarket;
+          }
+        }
+        &.pocket-listing {
+          .header-text,
+          .footer-text {
+            background: $color-pocket;
+          }
+        }
+      }
+
+      .main-rail {
+        position: relative;
+        width: 100%;
+        font-size: 12px;
+        font-family: Arial;
+        display: flex;
+        justify-content: space-between !important;
+        align-items: flex-start;
+        padding: 0.57rem;
+        align-items: stretch;
+        min-height: 6.29rem;
+
+        p {
+          margin: 0 !important;
+          font-family: Arial;
+        }
+
+
+        .property-type {
+            font-weight: bold;
+            font-size: 0.9rem;
+            line-height: 16px;
+            color: #5CB09F;
+        }
+
+        .price {
+            padding-bottom: 0.45rem;
+            font-weight: bold;
+            font-size: 1.7rem;
+            line-height: 1.14rem;
+        }
+
+        .address {
+            font-size: 1.087rem;
+            line-height: 1.42rem;
+            color: #000000;
+        }
+
+        .factors {
+            width: 100%;
+            color: black;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            &>div {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                font-size: 1rem;
+            }
+
+            i {
+                width: 14px;
+                height: 14px;
+                object-fit: contain;
+                margin-right: 0.5em;
+            }
+
+            .value {
+              margin-right: 0.25em;
+              text-transform: capitalize;
+              font-size: 1.13rem;
+            }
+
+            .mr {
+              margin-right: 0.5em;
+            }
+        }
+      }
+    }
+  }
+
+}
+.left-rail-click, .main-rail-click {
+  position: absolute;
+  top: 0;
+  left: 0.6rem;
+  width: calc(100% - 1.2rem);
+  height: 100%;
+}
+
+.main-rail-click {
+  top: 0;
+  left: 0.5rem;
+  width: calc(100% - 1rem);
+  height: 100%;
+}
+
+:host-context(.agm-info-window-content) {
+
+  .app-item {
+    width: 173px !important;
+    height: 165px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.type-buildings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .buildings {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 1.15rem;
+      font-weight: bold;
+      padding-left: 0.3rem;
+    }
+  }
+  
+}
+
+.building-date {
+  align-items: center;
+  margin-top: 0.85rem;
+  display: flex;
+
+  .value {
+    margin-left: 0.8rem;
+    text-transform: capitalize;
+    font-size: 1rem!important;
+  }
+}
+
+.main-rail__left {
+	flex: 2;
+	margin-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main-rail__right {
+	flex: 1.5;
+	margin-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+
+	.home-date {
+		margin-top: 0.85rem;
+	}
+
+	.viewbtn {
+		height: 1.5rem;
+		font-size: 0.7rem;
+		border-radius: 3px;
+		margin-top: 0.6rem;
+		padding: 0;
+	}
+}
+
+app-picture-slider {
+  width: 100%;
+}
+
+.heating-type {
+  flex: 1.5;
+}
+
+::ng-deep {
+  app-map-property-card {
+    app-default-image {
+      .default-image-content {
+        height: $property-header-height !important;
+      }
+    }
+  }
+}
+
+.publish-date {
+  font-size: 0.857rem;
+  color: white;
+  font-weight: 400;
+  position: absolute;
+  top: 1.79rem;
+  z-index: 2;
+  span {
+    background: $color-public;
+    padding: 0.2rem;
+  }
+}

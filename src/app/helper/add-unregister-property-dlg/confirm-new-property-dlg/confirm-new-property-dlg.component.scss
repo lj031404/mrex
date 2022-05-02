@@ -1,0 +1,42 @@
+@import "../../../../assets/scss/mixin";
+.add-new-unregister--header {
+	padding: 1.7rem;
+	position: sticky;
+    top: 0;
+    z-index: 100000;
+    background: white;
+}
+
+.modal-content {
+	padding: 1.1rem;
+	margin-top: 3.4rem;
+
+	&__title {
+		color: $color-gray-15;
+		font-size: 1.7rem;
+		font-weight: bold;
+		line-height: 150%;
+	}
+
+	&__description {
+		color: $color-gray-15;
+		font-size: 1.2rem;
+		line-height: 150%;
+		margin-top: 1.7rem;
+		margin-bottom: 1.7rem;
+	}
+}
+
+button {
+	font-weight: 700;
+	font-size: 1.2rem;
+	height: 3.2rem;
+}
+
+.back-to-list {
+	color: $color-green;
+	font-size: 1.2rem;
+	font-weight: 700;
+	line-height: 1.7rem;
+	margin-top: 1.5rem;
+}

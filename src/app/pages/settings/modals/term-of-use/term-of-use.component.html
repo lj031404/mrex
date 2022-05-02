@@ -1,0 +1,8 @@
+<app-header>
+    <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+    <p slot="title">{{ "page.settings.about.termOfUse" | translate }}</p>
+</app-header>
+
+<div class="modal-content">
+    <app-content [innerHTML]="'settings.modal.term-of-use.text' | translate"> </app-content>
+</div>

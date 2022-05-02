@@ -1,0 +1,69 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "types": [
+      "googlemaps",
+      "node"
+    ],
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "inlineSources": true,
+    "sourceRoot": "/",
+    "declaration": false,
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "importHelpers": true,
+    "target": "es5",
+    "resolveJsonModule": true,
+    "downlevelIteration": true,
+    "skipLibCheck": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@app/*": [
+        "app/*"
+      ],
+      "@app-core/*": [
+        "app/core/*"
+      ],
+      "@app-middleware/*": [
+        "app/api-middleware/*"
+      ],
+      "@app-models/*": [
+        "app/core/models/*"
+      ],
+      "@app-services/*": [
+        "app/core/services/*"
+      ],
+      "@app-pages/*": [
+        "app/pages/*"
+      ],
+      "@app-shared/*": [
+        "app/shared/*"
+      ],
+      "@app-pipes/*": [
+        "app/shared/pipes/*"
+      ],
+      "@app-components/*": [
+        "app/shared/components/*"
+      ],
+      "@app-animations/*": [
+        "app/shared/animations/*"
+      ],
+      "@env/*": [
+        "environments/*"
+      ]
+    },
+  }
+}

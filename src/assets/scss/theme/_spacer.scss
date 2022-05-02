@@ -1,0 +1,11 @@
+.spacer {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+}
+
+@for $i from 1 to 10 {
+  .spacer.spacer-#{$i} {
+    height: #{$i}0px;
+  }
+}

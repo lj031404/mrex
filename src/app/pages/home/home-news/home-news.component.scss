@@ -1,0 +1,46 @@
+@import '../../../../assets/scss/variables.scss';
+
+.news-body {
+	align-items: center;
+	background-color: white;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	padding: 8px 20px 0;
+}
+
+.news-item {
+	font-size: $line-height-title-sm;
+	color: black;
+	line-height: 1.3em;
+	span {
+		color: $color-cadet-blue;
+		font-weight: bold;
+	}
+}
+.content-container {
+	position: relative;
+	overflow: auto;
+	height: 90px;
+	min-height: 0;
+	margin: 0 1em;
+
+	background-color: #fff;
+}
+
+.vertical-container,
+.horizontal-container {
+	min-height: 0 !important;
+	flex: 1;
+}
+
+.swiper-container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.swiper-pagination-bullet-active {
+	background: #329884 !important;
+}

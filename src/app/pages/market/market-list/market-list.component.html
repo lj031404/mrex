@@ -1,0 +1,100 @@
+<div class="market-list-content">
+    <div class="search-results-content" id="search-results-content" #searchResultContent >
+        <ng-container *ngIf="router?.url === '/search'">
+            <ng-container>
+                <p class="search-title pb-0" *ngIf="address" [style.visibility]="address ? 'visible' : 'hidden'"> {{ 'page.market.list.showing-results' | translate }} </p>
+                <div class="d-flex align-items-center justify-content-between mr-2 pt-1" >
+                    <p class="address" *ngIf="address">{{ address }}</p>
+                    <p class="address" *ngIf="!address">{{ propertyCount$ | async }} {{ 'page.market.overview.properties_found' | translate }}</p>
+                </div>
+            </ng-container>
+                
+            <button slot="right-button" class="btn-filter ml-2" [class.no-address]="!address" (click)="openFilterModal()">
+                <img src="assets/images/filter.svg" alt="search_filter" class="filter">
+                {{ 'page.market.overview.filter_button' | translate }}
+            </button>
+            
+            <div class="header">
+                <label class="results-count"> 
+                    <ng-container *ngIf="address">{{ propertyCount$ | async }} {{ 'page.market.overview.properties_found' | translate }}</ng-container>
+                </label>
+                <!-- <label class="sort-control mr-1">{{ 'page.market.list.sort_by' | translate }}</label> -->
+                <select class="sort-select custom-select lang-select border-bottom-0" (change)="onSortChange($event)">
+                    <option value="">{{ 'page.market.list.sort_by.distance' | translate }}</option>
+                    <option value="-publishDate">{{ 'page.market.list.sort_by.newest' | translate }}</option>
+                    <option value="publishDate">{{ 'page.market.list.sort_by.oldest' | translate }}</option>
+                </select>
+            </div>
+        </ng-container>
+        
+        <div class="saved-searchresult"  *ngIf="router?.url !== '/search'">
+            <div *ngIf="address" [style.visibility]="address ? 'visible' : 'hidden'">
+                    <span class="showing-result-title">{{ 'page.market.list.showing-results' | translate }} : </span>
+                    <span class="search-address">{{ address }}</span>
+            </div>
+            <div class="showing-result-title" *ngIf="!address">{{ propertyCount$ | async }} {{ 'page.market.overview.properties_found' | translate }}</div>
+            <div class="filter-save-btns">
+                <div class="d-flex align-items-center">
+                    <button slot="right-button" class="filter-btn" [class.no-address]="!address" (click)="openFilterModal()">
+                        <img src="assets/images/filter.svg" alt="search_filter" class="filter">
+                        {{ 'page.market.overview.filter_button' | translate }}
+                    </button>
+
+                    <button class="save-filter-btn invisible" (click)="!searchId ? saveSearch() : updateSearch()">
+                        {{ 'page.market.save_search' | translate }}
+                    </button>
+                </div>
+                <div>
+                    <select class="sort-select custom-select lang-select border-bottom-0" (change)="onSortChange($event)">
+                        <option value="">{{ 'page.market.list.sort_by.distance' | translate }}</option>
+                        <option value="-publishDate">{{ 'page.market.list.sort_by.newest' | translate }}</option>
+                        <option value="publishDate">{{ 'page.market.list.sort_by.oldest' | translate }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="showing-result-title" *ngIf="address && !isLoading">{{ propertyCount$ | async }} {{ 'page.market.overview.properties_found' | translate }}</div>
+            <div class="showing-result-title" *ngIf="isLoading">{{ 'pages.marketlist.searching' | translate }}</div>
+        </div>
+    </div>
+    <div class="market-skeleton-content market-map-skeleton p-1" *ngIf="isLoading">
+        <div class="mb-1">
+            <app-skeleton  Cwidth="100%" Cheight="32" ></app-skeleton>
+        </div>
+        <div class="d-flex align-items-start mb-2" *ngFor="let empty of emptyProps">
+            <div class="mr-2">
+                <app-skeleton Cwidth="113px" Cheight="113"></app-skeleton>
+            </div>
+            <div class="w-100">
+                <app-skeleton Cwidth="100%" Cheight="35"></app-skeleton>
+            </div>
+        </div>
+    </div>
+
+    <!-- Property cards -->
+    <div class="pagination-view" [ngStyle]="paginationViewHeight" id="marketListContent" #content>
+        <cdk-virtual-scroll-viewport itemSize="100" (scrolledIndexChange)="onScrollIndexChange($event)" itemSize="127.39" minBufferPx="800" maxBufferPx="800">
+            <app-property-card
+                *cdkVirtualFor="let listing of listings"
+                [cdkVirtualForTrackBy]="trackBy"
+                class="property-card"
+                [listing]="listing"
+                [isWatched]="isWatched[listing.propertyId]"
+                [countModels]="countModels[listing.id] || 0"
+            ></app-property-card>
+        </cdk-virtual-scroll-viewport>
+    </div>
+    
+</div>
+
+<div class="market-list-empty d-flex align-items-center justify-content-center" *ngIf="!propCount && !isLoading">
+    <div class="text-center">
+        <div>
+            <img src="assets/icons/no-result.png">
+        </div>
+        <div class="empty-search-result">
+            {{'pages.market.list.empty_result' |  translate }}
+            <span *ngIf="address">"{{ address }}"</span>
+        </div>
+    </div>
+</div>
+

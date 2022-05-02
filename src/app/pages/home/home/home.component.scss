@@ -1,0 +1,170 @@
+@import '../../../../assets/scss/variables.scss';
+
+.home-screen {
+    overflow-y: auto;
+    height: 100%;
+    
+    .search-alert-bar {
+        height: 4.92rem;
+        padding: 1rem 1.142rem;
+        z-index: 100;
+        width: 100%;
+        top: 0;
+        background-color: $color-green;
+    }
+
+
+    .portfolio-information {
+        background-color: $color-gray-bold;
+        padding: 1.285rem 1rem 1.7rem 1.07rem;
+    }
+
+    .address-search {
+        position: relative;
+        transition: width 0.25s;
+        margin-left: auto!important;
+
+        input[type=text] {
+            width: 100% !important;
+            box-sizing: border-box;
+            box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            font-size: $font-size-text-md;
+            background-color: white;
+            height: 32px;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 8px;
+            top: 1.1rem;
+            transform: translate(0, -50%);
+        }
+    }
+
+}
+
+.spinner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-article {
+    &__thumbnail {
+        height: 30vh !important;
+        img {
+			width: 100%;
+			object-fit: cover;
+			object-position: center;
+			max-height: 30vh;
+		}
+
+        .img-placeholder-text {
+            width: 100%;
+            font-size: 1.5rem;
+            color: white;
+            bottom: 3.5rem;
+            text-align: center;
+        }
+    }
+
+    &__body {
+        padding: 0.857rem 1.142rem;
+    }
+
+    &__title {
+		font-size: 1.857rem;
+		font-weight: bold;
+		line-height: 2.285rem;
+		margin-bottom: 1.142rem;
+		margin-top: 0.928rem;
+	}
+
+	&__posted {
+		font-size: 1.142rem;
+		line-height: 1.3rem;
+		color: black;
+		opacity: 0.6;
+
+		> div {
+			margin-bottom: 0.28rem;
+		}
+	}
+
+    &__description {
+		font-size: 1.142rem;
+		line-height: $description-line-height;
+		font-weight: normal;
+        max-width: 94%;
+        
+		&.more {
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			word-wrap: break-word;
+			overflow: hidden;
+		}
+		
+	}
+}
+
+::ng-deep {
+    .more {
+        & * {
+            margin-bottom: 0;
+        }
+    }
+}
+.tab-list {
+    padding: 1rem 1.07rem 0;
+
+}
+
+.your-portfolio-skeleton {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 1.5rem;
+}
+
+.img-error {
+    height: 17.8rem;
+}
+
+.more-btn {
+    font-size: 0.9rem;
+    text-decoration: underline;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.home-property-list {
+    overflow: auto;
+    height: calc(100% - 10rem);
+}
+
+.tab-content {
+    padding-top: 4.64rem;
+}
+
+.tab-header {
+    top: 0
+}
+
+.placeholder-img {
+	background-color: $color-green;
+	background-repeat: no-repeat;
+	background-image: url(assets/icons/default_logo.svg);
+	background-position: center;
+	background-size: 40% 40%;
+}
+cdk-virtual-scroll-viewport {
+    height: 100%;
+    width: 100%;
+}
+
+.pagination-view {
+    height: 50rem;
+}

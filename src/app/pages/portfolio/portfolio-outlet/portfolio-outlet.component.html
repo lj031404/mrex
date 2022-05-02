@@ -1,0 +1,17 @@
+<router-outlet></router-outlet>
+
+<div >
+    <app-action-drawer-outlet #drawerOutlet>
+        <app-action-button right="1.25rem" [class.invisible]="!isShowAddBtn" bottom="6.25rem" (triggered)="addPropertySearchDrawer()">
+           +
+        </app-action-button>
+    
+        <app-action-drawer #mainDrawer (closed)="onPropertySearchDrawerWrapperClosed()">
+            <ng-container *ngIf="activePropertySearchDrawer">
+                <app-property-search-drawer [ignoreProviders]="['gmap']" maxHeight="540" (cast)="onPropertySearchDrawerEventEmitted($event)"></app-property-search-drawer>
+            </ng-container>
+        </app-action-drawer>
+    </app-action-drawer-outlet>
+    
+</div>
+

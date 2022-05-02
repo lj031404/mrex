@@ -1,0 +1,97 @@
+@import "../variables.scss";
+
+.item--subscription {
+  .control {
+    label {
+      width: 100%;
+      margin: 0;
+      font-size: $line-height-title-sm;
+      line-height: 30px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &::after {
+        top: 2px;
+      }
+
+      span {
+        font-size: $font-size-text;
+      }
+    }
+  }
+
+  .plan-description {
+    font-size: $font-size-text-lg;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: $color-cadet-blue;
+  }
+
+  .description {
+    margin-top: 4px;
+
+    p {
+      font-size: $font-size-text;
+      line-height: 20px;
+      margin-bottom: 10px;
+
+      .plan-name {
+        color: black;
+        font-size: 14px;
+        line-height: 16px;
+        margin-left: 1.4rem;
+
+      }
+    }
+
+    .plan-check {
+      height: 32px;
+      width: 32px;
+      min-height: 32px;
+      min-width: 32px;
+      background-color: $color-cadet-blue;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .plan-times {
+      height: 32px;
+      width: 32px;
+      min-height: 32px;
+      min-width: 32px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 3px solid #000000;
+      
+    }
+  }
+
+  .purchase-btn {
+    font-size: $font-size-text-lg;
+  }
+}
+
+.Basic {
+  b {
+      font-weight: 400!important;
+  }
+}
+
+.Premium, .Professional {
+  .plan-bold {
+    font-weight: bold;
+  }
+}

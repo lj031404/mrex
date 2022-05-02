@@ -1,0 +1,50 @@
+<!-- Text -->
+<div class="bg-mrex-green text-white pt-1 pb-1 top-header" *ngIf="property">
+
+	<div>
+		<div class="address-1 text-white">{{property.address | propertyAddress:'first'}}</div>
+		<div class="address-2 text-white">{{property.address | propertyAddress:'second'}}</div>
+		<div class="sold-amount text-white">
+			<strong *ngIf="hypothesisData.input.askPrice">
+				$ {{ hypothesisData.input.askPrice | number:'4.0' }}
+			</strong>
+			<strong *ngIf="!hypothesisData.input.askPrice">
+				$ -
+			</strong>
+		</div>
+	</div>
+
+	<!-- Streeview -->
+	<img class="streeview" [src]="property.image" onerror="this.style.visibility='hidden'" alt="Street view">
+
+</div>
+
+<div class="bg-light bg-lighten-1 container-fluid text-secondary pt-1" *ngIf="property">
+	<div class="row">
+		<div class="col-12">
+			<span *ngFor="let item of residentialDistribution; let i=index; let last = last;">
+				{{ item.count }} x {{ 'page.watchlist.components.property-summary.room' + item.label | translate }}<span [hidden]="last">, </span>
+			</span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+			<p class="">
+				{{ property?.residentialUnits | number:'1.0-2' }} 
+				{{ 'page.watchlist.components.property-summary.units.label' | translate}} |
+				{{ 'page.watchlist.components.property-summary.yearOfConstruction.label' | translate }} {{ property?.yearOfConstruction }}
+			</p>
+		</div>
+		<div class="col-auto ml-auto">
+			<p>
+				{{ property?.pictures?.length }} 
+   				<ng-container *ngIf="property?.pictures?.length === 1">{{ 'pages.property.components.property-summary.yearOfConstruction.photo' | translate }}</ng-container>
+   				<ng-container *ngIf="property?.pictures?.length > 1">{{ 'pages.property.components.property-summary.yearOfConstruction.photos' | translate }}</ng-container>
+			</p>
+		</div>
+	</div>
+</div>
+
+
+

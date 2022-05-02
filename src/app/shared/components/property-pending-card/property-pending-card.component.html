@@ -1,0 +1,41 @@
+<div class="position-relative d-flex w-100 ">
+	<div #sliderCard [style.transform]="transformXValue" class="slider-card pending-propertycard-item" (click)="onPropertyClicked(pendingProperty)" >
+		<div class="left-rail">
+			<div class="left-rail__type text-center" *ngIf="showType">{{ type }}</div>
+			<div class="left-rail__status">
+				<div *ngIf="pendingProperty.portfolioStatus === 'draft'" class="draft-status d-none">
+					{{ 'shared.property-card.draft' |  translate }}
+				</div>
+			
+				<div class="processing-txt">{{ 'literals.processing' | translate }}</div>
+					<div class="upsoon-txt">
+					{{ 'shared.components.property-pending-card.wrapped_up_soon' | translate }}
+				</div>
+			</div>
+		</div>
+		<div class="main-rail">
+			<div class="address">
+				<div>
+					{{ first }}
+				</div>
+				<div>
+					{{ second }}
+				</div>
+			</div>
+			<div class="submitted">
+				<div>{{ 'shared.components.property-pending-card.submitted' | translate }}</div>
+				<div class="submitted-date">{{ pendingProperty.createdAt | date: 'd/MM/yy' }}</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Tools-->
+    <div class="align-self-stretch align-items-stretch mrex-green.lighten-3 icons-bar">
+
+        <div class="align-items-center h-100 right-margin icons-container">
+            <div (click)="delete()" class="tool-item color-3">
+                <i class="material-icons">delete</i>
+            </div>
+        </div>
+    </div>
+</div>

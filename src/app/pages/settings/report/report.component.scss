@@ -1,0 +1,49 @@
+:host {
+
+  .type-list {
+    margin-bottom: 30px;
+  }
+
+  .message-box {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .subject-box {
+    width: 100%;
+
+    input{
+      width: 100%;
+      padding: 12px;
+      background-color: transparent;
+      border: 1px solid #bfbfbf;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .disabled {
+    background-color: #E0E0E0 !important;
+  }
+}
+
+.app-item.item--report-type {
+  height: 36px;
+  display: flex;
+  align-items: center;
+
+  .control {
+    label {
+      margin-bottom: 0;
+      font-size: 16px;
+      line-height: 24px;
+
+      &::after {
+        top: -2px;
+      }
+    }
+  }
+
+  
+
+}

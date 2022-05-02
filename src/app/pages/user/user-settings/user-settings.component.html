@@ -1,0 +1,77 @@
+
+    <app-header>
+        <app-go-back-button [classes]="['nav-link', 'nav-menu-main']"  slot="left-button"></app-go-back-button>
+        <p slot="title">User settings</p>
+    </app-header>
+    
+    <app-content>
+        <div class="card-content">
+            <div>
+                <div class="card-body text-center py-4" [hidden]="!isLoading">
+                    <app-loader [isLoading]="isLoading" [sizeClass]="'fa-2x'"></app-loader>
+                </div>
+                <div class="card-body" *ngIf="!isLoading">
+                    <form class="form-horizontal" novalidate>
+    
+                        <div class="row">
+                            <div class="col-12 col-md-6 form-group">
+                                <div class="floating-label">
+                                    <label for="settings_email">{{ "Email" | translate }}</label>
+                                    <input type="text" class="form-control" id="settings_email" aria-describedby="settings_email_h"
+                                           placeholder="" [formControl]="settingsForm.get('email')"
+                                           [class.is-invalid]="settingsForm.controls.email.invalid && settingsForm.controls.email.touched">
+                                </div>
+                            </div>
+    
+                            <div class="col-12 col-md-6 form-group">
+                                <div class="floating-label">
+                                    <label for="settings_str">{{ "Street" | translate }}</label>
+                                    <input type="text" class="form-control" id="settings_str" aria-describedby="settings_str_h"
+                                           placeholder="" [formControl]="settingsForm.get('address.street') "
+                                           [class.is-invalid]="settingsForm.get('address.street').invalid && settingsForm.get('address.street').touched">
+                                </div>
+                            </div>
+    
+                            <div class="col-12 col-md-6 form-group">
+                                <div class="floating-label">
+                                    <label for="settings_zip">{{ "Zip Code" | translate }}</label>
+                                    <input type="text" class="form-control" id="settings_zip" placeholder=""
+                                           [formControl]="settingsForm.get('address.postalCode') "
+                                           [class.is-invalid]="settingsForm.get('address.postalCode').invalid && settingsForm.get('address.postalCode').touched">
+                                </div>
+                            </div>
+    
+                            <div class="col-12 form-group">
+                                <div class="row align-items-center">
+                                    <div class="col-auto">
+                                        <p class="mb-0">{{ 'Language' | translate }}</p>
+                                    </div>
+    
+                                    <div class="col-auto ml-auto">
+                                        <select class="custom-select border-bottom-0" (change)="onLanguageChange($event)" value="en-US">
+                                            <option value="en-US">{{ 'English' | translate }}</option>
+                                            <option value="fr-CA">{{ 'French' | translate }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+                            <div class="col-auto mx-auto mx-md-0 form-group">
+                                <div class="custom-control custom-switch">
+                                    <input class="custom-control-input" id="settings_notifs" type="checkbox"
+                                           [formControl]="settingsForm.get('notificationsSubscribe')">
+                                    <span class="custom-control-track"></span>
+                                    <label class="custom-control-label"
+                                           for="settings_notifs">{{ "Receive notifications" | translate }}</label>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </app-content>
+    
+

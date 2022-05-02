@@ -1,0 +1,149 @@
+@import "../../../assets/scss/mixin";
+
+.add-new-unregister--header {
+	padding: 1.7rem;
+	position: sticky;
+    top: 0;
+    z-index: 100000;
+    background: white;
+}
+
+.modal-content {
+	padding: 1.1rem;
+
+	&__title {
+		color: $color-gray-15;
+		font-size: 1.7rem;
+		font-weight: bold;
+		line-height: 150%;
+	}
+
+	&__description {
+		color: $color-gray-15;
+		font-size: 1.2rem;
+		line-height: 150%;
+		margin-top: 1.7rem;
+		margin-bottom: 1.7rem;
+	}
+
+	.add-new-attachment {
+		background: rgba(52, 158, 137, 0.1);
+		border: 1px dashed rgba(52, 158, 137, 0.4);
+		box-sizing: border-box;
+		padding: 1.2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		i {
+			color: $color-green;
+		}
+		span {
+			color: $color-gray-15;
+			font-size: 1.2rem;
+			margin-left: 0.9rem;
+		}
+	}
+
+	.accepted-file-formats, .attachment-list, .address {
+		margin-top: 1.7rem;
+
+		&__title {
+			color: $color-gray-15;
+			font-size: 1.2rem;
+			line-height: 1.7rem;
+			font-weight: bold;
+		}
+	}
+
+	.accepted-file-formats {
+		&__list {
+			ul {
+				padding-left: 1.1rem;
+				font-size: 1.2rem;
+				color: $color-gray-15;
+				li {
+					line-height: 1.5;
+				}
+			}
+		}
+	}
+
+	.attachment-list {
+		margin-top: 1.7rem;
+
+		.attachments {
+			.attachment {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 1.2rem;
+				border: 1px solid rgba(52, 158, 137, 0.2);
+				color: $color-gray-15;
+				font-size: 1.2rem;
+				position: relative;
+				
+				&__name {
+					display: -webkit-box;
+					overflow: hidden;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical;
+				}
+			}
+		}
+	}
+	app-autocomplete {
+		input {
+			height: 4rem;
+			border-style: unset;
+			font-size: 1.2rem;
+			border: 1px solid rgba(52, 158, 137, 0.2);
+			box-shadow: unset;
+		}
+	}
+
+	.address-search {
+		position: relative;
+		height: 60%;
+		display: flex;
+	
+		input[type=text] {
+			height: 4rem;
+			border-style: unset;
+			font-size: 1.2rem;
+			border: 1px solid rgba(52, 158, 137, 0.2);
+			box-shadow: unset;
+		}
+	
+		.search-icon {
+			position: absolute;
+			right: 8px;
+			top: 50%;
+			transform: translate(0, -50%);
+		}
+	}
+
+	.or-section {
+		margin: 2.3rem 0;
+
+		.line-or {
+			width: 1.7rem;
+			border: 1px solid rgba(0, 0, 0, 0.46)
+		}
+	}
+	
+}
+
+.modal-footer {
+	button {
+		font-weight: 700;
+		font-size: 1.2rem;
+		height: 3.2rem;
+	}
+}
+
+.add-unregister-property-content {
+	overflow: auto;
+    height: 100%;
+    padding-bottom: 1.2rem;
+}

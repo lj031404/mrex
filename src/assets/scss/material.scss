@@ -1,0 +1,10 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.cdk-overlay-container {
+  z-index: 1201;
+}
+
+// fix for left menu overlapping the viewport
+.drag-target {
+  left: -40px;
+}

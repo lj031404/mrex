@@ -1,0 +1,10 @@
+
+
+    <app-header>
+        <app-go-back-button [classes]="['nav-link', 'nav-menu-main']"  slot="left-button"></app-go-back-button>
+        <p slot="title">{{ 'page.watchlist.property-map.title' | translate }}</p>
+    </app-header>
+    
+    <app-content [noPadding]="true">
+        <app-agm-map [inputDocumentId]="propertyDocId"></app-agm-map>
+    </app-content>

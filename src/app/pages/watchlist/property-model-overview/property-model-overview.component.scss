@@ -1,0 +1,71 @@
+@import "../../../../assets/scss/mixin";
+
+:host {
+  ::ng-deep {
+    .content-body {
+      padding-bottom: 74px;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    app-header {
+      span {
+        margin-right: 0.5em;
+        font-size: 1.5em;
+        display: flex;
+      }
+    }
+
+    .footer {
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .streeview {
+      width: 100%;
+    }
+
+    .tab-indicator {
+      padding: 1rem 0 0.8rem 0;
+    }
+  }
+
+  .property-section {
+    .section-title {
+      font-size: $font-size-title-lg;
+      line-height: $line-height-title-lg;
+      font-weight: bolder;
+      color: #252d3a;
+    }
+  }
+}
+
+app-tab-controller {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 0.7rem;
+  padding: 1rem;
+}
+
+app-tab-indicator {
+  border: 1px solid #E6E6E6;
+  box-sizing: border-box;
+  border-radius: 3px;
+
+  i, img {
+    color: $color-cadet-blue;
+    margin-bottom: 0.7rem;
+  }
+
+  span {
+    font-size: 1.142rem;
+    color: $color-gray-19;
+    text-transform: capitalize!important;
+  }
+}
+
+

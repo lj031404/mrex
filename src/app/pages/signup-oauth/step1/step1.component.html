@@ -1,0 +1,56 @@
+<form [formGroup]="form">
+
+    <h3>{{step}}. {{ "page.signup.contact-info" | translate }}</h3>
+
+    <div class="alert alert-danger" role="alert" *ngIf="errMessage">
+        {{ errMessage }}
+    </div>
+
+    <div class="w-100 fields-block">
+
+        <!-- phoneNumber -->
+        <ng-container *ngFor="let error of error_messages.phoneNumber">
+            <div class="text-danger small"
+                *ngIf="form.get('phoneNumber').value.length === 11 && form.get('phoneNumber').hasError(error.type) && (form.get('phoneNumber').dirty || form.get('phoneNumber').touched)">
+                {{ error.message | translate }}
+            </div>
+        </ng-container>
+        <div class="floating-label w-100 is-focused has-value">
+            <div class="d-flex align-items-center position-relative">
+                <app-country-flag-picker 
+					class="position-absolute"
+                    [selectedCountryCode]="selectedCountryCode"
+                    [countryCodes]="countryCodes"
+                    [customLabels]="customLabels"
+                    (changedCountryCode)="changedCountryCode($event)">
+                </app-country-flag-picker>
+                <input type="tel" mask="(000) 000-0000" [prefix]="prefix" [showMaskTyped]="true" class="form-control" formControlName="phoneNumber"  />
+            </div>
+        </div>
+    </div>
+    <div class="w-100 fields-block" *ngIf="isSocialLogin">
+        <div class="floating-label w-100">
+            <select class="form-select form-control pl-0" [formControlName]="'language'"  (change)="onLanguageChange($event)">
+                <option [value]="AppLanguageCode.English">{{ 'language.english' | translate }}</option>
+                <option [value]="AppLanguageCode.French_CA">{{ 'language.french' | translate }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="w-100 fields-block"  *ngIf="isSocialLogin">
+        <div class="floating-label w-100"  [class.has-value]="form.get('age').value">
+            <select [formControlName]="'age'"  class="form-select form-control pl-0">
+                <option value="">{{ "pages.signup.select_age" | translate }}</option>
+                <option *ngFor="let age of selectValues; let i = index" [value]="age">
+                    {{ age }}
+                </option>
+            </select>
+        </div>
+
+        <!-- Age -->
+        <ng-container *ngFor="let error of error_messages.age">
+            <div class="text-danger small"  *ngIf="form.get('age').hasError(error.type) && (form.get('age').dirty || form.get('age').touched)">
+                {{ error.message | translate }}
+            </div>
+        </ng-container>
+    </div>
+</form>

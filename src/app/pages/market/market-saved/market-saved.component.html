@@ -1,0 +1,16 @@
+<div class="saved-search-content" [class.bg-white]="!savedSearchData" id="savedSearchContent" #content>
+	<div *ngFor="let item of savedSearchData">
+		<app-saved-search-card 
+			[onPropertyClicked]="navigateToMarketList.bind(this)"
+			[onDelete]="onDelete.bind(this)"
+			[searchItem]="item">
+		</app-saved-search-card>
+	</div>
+
+	<ng-container *ngIf="!savedSearchData">
+		<div class="pt-1" *ngFor="let empty of emptyProp">
+			<app-skeleton Cwidth="100%" Cheight="60"></app-skeleton>
+		</div>
+	</ng-container>
+	
+</div>

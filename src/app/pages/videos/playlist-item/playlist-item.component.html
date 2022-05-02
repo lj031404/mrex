@@ -1,0 +1,11 @@
+<div class="media-article-card d-flex align-items-start" *ngIf="playlist">
+	<div class="media-thumbnail">
+		<img class="thumbnail-image"
+			[src]="playlist.thumbnailUrl" height="116" width="116" appDefaultImage />		
+	</div>
+
+	<div class="media-article-information d-flex flex-column ">
+		<div class="media-title" >{{ playlist.title}}</div>
+		<div class="media-summary" >{{ playlist.summary }}</div>
+	</div>
+</div>

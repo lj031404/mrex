@@ -1,0 +1,25 @@
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+@import "variables";
+
+@mixin flex-row() {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-wrap($wrap) {
+  flex-wrap: $wrap;
+}
+
+@mixin flex-align($content-align, $items-align) {
+  justify-content: $content-align;
+  align-items: $items-align;
+}
+

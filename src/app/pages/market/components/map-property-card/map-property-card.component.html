@@ -1,0 +1,74 @@
+<app-item class="shadow-sm" *ngIf="property">
+	<div class="left-rail"
+		
+		[class.public-listing]="property.listingType === ListingType.Public"
+		[class.offMarket-listing]="property.listingType === ListingType.OffMarket"
+		[class.pocket-listing]="property.listingType === ListingType.Pocket"
+	>	<div class="left-rail-click" (click)="viewDetail(property.propertyId)"></div>
+		<div class="publish-date" *ngIf="property.listingType === ListingType.Public"><span>{{ property.createdAt | timeAgo }}</span></div>
+		<div #imageGalleryw class="image-gallery-wrapper">
+			<app-picture-slider [slider]="slider"></app-picture-slider>
+		</div>
+		
+		<span class="header-text">{{ ('market_listing_type.full.' + property.listingType) | translate }}</span>
+	</div>
+	<div class="main-rail flex-column">
+		<div class="main-rail-click" (click)="viewDetail(property.propertyId)"></div>
+		<div class="d-flex align-items-stretch justify-content-between">
+			<div class="main-rail__left">
+				<!-- Price-->
+				<div>
+					<div class="price" *ngIf="property.listingType === ListingType.Public && property.askPrice">
+						{{ property.askPrice | appNumber: '1.0-0' : '' : '' : '$' }}
+					</div>
+		
+					<div class="type-buildings">
+						<p class="property-type">{{ 'literals.propertyType.' + property?.propertyType | translate }}</p>
+					</div>
+				</div> 
+			</div>
+			
+			<div class="main-rail__right">
+				<div class="address">
+					<!-- Show district -->
+					<ng-container *ngIf="property.hideFields">
+						{{ property.address.district }}<br />
+					</ng-container>
+					<ng-container *ngIf="!property.hideFields">
+						{{ first }}<br />
+					</ng-container>
+					<!-- <span [innerHTML]="second"></span> -->
+				</div>
+			</div>
+		</div>
+		
+		<div class="d-flex justify-content-between align-items-start">
+			<div class="mr building-date flex-1">
+				<img src="assets/icons/unit2.png">
+				<span class="value">
+					<ng-container *ngIf="property.residentialUnits">{{ property.residentialUnits }}</ng-container>
+					<ng-container *ngIf="!property.residentialUnits">{{ 'literals.na' | translate }}</ng-container>
+				</span>                
+			</div>
+
+			<div class="d-flex align-items-center justify-content-between heating-type align-items-start">
+				<div class="mr building-date home-date flex-1 mr-2">
+					<img src="assets/icons/home2.png">
+					<span class="value">
+						<ng-container *ngIf="property.yearOfConstruction">{{ property.yearOfConstruction }}</ng-container>
+						<ng-container *ngIf="!property.yearOfConstruction">{{ 'literals.na' | translate }}</ng-container>
+					</span>                
+				</div>
+
+				<div class="mr building-date heating-type align-items-start">
+					<ng-container *ngIf="heatingType">
+						<img src="assets/icons/heat2.png" >
+						<span class="value text-break">
+							{{ heatingType }}
+						</span>    
+					</ng-container>
+				</div>
+			</div>
+		</div>
+	</div>
+</app-item>

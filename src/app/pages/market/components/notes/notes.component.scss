@@ -1,0 +1,18 @@
+:host {
+	background-color: white;
+}
+
+.panel-body {
+	margin: 1rem;
+	&__title {
+		font-size: 1rem;
+		color: black;
+		font-weight: bold;
+	}
+
+	textarea {
+		border: 1px solid rgba(0, 0, 0, 0.3)!important;
+		border-radius: 4px;
+		margin-top: .5rem;
+	}
+}

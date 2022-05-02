@@ -1,0 +1,24 @@
+<swiper [config]="swiperConfig" (indexChange)="indexChanged($event)" [(index)]="currentIndex" id="bg-swipper">
+    <div class="image-wrapper position-relative" *ngFor="let item of slider?.pictures.slice(0, index); index as idx">
+        <div  [ngClass]="{'cc-image-wrapper': item.blur && isImageBlur }">
+         <div *ngIf="isImageBlur" (click)="viewImage(idx)" appLockedDirective
+                    [title] = "'pages.market.market-listing.market-listing-locked-message' | translate"
+                    [text]  = "'pages.market.market-listing.market-listing-locked-text' | translate"
+                    [locked]= "item.blur"
+                >
+            </div>
+             <img [src]="item.url" appDefaultImage alt="" class="contain position-relative" (load)="item.isLoaded = true" (error)="item.isLoaded = true" (click)="viewImage(idx)">
+                <div *ngIf="!item.isLoaded" class="position-relative d-flex align-items-center  justify-content-center text-white loading-img">
+                    <span>{{ 'slider.loading' | translate }}</span>
+                </div>
+            </div>
+    </div>
+    <ng-container *ngIf="slider && slider.pictures && slider.pictures.length === 0">
+        <div class="image-wrapper position-relative">
+            <img appDefaultImage alt="" class="contain position-relative">
+            <div class="position-relative d-flex align-items-center  justify-content-center text-white loading-img no-image">
+                <span>{{ 'shared.picture-slider.no_img' | translate }}</span>
+            </div>
+        </div>
+    </ng-container>
+</swiper>

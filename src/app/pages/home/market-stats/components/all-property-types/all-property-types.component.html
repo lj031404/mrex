@@ -1,0 +1,138 @@
+<div class="all-property-types">
+	<div class="all-property-types__summary" *ngIf="indicators">
+		<div class="summary-date">{{ indicators.date | date: 'MMMM yyyy'}}</div>
+
+		<div class="d-flex summary-information justify-content-between">
+			<div class="summary-item">
+				<div class="summary-title">{{ 'pages.home.market_stats.new_listings' |  translate }}</div>
+				<div class="summary-value">{{ indicators.newListings |shortNumber }}</div>
+			</div>
+			<div class="summary-item">
+				<div class="summary-title">{{ 'pages.home.market_stats.median_price' |  translate }}</div>
+				<div class="summary-value">${{ indicators.medianPrice | shortNumber}}</div>
+			</div>
+			<div class="summary-item">
+				<div class="summary-title">{{ 'pages.home.market_stats.median_price_change' |  translate }}</div>
+				<div class="summary-value2 d-flex">
+					<div class="w-50 year">
+						1 {{ 'pages.home.market_stats.year' | translate }}
+					</div>
+					<div class="w-50 value d-flex align-items-center" [ngClass]="{'text-danger': indicators.medianPriceChange?.year1 < 0, 'text-dark': indicators.medianPriceChange?.year1 === 0}">
+						<span >{{ indicators.medianPriceChange?.year1}}%</span> 
+						<img src="assets/icons/uparrow24.svg" *ngIf="indicators.medianPriceChange?.year1 > 0" />
+						<img src="assets/icons/red-uparrow24.svg" class="rotate-180" *ngIf="indicators.medianPriceChange?.year1 < 0" />
+					</div>
+				</div>
+				<div class="summary-value2 d-flex">
+					<div class="w-50 year">
+						5 {{ 'pages.home.market_stats.year' | translate }}s
+					</div>
+					<div class="w-50 value d-flex align-items-center" [ngClass]="{'text-danger': indicators.medianPriceChange?.year5 < 0, 'text-dark': indicators.medianPriceChange?.year5 === 0}">
+						<span>{{ indicators.medianPriceChange?.year5}}%</span> 
+						<img src="assets/icons/uparrow24.svg" *ngIf="indicators.medianPriceChange?.year5 > 0" />
+						<img src="assets/icons/red-uparrow24.svg" class="rotate-180" *ngIf="indicators.medianPriceChange?.year5 < 0" />
+					</div>
+				</div>
+				<div class="summary-value2 d-flex">
+					<div class="w-50 year">
+						10 {{ 'pages.home.market_stats.year' | translate }}s
+					</div>
+					<div class="w-50 value d-flex align-items-center" [ngClass]="{'text-danger': indicators.medianPriceChange?.year10 < 0, 'text-dark': indicators.medianPriceChange?.year10 === 0}">
+						<span>{{ indicators.medianPriceChange?.year10}}% </span>
+						<img src="assets/icons/uparrow24.svg" *ngIf="indicators.medianPriceChange?.year10 > 0" />
+						<img src="assets/icons/red-uparrow24.svg" class="rotate-180" *ngIf="indicators.medianPriceChange?.year10 < 0" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="!indicators">
+		<app-skeleton Cwidth="100%" Cheight="240"></app-skeleton>
+	</div>
+
+	<div class="year-btn">
+		<div class="btn-group w-100" role="group" aria-label="Basic example">
+			<button type="button" class="btn " [class.active]="currentChartYear === 2" (click)="switchChartYear(2)">2 years</button>
+			<button type="button" class="btn " [class.active]="currentChartYear === 5" (click)="switchChartYear(5)">5 years</button>
+			<button type="button" class="btn " [class.active]="currentChartYear === 10" (click)="switchChartYear(10)">10 years</button>
+		</div>
+	</div>
+	<ng-container *ngIf="chartData">
+		<div class="chart-item">
+			<div class="chart-item__title">
+				{{ 'pages.home.market_stats.average_price_days_market' | translate }}
+			</div>
+			<div class="d-flex align-items-center legend">
+				<div class="w-50 pr-1 text-right">
+					<img src="assets/icons/wave_line_green.svg">
+					<span>{{ 'pages.home.market_stats.median_price' |  translate }}</span>
+				</div>
+				<div class="w-50 pl-1">
+					<img src="assets/icons/line_group.svg">
+					<span>{{ 'pages.home.market_stats.days_on_market' |  translate }}</span>
+				</div>
+			</div>
+	
+			<app-market-stats-chart
+				[id]="'averageDaysonMarketChart'"
+				[chartData]="chartData.averageDaysonMarketChart"
+				[type]="'timeSerie'"
+				>
+			</app-market-stats-chart>
+		</div>
+
+		<div class="chart-item">
+			<div class="chart-item__title">
+				{{ 'pages.home.market_stats.solid_active_listings' | translate }}
+			</div>
+	
+			<div class="d-flex align-items-center legend">
+				<div class="flex-1">
+					<img src="assets/icons/wave_line_green.svg">
+					<span>{{ 'pages.home.market_stats.total_sold' |  translate }}</span>
+				</div>
+				<div class="flex-1">
+					<img src="assets/icons/wave_line_black.svg">
+					<span>{{ 'pages.home.market_stats.new_listings' |  translate }}</span>
+				</div>
+				<div class="flex-1 ">
+					<img src="assets/icons/line_group.svg">
+					<span>{{ 'pages.home.market_stats.active_listings' |  translate }}</span>
+				</div>
+				
+			</div>
+
+			<app-market-stats-chart
+				[id]="'soldActiveListings'"
+				[chartData]="chartData.soldActiveListings"
+				[type]="'timeSerie'"
+				>
+			</app-market-stats-chart>
+		</div>
+
+		<div class="chart-item">
+			<div class="chart-item__title">
+				{{ 'pages.home.market_stats.solid_price_distribution' | translate }}
+			</div>
+			<app-market-stats-chart
+				[id]="'soldPriceDistribution'"
+				[chartData]="chartData.soldPriceDistribution"
+				[type]="'xy'"
+				>
+			</app-market-stats-chart>
+		</div>
+	</ng-container>
+
+	<ng-container *ngIf="!chartData">
+		<div class="chart-item">
+			<app-skeleton Cwidth="100%" Cheight="240"></app-skeleton>
+		</div>
+		<div class="chart-item">
+			<app-skeleton Cwidth="100%" Cheight="240"></app-skeleton>
+		</div>
+		<div class="chart-item">
+			<app-skeleton Cwidth="100%" Cheight="240"></app-skeleton>
+		</div>
+	</ng-container>
+</div>

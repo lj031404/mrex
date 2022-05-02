@@ -1,0 +1,86 @@
+<div class="position-relative d-flex w-100 ">
+    <div #sliderCard [style.transform]="transformXValue" class="slider-card propertycard-item" (click)="onPropertyClicked(item)">
+        <div class="left-rail"
+                [class.public-listing]="item.listingType === ListingType.Public"
+                [class.offMarket-listing]="item.listingType === ListingType.OffMarket"
+                [class.pocket-listing]="item.listingType === ListingType.Pocket"
+        >
+            <img [src]="item.image" appDefaultImage alt="Property Picture" height="114">
+            <span class="header-text" *ngIf="item.listingType">{{ ('market_listing_type.full.' + item.listingType) | translate }}</span>
+            
+        </div>
+        <div class="main-rail">
+            <div class="type-buildings">
+                <p class="property-type">{{ 'literals.propertyType.' + item?.propertyType | translate }}</p>
+            
+                <div class="buildings" *ngIf="countModels">
+                    <img src="assets/icons/calculator_black.png">
+                    <span class="value">{{ countModels }}</span>
+                </div>
+            </div>
+            
+            <p class="price">
+                <ng-container *ngIf="item.askPrice">
+                    {{ item.askPrice | appNumber: '1.0-0' : '' : '' : '$' }}
+                </ng-container>
+            </p>
+
+            <!-- address-->        
+            <p class="address">
+                <!-- Show district -->
+                <ng-container *ngIf="item.hideFields">
+                    {{ item.address.district }}<br />
+                </ng-container>
+                <ng-container *ngIf="!item.hideFields">
+                    {{ first }}<br />
+                </ng-container>
+                <span [innerHTML]="second"></span>
+            </p>
+            
+
+            <div class="factors">
+                <div class="mr building-date">
+                    <img src="assets/icons/units.png">
+                    <span class="value">
+                        <ng-container *ngIf="item.residentialUnits">{{ item.residentialUnits }}</ng-container>
+                        <ng-container *ngIf="!item.residentialUnits">{{ 'literals.na' | translate }}</ng-container>
+                    </span>                
+                </div>
+
+                <div class="mr building-date">
+                    <img src="assets/icons/home.png">
+                    <span class="value">
+                        <ng-container *ngIf="item.yearOfConstruction">{{ item.yearOfConstruction }}</ng-container>
+                        <ng-container *ngIf="!item.yearOfConstruction">{{ 'literals.na' | translate }}</ng-container>
+                    </span>                
+                </div>
+                <!--
+                    <div class="cap-rate" *ngIf="item?.propertyType === ListingType.Public">
+                        <span>{{ 'market_listing_type.caprate' | translate }}</span>
+                        <span>{{ item?.caprate | appNumber: '1.1-1' }}%</span>
+                    </div>
+                -->
+            </div>                
+        </div>
+    </div>
+    <!--Tools-->
+    <div class="align-self-stretch align-items-stretch mrex-green.lighten-3 icons-bar">
+
+        <div class="align-items-center h-100 right-margin icons-container">
+            
+            <!-- Add new tools here
+                <div (click)="edit()" class="tool-item color-1">
+                    <i class="material-icons">edit</i>
+                </div>
+        
+                <div (click)="compare()" class="tool-item color-2">
+                    <i class="material-icons">iso</i>
+                </div>
+            -->
+    
+            <div (click)="delete()" class="tool-item color-3">
+                <i class="material-icons">delete</i>
+            </div>
+        </div>
+    </div>
+</div>

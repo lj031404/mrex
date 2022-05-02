@@ -1,0 +1,11 @@
+<div class="header-content">
+    <ng-container *ngIf="total === 3">
+        <img *ngIf="step === 1" src="assets/images/signup/step1.png" />
+        <img *ngIf="step === 2" src="assets/images/signup/step2.png" />
+        <img *ngIf="step === 3" src="assets/images/signup/step3.png" />
+    </ng-container>
+    <ng-container *ngIf="total === 2">
+        <img *ngIf="step === 1" src="assets/images/signup/step1-2.png" />
+        <img *ngIf="step === 2" src="assets/images/signup/step2-2.png" />
+    </ng-container>
+</div>

@@ -1,0 +1,14 @@
+<div class="button-wrapper"
+     [class.is-active]="active"
+     [style.top]="top || 'auto'"
+     [style.bottom]="bottom || 'auto'"
+     [style.left]="left || 'auto'"
+     [style.right]="right || 'auto'"
+>
+    <button class="btn background-color-light-green color-white waves-effect waves-light"
+            [style.border-radius]="borderRadius"
+            (click)="triggered.emit()"
+    >
+        <ng-content></ng-content>
+    </button>
+</div>

@@ -1,0 +1,13 @@
+<!--  -->
+  <div class="user-profile">
+    <div class="user-info text-center">
+      <div>
+        <img class="user-img img-fluid rounded-circle w-25" [src]="authenticationService?.user?.photoUrl || 'assets/images/default-account.jpg'" alt="User Profile" />
+      </div>
+      <div class="name-wrapper d-block dropdown mt-1">
+        <div class="profile name">{{authenticationService?.user?.name }}</div>
+        <div class="profile email">{{authenticationService?.user?.email }}</div>
+      </div>
+    </div>
+  </div>
+<!--  -->

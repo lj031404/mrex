@@ -1,0 +1,45 @@
+@import '../../../assets/scss/variables.scss';
+
+.search-alert-bar {
+	background-color: $color-cadet-blue;
+	padding: 32px 0;
+}
+
+.address-search {
+	position: relative;
+	height: 60%;
+	margin: auto 10px;
+	display: flex;
+
+	input[type=text] {
+		width: 100% !important;
+		box-sizing: border-box;
+		box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+		border-radius: 4px;
+		border: 2px solid #ccc;
+		font-size: $font-size-text-md;
+		background-color: white;
+		padding-left: 12px !important;
+		padding-right: 28px;
+		height: 32px;
+	}
+
+	.search-icon {
+		position: absolute;
+		right: 8px;
+		top: 50%;
+		transform: translate(0, -50%);
+	}
+}
+
+.map-loading-status {
+	width: 65%;
+	background-color: $color-gray-21;
+	padding: 0.2rem 1.14rem;
+	position: absolute;
+  bottom: 4.4rem;
+}
+
+.spinner-container {
+	width: 2rem;
+}

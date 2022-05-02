@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+
+    <h3>{{step}}. {{ 'page.forgot.retrieval-phonenumber' | translate }}</h3>
+    <div class="alert alert-danger" role="alert" *ngIf="errVerificationCode">
+        {{ errVerificationCode }}
+    </div>
+    <div class="w-100 fields-block">
+        <!-- phoneNumber -->
+        <ng-container *ngFor="let error of error_messages.phoneNumber">
+            <div class="text-danger small" *ngIf="form.get('phoneNumber').value.length === 11 && form.get('phoneNumber').hasError(error.type) && (form.get('phoneNumber').dirty || form.get('phoneNumber').touched)">
+                {{ error.message | translate }}
+            </div>
+        </ng-container>
+        <div class="floating-label w-100 is-focused has-value">
+            <div class="d-flex align-items-center position-relative">
+                <app-country-flag-picker
+                    class="position-absolute"
+                    [selectedCountryCode]="selectedCountryCode"
+                    [countryCodes]="countryCodes"
+                    [customLabels]="customLabels"
+                    (changedCountryCode)="changedCountryCode($event)">
+                </app-country-flag-picker>
+                <input type="tel" mask="(000) 000-0000" [prefix]="prefix" [showMaskTyped]="true" class="form-control" formControlName="phoneNumber"  />
+            </div>
+        </div>
+    </div>
+
+</form>

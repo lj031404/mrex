@@ -1,0 +1,33 @@
+@import "../../../../assets/scss/mixin";
+
+:host {
+  ::ng-deep {
+    .content-body {
+      padding-bottom: 74px;
+    }
+
+    .footer {
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .streeview {
+      width: 100%;
+    }
+
+    .tab-indicator {
+      padding: 7px 0;
+    }
+  }
+
+  .property-section {
+    .section-title {
+      font-size: $font-size-title;
+      line-height: $line-height-title;
+      font-weight: bolder;
+      color: #252d3a;
+    }
+  }
+}

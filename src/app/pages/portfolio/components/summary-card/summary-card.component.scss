@@ -1,0 +1,55 @@
+@import "../../../../../assets/scss/mixin";
+
+:host {
+  .summary-section {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+    @include flex-row();
+    @include flex-wrap(wrap);
+  }
+
+  .summary-section.showcase {
+    &>.showcase-img-wrapper {
+      width: 25%;
+      @include flex-row();
+      @include flex-align(center, center);
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .summary-section.information {
+    &>.item--summary {
+      width: 50%;
+
+      h2 {
+        font-weight: bold;
+        color: inherit;
+      }
+    }
+  }
+  .summary-section.indexes {
+    &>.item--summary {
+      width: 50%;
+
+      h6 {
+        margin-bottom: 0;
+        font-weight: bold;
+        color: inherit;
+      }
+
+      ::ng-deep {
+        label {
+          //color: black;
+          span {
+            color: $color-forest-green;
+          }
+        }
+      }
+    }
+  }
+}

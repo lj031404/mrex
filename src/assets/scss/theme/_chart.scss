@@ -1,0 +1,27 @@
+.amcharts-title-main, .amcharts-axis-label, .amcharts-graph-label, .amcharts-legend-label, .amcharts-legend-value {
+	font-family: 'Arial';
+}
+
+.amcharts-graph-label, .amcharts-legend-value {
+	font-size: $font-size-text-md;
+}
+
+.amcharts-legend-label {
+	font-size: $font-size-text;
+}
+
+.amcharts-chart-div {
+	a {
+		display: none !important;
+	}
+}
+
+.amcharts-main-div {
+	circle, g, path, rect {
+		transform-origin: 0 0 !important;
+	}
+}
+
+.hide-ballon {
+	display: none;
+}

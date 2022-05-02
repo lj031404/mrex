@@ -1,0 +1,35 @@
+<div (click)="expanded = !expanded" class="main">
+	<span class="collapsible">
+		<i class="fas fa-chevron-down fa-lg" *ngIf="expanded"></i>
+		<i class="fas fa-chevron-right fa-lg" *ngIf="!expanded"></i>
+	</span>
+	<span class="collapsible"></span>
+	<span class="label">
+		{{label}}
+	</span>
+	<span class="bold right value" *ngIf="value; else blankValue;">
+		<span class="bold" *ngIf="value">{{ value | number}} </span>
+		<span class="bold" *ngIf="value === null">--</span>
+		<span class="bold" *ngIf="value === 0">0</span>
+		<span class="bold" [innerHTML]="chartData.valueUnit | translate"></span>
+    </span>
+</div>
+
+<ng-container *ngIf="showData && expanded">
+	<div class="indent">
+		<!-- <app-xy-line-chart [xyChartData]="chartData"></app-xy-line-chart> -->
+		<app-fill-between-lines [xyFillChartData]="chartData" *ngIf="chartType === ChartTypes.FILL_BETWEEN_LINES"></app-fill-between-lines>
+		<app-pie-chart [pieChart]="chartData" *ngIf="chartType === ChartTypes.PIE"></app-pie-chart>
+		<app-meter [meter]="chartData" *ngIf="chartType === ChartTypes.METER"></app-meter>
+		<app-progress-bar-chart [data]="chartData" *ngIf="chartType === ChartTypes.PROGRESS_BAR_GROUP"></app-progress-bar-chart>
+	</div>
+</ng-container>
+
+<div class="no-data history-performance" *ngIf="!showData && expanded">
+	<i class="fa fa-history" aria-hidden="true"></i>
+	<div class="history-performance__empty">{{ 'page.market.market-data.no_historical_performance' | translate }}</div>
+</div>
+
+<ng-template #blankValue>
+    <span class="right blank-right">-</span>
+</ng-template>

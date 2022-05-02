@@ -1,0 +1,391 @@
+@import "../../../../assets/scss/mixin";
+@import "../../../../assets/scss/variables.scss";
+
+.stepper-controller-wrapper {
+	padding: 1.714rem 0;
+
+	.stepper-content {
+		padding: 0 5.5rem;
+
+		.stepper-item {
+			width: 1.285rem;
+			height: 1.285rem;
+			background-color: $color-green-90;
+			border-radius: 50%;
+
+			&.actived {
+				width: 2.142rem;
+				height: 2.142rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: $color-cadet-blue;
+				color: white;
+				font-size: 1.142rem;
+				font-weight: 700;
+			
+			}
+			
+		}
+
+		.stepper-line {
+			flex: 1;
+			border: 0.5px solid $color-cadet-blue;
+		}
+	}
+
+	.stepper-labels {
+		margin-top: 0.3rem;
+		padding: 0 3.5rem;
+
+		.stepper-label {
+			font-weight: 400;
+			font-size: 0.714rem;
+			line-height: 1.142rem;
+			color: rgba(0, 0, 0, 0.4);
+
+			&.actived {
+				color: $color-cadet-blue;
+				font-size: 1rem;
+				line-height: 1.142rem;
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+.portfolio-form {
+	padding: 1.71rem;
+	overflow-x: hidden;
+    height: calc(100vh - 15rem);
+    overflow-y: auto;
+	&__subtitle {
+		font-size: 1.714rem;
+		color: $color-gray-19;
+		font-weight: 400;
+		line-height: 1.535rem;
+		margin-bottom: 1.428rem;
+
+	}
+}
+.progress-content {
+	margin-bottom: 1.78rem;
+
+	.progress-status {
+		margin-bottom: 0.4rem;
+		color: $color-green;
+		font-size: 0.714rem;
+		line-height: 0.857rem;
+		text-align: center;
+	}
+
+	.progress-bar::after {
+		height: 1.15rem!important;
+    	border-radius: 0.7rem!important;
+		background: rgba(52, 158, 137, 0.35)!important;
+	}
+
+	.progress-bar {
+		border-bottom: 1.15rem solid $color-green;
+		border-radius: 0.7rem;
+		img {
+			top: -4px;
+		}
+	}
+
+	.progress {
+		overflow: visible!important;
+	}
+}
+
+.next-step {
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+	border-radius: 0.4rem;
+	line-height: 1.37rem;
+	margin-bottom: 2.4rem;
+
+	button {
+		font-size: 1.14rem;
+	}
+}
+
+.form-field {
+	margin-bottom: 3.21rem;
+
+	&__title {
+		color: $color-gray-19;
+		font-size: 1.142rem;
+		line-height: 1.535rem;
+		margin-bottom: 0.9rem;
+	}
+
+	&__content {
+		.square-option {
+			background: #FFFFFF;
+			border: 1px solid $color-gray-23;
+			text-align: center;
+			padding: 2.14rem 1rem;
+			color: $color-cadet-blue;
+			font-size: 1rem;
+			line-height: 1.145rem;
+			border-radius: 0.3rem;
+
+			&.activated {
+				background: $color-cadet-blue;
+				color: #FFFFFF;
+			}
+		}
+
+		.or-str {
+			font-size: 1rem;
+			line-height: 1.143rem;
+			color: rgb(23 23 23 / 40%);
+			padding: 0 0.7rem;
+		}
+
+		.input-form {
+			width: 5.642rem;
+			color: black;
+			font-size: 1.29rem;
+			line-height: 1.54rem;
+			border-bottom: 1px solid $color-gray-9!important;
+		}
+
+		.date-option {
+			border: 1px solid $color-gray-23;
+			box-sizing: border-box;
+			border-radius: .3rem;
+			color: black;
+			font-size: 1.142rem;
+			padding: 1.928rem 3rem 1.928rem 1.142rem;
+		}
+
+		.unit-type {
+			border: 1px solid $color-gray-23;
+			box-sizing: border-box;
+			border-radius: .3rem;
+			color: black;
+			font-size: 1.142rem;
+			padding: 1.928rem 0;
+			text-align: center;
+			text-transform: capitalize;
+
+			&.actived {
+				background-color: $color-cadet-blue;
+				color: white;
+			}
+		}
+
+		.income-form-input {
+			border: 1px solid $color-gray-23;
+			box-sizing: border-box;
+			border-radius: .3rem;
+			height: 3.24rem;
+		}
+		.income-form-input::placeholder {
+			color: rgba(0, 0, 0, 0.46);
+		}
+
+	}
+	
+
+
+	.unittypes {
+		display: grid;
+		grid-template-rows: auto auto;
+		grid-template-columns: 1fr 1fr 1fr;
+		column-gap: 0.9rem;
+		row-gap: 0.9rem;
+	}
+
+	.included_utilites {
+		border: 1px solid $color-gray-23;
+		box-sizing: border-box;
+		border-radius: .3rem;
+		padding: 2.57rem 1rem;
+	}
+
+	.text-black {
+		color: black;
+	}
+
+	.income-form {
+		width: 67%;
+		margin-left: 0.7rem;
+	}
+
+}
+
+.apply-to-all-units {
+	border: 1px solid $color-gray-23;
+	box-sizing: border-box;
+	border-radius: .3rem;
+	padding: 0.7rem 0.8rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: rgba(0, 0, 0, 0.4);
+	font-size: 1rem;
+	margin-bottom: 0.8rem;
+}
+
+.unit-item {
+	display: grid;
+	grid-template-columns: 4fr 3fr .5fr;
+	column-gap: 0.7rem;
+	align-items: center;
+
+	.border {
+		border: 1px solid $color-gray-23;
+		box-sizing: border-box;
+		border-radius: .3rem;
+		justify-content: space-between;
+		height: 2.5rem;
+	}
+}
+
+input::placeholder {
+	color: rgba(0, 0, 0, 0.46);
+}
+
+.calendar-icon {
+	right: 0.7rem;
+    top: 0.6rem;
+}
+.select-dropdown-list {
+	background: #FFFFFF;
+	border: 1px solid $color-gray-23;
+	box-sizing: border-box;
+	border-radius: .3rem;
+	padding: 1rem;
+	select {
+		color: rgba(0, 0, 0, 0.46);
+	}
+}
+
+// .submit-icon {
+// 	text-align: center;
+// 	padding: 6.92rem 0;
+// }
+
+// .submit-txt {
+// 	font-size: 1.714rem;
+// 	line-height: 2.57rem;
+// 	color: $color-gray-15;
+// 	font-weight: 700;
+// 	margin-bottom: 1.714rem;
+// }
+
+// .submit-description {
+// 	font-size: 1.142rem;
+// 	line-height: 1.714rem;
+// 	color: rgba(37, 45, 58, 0.8);
+// }
+
+.address-information {
+	margin: 1.5rem 0 3.214rem 0;
+	.street-address-info {
+		margin-left: 1.2857rem;
+
+		.street {
+			font-size: 1.714rem;
+			line-height: 1.8214rem;
+			color: black;
+		}
+
+		.state {
+			font-size: 1.142rem;
+			line-height: 1.8214rem;
+			color: rgba(0, 0, 0, 0.4);
+		}
+	}
+}
+
+.mb-32 {
+	margin-bottom: 2.29rem;
+}
+
+.unit-edit-list {
+	background: #FFFFFF;
+	border: 1px solid $color-gray-23;
+	box-sizing: border-box;
+	border-radius: .3rem;
+	padding: 1.57rem 1.357rem 1rem 1.15rem;
+
+	.unit-item {
+		margin-bottom: 2.5rem;
+
+		.custom-control-label {
+			color: $color-gray-19;
+			font-size: 1.14rem;
+			line-height: 1.371rem;
+
+		}
+	}
+
+	.unit-edit-description {
+		font-size: 1.14rem;
+		line-height: 1.714rem;
+		color: rgba(37, 45, 58, 0.8);
+		margin: 0 2rem 2.5rem 2rem;
+	}
+}
+
+.unit-remain-section {
+	.remain-items {
+		padding: 1.446rem 0 1.2rem 0;
+		font-size: 1.714rem;
+		line-height: 2.57rem;
+		color: $color-gray-15;
+		font-weight: 700;
+	}
+
+	.remain-description {
+		font-size: 1.14rem;
+		line-height: 1.37rem;
+		padding: 0 2rem;
+		color: $color-gray-25;
+	}
+}
+
+.finial-step {
+	padding: 1rem;
+
+	.back-to-portfolio {
+		margin-top: 1.428rem;
+		text-align: center;
+		line-height: 1.714rem;
+		color: $color-green;
+		font-weight: 700;
+		font-size: 1.142rem;
+	}
+
+	.congrate-txt {
+		font-weight: 700;
+		font-size: 1.714rem;
+		line-height: 2.57rem;
+		color: $color-gray-15;
+		margin: 5.7rem 0 0.8rem;
+
+	}
+
+	.congrate-description {
+		font-size: 1.142rem;
+		line-height: 1.714rem;
+		color: $color-gray-15;
+	}
+}
+
+::ng-deep {
+	app-input-number {
+		input {
+			border: unset;
+			width: 5.642rem;
+			color: black;
+			font-size: 1.29rem;
+			line-height: 1.54rem;
+			border-bottom: 1px solid $color-gray-9!important;
+		}
+		
+	}
+}

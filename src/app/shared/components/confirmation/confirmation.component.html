@@ -1,0 +1,16 @@
+<div class="notification-container" [class.justify-content-start]="imgUrl">
+    <div class="notification-icon" *ngIf="icon" [innerHTML]="icon"></div>
+    <img *ngIf="imgUrl" [src]="imgUrl" class="confirm-image">
+    <div class="notification-main" *ngIf="mainTitle">{{ mainTitle |  translate }}</div>
+    <div class="notification-title">{{ title | translate }}</div>
+    <div class="notification-text">{{text | translate}}</div>      
+</div>
+
+<button class="btn btn-green text-uppercase" (click)="onBackClick()">
+    <span *ngIf="!backBtnText">{{ 'literals.back' | translate}} </span>
+    <span *ngIf="backBtnText">{{ backBtnText | translate }}</span>
+</button>
+
+<button class="btn btn-outline-green text-uppercase mt-0" (click)="onReActionClick()" *ngIf="reActionText">
+    {{ reActionText |  translate }}
+</button>

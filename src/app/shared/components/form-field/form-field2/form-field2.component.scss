@@ -1,0 +1,107 @@
+@import "../../../../../assets/scss/variables.scss";
+:host {
+
+  .form-field-flex2 {
+    flex-grow: 1;
+    padding: 0 15px;
+  }
+
+  .form-field-flex2 {
+    display: flex;
+    flex-direction: row;
+    color: $color-gray-19;
+    font-weight: 400;
+    font-size: 1.28rem;
+    line-height: 1.54rem;
+    font-style: normal;
+    background: white;
+    min-height: 2.57rem;
+    border-radius: 0.3rem;
+
+    .form-field-prefix2,
+    .form-field-suffix2,
+    .form-field-infix2 {
+      display: flex;
+      align-items: center;
+    }
+
+    .form-field-prefix2,
+    .form-field-suffix2 {
+      color: black;
+    }
+
+    .form-field-infix2 {
+      position: relative;
+      flex-grow: 1;
+      white-space: nowrap;
+
+      &.rtl {
+        text-align: right;     
+      }
+    }
+  }
+
+  ::ng-deep {
+    
+    .form-field-infix2 {
+      input,
+      select,
+      label {
+        width: 100%;
+        border: none;
+        text-align: inherit;
+        background-color: transparent;
+        color: $color-gray-19;
+        display: flex;
+        align-items: center;
+        font-size: 1.28rem;
+
+        &:focus {
+          outline: none;
+          background-color: transparent;
+        }        
+      }
+
+      &.rtl {         
+        label {
+          justify-content: flex-end;
+        }       
+      }
+    }
+
+    &.disabled {
+      color: #777 !important;
+      span,
+      input,
+      select,
+      label,
+      .form-label,
+      .form-label--field {
+        color: #777 !important;
+      }
+    }
+
+    .form-field-infix2 {
+      input {
+        height: 2.57rem;
+      }
+    }
+  }
+
+}
+
+:host {
+  .left-margin {
+    padding-left: 32px;
+  }
+}
+
+:host(.ng-blank) {
+  .form-field-suffix2 {
+    display: none;
+  }
+}
+
+:host(.ng-touched.ng-invalid .form-field-flex2) {
+  background-color: rgba(238, 88, 88, 0.2);
+}

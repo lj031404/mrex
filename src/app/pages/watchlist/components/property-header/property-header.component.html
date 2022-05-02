@@ -1,0 +1,7 @@
+<div class="header">
+	<app-picture-slider [slider]="slider"></app-picture-slider>
+	<div class="value-type {{header?.listingType}}">
+		<div class="value" *ngIf="header?.listingType === 'public'">{{ header?.marketValue.unit }} {{ header?.marketValue.value | number}} </div>
+		<div class="type" *ngIf="header?.listingType">{{ 'market_listing_type.'+ header?.listingType | translate }}</div>
+	</div>
+</div>

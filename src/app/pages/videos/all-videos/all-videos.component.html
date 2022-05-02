@@ -1,0 +1,38 @@
+
+	<app-header>
+		<app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+		<p slot="title">
+			{{ 'page.all_videos.all_shows' | translate }}
+		</p>
+	</app-header>
+
+	<app-content [customClassName]="'all-videos'">
+		<div class="pt-2 pb-2">
+			<div class="show-social-tab">
+				<span class="tab" [class.active]="currentTab === 'shows' ? true : false " (click)="switchTab('shows')">{{ 'page.all_videos.shows' | translate }}</span>
+				<span  class="tab" [class.active]="currentTab === 'social' ? true : false" (click)="switchTab('social')">{{ 'page.all_videos.social' | translate }}</span>
+			</div>
+	
+			<div >
+				<ng-container *ngIf="currentTab === 'social'">
+					<div class="video-item mb-1" *ngFor="let article of socialVideos">
+						<app-media-article-card [article]="article"></app-media-article-card>
+					</div>
+				</ng-container>
+				
+				<ng-container *ngIf="currentTab === 'shows'">
+					<div class="video-item mb-1" *ngFor="let article of allVideos">
+						<app-media-article-card  [article]="article"></app-media-article-card>
+					</div>
+				</ng-container>
+		
+				<div class="text-center spinner" *ngIf="(currentTab === 'social' && socialVideos.length) || (currentTab === 'shows' && allVideos.length)">
+					<app-progress-spinner [enabled]="isMore"></app-progress-spinner>
+				</div>
+			</div>
+		
+		</div>
+	</app-content>
+	
+
+

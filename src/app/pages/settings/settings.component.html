@@ -1,0 +1,20 @@
+<app-header>
+    <p slot="title">{{'page.settings.title' | translate}}</p>
+</app-header>
+
+<app-content [noPadding]="true">
+    <app-item class="item--settings-list" [routerLink]="item.link" *ngFor="let item of settingsItems">
+        <div class="icon-wrapper">
+            <i [className]="item.iconClass"></i>
+        </div>
+        <div class="name">{{item.name | translate}}</div>
+    </app-item>
+    <app-item class="item--settings-list" (click)="logout()">
+        <div class="icon-wrapper">
+            <i class="fa fa-power-off"></i>
+        </div>
+        <div class="name">{{'page.settings.list.logout' | translate}}</div>
+    </app-item>
+</app-content>
+
+

@@ -1,0 +1,7 @@
+<ng-content select=".full-screen-content-body"></ng-content>
+
+<div [class]="'content' + ' ' + customClassName" [class.no-padding]="noPadding">
+    <div class="content-body">
+        <ng-content></ng-content>
+    </div>
+</div>

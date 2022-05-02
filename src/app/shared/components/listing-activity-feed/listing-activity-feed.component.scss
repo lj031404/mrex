@@ -1,0 +1,113 @@
+@import "../../../../assets/scss/variables.scss";
+
+:host {
+	.activity-feed {
+		position: relative;
+
+		.top-line-erase {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 3.5rem;
+			min-height: 3.5rem;
+			background-color: white;
+			z-index: 2;
+		}
+
+		.bottom-line-erase {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 3.5rem;
+			min-height: 3.5rem;
+			background-color: white;
+			z-index: 2;
+		}
+	}
+
+	.feed {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		min-height: 6.5rem;
+		padding: 0 1.14rem;
+	}
+
+	.iconarea {
+		position: relative;
+		width: 2.14rem;
+		margin-right: 0.85rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.line {
+			position: absolute;
+			height: 100%;
+			left: 50%;
+			border: 0.14rem solid #E6E6E6;
+			margin-left: -0.14rem;
+		}
+
+		.icon {
+			width: 2.14rem;
+			height: 2.14rem;
+			background-color: #5CB09F;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 3;
+
+			img {
+				width: 1.14rem;
+				height: 1.14rem;
+				object-fit: contain;
+			}
+		}
+
+	}
+
+	.feedbox {
+		width: calc(100% - 3rem);
+		background: #FFFFFF;
+		border: 0.1rem solid #E6E6E6;
+		box-sizing: border-box;
+		border-radius: 0.2rem;
+		padding: 0.8rem 0.5rem 0.5rem 1rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: bold;
+		margin: 0.35rem 0;
+
+		.feeddate {
+			font-size: 0.57rem;
+			line-height: 1.142rem;
+			text-transform: uppercase;
+			color: $color-cadet-blue;
+			font-weight: 900;
+		}
+
+		.text {
+			font-weight: normal !important;
+			font-size: 0.857rem;
+			line-height: 1.53rem;
+			min-height: 1.5rem;
+			color: #000000;
+		}
+
+		.link {
+			font-size: 0.9rem;
+			line-height: 200%;
+			text-align: right;
+			text-decoration-line: underline;
+			text-transform: uppercase;
+			color: #5CB09F;
+			margin-left: auto;
+		}
+	}
+}

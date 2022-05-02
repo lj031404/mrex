@@ -1,0 +1,8 @@
+@import "../../../../../assets/scss/mixin";
+
+:host {
+  width: 100%;
+  background-color: white;
+  @include flex-row();
+  @include flex-align(space-between, center);
+}

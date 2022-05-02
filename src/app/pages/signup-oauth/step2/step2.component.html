@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+    <div class="alert alert-success text-center" *ngIf="form">
+        <div>{{ "page.signup.verification-sent" | translate }} </div>
+        <div>{{ form.controls.countryCode.value }} {{ form.controls.phoneNumber.value | mask: '(000) 000-0000'}}</div>
+    </div>
+    <h3>{{step}}. {{ "page.signup.verify-number" | translate }}</h3>
+    <div class="alert alert-danger" role="alert" *ngIf="errMessage">
+        {{ errMessage }}
+    </div>
+
+    <div class="w-100 fields-block">
+        <p>{{"page.signup.we-sent-code" | translate }}</p>
+
+        <div class="w-100">
+            <input type="tel" formControlName="verifyCode" class="form-control w-100 verification-codes" mask="000-000" placeholder="***-***" [showMaskTyped] = "true" />
+            <a (click)="resendVerificationCode()">{{ "page.signup.resend-verification" | translate }}</a>
+        </div>
+    </div>
+</form>

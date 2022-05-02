@@ -1,0 +1,16 @@
+<div class="w-100">
+    <ng-content select="[appFormFieldLabel]"></ng-content>
+
+    <div class="form-field-flex2" [class.left-margin]="leftMargin" [class.disabled]="disabled">
+        <div class="form-field-prefix2" *ngIf="prefixDirective">
+            <ng-content select="[appFormFieldPrefix]"></ng-content>&nbsp;
+        </div>
+        <div class="form-field-infix2" [class.rtl]="rtl">
+            <ng-content></ng-content>
+        </div>
+        <div class="form-field-suffix2" *ngIf="suffixDirective">
+            &nbsp;<ng-content select="[appFormFieldSuffix]"></ng-content>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,16 @@
+<div mat-dialog-title class="txt text-center">
+	{{ 'pages.login.switch_api' | translate}}
+</div>
+<div mat-dialog-content>
+	<div class="pt-2 pr-2 pl-2 overflow-hidden">
+		<div class="control custom-control custom-radio" *ngFor="let api of apiOptions;index as idx" (click)="currentAPI = api.id">
+			<input [id]="'apiRadios'+ idx" name="apiRadios" [value]="api.id" type="radio" class="custom-control-input" [ngModel]="currentAPI" />
+			<label class="custom-control-label">{{ api.label }}</label>
+		</div>
+	</div>
+	
+</div>
+<div mat-dialog-actions class="btn-action">
+    <button class="btnOk" (click)="onOk()" cdkFocusInitial>{{ 'literals.ok' | translate }}</button>
+    <button class="btnCancel" (click)="onCancel()">{{ 'literals.cancel' | translate }}</button>
+</div>

@@ -1,0 +1,63 @@
+
+<app-item >
+	<div #sliderCard [style.transform]="transformXValue" class="slider-card" (click)="onPropertyClicked(model)">
+		<app-item class="item--property-model">
+			<div class="col-left">
+				<img [src]="model?.propertyData?.image" alt="Property Picture">
+			</div>
+			<div class="information">
+				<p class="master" *ngIf="!model?.propertyData?.parent">{{ 'page.watchlist.property-model-list.master' | translate }}</p>
+				<p class="name"   *ngIf=" model?.propertyData?.parent">{{ model?.propertyData?.name }}</p>
+				<p class="address-1">{{ model?.propertyData?.address | propertyAddress:'first' }}</p>
+				<p class="address-2">{{ model?.propertyData?.address | propertyAddress:'second' }}</p>
+		
+				<div class="factors">
+					<div class="mr">
+						<i class="fa fa-th"></i>
+						<span class="value">
+							<ng-container *ngIf="model?.propertyData?.residentialUnits">
+								{{ model?.propertyData?.residentialUnits }}
+							</ng-container>
+							<ng-container *ngIf="!model?.propertyData?.residentialUnits">
+								{{ 'literals.na' | translate }}
+							</ng-container>
+						</span>
+					</div>
+					<div class="mr">
+						<i class="fa fa-home"></i>
+						<span class="value">
+							<ng-container *ngIf="model?.propertyData?.yearOfConstruction">
+								{{ model?.propertyData?.yearOfConstruction }}
+							</ng-container>
+							<ng-container *ngIf="!model?.propertyData?.yearOfConstruction">
+								{{ 'literals.na' | translate }}
+							</ng-container>
+						</span>                
+					</div>
+					<div class="cap-rate" *ngIf="model?.propertyData?.propertyType === ListingType.Public">
+						<span>{{ 'market_listing_type.caprate' | translate }}</span>
+						<span>
+							<ng-container *ngIf="model?.propertyData?.caprate">
+								{{ model?.propertyData?.caprate | appNumber: '1.1-1' }}%
+							</ng-container>
+							<ng-container *ngIf="!model?.propertyData?.caprate">
+								{{ 'literals.na' | translate }}
+							</ng-container>
+						</span>
+					</div>
+				</div>      
+			</div>
+		</app-item>
+	</div>
+	
+	<!--Tools-->
+	<div class="align-self-stretch align-items-stretch mrex-green.lighten-3 icons-bar">
+	
+		<div class="align-items-center h-100 right-margin icons-container">
+			<div (click)="delete()" class="tool-item color-3">
+				<i class="material-icons">delete</i>
+			</div>
+		</div>
+	</div>
+	
+</app-item>

@@ -1,0 +1,36 @@
+.ng5-slider.slider-theme-green {
+  margin: 15px 0 35px;
+
+  .ng5-slider-pointer {
+    width: 24px;
+    height: 24px;
+    top: -9px;
+    background-color: $color-green;
+
+    &::after {
+      display: none;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .ng5-slider-selection {
+    background-color: $color-green;
+  }
+
+  .ng5-slider-bubble {
+    bottom: -35px !important;
+    font-size: 14px;
+  }
+
+  .ng5-slider-bubble.ng5-slider-limit {
+    display: none;
+  }
+
+  &.animate * {
+    -webkit-transition: none !important;
+    transition: none !important;
+  }
+}

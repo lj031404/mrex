@@ -1,0 +1,25 @@
+
+	<div class="new-property-confirm">
+		<div class="add-new-unregister--header">
+			<img src="assets/icons/arrow_back_24px.svg" (click)="back()">
+		</div>
+		<div *ngIf="data" class="modal-content" #modalContent>
+			<div class="d-flex align-items-center justify-content-center mb-3">
+				<img src="assets/icons/submit.png">
+			</div>
+			<div class="modal-content__title text-center">
+				{{ 'helper.add_unregister_property.confirm_dlg.submitted' | translate }}
+			</div>
+			<div class="modal-content__description mb-2">
+				{{ 'helper.add_unregister_property.confirm_dlg.submitted_text' | translate }}
+			</div>
+	
+			<div class="mt-5">
+				<button class="btn btn-primary w-100" (click)="addAnotherOffMarket()">{{ data.submit.label }}</button>
+			</div>
+	
+			<div class="text-center back-to-list" (click)="directTo(data.goBack.route)">
+				{{ data.goBack.label }}
+			</div>
+		</div>
+	</div>

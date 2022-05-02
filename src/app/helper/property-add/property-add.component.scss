@@ -1,0 +1,42 @@
+@import "../../../assets/scss/mixin";
+
+.modal-content {
+  height: calc(100% - 13.7rem);
+}
+
+.modal-footer {
+  display: flex !important;
+  justify-content: stretch;
+  align-items: center;
+  border-top: 1px solid $color-silver;
+
+  .stepper-controller-wrapper {
+    flex: 1 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    a {
+      img {
+        max-width: fit-content !important;
+        padding: 1rem !important;
+      }
+    }
+
+    .app-step-controller {
+      margin: 0 60px;
+      width: 70%;
+    }
+  }
+
+  .arrow-icon {
+    width: 1.4rem;
+  }
+}
+
+.fa-arrow-right,
+.fa-arrow-left {
+  color: $color-cadet-blue;
+}
+.spinner-icon {
+  min-width: 20px;
+} 

@@ -1,0 +1,64 @@
+<app-header>
+	<p slot="title">
+		{{ 'page.videolist.content_portal_title' | translate }}
+	</p>
+	<button class="btn btn-showall" slot="right-button" (click)="showAll()">{{ 'page.videolist.all_shows' |  translate }}</button>
+</app-header>
+
+ <div class="video-portal" #videoPortal>
+	<div class="latest-media" *ngIf="videosPortal && videosPortal.latest">
+		<div >
+			<iframe height="270"
+				[src]="'https://www.youtube.com/embed/' + videoId + '?autoplay=1' | safe" allow="autoplay" allowfullscreen>
+			</iframe>
+		</div>
+		<div class="latest-media__description">
+			<div class="latest-media__title">
+				{{ videosPortal.latest.title}}
+			</div>
+			<div class="latest-media__date">
+				{{ 'page.videolist.posted' |  translate }} : {{ videosPortal.latest.publishDate | timeAgo }}
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="!videosPortal" class="p-2">
+		<app-skeleton Cwidth="100%" Cheight="116"></app-skeleton>
+	</div>
+
+	<div class="trending-videos" [class.d-none]="!videosPortal?.videos?.length">
+		<div class="trending-videos__title" #trendingTitle>
+			{{ 'page.videolist.trending' | translate }}
+		</div>
+		<div class="pagination-view" #trendingVideos>
+			<cdk-virtual-scroll-viewport
+			 itemSize="113"
+			 (scrolledIndexChange)="onScrollIndexChange($event)"
+			 minBufferPx="1000"
+			 maxBufferPx="1000"
+			 class="overflow-hidden"
+			 >
+				<div class="trending-videos__item" *cdkVirtualFor="let article of videosPortal?.videos">
+					<app-media-article-card [article]="article"></app-media-article-card>
+				</div>
+			</cdk-virtual-scroll-viewport>
+		</div>
+		
+	</div>
+
+	<div *ngIf="!videosPortal" class="p-2">
+		<div class="d-flex align-items-start mb-2" *ngFor="let empty of emptyVideos">
+			<div class="mr-2">
+				<app-skeleton Cwidth="113px" Cheight="113"></app-skeleton>
+			</div>
+			<div class="w-100">
+				<app-skeleton Cwidth="100%" Cheight="35"></app-skeleton>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="no-video" *ngIf="videosPortal && !videosPortal.videos.length">
+		{{ 'page.all_videos.no_video' | translate }}
+	</div>
+</div>

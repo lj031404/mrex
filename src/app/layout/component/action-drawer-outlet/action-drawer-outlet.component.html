@@ -1,0 +1,10 @@
+<div #drawerContent class="overlay-darken-1 action-drawer-overlay"
+     [class.d-none]="!isActiveDrawer"
+     [ngStyle]="actionDrawer"
+     (click)="closeDrawers()"
+>
+    <div class="close_text">
+        {{'page.close.drawer.text' | translate}}
+    </div>
+</div>
+<ng-content></ng-content>

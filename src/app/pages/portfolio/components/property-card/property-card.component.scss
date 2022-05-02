@@ -1,0 +1,218 @@
+$height: 8rem;
+
+select {
+	width: 150px;
+}
+
+.left-rail {
+	position: relative;
+	width: 36%;
+	max-height: 100%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	background-color: transparent;
+	border-radius: 12px;
+
+	font-family: Arial;
+	font-size: 10px;
+	line-height: 16px;
+	text-align: center;
+	height: 9.07rem;
+
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.header-text {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 1.8em;
+		line-height: 1.8em;
+		text-transform: capitalize;
+		color: white;
+	}
+
+	.footer {
+		display: flex;
+		position: absolute;
+		bottom: 0;
+		padding-left: 1.25rem;
+		background-color: #aaa;
+		color: white;
+		flex-direction: row;
+		justify-content: flex-start;
+		font-size: 140%;
+		font-weight: 500;
+
+		app-progress-spinner {
+			color: white;
+			.fa {
+				justify-content: flex-start;
+				left: 0.25rem;
+			}
+		}
+	}
+
+	&.public-sale {
+		.header-text {
+			background: rgba(92, 176, 159, 0.7);
+		}
+	}
+	&.open-offers {
+		.header-text {
+			background: rgba(249, 74, 74, 0.7);
+		}
+	}
+}
+
+.main-rail {
+	position: relative;
+	width: 63%;
+	padding: 0 8px;
+	font-size: 12px;
+	font-family: Arial;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between !important;
+	align-items: flex-start;
+	height: 100%;
+	
+	.status {
+		width: 100%;
+		color: black;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+
+		div {
+			font-weight: bold;
+			font-size: 14px;
+			line-height: 16px;
+		}
+	}
+
+	.eye-calc {
+		position: absolute;
+		top: 4px;
+		right: 12px;
+		display: flex;
+
+		.calc {
+			display: flex;
+			padding-left: 10px;
+		}
+	}
+
+	.calc-number {
+		font-weight: bold;
+		font-size: 16px;
+		line-height: 20px;
+		color: black;
+		padding-left: 5px;
+	}
+
+	.property-type {
+		font-weight: bold;
+		font-size: 12px;
+		line-height: 16px;
+		color: #5cb09f;
+	}
+
+	.price {
+		font-weight: bold;
+		font-size: 24px;
+		line-height: 16px;
+	}
+
+	.address {
+		font-size: 13px;
+		line-height: 16px;
+		color: #000000;
+	}
+
+	.icons {
+		width: 100%;
+		color: black;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+
+		&>div {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			font-size: 1rem;
+		}
+
+		.cap-rate {
+			span {
+				font-weight: 800;
+				margin-right: 0.25em;
+			}
+			font-weight: bold;
+		}
+
+		i {
+			width: 14px;
+			height: 14px;
+			object-fit: contain;
+			margin-right: 0.5em;
+		}
+
+		.value {
+		  margin-right: 0.25em;
+		}
+
+		.mr {
+		  margin-right: 0.5em;
+		}
+	}
+
+	.type-buildings {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding-top: 0.45rem;
+
+		.buildings {
+			display: flex;
+			align-items: center;
+
+			span {
+				font-size: 1.15rem;
+				font-weight: bold;
+				padding-left: 0.3rem;
+			}
+		}
+		
+	}
+
+	.building-date {
+		.value {
+			margin-left: 0.8rem;
+		}
+	}
+
+}
+
+.propertycard-item {
+	position: relative!important;
+	width: 100%;
+	padding: 0.5rem 0.5rem;
+	height: 9.1rem;
+
+	p {
+		margin: 0 !important;
+		font-family: Arial;
+	}
+}

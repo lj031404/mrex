@@ -1,0 +1,28 @@
+.app-item.item--settings-list {
+  background-color: white;
+  width: 100%;
+  padding: 0 0.5rem;
+  margin-top: 1rem;
+
+  @include flex-row();
+  @include flex-align(space-between, center);
+
+  .icon-wrapper {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+
+    @include flex-row();
+    @include flex-align(center, center);
+
+    i {
+      font-size: 32px;
+    }
+  }
+
+  .name {
+    flex: 100%;
+    margin-left: 15px;
+    font-weight: bold;
+  }
+}

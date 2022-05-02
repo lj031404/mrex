@@ -1,0 +1,43 @@
+
+	<app-header>
+		<app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+		<p slot="title">{{'pages.settings.confirm_order.title' | translate}}</p>
+	</app-header>
+	<div class="order-confirm-body d-flex flex-column">
+		<div class="confirm-items">
+			<div class="confirm-item confirm-title">{{ 'pages.settings.confirm_order.items' | translate }}</div>
+			<div class="confirm-item d-flex align-items-center justify-content-between">
+				<span>{{ 'pages.settings.confirm_order.subscription_tier' | translate }}</span>
+				<span>$1.99</span>
+			</div>
+			<div class="confirm-item d-flex align-items-center justify-content-between">
+				<span>{{ 'pages.settings.confirm_order.pst' | translate }}</span>
+				<span>$1.99</span>
+			</div>
+			<div class="confirm-item d-flex align-items-center justify-content-between">
+				<span>{{ 'pages.settings.confirm_order.discount' | translate }}</span>
+				<span>$1.99</span>
+			</div>
+			<div class="confirm-item d-flex align-items-center justify-content-between">
+				<span>{{ 'pages.settings.confirm_order.total' | translate }}</span>
+				<span>$1.99</span>
+			</div>
+	
+			<div class="form-group w-100 coupon-code">
+				<input class="form-control" placeholder="{{ 'pages.settings.confirm_order.coupon_code' | translate }}">
+			</div>
+	
+			<div class="text-right">
+				<button class="btn btn-apply">{{ 'pages.settings.apply' | translate }}</button>
+			</div>
+	
+			<div class="light-logo">
+				<img src="assets/images/light-logo.svg">
+			</div>
+		</div>
+		
+		<div class="confirm-purchase w-100 d-flex">
+			<button class="btn btn-confirm-purchase">{{ 'pages.settings.confirm_order.confirm_purchase' | translate }}</button>
+		</div>
+	</div>
+

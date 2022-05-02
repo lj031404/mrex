@@ -1,0 +1,188 @@
+<!-- BEGIN: Header-->
+
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow">
+        <div class="navbar-wrapper">
+    
+            <div class="navbar-container ">
+                <ul class="nav navbar-nav flex-row align-items-center">
+                    <li class="nav-item"><a class="nav-link mr-2 nav-link-label" href="javascript:void(0);" routerLink="'/login'" ><i class="ficon ft-arrow-left"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END: Header-->
+    
+    
+    <div class="app-content content bg-white">
+        <div class="content-header row">
+        </div>
+        <div class="content-wrapper">
+            <div class="content-body">
+                <section class="flexbox-container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-4 col-md-8 col-12 p-0">
+                            <div class="m-0">
+                                <div class="card-header border-0 pb-0">
+                                    <div class="card-title text-center">
+                                        <img src="assets/mrex-couleur.svg" alt="branding logo" class="startpage-brand">
+                                    </div>
+                                    <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2"><span>{{ 'Register using' | translate }}</span></h6>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body pt-0 text-center">
+                                        <a href="#" class="btn btn-social mb-1 mr-1 btn-outline-facebook"><span class="la la-facebook"></span> <span class="px-1">{{'facebook' | translate}}</span> </a>
+                                        <a *ngIf="false" href="#" class="btn btn-social mb-1 mr-1 btn-outline-google"><span class="la la-google-plus font-medium-4"></span> <span class="px-1">{{'google' | translate}}</span> </a>
+                                    </div>
+    
+                                    <div *ngIf="false">
+                                        <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2"><span>{{'OR Using Account Details' | translate }}</span></p>
+                                        <div class="card-body">
+                                            <form class="form-horizontal" [formGroup]="registerForm" (submit)="submitRegister();" novalidate>
+    
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="floating-label">
+                                                                <label for="first_name">{{ "First Name" | translate }}</label>
+                                                                <input type="text" name="first_name" id="first_name" class="form-control"  [formControl]="registerForm.get('fname')" [class.is-invalid]="registerForm.controls.fname.invalid && registerForm.controls.fname.touched" tabindex="1">
+                                                            </div>
+    
+                                                        </div>
+    
+                                                    </div>
+                                                    <div class="col-12 col-sm-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="floating-label">
+                                                                <label for="last_name">{{ "Last Name" | translate }}</label>
+                                                                <input type="text" name="last_name" id="last_name" class="form-control"  [formControl]="registerForm.get('lname')" [class.is-invalid]="registerForm.controls.lname.invalid && registerForm.controls.lname.touched" tabindex="2">
+                                                            </div>
+                                                        </div>
+    
+                                                    </div>
+    
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <div class="floating-label">
+                                                                <label for="email">{{ "Email" | translate }}</label>
+                                                                <input type="email" name="email" id="email" class="form-control"  [formControl]="registerForm.get('email')" [class.is-invalid]="registerForm.controls.email.invalid && registerForm.controls.email.touched" tabindex="4" required data-validation-required-message="Please enter email address.">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="col-12 col-sm-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="floating-label">
+                                                                <label for="password">{{ "Password" | translate }}</label>
+                                                                <input type="password" name="password" id="password" class="form-control" [formControl]="registerForm.get('password')" [class.is-invalid]="registerForm.controls.password.invalid && registerForm.controls.password.touched" tabindex="5" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+    
+                                                    <div class="col-12 col-sm-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="floating-label">
+                                                                <label for="password_confirmation">{{ "Confirm Password" | translate }}</label>
+                                                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" [formControl]="registerForm.get('cpassword')" [class.is-invalid]="registerForm.controls.cpassword.invalid && registerForm.controls.cpassword.touched" tabindex="6">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+    
+    
+                                                </div>
+    
+                                                <div class="row mb-1">
+                                                    <div class="col-4 col-sm-3 col-md-3">
+    
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" id="profile_notifs" class="custom-control-input bg-primary" [formControl]="registerForm.get('agreement')">
+                                                            <label class="custom-control-label" for="profile_notifs">{{ "I agree" | translate }}</label>
+                                                        </div>
+    
+                                                    </div>
+                                                    <div class="col-8 col-sm-9 col-md-9">
+                                                        <p class="font-small-3">{{'By clicking Register, you agree to the' | translate}} <a href="#" data-toggle="modal" data-target="#t_and_c_m">{{'Terms and Conditions' | translate}}</a> {{'set out by this site, including our Cookie Use.' | translate}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <button type="submit" class="btn btn-primary btn-lg btn-block text-uppercase" [disabled]="registerForm.invalid || isLoading">
+                                                            <span [hidden]="isLoading">{{'Register' | translate}}</span>
+                                                            <app-loader [isLoading]="isLoading" [hidden]="!isLoading" [sizeClass]="'fa-1x'"></app-loader>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container" *ngIf="false">
+            <div class="text-center py-3" [hidden]="!isLoading">
+                <app-loader [isLoading]="isLoading"></app-loader>
+            </div>
+    
+            <div [hidden]="isLoading">
+                <form [formGroup]="registerForm" (submit)="submitRegister();" novalidate class="mb-3" >
+                    <div class="row">
+    
+                        <div class="form-group col-12 col-md-6">
+                            <input type="text" class="form-control" [placeholder]=" 'First Name' | translate " [formControl]="registerForm.get('fname')" [class.is-invalid]="registerForm.controls.fname.invalid && registerForm.controls.fname.touched" >
+                            <small [hidden]="registerForm.controls.fname.valid || registerForm.controls.fname.untouched"
+                                    class="text-danger">
+                                {{'Field is required' | translate}}
+                            </small>
+                        </div>
+    
+                        <div class="form-group col-12 col-md-6">
+                            <input type="text" class="form-control" [placeholder]=" 'Last Name' | translate " [formControl]="registerForm.get('lname')" [class.is-invalid]="registerForm.controls.lname.invalid && registerForm.controls.lname.touched" >
+                            <small [hidden]="registerForm.controls.lname.valid || registerForm.controls.lname.untouched"
+                                    class="text-danger" >
+                                {{'Field is required' | translate}}
+                            </small>
+                        </div>
+    
+                        <div class="form-group col-12 col-md-6">
+                            <input type="email" class="form-control" [placeholder]=" 'Email' | translate " [formControl]="registerForm.get('email')" [class.is-invalid]="registerForm.controls.email.invalid && registerForm.controls.email.touched">
+                            <small [hidden]="registerForm.controls.email.valid || registerForm.controls.email.untouched"
+                                    class="text-danger" >
+                                {{'Field is required' | translate}}
+                            </small>
+                        </div>
+    
+                        <div class="form-group col-12 col-md-6">
+                            <input type="password" class="form-control" [placeholder]=" 'Password' | translate " [formControl]="registerForm.get('password')" [class.is-invalid]="registerForm.controls.password.invalid && registerForm.controls.password.touched">
+                            <small [hidden]="registerForm.controls.password.valid || registerForm.controls.password.untouched"
+                                    class="text-danger" >
+                                {{'Field is required' | translate}}
+                            </small>
+                        </div>
+    
+                        <div class="form-group col-12 col-md-6">
+                            <input type="password" class="form-control" [placeholder]=" 'Confirm Password' | translate " [formControl]="registerForm.get('cpassword')" [class.is-invalid]="registerForm.controls.cpassword.invalid && registerForm.controls.cpassword.touched">
+                            <small [hidden]="registerForm.controls.cpassword.valid || registerForm.controls.cpassword.untouched"
+                                    class="text-danger" >
+                                {{'Field is required' | translate}}
+                            </small>
+                        </div>
+    
+                    </div>
+                    <button type="submit" class="btn btn-lg btn-block btn-primary">{{'Complete registration' | translate}}</button>
+                </form>
+    
+                <p class="text-center">
+                    {{ 'Or sign up with social account' | translate }}
+                </p>
+    
+                <button type="button" class="btn btn-lg btn-outline-primary btn-block mb-3">{{ 'Google' | translate }}</button>
+                <button type="button" class="btn btn-lg btn-outline-primary btn-block">{{ 'Facebook' | translate }}</button>
+            </div>
+    </div>
+    
+

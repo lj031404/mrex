@@ -1,0 +1,84 @@
+<app-header>
+    <span slot="left-button" (click)="back()">
+        <i class="fa fa-times" *ngIf="!showBack"></i>
+        <i class="fa fa-chevron-left" *ngIf="showBack"></i>
+    </span>
+    <p slot="title">{{ _propertyDoc?.propertyData?.name }} {{ 'page.watchlist.property-model-overview.subtitle' | translate }}</p>
+</app-header>
+
+<app-content [noPadding]="true" >
+    <ng-container *ngIf="_propertyDoc">
+        <div class="property-section">
+            <app-property-summary 
+              [property]="_propertyDoc.propertyData" 
+              [hypothesisData]="_propertyDoc.hypothesisData"></app-property-summary>
+        </div>
+    
+        <div *ngIf="_propertyDoc">
+            <app-tab-controller >
+                <app-tab-indicator (click)="edit()">
+                    <img class="indicator-icon" src="assets/icons/edit_s.svg">
+                    <span class="indicator-label text-uppercase">{{ 'literals.edit' | translate}}</span>
+                </app-tab-indicator>
+        
+                <app-tab-indicator (click)="compare()">
+                    <img class="indicator-icon" src="assets/icons/compare_s.svg">
+                    <span class="indicator-label text-uppercase">{{'literals.compare' | translate}}</span>
+                </app-tab-indicator>
+                
+                <app-tab-indicator (click)="delete()">
+                    <img class="indicator-icon" src="assets/icons/delete_s.svg">
+                    <span class="indicator-label text-uppercase">{{ 'literals.delete' | translate}}</span>
+                </app-tab-indicator>
+                
+            </app-tab-controller>
+        
+        </div>
+
+        <div class="property-section p-1 mb-1">
+            <div class="section-title text-uppercase">{{ 'page.watchlist.property-model-overview.summaryOverview' | translate }}</div>
+            <app-property-financial-info 
+              [propertyDoc]="_propertyDoc" 
+              [change]="_propertyDoc$"></app-property-financial-info>        
+        </div>
+    </ng-container>
+    <div class="p-1"  *ngIf="!_propertyDoc">
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="55"></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="144"></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="55"></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="55"></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="120" ></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="55"></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="55"></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="120" ></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="55"></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="55"></app-skeleton>
+        </div>
+        <div class="mb-2">
+            <app-skeleton Cwidth="100%" Cheight="120" ></app-skeleton>
+        </div>
+    </div>
+</app-content>
+
+<div class="p-1 bg-white" *ngIf="!_propertyDoc">
+    <app-skeleton Cwidth="100%" Cheight="67"></app-skeleton>
+</div>

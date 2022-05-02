@@ -1,0 +1,24 @@
+{
+  "generator-ngx-rocket": {
+    "version": "6.2.0",
+    "props": {
+      "appName": "MREX",
+      "target": [
+        "web"
+      ],
+      "pwa": true,
+      "ui": "bootstrap",
+      "auth": true,
+      "lazy": true,
+      "angulartics": true,
+      "analyticsProvider": "ga",
+      "googleAnalyticsAccount": "UA-1234567-1",
+      "tools": [],
+      "utility": [],
+      "projectName": "mrex",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": []
+    }
+  }
+}

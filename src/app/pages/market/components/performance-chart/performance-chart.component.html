@@ -1,0 +1,32 @@
+<div class="performance-chart">
+    <div class="year-show" *ngFor="let item of _data">
+
+        <!-- Decrease -->
+        <div class="decrease-wrapper" 
+        [class.blank]="item.decrease === undefined">
+            <span *ngIf="item.increase / _maxIncrease < 0.3 && item.decrease !== _maxDecrease && item.decrease" class="black">
+                {{item.decrease | number: '1.1-2'}} %/y&nbsp;
+            </span>
+            <span class="decrease-span"
+                 [style.width.%]="item.decrease / _maxDecrease * 100">
+                 &nbsp;<ng-container *ngIf="item.decrease === _maxDecrease || (item.increase / _maxIncrease > 0.3 && item.decrease < _maxDecrease)">-{{item.decrease | number: '1.1-2'}} %/y</ng-container>
+            </span>            
+        </div>
+        <div class="amount-wrapper">
+            <span class="year">{{item.year}}</span>
+            <span class="amount">{{item.amount | appNumber: '1.0-0': ' ': '': '$'}}</span>
+        </div>
+
+        <!-- Increase -->
+        <div class="increase-wrapper"
+        [class.blank]="item.increase === undefined">
+            <span class="increase-span"
+                 [style.width.%]="item.increase / _maxIncrease * 100">
+                &nbsp;<ng-container *ngIf="item.increase === _maxIncrease || (item.increase / _maxIncrease > 0.3 && item.increase < _maxIncrease)">{{item.increase | number: '1.1-2'}} %/y</ng-container>
+            </span>
+            <span *ngIf="item.increase / _maxIncrease < 0.3 && item.increase !== _maxIncrease && item.increase" class="black ml-0">
+                    &nbsp;{{item.increase | number: '1.1-2'}} %/y
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,265 @@
+@import "../../../../assets/scss/variables.scss";
+
+
+:host {
+	display: block;
+	height: 100vh;
+	width: 100vw;
+
+	#map-container {
+        min-height: calc(100vh - 13.2rem);
+        height: calc(100vh - 13.2rem);
+	}
+
+	::ng-deep {
+		.gm-style .gm-style-iw-c {
+			position: absolute;
+			width: 189px;
+			height: auto !important;
+			max-height: 214px !important;
+			box-sizing: border-box;
+			overflow: hidden !important;
+			top: 0;
+			left: 0;
+			transform: translate(-50%,-100%);
+			background-color: white;
+			border-radius: 5px;
+			padding: 17px 7px 7px 7px !important;
+			border: 1px solid #D5D5D5;
+			box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		}
+	
+		.gm-style .gm-style-iw-d {
+			overflow: hidden !important;
+			width: 100% !important;
+			max-width: 100% !important;
+		}
+	
+		button.gm-ui-hover-effect {
+		  top: -8px !important;
+		  right: 4px !important;
+		  width: 22px !important;
+		  height: 22px !important;
+	
+		  img {
+			width: 20px!important;
+			height: 20px!important;
+			margin: 6px!important;
+		  }
+		}
+	  }
+	
+	  agm-map {
+		width: 100%;
+		height: 100%;
+	
+		::ng-deep {
+		  .agm-info-window-content {
+			width: 173px !important;
+			height: auto;
+			max-height: 200px !important;
+			overflow: hidden !important;
+	
+			margin: 0 !important;
+			padding: 0 !important;
+	
+			.viewbtn {
+				width: 173px;
+				height: 21px;
+				margin: 0;
+				padding: 0;
+				background: #5CB09F;
+				border-radius: 3px;
+				border: none;
+				font-family: Arial;
+				font-size: 10px;
+				line-height: 11px;
+				text-align: center;
+				text-transform: uppercase;
+				color: #FFFFFF;
+			}
+	
+			.app-item {
+			   height: 143px;
+	
+			  .left-rail {
+				width: 100%;
+				height: 79px;
+				border-radius: 3px;
+			  }
+	
+			  .main-rail {
+				width: 100%;
+				padding: 1px !important;
+				margin-bottom: 3px;
+	
+				.eye-calc {
+					display: none !important;
+				}
+	
+				.cap-rate {
+					display: none !important;
+				}
+	
+				.property-type {
+					font-weight: bold;
+					font-size: 10px;
+					line-height: 16px;
+				}
+	
+				.price {
+					font-weight: bold;
+					font-size: 16px;
+					line-height: 16px;
+				}
+	
+				.address {
+					font-size: 10px;
+					line-height: 16px;
+				}
+			  }
+			}
+		  }
+	
+		  .agm-map-container-inner {
+			.gmnoprint.gm-bundled-control {
+			  &>div>div {
+				background-color: transparent !important;
+				box-shadow: none !important;
+	
+				button {
+				  margin-bottom: 16px !important;
+				  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+				  border-radius: 51%;
+				  border: none !important;
+				  background-color: white !important;
+				}
+	
+				&>div {
+				  display: none;
+				}
+			  }
+			}
+		  }
+		}
+	  }
+}
+
+
+
+.search-address-marker {
+	width: 45px;
+	height: 57px;
+	background-image: url(../../../../assets/images/marker/map-marker.png);
+}
+
+.marker-cluster {
+	width: 33px;
+	height: 39px;
+	font-size: 14px;
+    font-family: Arial, sans-serif;
+	font-weight: bold;
+	text-align: center;
+	color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 0.2rem;
+	background-image: url(../../../../assets/images/marker/marker-public-green.png);
+  }
+
+  .fa-chevron-down {
+	font-size: 1.5rem;
+	color: white;
+	position: absolute;
+	right: 0.5rem;
+	top: 0.2rem;
+	z-index: 100;
+  }
+
+  
+
+.btn-filter {
+	width: 6.42rem;
+	height: 2.5rem;
+	margin-right: -4px;
+	border: 1px solid white;
+	border-radius: 3px;
+	font-size: $font-size-text-md;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	background-color: $color-green!important;
+	position: absolute;
+	top: 10rem;
+	z-index: 1;
+	right: 1rem;
+}
+
+.user-position {
+	font-size: 16px;
+	text-align: center;
+	color: #349f89;
+	font-weight: bold;
+	padding: 5px 0;
+}
+
+.reset {
+	position: absolute;
+	bottom: 5.5rem;
+	right: 0.5rem;
+	z-index: 1;
+	width: 4rem;
+	height: 4rem;
+	background-color: #349E89;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 2rem;
+}
+
+.message-bar {
+	bottom: 2rem;
+
+}
+.gps-failed-bar {
+	background-color: white;
+	color: $color-green;
+	font-size: 1rem;
+	font-weight: 800;
+	border-radius: 5rem!important;
+	padding: 0.8rem 1rem;
+}
+
+.marker-list {
+	display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+	width: 100vw;
+	z-index: 1001;
+}
+
+.full-width {
+	width: 100vw;
+	min-width: 100vw;
+}
+
+.less-width {
+	min-width: 92vw;
+	margin-right: 1rem;
+}
+
+.marker-information {
+	position: absolute;
+	bottom: 5.3rem;
+	z-index: 1001;
+}
+
+.btn-disabled{
+	background-color : #607D8B;
+}
+.spinner-color{
+	color:white;
+}

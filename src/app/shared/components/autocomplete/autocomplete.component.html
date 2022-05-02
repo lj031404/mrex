@@ -1,0 +1,22 @@
+<form [formGroup]="form">
+	<input 
+		type = "text" 
+		placeholder = "{{ placeholder }}"
+		id="autocomplete"
+		#input
+		formControlName="address"
+		autocorrect="off"
+		[autofocus]="isAutoFocus"
+		autocapitalize="off" 
+		autocomplete="off"
+		class="form-control"
+		[class.hasIcon] = "icon"
+		[value]="address"
+		spellcheck="off">
+	<img [src]="icon" alt="search filter" class="right-icon search" *ngIf="icon && !form?.get('address').value">
+	<i class="fa fa-times right-icon close" *ngIf="form?.get('address').value" (click)="clear()"></i>
+</form>
+
+<div *ngIf="addresses.length" class="autocomplete" #list>
+	<div class="item" *ngFor="let address of addresses; let i = index" (click)="click(i)">{{ address.description }}</div>
+</div>

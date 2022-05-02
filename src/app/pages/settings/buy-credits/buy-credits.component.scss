@@ -1,0 +1,18 @@
+:host {
+  ::ng-deep {
+    .footer {
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .text-credits-left {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    color: black;
+    text-align: center;
+  }
+}
+

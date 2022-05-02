@@ -1,0 +1,18 @@
+<div class="course-card">
+	<div class="course-img">
+		<img [src]="course.imgUrl" alt="image">
+	</div>
+	<div class="subject-summary">
+		<div class="subject">{{course.subject | translate}}</div>
+		<div class="summary">{{course.summary | translate}}</div>
+	</div>
+	<div class="instructor-price">
+		<div class="instructor">
+			<img [src]="course.photo" alt="" *ngIf="course.photo">
+			<div class="name">{{course.instructor}}</div>
+		</div>
+		<div class="price">
+			{{course.price}}
+		</div>
+	</div>
+</div>

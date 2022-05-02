@@ -1,0 +1,7 @@
+[defaults]
+url=https://sentry.io/
+org=mrex
+project=mrex-app
+
+[auth]
+token=a242e2652af044feadd84884aca8c49f08c1e843f69b46c68085483b4f002d02

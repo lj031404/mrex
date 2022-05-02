@@ -1,0 +1,13 @@
+<app-header>
+    <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button">
+    </app-go-back-button>
+    <p slot="title">{{'page.market.listing.notes.title' | translate}}</p>
+</app-header>
+<div class="panel-body">
+    <div class="panel-body__title">{{'page.market.listing.notes.title' | translate }}</div>
+    <textarea [(ngModel)]="notes" class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+    <button class="btn btn-primary w-100 mt-2" (click)="addNotes()" [disabled]="!notes">
+        <ng-container *ngIf="isAdd">{{ 'page.market.listing.add_notes' | translate }}</ng-container>
+        <ng-container *ngIf="!isAdd">{{ 'page.market.listing.update_notes' | translate }}</ng-container>
+    </button>
+</div>

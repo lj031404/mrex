@@ -1,0 +1,60 @@
+<div class="market-stats-content">
+	<div class="location-section">
+		<div class="d-flex justify-content-between">
+			<div>
+				<div class="location-province">
+					{{ cityName }}
+				</div>
+				<div class="location-community">
+					{{ districtName }}
+				</div>
+			</div>
+
+			<div class="change-location" (click)="isShowSearchForm = !isShowSearchForm">
+				{{ 'pages.home.market_stats.change_location' | translate }}
+			</div>
+		</div>
+	</div>
+
+	<div class="city-neighbourhood pt-0" *ngIf="isShowSearchForm">
+		<div class="city-picker">
+			<div class="city-title">{{ 'pages.home.market_stats.city' | translate }}</div>
+			<select class="form-control" [(ngModel)]="selectedCityId" (ngModelChange)="changeCity()">
+				<option value=""></option>
+				<option [value]="city.id" *ngFor="let city of cities">{{ city.name }}</option>
+			</select>
+		</div>
+
+		<div class="neighbourhood-picker">
+			<div class="city-title">{{ 'pages.home.market_stats.neighbourhood' | translate }}</div>
+			<select class="form-control" [(ngModel)]="selectedDistrictId">
+				<option value=""></option>
+				<option [value]="dist.id" *ngFor="let dist of districts">{{ dist.name }}</option>
+			</select>
+		</div>
+		
+		<button class="btn btn-primary btn-search" [disabled]="!selectedCityId || !selectedDistrictId" (click)="getMarketsData(); isShowSearchForm = false">{{ 'button.search' |  translate }}</button>
+	</div>	
+
+	<ng-container *ngIf="selectedCityId && selectedDistrictId && isSubmitted ">
+		<div class="market-stats-tabs">
+			<div class="market-stats-tab" [class.active]="currentMarketStatsTab === ''" (click)=switchTab()>
+				{{ 'pages.home.market_stats.all_property_types' |  translate }}
+			</div>
+			<div class="market-stats-tab" [class.active]="currentMarketStatsTab === PropertyType.Plex" (click)=switchTab(PropertyType.Plex)>
+				5 - 11 {{ 'pages.home.market_stats.units' |  translate }}
+			</div>
+			<div class="market-stats-tab" [class.active]="currentMarketStatsTab === PropertyType.MultifamilyResidential" (click)=switchTab(PropertyType.MultifamilyResidential)>
+				12 {{ 'pages.home.market_stats.units' |  translate }}+
+			</div>
+		</div>
+		<app-all-property-types
+			[marketData]="marketData"
+			[chartData]="chartData"
+			(getChartData)="getChartData($event)"
+		>
+		</app-all-property-types>
+	</ng-container>
+
+	
+</div>

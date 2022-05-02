@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>MREX</title>
+
+    <base href="/">
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#4e8ef7"/>
+    <link rel="manifest" href="/manifest.json"/>
+
+    <!-- add to homescreen for ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CQuicksand:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+    <!-- Modern Admin Vendor CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/vendors/css/material-vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/vendors/css/weather-icons/climacons.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/fonts/meteocons/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/fonts/simple-line-icons/style.css">
+
+    <!-- Modern Admin Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/css/material.css">
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/css/components.css">
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/css/material-extended.css">
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/css/material-colors.css">
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/css/core/menu/menu-types/material-vertical-menu-modern.css">
+    <link rel="stylesheet" type="text/css" href="assets/modern-admin/css/core/colors/palette-gradient.css">
+
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <style>
+        body {
+            color: black;
+        }
+    </style>
+</head>
+
+<body class="vertical-layout vertical-menu-modern material-vertical-layout material-layout 2-columns" data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
+    <!-- Google Analytics -->
+    <!--
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-1234567-1', 'auto');
+        </script>
+    -->
+
+    <app-root></app-root>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- Modern Admin Vendor JS-->
+    <script src="assets/modern-admin/vendors/js/material-vendors.min.js"></script>
+
+    <!-- Modern Admin Theme Core JS -->
+    <script src="assets/modern-admin/js/core/app-menu.js"></script>
+    <script src="assets/modern-admin/js/core/app.js"></script>
+
+    <!-- Modern Admin Theme JS -->
+    <script src="assets/modern-admin/js/scripts/material-app.js"></script>
+
+    <script>
+        window.addEventListener = function () {
+            (window.EventTarget || Window).prototype.addEventListener.apply(this, arguments);
+        };
+        window.removeEventListener = function () {
+            (window.EventTarget || Window).prototype.removeEventListener.apply(this, arguments);
+        };
+        document.addEventListener = function () {
+            (window.EventTarget || Document).prototype.addEventListener.apply(this, arguments);
+        };
+        document.removeEventListener = function () {
+            (window.EventTarget || Document).prototype.removeEventListener.apply(this, arguments);
+        };
+    </script>
+
+    <script src="cordova.js"></script>
+
+    <script>
+        document.ontouchmove = event => {
+            var userAgent = window.navigator.userAgent.toLowerCase()      
+            const ios = /iphone|ipod|ipad/.test( userAgent )    
+            if (ios) {
+                event.preventDefault()
+            }
+        }
+        try {
+            let source = "var meta = document.createElement('meta');" +
+            "meta.name = 'viewport';" +
+            "meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';" +
+            "var head = document.getElementsByTagName('head')[0];" +
+            "head.appendChild(meta);"
+    
+            let script = WKUserScript(source, injectionTime, forMainFrameOnly)
+            let userContentController = WKUserContentController()
+            let conf = WKWebViewConfiguration()
+            conf.userContentController = userContentController
+            userContentController.addUserScript(script)
+            let webView = WKWebView(frame, configuration)
+        }
+        catch(err) {}
+    </script>
+</body>
+</html>
+

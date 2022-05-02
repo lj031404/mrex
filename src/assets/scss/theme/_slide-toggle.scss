@@ -1,0 +1,42 @@
+.app-slide-toggle {
+  .mat-slide-toggle-bar {
+    width: 36px;
+    height: 26px;
+    border-radius: 13px;
+  }
+
+  .mat-slide-toggle-thumb-container {
+    width: 20px;
+    height: 20px;
+    top: 3px;
+    left: 2px;
+  }
+
+  &.mat-checked {
+    .mat-slide-toggle-bar {
+      background-color: $color-green;
+    }
+
+    .mat-slide-toggle-thumb {
+      background-color: white;
+    }
+
+    .mat-ripple-element {
+      background-color: $color-green;
+    }
+
+    .mat-slide-toggle-thumb-container {
+      transform: translate3d(12px, 0, 0) !important;
+    }
+  }
+}
+
+ion-toggle {
+  --background: rgba(0, 0, 0, 0.38);
+  --background-checked: #349e89;
+  --handle-background: white;
+  --handle-background-checked: white;
+  height: 24px;
+  width: 37px;
+  --handle-spacing: 2px;
+}

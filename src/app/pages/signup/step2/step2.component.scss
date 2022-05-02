@@ -1,0 +1,18 @@
+label {
+	font-size: 1.14rem;
+}
+
+input[type='tel'] {
+	padding-left: 2.857rem
+}
+
+app-country-flag-picker {
+	z-index: 1;
+}
+
+.input-field-icon {
+	position: absolute;
+	right: 1rem;
+	top: 1.6em;
+	z-index: 100;
+}

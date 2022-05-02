@@ -1,0 +1,97 @@
+<div [class.p-2]="!articleInformation?.id">
+	<div *ngIf="!articleInformation?.id">
+		<app-skeleton  Cwidth="50%" Cheight="35"></app-skeleton>
+	</div>
+</div>
+
+<div class="blog-article" #blogArticle >
+	<div class="blog-article__thumbnail" [class.img-error]="articleInformation.loadErr" *ngIf="articleInformation.thumbnailUrl">
+		<img [src]="articleInformation.thumbnailUrl" appDefaultImage (error)="articleInformation.loadErr = true">
+	</div>
+
+	<div class="blog-article__body">
+		<ng-container *ngIf="articleInformation._id">
+			
+			<div class="d-flex align-items-start">
+				<div class="blog-article__title" [innerHTML]="articleInformation?.title">
+				</div>
+				<img class="pl-2" (click)="openSocialShareDlg(articleInformation)" *ngIf="!articleInformation?.disableSocialShare" [src]="!articleInformation.isPlayVideoItem ? 'assets/icons/share.svg' : 'assets/icons/playvideoupload.png'" />
+			</div>
+
+			<div class="blog-article__posted text-right d-flex justify-content-between mb-1" *ngIf="articleInformation.publishDate">
+				<div>
+					<span>{{ articleInformation.publishDate | timeAgo }}</span>
+				</div>
+				<div>
+					<span>{{ articleInformation.author }}</span>
+				</div>
+			</div>
+	
+	
+			<div class="blog-article__description pb-0" [innerHTML]="articleInformation.html">
+			</div>
+
+			<div *ngIf="!articleInformation?.html">
+				<app-skeleton  Cwidth="100%" Cheight="300"></app-skeleton>
+			</div>
+		
+			<div  class="blog-article__description about-author" *ngIf="articleInformation.authorDescription">
+				<h3 class="about-author__title">
+					{{ 'pages.blog_article.about_author' | translate }}
+				</h3>
+				<div>
+					<img *ngIf="articleInformation && articleInformation.authorImg" [src]="articleInformation.authorImg" width="70" height="70">
+					<span class="about-author__descriptioin">{{ articleInformation?.authorDescription }}</span>
+				</div>
+			</div>
+		</ng-container>
+		
+		<div *ngIf="!articleInformation._id" class="mb-2">
+			<app-skeleton Cwidth="100%" Cheight="165"></app-skeleton>
+		</div>
+
+		<div *ngIf="!recommendedArticles">
+			<div class="mb-2">
+				<app-skeleton Cwidth="100%" Cheight="24"></app-skeleton>
+			</div>
+
+			<div class="mb-2">
+				<app-skeleton Cwidth="100%" Cheight="24"></app-skeleton>
+			</div>
+
+			<div class="mb-2">
+				<app-skeleton Cwidth="100%" Cheight="24"></app-skeleton>
+			</div>
+
+			<div class="mb-2">
+				<app-skeleton Cwidth="100%" Cheight="24"></app-skeleton>
+			</div>
+
+			<div class="mb-2">
+				<app-skeleton Cwidth="100%" Cheight="24"></app-skeleton>
+			</div>
+			
+		</div>
+	</div>
+
+	<div class="other-recomended-articles" [class.d-none]="!recommendedArticles?.length">
+		<div class="other-recomended-articles__title" #recommendedArticle>
+			{{ 'page.article.other_recommended_articles' | translate }}
+		</div>
+
+		<div class="pagination-view" #paginationView>
+			<cdk-virtual-scroll-viewport 
+				(scrolledIndexChange)="onScrollIndexChange($event)" 
+				itemSize="108" 
+				minBufferPx="800" 
+				maxBufferPx="800"
+				class="overflow-hidden">
+				<app-recommended-article 
+					[article]="article" 
+					*cdkVirtualFor="let article of recommendedArticles"
+					(selectRecommendArticle)="selectRecommendArticle($event)"
+				></app-recommended-article>
+			</cdk-virtual-scroll-viewport>
+		</div>
+	</div>
+</div>

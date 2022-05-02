@@ -1,0 +1,65 @@
+@import "../../../../../assets/scss/variables.scss";
+
+:host {
+	span {
+	  font-weight: 300;
+	}
+	.bold {
+	  font-weight: 700;
+	}
+	.right {
+	  float: right;
+	}
+	.label {
+	  width: 55%;
+	  display: inline-block;
+	  font-size: 1.142rem;
+	  font-weight: 700;
+	  color: $color-gray-15;
+	}
+	.right-align {
+	  text-align: right;
+	}
+	.value {
+	  font-size: 115%;
+	}
+	.indent {
+		margin-left: 1.5em;
+	}
+	.collapsible {
+	  width: 1em;
+	  display: inline-block;
+	}
+}
+
+.no-data {
+	height: 125px;
+    width: 100%!important;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+}
+
+
+.history-performance {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 2.3rem;
+	margin-bottom: 1.5rem;
+
+	.fa-history {
+		font-size: 1.8rem;
+	}
+
+	&__empty {
+		margin-top: .8rem;
+		color: black;
+		font-size: 1.1rem;
+		line-height: 20px;
+    	text-align: center;
+		padding: 0 3rem 0 1rem;
+	}
+}
+

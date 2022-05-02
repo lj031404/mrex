@@ -1,0 +1,17 @@
+@import '../../../../assets/scss/variables.scss';
+
+:host {
+    display: block;
+    height: $header-height; 
+}
+::ng-deep {
+    .header-text {
+        p {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            word-wrap: break-word;
+        }
+    }
+}

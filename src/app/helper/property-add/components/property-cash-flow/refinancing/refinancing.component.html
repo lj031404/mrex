@@ -1,0 +1,148 @@
+<label appFormSectionName>
+    {{ 'helper.property-add.components.property-cashflow.refinancing.label' | translate }}
+</label>    
+
+<app-form-field [leftMargin]="false">
+    <div class="custom-control custom-checkbox" (click)="toggleRefinanceCheck()">
+        <input  type="checkbox" 
+                class="custom-control-input" 
+                [tabindex]="10"
+                [checked]="enabled">
+        <label class="custom-control-label mb-0">
+            <span *ngIf="!enabled">{{ 'helper.property-add.components.cash-flow.refinancing.enable' | translate }}</span>
+            <span  *ngIf="enabled">{{ 'helper.property-add.components.cash-flow.refinancing.disable' | translate}}</span>
+        </label>
+    </div>
+</app-form-field>
+
+<ng-container *ngIf="enabled">
+
+    <div
+        appLockedDirective 
+        [title]  = "'directives.locked.title' | translate" 
+        [text]   = "'directives.locked.watchlist.refinancing' | translate" 
+        [locked] = "showLocked">
+        
+        <div
+            appSubscriptionRequire
+            [ruleId]="ruleId"
+            [featureName]="'helper.property-add.components.cash-flow.refinancingParameters.featureName' | translate"
+    
+        >
+            <!-- Refinancing parameters -->
+            <app-financing       
+                [propertyAddForm]="propertyAddForm"
+                [financingType]="propertyAddForm.get('cashflow.refinancingParameters.refinancingType')"
+                [bank]="propertyAddForm.get('cashflow.refinancingParameters.refinancingBank')"
+                [economicValues]="propertyAddForm.get('cashflow.refinancingEconomicValues')">
+            </app-financing>
+    
+            <!-- Refinancing details -->
+            <!-- timing -->
+            <app-form-field [rtl]="true" [formGroup]="propertyAddForm.get(['cashflow', 'refinancingParameters'])">
+                <span appFormFieldLabel>
+                    {{ 'cash-flow-info-config.timing' | translate }}
+                </span>
+                <label>      
+                    <div>
+                        <select [formControlName]="'timing'">
+                            <option *ngFor="let choice of timingValues; let i = index" [value]="choice.value">
+                                {{ choice.label | translate }}
+                            </option>
+                        </select>
+                    </div>
+                </label>
+            </app-form-field>
+    
+            <!-- refinancedEquity -->
+            <app-form-field [rtl]="true">
+                <span appFormFieldLabel>
+                    {{ 'cash-flow-info-config.refinancedEquity' | translate }}
+                </span>
+                <label>      
+                    <app-input-number
+                        tabindex="1"
+                        placeholder="0"
+                        [digitsFormat]="'1.0-0'"
+                        [placeholder]="0"
+                        [disabled]="false"
+                        [control]="propertyAddForm.get(['cashflow', 'refinancingParameters', 'refinancedEquity'])">
+                    </app-input-number>      
+                    <span appFormFieldSuffix>$</span>
+                </label>
+            </app-form-field>
+    
+            <!-- CALCULATED FIELDS -->
+            <!-- availableEquity -->
+            <app-form-field [rtl]="true" [disabled]="true">
+                <span appFormFieldLabel [class.disabled]="true">
+                    {{ 'cash-flow-info-config.availableEquity' | translate }}
+                </span>
+                <label>      
+                    <app-progress-spinner [enabled]="isCalculating" [align]="'right'"></app-progress-spinner>
+                    <ng-container *ngIf="!errors.availableEquity; else errorTemplate">
+                        <ng-container *ngIf="!isCalculating">
+                            {{ calculated?.availableEquity | number: '1.0-0' }}
+                            <span appFormFieldSuffix> $</span>
+                        </ng-container> 
+                    </ng-container>
+                </label>
+            </app-form-field>
+    
+            <!-- totalRefinancing -->
+            <app-form-field [rtl]="true" [disabled]="true">
+                <span appFormFieldLabel [class.disabled]="true">
+                    {{ 'cash-flow-info-config.totalRefinancing' | translate }}
+                </span>
+                <label>    
+                    <app-progress-spinner [enabled]="isCalculating" [align]="'right'"></app-progress-spinner> 
+                    <ng-container *ngIf="!errors.totalRefinancing; else errorTemplate">
+                        <ng-container *ngIf="!isCalculating">
+                            {{ calculated?.totalRefinancing | number: '1.0-0' }}
+                            <span appFormFieldSuffix> $</span>
+                        </ng-container>
+                    </ng-container> 
+                </label>
+            </app-form-field>
+            
+            <!-- balanceSecondaryFinancing -->
+            <app-form-field [rtl]="true" [disabled]="true">
+                <span appFormFieldLabel [class.disabled]="true">
+                    {{ 'cash-flow-info-config.balanceSecondaryFinancing' | translate }}
+                </span>
+                <label>      
+                    <app-progress-spinner [enabled]="isCalculating" [align]="'right'"></app-progress-spinner>
+                    <ng-container *ngIf="!errors.balanceSecondaryFinancing; else errorTemplate">
+                        <ng-container *ngIf="!isCalculating">
+                            {{ calculated?.balanceSecondaryFinancing | number: '1.0-0' }}
+                            <span appFormFieldSuffix> $</span>
+                        </ng-container>
+                    </ng-container>
+                </label>
+            </app-form-field>
+    
+            <!-- releasedLiquidity -->
+            <app-form-field [rtl]="true" [disabled]="true">
+                <span appFormFieldLabel [class.disabled]="true">
+                    {{ 'cash-flow-info-config.releasedLiquidity' | translate }}
+                </span>
+                <label>     
+                    <app-progress-spinner [enabled]="isCalculating" [align]="'right'"></app-progress-spinner>             
+                    <ng-container *ngIf="!errors.releasedLiquidity; else errorTemplate">
+                        <ng-container *ngIf="!isCalculating">
+                            {{ calculated?.releasedLiquidity | number: '1.0-0' }}
+                            <span appFormFieldSuffix> $</span>
+                        </ng-container>
+                    </ng-container>            
+                </label>
+            </app-form-field>
+        </div>
+
+    </div>
+    
+</ng-container>    
+
+<!-- Calculated fields in error -->
+<ng-template #errorTemplate>
+    <span class="error">{{ 'literals.error' | translate }}</span>
+</ng-template>

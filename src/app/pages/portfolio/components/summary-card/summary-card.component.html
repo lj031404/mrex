@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-body">
+        <div class="summary-section showcase">
+            <div class="showcase-img-wrapper" *ngFor="let img of summary.showcase">
+                <img [src]="img" alt="Property Showcase">
+            </div>
+        </div>
+        <div class="summary-section information">
+            <div class="item--summary"><h2>{{summary.buildings}} {{'buildings' | translate}}</h2></div>
+            <div class="item--summary"><h2>{{summary.units}} {{'units' | translate}}</h2></div>
+        </div>
+        <div class="summary-section indexes">
+            <div class="item--summary" *ngFor="let indicator of indicators">
+                <h6>{{indicator.label}}</h6>
+                <label [innerHTML]="indicator.indicator | indicatorHtmlContent"></label>
+            </div>
+        </div>
+    </div>
+</div>

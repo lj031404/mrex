@@ -1,0 +1,106 @@
+@import "../../../assets/scss/mixin";
+
+:host {
+    .property-search-wrapper {
+        position: relative;
+        background-color: $color-whisper;
+    }
+
+    .search-form-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .spacer--custom {
+        height: 64px;
+    }
+
+    .message-card {
+        padding-bottom: 1rem;
+
+        .card {
+            margin: 1rem 1rem 0 1rem;
+        }
+    }
+
+    .property-search-viewport {
+        width: 100%;
+
+        .item--property {
+            height: 7rem;
+
+            .item-container {
+                width: 100%;
+                display: flex;
+            }
+
+            .information {
+                width: 100%;
+                max-width: calc(100% - 8em);
+
+                .address-1 {
+                    font-weight: 600;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .address-2 {
+                    font-size: 85%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .indicators {
+                    .value {
+                        margin-left: 0.5rem;
+                        margin-right: 0.5em;
+                    }
+                }
+            }
+        }
+    }
+
+    .no-result {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.no-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+}
+
+.add-unregister-property {
+    color: $color-gray-15;
+    font-weight: bold;
+    font-size: 1.1rem;
+    line-height: 1.2rem;
+}
+
+.click-add {
+    color: $color-gray-15;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+}
+
+.add-new-unregister {
+    border-top: 1px solid rgba(52, 158, 137, 0.2);
+}
+
+.close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 1.5rem;
+}
+.c-right-space {
+    padding-right: 3rem !important;
+}

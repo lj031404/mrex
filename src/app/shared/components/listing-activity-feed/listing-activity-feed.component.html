@@ -1,0 +1,23 @@
+<div class="activity-feed">
+	<div class="top-line-erase"></div>
+	<ng-container *ngFor="let item of feedData">
+		<div class="feed">
+			<div class="iconarea">
+				<div class="line"></div>
+				<div class="icon">
+					<img [src]="item.icon" alt="$#">
+				</div>
+			</div>
+			<div class="feedbox">
+				<div class="feeddate">{{ item.feedDate | dateLang }}</div>
+				<div class="text" *ngIf="!item.text">{{ item.text }}</div>
+				<div>
+					<span class="text" *ngIf="item.text" [innerHTML]="item.text"></span>
+					<span class="link" [routerLink]="item.linkUrl" [queryParams]="{ redirect: item.redirect }" *ngIf="item.linkUrl">{{ item.linkLabel }}</span>
+				</div>
+			</div>
+
+		</div>
+	</ng-container>
+	<div class="bottom-line-erase" *ngIf="feedData && feedData.length"></div>
+</div>

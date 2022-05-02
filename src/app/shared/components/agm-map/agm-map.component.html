@@ -1,0 +1,30 @@
+<agm-map
+        [latitude]="lat"
+        [longitude]="lng"
+        [zoom]="zoom"
+        [zoomControlOptions]="zoomControlOptions"
+        [streetViewControl]="streetViewControl"
+        (mapClick)="mapClicked($event)" >
+
+    <agm-marker [latitude]="marker.lat" [longitude]="marker.lng"  [label]="" (markerClick)="clickedMarker()" *ngIf="!isLoading && marker.lat">
+        <agm-info-window>
+            <p>
+                {{ propertyData?.address.civicNumber }} <span *ngIf="propertyData?.address.civicNumber2">- {{ propertyData?.address.civicNumber2 }} </span>{{ propertyData?.address.streetName }}<br/>
+                {{ propertyData?.address.city }}, {{ propertyData?.address.province }}, {{ propertyData?.address.country }}<br/>
+                {{ propertyData?.address.postalCode }}
+            </p>
+
+            <div class="card d-none" style="width: 18rem;" >
+                <div class="card-body">
+                    <div class="row card-text">
+                        <div class="col-6">
+                            <p>{{ 'Property Price:' | translate }}</p>
+                        </div>
+                        <div class="col-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </agm-info-window>
+    </agm-marker>
+</agm-map>

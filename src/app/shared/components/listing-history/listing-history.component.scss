@@ -1,0 +1,26 @@
+:host {
+
+	font-family: Arial;
+	color: black;
+	line-height: 1.78rem;
+
+	.history-list {
+		display: flex;
+		flex-direction: column;
+		margin: 0 1rem 1.71rem 1rem !important;
+	}
+
+	.price-event {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.5rem;
+		font-size: 1.28rem;
+	}
+
+	.date {
+		font-size: 1rem;
+		opacity: 0.5;
+	}
+}

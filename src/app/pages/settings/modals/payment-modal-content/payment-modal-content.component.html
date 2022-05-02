@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <app-toolbar>
+        <a class="left-button" appModalClose [modalRef]="modalRef">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <div class="title">{{'page.settings.payment_add.title' | translate}}</div>
+    </app-toolbar>
+</div>
+
+<div class="alert alert-danger text-center" *ngIf="err && err.status >= 400 || err && err.message">
+    <div>{{ err.message }}</div>
+    <div *ngIf="err.details">{{ err.details }}</div>
+</div>
+
+<div class="modal-content">
+    <app-content>
+        <div class="spacer spacer-3"></div>
+
+        <div class="sr-root">
+            <div class="sr-main">
+                <form id="payment-form" class="sr-payment-form" (ngSubmit)="onFormSubmit()">
+                    <div class="sr-combo-inputs-row">
+                        <app-progress-spinner [enabled]="true" [hidden]="!showSpinner"></app-progress-spinner> 
+                        <div class="sr-input sr-card-element" id="card-element"></div>
+                    </div>                      
+                </form>
+            </div>
+
+            <button class="btn text-uppercase w-100" form="payment-form" [ngClass]="isValid ? 'btn-green': 'btn-inactive-gray'" [disabled]="!isValid">
+                <span *ngIf="!isLoading">
+                    {{'literals.addCard' | translate}}
+                </span>
+                <app-progress-spinner [enabled]="isLoading"></app-progress-spinner>
+            </button>
+        </div>
+    </app-content>
+</div>
+

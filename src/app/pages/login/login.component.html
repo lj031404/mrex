@@ -1,0 +1,109 @@
+<div class="whole bg-white">
+    <div class="header">
+        <div class="background">
+            <div class="logo"></div>
+            <div class="slogan">{{ "page.login.slogan" | translate }}</div>
+        </div>
+    </div>
+    
+    <div class="content">
+        <div class="error center w-100">
+            <ng-container *ngIf="error">{{ error }}</ng-container>&nbsp;
+        </div>
+
+        <!-- Signin -->
+        <form (ngSubmit)="login()" [formGroup]="form">
+            <div class="form-group">
+
+                <div class="w-100 credentials">
+                    <!-- username -->
+                    <div class="floating-label w-100" [class.has-value]="form?.get('username')?.value">
+                        <label>{{ "page.login.email_address" | translate }}</label>
+                        <input type="email" class="form-control" formControlName="username"/>
+                    </div>
+
+                    <!-- password -->
+                <div class="floating-label w-100" [class.has-value]="form?.get('password')?.value">
+                    <label>{{ "Password" | translate }}</label>
+                    <div class="input-field-icon">
+                        <!--Eye image  -->
+                        <img
+                            src="assets/icons/footer/eye.svg"
+                            alt="eye.svg"
+                            *ngIf="passwordType == 'password'"
+                            (click)="passwordShow('text')"
+                        />
+                        <img
+                            src="assets/icons/footer/eye_active.svg"
+                            alt="eye_active.svg"
+                            *ngIf="passwordType == 'text'"
+                            (click)="passwordShow('password')"
+                        />
+                    </div>
+                    <input
+                        [type]="passwordType"
+                        class="form-control"
+                        formControlName="password"
+                        maxlength="35"
+                    />
+                </div>
+            </div>
+
+                <!-- Login button -->
+                <div class="w-100 center mb-2">
+                        <button class="btn w-100"
+                        [ngClass]="(form.valid && !isLoading) ? 'btn-green' : 'btn-inactive-gray'"
+                        [disabled]="!form.valid">
+                        <ng-container>{{ "page.login.btnLogin" | translate }}</ng-container>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="social-buttons w-100 center">
+            <div class="w-100 center" [ngClass]="{ 'disabled': isLoading }">
+                <button [ngClass]="{ 
+                                    'btn-inactive-gray': isLoading
+                                    }" 
+                        (click)="fbLogin()" 
+                        class="facebook"
+                        [disabled]="isLoading">
+                </button>
+                <button 
+                    [ngClass]="{ 
+                    'btn-inactive-gray': isLoading
+                    }" 
+                    *ngIf="isIOS" 
+                    (click)="appleLogin()" 
+                    class="apple"
+                    [disabled]="isLoading">
+                </button>
+                <button 
+                    [ngClass]="{ 
+                    'btn-inactive-gray': isLoading
+                    }" 
+                    (click)="googleSignIn()" 
+                    class="google"
+                    [disabled]="form.valid">
+                </button>
+            </div>
+        </div>
+
+        <div class="w-100 center or">{{ "page.login.or" | translate }}</div>
+
+        <div class="w-100 center">
+            <button class="btn w-100 singup-btn" 
+            [ngClass]="isLoading ? 'btn-inactive-gray': 'btn-green'"
+            (click)="signup()">
+                {{ "page.login.signup" | translate }}
+            </button>
+        </div>
+
+        <div class="w-100 center forgot" (click)="forgot()" [class.disabled]="isLoading">{{ "page.login.forgot_password" | translate}}</div>
+
+        <div class="footer">
+            <div class="version">{{ versionStr }}</div>
+            <div class="privacy-policy" (click)="gotoPrivacyPolicy()">{{ 'page.login.privacyPolicy' | translate }}</div>
+        </div>
+    </div>
+</div>

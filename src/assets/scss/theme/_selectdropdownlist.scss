@@ -1,0 +1,76 @@
+
+// select 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.select-dropdown-list {
+	width: 100%;
+	border-radius: 0.3rem;
+	font-size: 1.28rem;
+	cursor: pointer;
+	line-height: 1rem;
+
+	select {
+		// A reset of styles, including removing the default dropdown arrow
+		appearance: none;
+		// Additional resets for further consistency
+		background-color: transparent;
+		border: none;
+		padding: 0 1em 0 0;
+		margin: 0;
+		width: 100%;
+		font-family: inherit;
+		font-size: inherit;
+		cursor: inherit;
+		line-height: inherit;
+	}
+	
+	select::-ms-expand {
+		display: none;
+	}
+	
+	select {
+		// ...existing styles
+		outline: none;
+	}
+	
+	
+}
+
+
+
+
+.select-dropdown-list::after {
+	content: "";
+	width: 1.1em;
+  height: 0.42em;
+	background-color: #464646;
+	clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+.select-dropdown-list {
+	// ...existing styles
+	display: grid;
+}
+
+.select-dropdown-list {
+	// ...existing styles
+	grid-template-areas: "select";
+}
+  
+select,  .select-dropdown-list:after {
+	grid-area: select;
+}
+
+.select-dropdown-list {
+	// ...existing styles
+	align-items: center;
+}
+  
+.select-dropdown-list:after {
+	// ...existing styles
+	justify-self: end;
+}

@@ -1,0 +1,70 @@
+@import "../../../../assets/scss/mixin";
+
+:host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .notification-container {
+    width: 100%;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &.justify-content-start {
+      justify-content: flex-start!important;
+    }
+
+    .notification-icon {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 30px;
+
+      ::ng-deep {
+        i {
+          font-size: 100px;
+          color: $color-green;
+        }
+      }
+    }
+
+    .notification-title {
+      width: 75%;
+      margin-bottom: 36px;
+      margin-top: 12px;
+      font-size: $font-size-title-lg;
+      font-weight: 700;
+      color: black;
+    }
+
+    .confirm-image {
+      width: 100%;
+    }
+
+    .notification-main {
+      font-size: 32px;
+      color: black;
+      font-weight: 700;
+      margin-top: 24px;
+    }
+
+    .notification-text {
+      width: 85%;
+      font-size: $font-size-title-sm;
+      color: $color-gray-8;
+    }
+  }
+
+  button {
+    width: calc(100vw - 24px);
+    margin: 12px;
+    background-color: $color-cadet-blue;
+  }
+}

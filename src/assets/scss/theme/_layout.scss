@@ -1,0 +1,599 @@
+@import '../variables.scss';
+
+.vertical-layout.vertical-menu-modern.menu-expanded .navbar .navbar-header {
+  width: 100% !important;
+}
+
+.material-vertical-layout .header-navbar,
+.material-horizontal-layout .header-navbar {
+  z-index: 990 !important;
+
+  .navbar-header .navbar-brand {
+    @include media-breakpoint-down(sm) {
+      top: 3px !important;
+    }
+  }
+}
+
+.material-vertical-layout .main-menu .main-menu-content .navigation li.active > a {
+  background-color: $color-green;
+}
+.material-vertical-layout .main-menu .main-menu-content .navigation li.active > a >span {
+  color: white !important;
+}
+
+.main-menu.menu-light .navigation > li.open > a {
+  color: #6B6F82;
+  background: white;
+  border: none;
+}
+
+.navbar {
+  color: white !important;
+}
+
+.navbar-nav {
+  flex-wrap: nowrap;
+}
+
+.header-navbar {
+  min-height: unset;
+}
+
+.header-navbar .nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.header-navbar .nav-item + .nav-item {
+  margin-left: 0;
+}
+
+.header-navbar .navbar-header {
+  height: $header-height !important;
+}
+
+.header-navbar .navbar-header .nav.navbar-nav {
+  height: 100%;
+}
+
+.header-navbar .navbar-header .header-text {
+  font-size: $font-size-title-md;
+  font-family: Quicksand,Georgia,"Times New Roman",Times,serif;
+
+  p {
+    margin: 0;
+    line-height: 1.1;
+  }
+}
+
+.header-text p {
+  margin: 0;
+  line-height: 1;
+  font-size: 1.44rem;
+  font-weight: 700;
+  line-height: 1.89rem;
+}
+
+.vertical-overlay-menu .main-menu.menu-fixed {
+  height: 100vh;
+  top: 0;
+  overflow-y: hidden;
+}
+
+
+[data-menu='vertical-menu-modern'] .navbar-header .navbar-nav .nav-menu-main {
+  padding: 0 1rem !important;
+}
+
+[data-menu='vertical-menu-modern'] .header-navbar .navbar-header .menu-toggle {
+  top: 0 !important;
+}
+
+html body.fixed-navbar {
+  padding-top: 0;
+}
+
+
+.swiper-pagination-bullet-active {
+  background: #329985 !important;
+  border: unset !important;
+}
+app-home-news {
+  .swiper-container-horizontal>.swiper-pagination-bullets, .swiper-pagination-custom, .swiper-pagination-fraction {
+    left: 0;
+    width: 100%;
+    top: -7px;
+  }
+
+  .swiper-wrapper {
+    // background-color: #eee;
+  }
+
+  .swiper-pagination {
+    text-align: left !important;
+  }
+}
+
+
+.lease-date-apply {
+  app-form-field {
+    border: unset!important;
+  }
+}
+
+app-video-article {
+  youtube-player {
+    iframe {
+      width: 100%;
+      border-radius: 18px;
+    }
+  }
+}
+
+app-media-article-card {
+  youtube-player {
+    iframe {
+      width: 100%;
+      border-radius: 8px;
+    }
+  }
+}
+
+app-footer-navigate {
+  app-menu-button {
+    .menu-toggle {
+      color: black!important;
+      padding: 0!important;
+    }
+  }
+}
+
+app-blog-article {
+  .blog-article__description {
+    th {
+      white-space: unset!important;
+    }
+  }
+}
+
+app-add-unregister-property-dlg {
+  app-autocomplete {
+    .autocomplete {
+      position: absolute!important;
+    }
+
+    .right-icon.close, .right-icon.search {
+      top: 1.6rem!important;
+    }
+  }
+}
+
+
+app-projection-chart {
+  app-stack-chart {
+    .amChartsLegend {
+      display: none!important;
+    }
+  }
+}
+
+app-market-mapbox {
+  .mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right {
+    display: none;
+  }
+
+  .mapboxgl-ctrl-top-left {
+    .mapboxgl-ctrl-compass {
+      display: none;
+    }
+  }
+}
+
+app-property-model-overview {
+  app-footer {
+    bottom: unset!important;
+  }
+}
+
+app-property-compare {
+  .app-content {
+    .content {
+      height: calc(100vh - #{$header-height} - #{$footer-height});
+    }
+  }
+}
+
+app-search {
+  app-market-list {
+    .btn-filter {
+      top: 11.7rem!important;
+    }
+    .market-list-empty {
+      position: absolute;
+      top: 10rem!important;
+      width: 100%;
+      height: calc(100% - 10.3rem)!important;
+      color: black;
+      background-color: white;
+    }
+  }
+}
+
+.no-gps-modal {
+  mat-dialog-container {
+    border-radius: 3rem!important;
+    padding: 1rem;
+  }
+}
+
+app-playlistvideos-dlg {
+  .content {
+    height: 100% !important;
+  }
+}
+
+.spinner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+app-videos {
+  app-media-article-card {
+    .media-article-information {
+      justify-content: unset!important;
+      border-bottom: 1px solid black!important;
+    }
+  }
+}
+
+.estimate-tooltip-handset {
+  background-color: $color-green!important;
+  color: white;
+  font-size: 1rem;
+}
+
+.tooltip-bottom:after {
+  border-color: transparent transparent $color-green!important;
+}
+
+.pgs-err-panel {
+  background-color: white;
+  color: $color-green;
+  font-size: 1rem;
+  font-weight: 800;
+  max-width: 18rem!important;
+  margin: 8px auto!important;
+  position: relative;
+  bottom: 5rem;
+  border-radius: 5rem!important;
+}
+
+.search-address {
+	z-index: 1000;
+}
+
+app-home-outlet {
+  @include media-breakpoint-down(sm) {
+    .app-content .content {
+      height: calc(100vh - #{$footer-height});
+    }
+  }
+}
+
+app-market-mapbox {
+  app-action-drawer-outlet {
+    .action-drawer-content {
+      background-color: unset!important;
+    }
+  }
+}
+
+.iti__flag {
+  background-image: url(assets/images/flags.png);
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url(assets/images/flags@2x.png);
+  }
+}
+
+
+.iti { width: 100%; }
+
+.switch-apl-dlg {
+  width: 70vw;
+}
+
+app-map-property-card {
+  .swiper-container {
+    pointer-events: none;
+  }
+
+  .swiper-button-prev, .swiper-button-next {
+    pointer-events: all;
+  }
+
+  .swiper-button-disabled {
+    visibility: hidden;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.mr-05 {
+  margin-right: 0.5rem !important;
+}
+
+.ml-05 {
+  margin-left: 0.5rem !important;
+}
+
+.pr-05 {
+  padding-right: 0.5rem !important;
+}
+
+.pl-05 {
+  padding-left: 0.5rem !important;
+}
+app-picture-slider {
+  app-default-image {
+    .default-image-content {
+      height: 9.92rem!important;
+    }
+  }
+}
+
+app-default-image {
+  height: 100%;
+  width: 100%;
+}
+
+app-home-properties {
+  .default-image-content {
+    height: 11.42rem!important;
+    width: 22.14rem;
+  }
+}
+
+app-property-card, app-media-article-card, app-playlist-item {
+  app-default-image {
+    zoom: 0.6;
+    img {
+      width: unset!important;
+      height: unset!important;
+      position: unset!important;
+    }
+    .default-image-content {
+      border-radius: 0.57rem;
+    }
+  }
+}
+
+app-portfolio-summary {
+  .portfolio-images {
+    app-default-image {
+      zoom: 0.6;
+    }
+  }
+}
+
+.img-error {
+  height: 17.8rem;
+}
+
+app-market-overview {
+  .market-map-skeleton__body {
+    app-skeleton {
+      .skelt-load {
+        height: calc(100vh - 5.36rem)!important;
+      }
+    }
+  }
+
+  .address-search {
+    app-autocomplete {
+      .right-icon.close {
+        top: 40%!important;
+        right: 2rem!important;
+      }
+
+      .right-icon.search {
+        top: 35%!important;
+        right: 2rem!important;
+      }
+    }
+  }
+}
+
+app-portfolio-new3 {
+  .logos {
+    justify-content: space-between;
+    .logo-item {
+      width: 7.14rem!important;
+      span {
+        font-size: 1rem!important;
+      }
+      img {
+        width: 7.14rem!important;
+        height: 7.14rem!important;
+        border: 1px solid $color-gray-23;
+        box-sizing: border-box;
+        border-radius: .3rem;
+      }
+    }
+  }
+}
+app-property-add {
+  .modal-footer {
+    height: 5.71rem!important;
+    padding-right: 2.07rem;
+    padding-left: 2.07rem;
+  }
+}
+
+app-market-listing {
+  app-picture-slider {
+    app-default-image {
+      .default-image-content {
+        height: $slider-placeholder-height!important;
+      }
+    }
+
+  }
+
+
+}
+
+app-picture-slider {
+  .swiper-wrapper {
+    height: $slider-placeholder-height!important;
+    background-color: $color-green;
+    background-repeat: no-repeat;
+    background-image: url(assets/icons/default_logo.svg);
+    background-position: center;
+  }
+}
+app-picture-slider {
+    #bg-swipper{
+        .cc-image-wrapper {
+            img{
+            filter: blur(5px);
+    -webkit-filter: blur(5px);
+            }
+
+        }
+    .swiper-wrapper {
+        background-color: #fff;
+        .locked-directive {
+            top: 105px;
+        .locked{
+            top: unset !important;
+            padding: 0 !important;
+            background: transparent !important;
+            position: absolute;
+            color: #fff;
+            .lock-description{
+                margin-left: 0 !important;
+                .lock-description__detail{
+                    font-size: 11px;
+                }
+            }
+        }
+        .lock-signup{
+            img{
+                filter: blur(0px);
+                -webkit-filter: blur(0px);
+                height: 4rem;
+            }
+        }
+    }
+}
+}
+}
+
+.main-menu {
+  z-index: 9999;
+}
+
+.sidenav-overlay {
+  z-index: 9998;
+}
+
+
+app-market-listing {
+  .swiper-button-disabled {
+    visibility: hidden;
+  }
+}
+
+agm-map {
+  .cluster {
+    height: 33px !important;
+    width: 33px!important;
+
+    >div {
+      width: 33px!important;
+      line-height: 27px!important;
+      color: white!important;
+      font-size: 12px!important;
+    }
+  }
+}
+.image-viewer-dialog {
+  max-width: 100vw!important;
+  width: 100vw;
+  mat-dialog-container {
+    padding: 0rem !important;
+    border-radius: unset!important;
+
+    .mat-dialog-content {
+      margin: unset !important;
+    }
+  }
+
+  [mat-icon-button][mat-dialog-close] {
+    position: fixed;
+    right: 1rem;
+    top: 1rem;
+    z-index: 1002;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: transparent;
+    color: $color-dark-60;
+    font-size: 1.7rem;
+  }
+}
+
+.image-viewer-backdrop {
+  background: rgb(0, 0, 0, .7);
+}
+
+app-blog-article {
+  .blog-article__description {
+    table {
+      font-size: 0.8rem;
+      width: 100%;
+    }
+  }
+}
+
+.ion-img-viewer {
+  .buttons-last-slot {
+    opacity: 0.3;
+    right: -12px;
+    position: absolute;
+  }
+  .buttons-last-slot:hover {
+    opacity: 1;
+  }
+  .buttons-last-slot:before, .buttons-last-slot:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  .buttons-last-slot:before {
+    transform: rotate(45deg);
+  }
+  .buttons-last-slot:after {
+    transform: rotate(-45deg);
+  }
+}
+
+.iti-mobile .iti--container {
+  left: 0px!important;
+  right: 0px!important;
+}

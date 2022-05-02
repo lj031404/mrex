@@ -1,0 +1,145 @@
+<div class="advanced-sales-comparison-content bg-white">
+    <app-header>
+        <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button" [action]="back.bind(this)"></app-go-back-button>
+        <p slot="title">{{'pages.market.advanced_sales_comparison.advanced_sales_comparison' | translate}}</p>
+    </app-header>
+    <div class="advanced-sales-comparison-body" *ngIf="advancedSalesComparison">
+        <div class="comps-slider">
+            <div  class="swiper-container" [swiper]="config" (indexChange)="onIndexChange($event)" (swiperTransitionEnd)="onSwiperEvent('transitionEnd')" [disabled]="false">
+                <div class="swiper-wrapper align-items-start">
+                    <div class="swiper-slide listing-item" *ngFor="let comparable of comparables" [class.current-item]="index === comparable.idx">
+                        <div class="top-rail d-flex align-items-center">
+                            <img [src]="comparable.imageUrl" width="61" height="61">
+                            <div class="d-flex align-items-center justify-content-between address-switch">
+                                <div class="address">
+                                    <div class="street">{{ comparable.address.street }}</div>
+                                    <div class="state">{{ comparable.address.state }}</div>
+                                </div>
+                                <div>
+                                    <mat-slide-toggle class="app-slide-toggle" [checked]="comparable.isChecked" (change)="changeActivity(comparable)"></mat-slide-toggle>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="listing-divider"></div>
+                        <div class="bottom-rail kpis">
+                            <div class="kpi" *ngFor="let kpi of comparable.kpis; index as idx">
+                                <div class="kpi-label" [class.text-center]="kpi.label !== 'caprate'">{{ 'page.sales_comparison.potential_header_' + kpi.label | translate }}</div>
+                                <div class="kpi-value text-center" [class.text-center]="kpi.label !== 'caprate'">
+                                    {{ kpi.value | number: '1.0-2'}}{{ kpi.label === 'caprate' ? '%' : '$'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+               
+                <div class="swiper-pagination" [hidden]="config.pagination === false"></div>
+              </div>
+        </div>
+        <div class="comparable-seller-section">
+            <!--Comparable cap rates-->
+            <div class="comp-section">
+                <div class="comp-subtitle">{{ 'pages.market.advanced_sales_comparison.comparable_cap_rates' | translate }}</div>
+                <app-xy-line-chart [xyChartData]="xyChartDataWithNoBeta"></app-xy-line-chart>
+            </div>
+            <!--Seller name and address-->
+            <div class="comp-section">
+                <div class="comp-subtitle">{{ 'pages.market.advanced_sales_comparison.seller_name_address' | translate }}</div>
+                <div>
+                    <div class="comp-prop d-flex align-items-center justify-content-between">
+                        <div>{{ 'pages.market.advanced_sales.name' | translate }}</div>
+                        <div>{{ advancedSalesComparison.seller?.name }}</div>
+                    </div>
+                    <div class="comp-prop d-flex align-items-center justify-content-between">
+                        <div>{{ 'pages.market.advanced_sales.address' | translate }}</div>
+                        <div class="w-50 text-right">{{ advancedSalesComparison.seller?.address?.fullAddress }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Buyer namd and address-->
+            <div class="comp-section">
+                <div class="comp-subtitle">{{ 'pages.market.advanced_sales_comparison.buyer_name_address' | translate }}</div>
+                <div>
+                    <div class="comp-prop d-flex align-items-center justify-content-between">
+                        <div>{{ 'pages.market.advanced_sales.name' | translate }}</div>
+                        <div>{{ advancedSalesComparison.buyer?.name }}</div>
+                    </div>
+                    <div class="comp-prop d-flex align-items-center justify-content-between">
+                        <div>{{ 'pages.market.advanced_sales.address' | translate }}</div>
+                        <div class="w-50 text-right">{{ advancedSalesComparison.buyer?.address?.fullAddress }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Listing Broker and agency-->
+            <div class="comp-section">
+                <div class="comp-subtitle">{{ 'pages.market.advanced_sales_comparison.buyer_name_address' | translate }}</div>
+                <div>
+                    <div class="comp-prop d-flex align-items-center justify-content-between">
+                        <div>{{ 'pages.market.advanced_sales.listing_broker' | translate }}</div>
+                        <div>{{ advancedSalesComparison.broker?.agent }}</div>
+                    </div>
+                    <div class="comp-prop d-flex align-items-center justify-content-between">
+                        <div>{{ 'pages.market.advanced_sales.Agency' | translate }}</div>
+                        <div>{{ advancedSalesComparison.broker?.agency }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="additional-comp-section">
+                <div class="d-flex align-items-center justify-content-between additional-comp-item">
+                    <div class="additional-comp-item__title w-50">{{ 'pages.market.advanced_sales_comparison.notary' | translate }}</div>
+                    <div class="additional-comp-item__value">{{ advancedSalesComparison.notary }}</div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between additional-comp-item">
+                    <div class="additional-comp-item__title w-50">{{ 'pages.market.advanced_sales_comparison.bank' | translate }}</div>
+                    <div class="additional-comp-item__value">{{ advancedSalesComparison.bank }}</div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between additional-comp-item">
+                    <div class="additional-comp-item__title w-50">{{ 'pages.market.advanced_sales_comparison.price_listed' | translate }}</div>
+                    <div class="additional-comp-item__value">{{ advancedSalesComparison.originalPrice | currency: 'CAD': 'symbol-narrow': '1.0-0' }}</div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between additional-comp-item">
+                    <div class="additional-comp-item__title w-50">{{ 'pages.market.advanced_sales_comparison.price_sold' | translate }}</div>
+                    <div class="additional-comp-item__value">{{ advancedSalesComparison.soldPrice | currency: 'CAD': 'symbol-narrow': '1.0-0' }}</div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between additional-comp-item">
+                    <div class="w-50">
+                        <div class="additional-comp-item__title">{{ 'pages.market.advanced_sales_comparison.type_of_listing' | translate }}</div>
+                        <div class="additional-comp-item__des">({{ 'pages.market.advanced_sales.public_private_offmarket' | translate }})</div>
+                    </div>
+                    <div class="additional-comp-item__value">{{ advancedSalesComparison.listingType }}</div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between additional-comp-item">
+                    <div class="additional-comp-item__title w-50">{{ 'pages.market.advanced_sales_comparison.date_listed' | translate }}</div>
+                    <div class="additional-comp-item__value">{{ advancedSalesComparison.publishDate | date: 'mm/dd/yyy' }}</div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between additional-comp-item">
+                    <div class="additional-comp-item__title w-50">{{ 'pages.market.advanced_sales_comparison.date_sold' | translate }}</div>
+                    <div class="additional-comp-item__value">{{ advancedSalesComparison.soldDate | date: 'mm/dd/yyy' }}</div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between additional-comp-item">
+                    <div class="additional-comp-item__title w-50">{{ 'pages.market.advanced_sales_comparison.day_on_market' | translate }}</div>
+                    <div class="additional-comp-item__value">{{ advancedSalesComparison.soldDays }}</div>
+                </div>
+                <div class="d-flex align-items-center justify-content-between additional-comp-item">
+                    <div class="w-50">
+                        <div class="additional-comp-item__title">{{ 'pages.market.advanced_sales_comparison.type_of_acquisition' | translate }}</div>
+                        <div class="additional-comp-item__des">{{ 'pages.market.advanced_sales.stablilized_light_value_heavy_opportunistic' | translate }}</div>
+                    </div>
+                    <div class="additional-comp-item__value">{{ advancedSalesComparison.acquisitionType }}</div>
+                </div>
+                
+                <div *ngIf="property">
+                    <app-map-property-card
+                        class="w-100"
+                        [property]="property">
+                    </app-map-property-card>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+</div>

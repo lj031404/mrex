@@ -1,0 +1,68 @@
+
+@import "../../../../assets/scss/variables.scss";
+
+.order-confirm-body {
+	padding: 2.43rem 2.64rem 3.18rem 1.82rem;
+	background-color: white;
+	height: calc(100% - 3.8rem);
+}
+
+.confirm-item {
+	font-weight: 400;
+	font-size: 1.142rem;
+	line-height: 1.37rem;
+	color: rgba(0, 0, 0, 0.5);
+	margin-bottom: 0.5rem;
+
+	&.confirm-title {
+		font-weight: 700;
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 1.142rem;
+		line-height: 1.37rem;
+		margin-bottom: 0.5rem;
+	}
+
+}
+
+.confirm-items {
+	flex: 1;
+}
+
+.btn-apply {
+	background: $color-cadet-blue;
+	box-sizing: border-box;
+	border-radius: 0.25rem;
+	text-transform: uppercase;
+	color: white;
+	font-weight: 400;
+	font-size: 0.857rem;
+	box-shadow: unset;
+}
+
+.coupon-code {
+	margin-top: 2.42rem;
+}
+
+.light-logo {
+	text-align: center;
+	margin-top: 0.8rem;
+
+}
+
+.btn-confirm-purchase {
+	background: $color-green;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+	border-radius: 0.4rem;
+	color: white;
+	font-size: 1.142rem;
+	text-align: center;
+	margin: auto 2.14rem;
+}
+
+.confirm-purchase {
+	// position: absolute;
+	// bottom: 0;
+	button {
+		flex: 1;
+	}
+}

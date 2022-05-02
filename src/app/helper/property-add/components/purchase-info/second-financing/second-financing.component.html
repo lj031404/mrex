@@ -1,0 +1,132 @@
+<label appFormSectionName [innerHTML] = "'helper.property-add.components.property-cashflow.second-financing.label' | translate"></label>    
+
+<app-form-field [leftMargin]="false">
+    <div class="custom-control custom-checkbox" (click)="toggleCheck()">
+        <input  type="checkbox" 
+                class="custom-control-input" 
+                [tabindex]="10"
+                [checked]="enabled">
+        <label class="custom-control-label mb-0">
+            <span *ngIf="!enabled">{{ 'helper.property-add.components.purchase-info.second-financing.enable' | translate }}</span>
+            <span  *ngIf="enabled">{{ 'helper.property-add.components.purchase-info.second-financing.disable' | translate}}</span>
+        </label>
+    </div>
+</app-form-field>
+
+<ng-container *ngIf="enabled">
+
+    <div  
+        appLockedDirective 
+        [title]  = "'directives.locked.title' | translate" 
+        [text]   = "'directives.locked.watchlist.secondFinancing' | translate" 
+        [locked] = "isBaseModel">    
+        
+        <div 
+            appSubscriptionRequire
+            ruleId="watchlist.secondFinancing"
+            [featureName]="featureName">  
+    
+            <!-- Description -->
+            <app-form-field [rtl]="true">
+                <span appFormFieldLabel>
+                    {{ 'helper.property-add.components.purchase-info.secondary-financing.description' | translate }}
+                </span>
+                <label>      
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        [placeholder]="'helper.property-add.components.purchase-info.secondary-financing.description.placeholder' | translate" 
+                        [formControl]="propertyAddForm.get(['purchase', 'secondFinancing', 'description'])">
+                </label>
+            </app-form-field>
+        
+            <!-- Loan amount -->
+            <app-form-field [rtl]="true" [field]="'loan'">
+                <span appFormFieldLabel>
+                    {{ 'helper.property-add.components.purchase-info.secondary-financing.loanAmount' | translate }}
+                </span>
+                <label>      
+                    <app-input-number
+                        tabindex="1"
+                        placeholder="0"
+                        [digitsFormat]="'1.0-0'"
+                        [placeholder]="0"
+                        [disabled]="false"
+                        [control]="propertyAddForm.get(['purchase', 'secondFinancing', 'loanAmount'])">
+                    </app-input-number>      
+                    <span appFormFieldSuffix>$</span>
+                </label>
+            </app-form-field>
+        
+            <!-- Interest Rate -->
+            <app-form-field [rtl]="true">
+                <span appFormFieldLabel>
+                    {{ 'helper.property-add.components.purchase-info.secondary-financing.interestRate' | translate }}
+                </span>
+                <label>      
+                    <app-input-number
+                        tabindex="1"
+                        placeholder="0"
+                        [digitsFormat]="'1.2-2'"
+                        [placeholder]="0"
+                        [disabled]="false"
+                        [control]="propertyAddForm.get(['purchase', 'secondFinancing', 'interestRate'])">
+                    </app-input-number>      
+                    <span appFormFieldSuffix>%</span>
+                </label>
+            </app-form-field>
+        
+            <!-- Term -->
+            <app-form-field [rtl]="true" [formGroup]="propertyAddForm.get(['purchase', 'secondFinancing'])">
+                <span appFormFieldLabel>
+                    {{ 'helper.property-add.components.purchase-info.secondary-financing.term' | translate }}
+                </span>
+                <label>      
+                    <div>
+                        <select [formControlName]="'term'">
+                            <option *ngFor="let choice of termValues; let i = index" [value]="choice.value">
+                                {{ choice.label | translate }}
+                            </option>
+                        </select>
+                    </div>
+                </label>
+            </app-form-field>
+        
+            <!-- Type -->
+            <app-form-field [rtl]="true">
+                <span appFormFieldLabel>
+                    {{ 'helper.property-add.components.purchase-info.secondary-financing.type' | translate }}
+                </span>
+                <label>      
+                    <div>
+                        <select [formControl]="propertyAddForm.get(['purchase', 'secondFinancing', 'loanType'])">
+                            <option *ngFor="let choice of loanTypes; let i = index" [value]="choice.value">
+                                {{ choice.label | translate }}
+                            </option>
+                        </select>
+                    </div>
+                </label>
+            </app-form-field>
+        
+            <!-- amortization -->
+            <app-form-field [rtl]="true" *ngIf="showAmortization">
+                <span appFormFieldLabel>
+                    {{ 'helper.property-add.components.purchase-info.secondary-financing.amortization' | translate }}
+                </span>
+                <label>      
+                    <div>
+                        <select [formControl]="propertyAddForm.get(['purchase', 'secondFinancing', 'amortization'])">
+                            <option *ngFor="let choice of amortizationValues; let i = index" [value]="choice.value">
+                            {{ choice.label | translate }}
+                            </option>
+                        </select>
+                    </div>     
+                    <span appFormFieldSuffix></span>
+                </label>
+            </app-form-field>
+
+        </div>
+
+    </div>
+
+</ng-container>

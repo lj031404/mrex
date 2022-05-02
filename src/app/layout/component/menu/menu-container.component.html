@@ -1,0 +1,22 @@
+<div class="main-menu-content">
+    <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+        <ng-container *ngIf="items && items.length">
+            <ng-container *ngFor="let item of items">
+                <li class="navigation-header" *ngIf="item.type === menuItemType.HEADER">
+                    <span data-i18n="">{{ item.name | translate }}</span>
+                </li>
+                <li class="nav-item" routerLinkActive="active" *ngIf="item.type !== menuItemType.HEADER">
+                    <a [routerLink]="item.link" *ngIf="item.link" (click)="CloseMenu(item)">
+                        <img src="./assets/images/menu/{{ item.iconName }}.png" alt="" class="menu-icon" />
+                        <span class="menu-name" data-i18n="">{{ item.name | translate }}</span>
+                    </a>
+                    <a *ngIf="!item.link">
+                        <span class="menu-name" data-i18n="">{{ item.name | translate }}</span>
+                    </a>
+                </li>
+            </ng-container>
+        </ng-container>
+
+        <ng-content></ng-content>
+    </ul>
+</div>

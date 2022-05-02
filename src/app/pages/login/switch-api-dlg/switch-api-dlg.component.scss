@@ -1,0 +1,50 @@
+.txt {
+	font-family: Arial !important;
+	font-style: normal !important;
+	text-align: left !important;
+	line-height: 22px !important;
+}
+
+h1 {
+	font-weight: normal  !important;
+	font-size: 16px !important;
+	letter-spacing: 0.05em !important;
+	color: #000000;
+	margin: 0 !important;
+}
+
+div.btn-action {
+	position: relative !important;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+
+	button {
+		border-radius: 5px;
+		outline: none;
+	}
+
+	.btnOk {
+		width: 7em !important;
+		height: 100%;
+		background: #5CB09F;
+		font-size: 1rem !important;
+		color: white;
+		text-align: center;
+		text-transform: uppercase;
+		outline: none;
+		border: unset;
+	}
+
+	.btnCancel {
+		text-align: center;
+		font-family: Arial !important;
+		font-size: 14px !important;
+		line-height: 16px !important;
+		background-color: white;
+		color: #000000;
+		opacity: 0.6;
+		border: none;
+	}
+}

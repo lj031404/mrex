@@ -1,0 +1,32 @@
+
+.article-detail {
+    overflow-x: hidden;
+    background: white;
+	overflow-y: unset;
+
+	.other-recomended-articles {
+		&__title {
+			margin-top: 3rem;
+			color: black;
+			font-size: 0.9rem;
+			line-height: 1.142rem;
+			font-weight: 700;
+		}
+	}
+	
+}
+
+.close-icon {
+	position: relative;
+    z-index: 100;
+	padding-left: 1.2rem;
+}
+
+.article-header {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	height: 2.89rem;
+	z-index: 10;
+	background: linear-gradient(181.63deg, rgba(0, 0, 0, 0.7) 1.38%, rgba(0, 0, 0, 0) 110.63%);
+}

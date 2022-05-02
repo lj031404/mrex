@@ -1,0 +1,48 @@
+@import "../../../../assets/scss/variables.scss";
+.progress-title {
+	color: black;
+	font-weight: 700;
+	font-size: 1.1rem;
+	line-height: 1.3rem;
+	margin-left: 1.2rem;
+}
+
+.progress-item {
+	margin-bottom: 0.899rem;
+}
+
+.progress-bar {
+	background-color: $color-cadet-blue!important;
+	border-color: $color-cadet-blue!important;
+	color: white;
+	font-weight: 700;
+	font-size: 0.857rem;
+	line-height: 1rem;
+	padding-left: 1.2rem;
+	display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+	border: unset!important;
+	height: 1.5rem;
+}
+
+.progress-bar::after {
+	height: unset!important;
+	content: unset!important;
+	position: unset!important;
+}
+
+.progress {
+	margin-top: 0.3rem!important;
+	margin-bottom: 0!important;
+}
+
+.progressbar-group {
+	margin-top: 1.142rem;
+}

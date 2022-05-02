@@ -1,0 +1,164 @@
+
+@import "../../../../assets/scss/mixin.scss";
+@import "../../../../assets/scss/variables.scss";
+
+:host {
+    app-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .list {
+      overflow-y: auto;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      background: white;
+      height: calc(100vh - 8rem);
+      overflow-x: hidden;
+    }
+  }
+  
+  .empty-watchlist {
+    text-align: center;
+    img {
+      width: 6rem;
+    }
+
+    .card-body {
+      color: black;
+      font-size: 1.5rem;
+      line-height: 2.2rem;
+      font-weight: 800;
+    }
+  }
+
+.property-card {
+  border-bottom: 1px solid white;
+}
+
+.watchlist-empty-state {
+  padding: 2.214rem 1.357rem 0 1.357rem;
+
+  .no-prop-yet {
+      color: black;
+      font-weight: normal;
+      font-size: 1.57rem;
+      line-height: 1.85rem;
+      text-align: center;
+      margin-bottom: 2.214rem;
+      padding: 0 2.3rem;
+  }
+
+  .start-do-add-now {
+      border: 1.5px solid $color-gray-23;
+      box-sizing: border-box;
+      border-radius: 0.25rem;
+      padding: 2.857rem 2.642rem;
+  }
+
+  .start-do-add {
+      font-weight: 400;
+      font-size: 3.14rem;
+      line-height: 3.94rem;
+      color: black;
+
+  }
+
+  .start-do-now {
+      font-weight: 600;
+      color: $color-cadet-blue;
+      font-size: 3.14rem;
+      line-height: 3.77rem;
+  }
+
+  .super-user {
+      font-size: 1.57rem;
+      line-height: 1.8857rem;
+      color: black;
+      font-weight: 400;
+      margin: 2.214rem 0;
+      z-index: 10;
+      position: relative;
+  }
+
+  .benefits-content {
+      border: 1.5px solid $color-gray-23;
+      box-sizing: border-box;
+      border-radius: 0.25rem;
+      padding: 2.57rem 1rem 2.57rem 2.5rem;
+      z-index: 9;
+
+      .super-user-icon {
+          position: absolute;
+          right: 1.142rem;
+          top: -7.442rem;
+          z-index: 9;
+      }
+
+      .benefits-title {
+          color: $color-cadet-blue;
+          font-weight: 700;
+          font-size: 1.71rem;
+          line-height: 2.057rem;
+          margin-bottom: 1.57rem;
+          z-index: 10;
+      }
+
+      .benefit-item {
+          margin-bottom: 2.5rem;
+
+          img {
+              margin-right: 1rem;
+              margin-top: 0.3rem;
+          }
+          span {
+              color: $color-gray-19; 
+              line-height: 2.1rem;
+              font-size: 1.7rem;
+              font-weight: 400;
+          }
+
+          &:last-child {
+              margin-bottom: 0;
+          }
+      }
+      
+  }
+
+  .add-first-prop {
+      margin-top: 3.214rem;
+      margin-bottom: 1.58rem;
+
+      button {
+          line-height: 1.37rem;
+          font-weight: 400;
+          width: fit-content;
+          font-size: 1rem;
+          padding: 0 1rem;
+      }
+  }
+}
+
+.watchlist-status {
+  padding: 2.57rem 2.357rem 1.287rem 2.9rem;
+  .watchlist-total-status {
+    font-size: 1.57rem;
+    line-height: 1.82rem;
+    color: black;
+    font-weight: 400;
+  }
+
+  .watchlist-category {
+    color: $color-gray-24;
+    font-size: 0.7rem;
+  }
+}

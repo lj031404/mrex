@@ -1,0 +1,35 @@
+<div class="media-article-card d-flex align-items-center" *ngIf="article">
+	<div class="media-thumbnail"  (click)="showArticle()"  [class.placeholder-img]="!article.isLoaded">
+		<img class="thumbnail-image"
+			[src]="article.thumbnailUrl" height="95" appDefaultImage (error)="article.isLoaded = true" (load)="article.isLoaded = true" />
+		<div class="position-absolute img-placeholder-text" *ngIf="!article.isLoaded">
+			{{ 'literals.loading' | translate }}
+		</div>
+		<div class="play" *ngIf="article.type === 'video'">
+			<span>
+				<img src="assets/icons/play.png" class="play-icon">
+			</span>
+		</div>
+	</div>
+
+	<div class="media-article-information d-flex flex-column " [class.text-white]="article.isPlayVideoItem">
+		<div class="media-title" [ngClass]="article.isPlayVideoItem ? 'text-white play-item-summary' : '' " (click)="showArticle()">
+			<div class="" [class.media-title-content]="!article.isPlayVideoItem" [innerHTML]="article.title"></div>
+			<ng-container *ngIf="article.isPlayVideoItem">
+				<div class="font-weight-normal playitem-summary">
+					<span [innerHTML]="article.summary"></span>
+				</div>
+			</ng-container>
+		</div>
+
+		<div class="posted-date d-flex align-items-center justify-content-between" [class.text-white]="article.isPlayVideoItem">
+			<div  (click)="showArticle()" class="posted-date-value" [class.text-white]="article.isPlayVideoItem" >
+				<span>{{ 'page.home.posted' | translate }}</span>
+				<span> {{ article.publishDate | timeAgo }}</span>
+			</div>
+			<div>
+				 <img (click)="openSocialShareDlg(article)" *ngIf="!article.disableSocialShare" [src]="!article.isPlayVideoItem ? 'assets/icons/share.svg' : 'assets/icons/playvideoupload.png'" />
+			</div>
+		</div>
+	</div>
+</div>

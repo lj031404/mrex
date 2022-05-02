@@ -1,0 +1,72 @@
+@import '../../../../../assets/scss/variables.scss';
+
+:host {
+	.header {
+		width: 100%;
+		height: $property-header-height;
+		display: flex;
+		align-items: flex-end;
+		background: center;
+		background-size: cover;
+
+		app-picture-slider {
+			width: 100%;
+		}
+
+		img {
+			z-index: -10;
+			position: absolute;
+			object-fit: cover;
+			width: 100%;
+			object-position: center;
+			object-position: 0px;
+			margin-top: 5rem;
+		}
+
+		.value-type {
+			width: 100%;
+			height: 4.2rem;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 1rem 0 1.6rem;
+			font-family: Arial;
+			font-style: normal;
+			color: #ffffff;			
+
+			position: absolute;
+    		z-index: 1;
+
+			.value {
+				font-weight: bold;
+				font-size: 1.7rem;
+				line-height: 67%;
+			}
+
+			.type {
+				font-weight: normal;
+				font-size: 1.3rem;
+				line-height: 89%;
+			}
+
+			&.public {
+				background-color: $color-public;
+			}
+			&.offMarket {
+				background-color: $color-offMarket
+			}
+			&.pocket {
+				background-color: $color-pocket;
+			}
+		}
+	}
+}
+
+::ng-deep {
+	app-property-header {
+		app-picture-slider app-default-image .default-image-content {
+			height: $property-header-height !important;
+		}
+	}
+}

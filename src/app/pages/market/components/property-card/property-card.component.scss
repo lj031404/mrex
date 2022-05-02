@@ -1,0 +1,246 @@
+@import '../../../../../assets/scss/variables.scss';
+
+:host {
+
+  .app-item {
+    width: 100%;
+    min-height: 9.1rem !important;
+    max-width: 100%;
+    margin: 0;
+    padding: 0.4em 0.2em;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+
+    ::ng-deep {
+      .left-rail {
+        position: relative;
+        width: 36%;
+        max-height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        border-radius: 12px;
+
+        font-family: Arial;
+        font-size: 10px;
+        line-height: 16px;
+        text-align: center;
+
+        img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .header-text {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 1.8em;
+          line-height: 1.8em;
+          text-transform: capitalize;
+          color: white;
+        }
+
+        .footer-text {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          color: white;
+        }
+
+        &.public-listing {
+          .header-text,
+          .footer-text {
+            background: $color-public;
+          }
+        }
+        &.offMarket-listing {
+          .header-text,
+          .footer-text {
+            background: $color-offMarket;
+          }
+        }
+        &.pocket-listing {
+          .header-text,
+          .footer-text {
+            background: $color-pocket;
+          }
+        }
+      }
+
+      .main-rail {
+        position: relative;
+        width: 64%;
+        padding: 0 8px;
+        font-size: 12px;
+        font-family: Arial;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between !important;
+        align-items: flex-start;
+
+        .eye-calc {
+            display: flex;
+            margin-left: 5px;
+            .calc {
+                display: flex;
+                padding-left: 10px;
+            }
+        }
+
+        p {
+          margin: 0 !important;
+          font-family: Arial;
+        }
+
+        .calc-number {
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 20px;
+            color: black;
+            padding-left: 5px;
+        }
+
+        .property-type {
+            font-weight: bold;
+            font-size: 12px;
+            line-height: 16px;
+            color: #5CB09F;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 16px;
+        }
+
+        .address {
+            font-size: 13px;
+            line-height: 16px;
+            color: #000000;
+        }
+
+        .factors {
+          width: 100%;
+          color: black;
+          display: flex;
+          justify-content: space-between !important;
+           
+            &>div {
+              display: flex;
+              align-items: center;
+            }
+
+            .cap-rate {
+                span {
+                    font-weight: 800;
+                    margin-right: 0.25em;
+                }
+                font-weight: bold;
+            }
+
+            i {
+                width: 14px;
+                height: 14px;
+                object-fit: contain;
+                margin-right: 0.5em;
+            }
+
+            .value {
+              margin-right: 0.25em;
+            }
+
+            .mr {
+              margin-right: 0.5em;
+            }
+          .c-text-wrapper{
+            max-width: 5rem;
+          }
+          
+          
+        }
+      }
+    }
+  }
+  .text-value{
+    padding-left: 0.5rem;
+    line-height: 1.2rem;
+  }
+
+  .hide-fields {
+    ::ng-deep {
+        background: rgba(255, 255, 255, 0.5);
+        filter: blur(6px);
+        -o-filter: blur(6px);
+        -ms-filter: blur(6px);
+        -moz-filter: blur(6px);
+        -webkit-filter: blur(6px);
+    }
+  }
+}
+
+:host-context(.agm-info-window-content) {
+
+  .app-item {
+    width: 173px !important;
+    height: 165px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.type-buildings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 0.45rem;
+
+  .buildings {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 1.15rem;
+      font-weight: bold;
+      padding-left: 0.3rem;
+    }
+  }
+  
+}
+
+.building-date {
+  align-items: flex-end;
+
+  .value {
+    margin-left: 0.8rem;
+  }
+}
+
+.placeholder-img {
+  background-color: $color-green-heavy;
+  background-repeat: no-repeat;
+  background-image: url(assets/icons/default_logo.svg);
+  background-position: center;
+  background-size: 58% 58%;
+}
+
+.img-placeholder-text {
+  width: 100%;
+  font-size: 1rem;
+  color: white;
+  position: relative;
+  margin-top: 5rem;
+}

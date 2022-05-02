@@ -1,0 +1,79 @@
+<div id="map-container">
+	<button slot="right-button" class="btn-filter ml-2" (click)="openFilterModal()">
+        <img src="assets/images/filter.svg" alt="search_filter" class="filter" />
+        {{ "page.market.overview.filter_button" | translate }}
+    </button>
+    <button
+        type="button"
+        class="btn reset"
+        [disabled]="disableBtn"
+        (click)="resetPosition()"
+        [class.btn-disabled]="disableBtn"
+    >
+		<img *ngIf="!disableBtn" src="assets/images/map_btn.svg" />
+		<app-progress-spinner class="spinner-color" *ngIf="disableBtn" [enabled]="disableBtn"></app-progress-spinner>
+    </button>
+	<agm-map 
+		*ngIf="mapCriteria"
+		[zoom]="mapCriteria.zoom"
+		[streetViewControl]="false"
+		[zoomControlOptions]="_zoomControlOptions"
+		(boundsChange)="mapChangeSubject.next({ event: 'bounds', latLngBounds: $event })"
+		(mapClick)="clearPropList($event)"
+		(mapReady)="mapReady($event)"
+		>
+		<!-- User position -->
+		<agm-marker
+			[latitude]="userPosition.latitude || 0"
+			[longitude]="userPosition.longitude || 0"
+			[label]=""
+			(markerClick)="clickedUserMarker(userPosition, userWindow)"
+			[markerDraggable]="false"
+			[iconUrl] ="{ 
+							url: './assets/images/marker/user-marker.png'
+						}"
+			>
+			<agm-info-window #userWindow>
+				<div class="user-position">
+				{{ 'page.market.market_map.you_are_here' |  translate }}
+				</div>
+			</agm-info-window>
+		</agm-marker>
+
+		<ng-container *ngIf="searchAddress && searchAddress.coordinates && middleware.isSearchAddress">
+			<agm-marker
+				[latitude]="searchAddress?.coordinates[1] || 0"
+				[longitude]="searchAddress?.coordinates[0] || 0"
+				[label]=""
+				(markerClick)="clickedUserMarker({
+					latitude: searchAddress?.coordinates[1],
+					longitude: searchAddress?.coordinates[0]
+				}, userWindow)"
+				[markerDraggable]="false"
+				[iconUrl] ="{ 
+								url: './assets/images/marker/map-marker.png'
+							}"
+				>
+				<agm-info-window #userWindow>
+				<div class="user-position">
+					{{ markerAddress  }}
+				</div>
+				</agm-info-window>
+			</agm-marker>
+		</ng-container>
+	</agm-map>
+</div>
+
+<ng-container *ngIf="selectedProperties && selectedProperties.length">
+    <div class="marker-information" id="markerInformation">
+        <div class="marker-list" id="markerList" #content>
+            <div
+                *ngFor="let selectedProperty of selectedProperties.slice(0, indexOfPropertyDrawer)"
+                class="full-width"
+                [class.less-width]="selectedProperties.length > 1"
+            >
+                <app-map-property-card class="w-100" [property]="selectedProperty"> </app-map-property-card>
+            </div>
+        </div>
+    </div>
+</ng-container>

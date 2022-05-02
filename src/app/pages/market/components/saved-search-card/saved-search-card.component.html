@@ -1,0 +1,24 @@
+<div class="saved-item w-100 position-relative">
+	<div #sliderCard [style.transform]="transformXValue" (click)="onPropertyClicked(searchItem.id)" class="saved-search-item slider-card" >
+		<div class="address-distance w-100 d-flex align-items-center justify-content-between">
+			<div class="address-info">{{ searchItem.searchParams?.address}}</div>
+			<div class="distance-info">< {{ searchItem.searchParams?.criteria?.distance}} Km</div>
+		</div>
+
+		<div class="cost-units w-100 d-flex align-items-center justify-content-between">
+			<div>
+				{{ searchItem.searchParams?.criteria?.price[0] | shortNumber}} - {{ searchItem.searchParams?.criteria?.price[1] | shortNumber }} $
+			</div>
+			<div>{{ searchItem.searchParams?.criteria?.residentialUnits[0] }} - {{ searchItem.searchParams?.criteria?.residentialUnits[1] }} {{ 'label.units' | translate }}</div>
+		</div>
+	</div>
+	
+	<div class="align-self-stretch align-items-stretch mrex-green.lighten-3 icons-bar">
+
+		<div class="align-items-center h-100 right-margin icons-container">
+			<div class="tool-item color-3" (click)="delete()">
+				<img src="assets/icons/trash-16.svg">
+			</div>
+		</div>
+	</div>
+</div>

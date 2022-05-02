@@ -1,0 +1,11 @@
+.settings-page-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+
+  .title {
+    font-size: $line-height-title-sm;
+    font-weight: bold;
+    line-height: $line-height-title-sm;
+  }
+}

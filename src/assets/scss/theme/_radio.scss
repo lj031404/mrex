@@ -1,0 +1,5 @@
+.custom-radio {
+  .custom-control-input:checked ~ .custom-control-label::after {
+    color: $color-green;
+  }
+}

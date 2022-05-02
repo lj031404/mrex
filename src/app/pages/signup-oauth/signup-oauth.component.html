@@ -1,0 +1,35 @@
+<div class="root">
+    <app-header-steps [step]="step" [total]="totalSteps"></app-header-steps>
+
+    <div class="content">
+        <div class="controls">
+
+            <!-- Facebook/Google signup -->
+            <app-step1 *ngIf="step === 1" [form]="form" [step]="step" [errMessage]="errMessage"
+            [isFrom]="isFrom" [error_messages]="error_messages"></app-step1>
+            <app-step2 *ngIf="step === 2" [form]="form" [step]="step" [errMessage]="errMessage"
+                (resendVerification)="getVerificationCode(true)"></app-step2>
+
+        </div>
+        <div class="w-100 center footer-buttons">
+            
+            <!-- Next step -->
+            <button class="btn w-100" [ngClass]="isOauthSignupDisable() ? 'btn-inactive-gray' : 'btn-green'"
+                [disabled]="isOauthSignupDisable()" (click)="next()" *ngIf="step < lastStep">
+                <app-progress-spinner [enabled]="isLoading"></app-progress-spinner>
+                <ng-container *ngIf="!isLoading">{{ "page.signup.next-step" | translate }}</ng-container>
+            </button>
+
+            <!-- Last step -->
+            <button class="btn w-100" (click)="create()"
+                [ngClass]="isLoading || form.controls.verifyCode.value.length < 6 ? 'btn-inactive-gray' : 'btn-green'"
+                [disabled]="isLoading || form.controls.verifyCode.value.length < 6" *ngIf="step === lastStep">
+                <app-progress-spinner [enabled]="isLoading"></app-progress-spinner>
+                <ng-container *ngIf="!isLoading">{{ "page.signup.create-account" | translate }}</ng-container>
+            </button>
+
+            <div class="cancel" (click)="cancel()">{{ "literals.cancel" | translate }}</div>
+        </div>
+    </div>
+</div>
+<app-progress-spinner [enabled]="isLoading"></app-progress-spinner>

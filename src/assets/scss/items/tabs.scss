@@ -1,0 +1,34 @@
+@import '../variables.scss';
+
+.tab-list {
+	display: flex;
+	align-items: center;
+
+	&.fixed-tab {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+        background: white;
+    }
+
+	.tab {
+		flex: 1;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.142rem;
+		padding: 0.75em 0;
+		color: black;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-bottom: 1px solid rgb(78 78 78 / 40%);
+		background-color: white;
+
+		&.selected {
+			background-color: white;
+			border-bottom: 3px solid $color-gray-bold;
+		}
+
+	}
+}

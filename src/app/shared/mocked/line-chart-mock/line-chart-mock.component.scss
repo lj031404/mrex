@@ -1,0 +1,14 @@
+@import "../../../../assets/scss/variables.scss";
+
+.options {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	column-gap: 1em;
+}
+
+.filter-option {
+	margin: auto 20%;
+	text-align: center;
+	font-size: $font-size-text;
+	color: #000;
+}

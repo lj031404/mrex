@@ -1,0 +1,38 @@
+.options {
+	display: flex;
+    align-items: center;
+	justify-content: center;
+	
+	button {
+		margin-right: 1rem;
+	}
+}
+
+.filter-option {
+	margin: auto 20%;
+	text-align: center;
+	font-size: 14px;
+	color: #000;
+}
+
+.legend {
+	.legend-value {
+		color: black;
+		font-size: 0.85rem;
+		font-weight: 400;
+	}
+
+	.legend-mark {
+		width: 1.1rem;
+		height: 1.1rem;
+
+		&.total-gain {
+			border: 1px solid #2f80ed;
+		}
+	}
+
+	.legend-text {
+		color: black;
+		font-size: 1rem;
+	}
+}

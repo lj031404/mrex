@@ -1,0 +1,19 @@
+<div class="news-body d-flex">
+    <div class="alert-image">
+        <img src="assets/alert.png" width="32" height="32">
+    </div>
+    <div class="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto">
+        <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+            <swiper class="swiper-container" fxFlex="auto" [config]="config" [disabled]="false">
+              <div *ngFor="let item of news" class="swiper-slide news-item">
+                <div style="margin-top: 20px">
+                    {{ item.text | translate }} 
+                    <span *ngIf="item.type === 'priceDrop'">
+                        $ {{ item.amount | number }} {{ item.currency }}
+                    </span>
+                </div>
+              </div>
+            </swiper>
+        </div>
+    </div>
+</div>

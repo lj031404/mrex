@@ -1,0 +1,80 @@
+<app-header>
+    <app-go-back-button [action]="closeModal" [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+    <p slot="title">{{'page.market.make_an_offer.title' | translate}}</p>
+</app-header>
+
+<div class="modal-content p-2">
+    <form id="offerForm" [formGroup]="form" (ngSubmit)="sendNotice()">
+        <!-- From -->
+        <div class="form-group">
+            <label>
+                {{'page.market.make_an_offer.from' | translate}}
+            </label>
+            <input 
+                class="form-control"
+                type="text"
+                [placeholder]="'page.market.make_an_offer.from.placeholder' | translate"
+                formControlName="from">
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <label>
+                {{'page.market.make_an_offer.email' | translate}}
+            </label>
+            <input 
+                class="form-control"
+                type="email"
+                [placeholder]="'page.market.make_an_offer.email.placeholder' | translate"
+                formControlName="email">
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+            <label>
+                {{'page.market.make_an_offer.phone' | translate}}
+            </label>
+            <input 
+                class="form-control"
+                type="tel" 
+                mask="0(000) 000-0000" 
+                prefix="+ " 
+                placeholder="+1 (xxx) xxx-xxx" 
+                [showMaskTyped] = "true"
+                [placeholder]="'page.market.make_an_offer.phone.placeholder' | translate"
+                formControlName="phone">
+        </div>
+
+        <!-- Message -->
+        <div class="form-group">
+            <label>
+                {{ 'page.market.make_an_offer.message' | translate }}
+            </label>
+            <textarea 
+                class="form-control"
+                rows="6"
+                [placeholder]="'page.market.make_an_offer.message.placeholder' | translate"
+                formControlName="message">
+            </textarea>
+        </div>
+
+        <!-- Contact Preferences -->
+        <div class="form-group">
+            <label>
+                {{ 'page.market.make_an_offer.contactMeBy' | translate}}
+            </label>
+            <div class="checkboxes form-field-infix">
+                <div class="custom-control custom-checkbox" formArrayName="contactMeBy" *ngFor="let check of checkboxes.controls; let i=index">
+                    <input type="checkbox" class="custom-control-input" [formControlName]="i" [id]="i">
+                    <label class="custom-control-label mb-0" [for]="i">
+                        {{ choices[i].text | translate }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <button class="btn btn-lg btn-green w-100 text-uppercase" form="offerForm" [disabled]="disableButton">
+        {{'page.market.make_an_offer.send_offer' | translate}} <i class="fa fa-chevron-right ml-2"></i>
+    </button>
+</div>

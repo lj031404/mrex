@@ -1,0 +1,156 @@
+@import '../../../../../assets/scss/variables.scss';
+
+.media-article {
+	color: black;
+	overflow-y: auto;
+	height: calc(100vh - 8rem);
+
+	&__info {
+		padding: 0.85rem 0.85rem 0 1.142rem;
+		position: relative;
+	}
+
+	&__thumbnail {
+		display: flex;
+		flex: 1;
+		min-height: 19.3rem;
+		height: 19.3rem;
+		background: black;
+
+		iframe {
+			width: 100%;
+			border: unset!important;
+		}
+	}
+
+	&__body {
+		padding: 0 1.142rem 0.857rem;
+	}
+
+	&__thumbnail {
+		align-items: center;
+		justify-content: center;
+		position: relative;
+
+		.thumbnail_img {
+			width: 100%;
+			border-radius: 18px;
+			object-fit: cover;
+			object-position: center;
+			max-height: 30vh;
+		}
+
+		.video_player {
+			position: absolute;
+			background: #fcfcfd;
+			padding: 0.5rem;
+			border-radius: 1rem;
+		}
+	}
+
+	&__title {
+		font-size: 1.857rem;
+		font-weight: bold;
+		line-height: 2.285rem;
+		margin-bottom: 0.928rem;
+		margin-top: 0.928rem;
+		word-break: break-all;
+
+		> div {
+			max-width: 90%;
+			word-break: break-word !important;
+		}
+		img {
+			top: 0.4rem;
+			right: 0;
+		}
+	}
+
+	&__posted {
+		font-size: 1.142rem;
+		line-height: 1.142rem;
+		color: black;
+		opacity: 0.6;
+	}
+
+	&__description-title {
+		margin-top: 1.2rem;
+		font-size: 1.142rem;
+		line-height: 1.142rem;
+		margin-bottom: 0.3rem;
+		font-weight: 700;
+	}
+
+	&__description {
+		font-size: 1.142rem;
+		line-height: 1.43rem;
+		font-weight: normal;
+		padding-right: 1.8rem;
+
+		&.more {
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			word-wrap: break-word;
+			overflow: hidden;
+		}
+		
+	}
+}
+
+.other-recomended-articles {
+	&__title {
+		color: black;
+		font-size: 1.43rem;
+		font-weight: 700;
+		line-height: 1.14rem;
+		font-weight: 700;
+		margin-bottom: 1.14rem!important;
+		margin-top: 0.857rem;
+		padding: 0 1.142rem;
+	}
+}
+
+.more-collapse {
+	margin-bottom: 1.142rem;
+	font-size: 1rem;
+	line-height: 1.142rem;
+	border-bottom: 1px solid black;
+}
+
+.spinner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divide-line {
+    padding-top: 0.85rem;
+	border-bottom: 1px solid black;
+}
+
+.more-collapse-txt {
+	position: absolute;
+	bottom: 0rem;
+	right: 0.5rem;
+}
+
+cdk-virtual-scroll-viewport {
+    height: 100%;
+}
+.pagination-view {
+	height: 55rem;
+	overflow: auto;
+	width: 100%;
+}
+
+.fixed-title {
+	position: fixed;
+    top: 3.1rem;
+    width: 100%;
+    z-index: 10;
+    background: white;
+	padding: 1rem 1.142rem;
+	margin-top: 0;
+}

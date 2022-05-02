@@ -1,0 +1,42 @@
+:host {
+	.factors {
+		width: 100%;
+		color: black;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		line-height: 1.25rem;
+
+		&>div {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			font-size: 1rem;
+		}
+
+		.cap-rate {
+			span {
+				font-weight: 800;
+				margin-right: 0.25em;
+			}
+			font-weight: bold;
+		}
+
+		i {
+			width: 14px;
+			height: 14px;
+			object-fit: contain;
+			margin-right: 0.5em;
+		}
+
+		.value {
+		  margin-right: 0.25em;
+		}
+
+		.mr {
+		  margin-right: 0.5em;
+		}
+	}
+}

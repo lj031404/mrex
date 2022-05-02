@@ -1,0 +1,66 @@
+<app-header>
+	<app-go-back-button [action]="back.bind(this)" [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+	<p slot="title">{{ 'page.watchlist.property-activity.title' | translate }}</p>
+</app-header>
+
+<app-content [noPadding]="true">
+	<div class="p-1" *ngIf="!header">
+		<app-skeleton Cwidth="100%" Cheight="269"></app-skeleton>
+	</div>
+	<app-property-header [header$]="header$" *ngIf="header"></app-property-header>
+
+	<div class="" *ngIf="!feed">
+		<div class="activity-options-skeleton pl-1 pr-1">
+			<div>
+				<app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+			</div>
+			<div>
+				<app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+			</div>
+			<div>
+				<app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+			</div>
+		</div>
+	</div>
+
+	<div class="p-1" *ngIf="!feed">
+		<div class="mb-2" *ngFor="let empty of emptyFeeds">
+			<app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+		</div>
+	</div>
+	
+	<div class="activity-main" [hidden]="feed.length === 0">
+		
+		<div class="address">
+			<div class="street">{{ addressStr }}</div>
+			<div class="city">{{ city }}</div>
+		</div>
+	
+		<div class="list-cal-model">
+			<div class="item list" (click)="viewProperty()" [class.disabled]="!rootProperty?.isMREXproperty">
+				<img src="./assets/icons/list.png" alt="" width="30" height="29">
+				<div class="value">{{ 'page.watchlist.property-activity.listing' | translate }}</div>
+			</div>
+			<div class="item cal" (click)="calculator()">
+				<img src="./assets/icons/calculator.png" alt="" width="30" height="29">
+				<div class="value">{{ 'page.watchlist.property-activity.calculator' | translate }}</div>
+			</div>
+			<div class="item model" [class.disabled]="masterModelDoc ? false : true" (click)="viewModels()">
+				<img src="./assets/icons/vector.png" alt="" width="30" height="29">
+				<div class="value">{{ 'page.watchlist.property-activity.models' | translate }}</div>
+			</div>
+		</div>	
+	
+		<div class="activity-feed pb-1">
+			<p>
+				<ng-container *ngIf="feed && feed.length">
+					{{ 'page.watchlist.property-activity.feed.title' | translate }}
+				</ng-container>
+				<ng-container *ngIf="!(feed && feed.length)">
+					{{ 'page.watchlist.property-activity.feed.title.noActivity' | translate }}
+				</ng-container>
+			</p>
+			<app-listing-activity-feed [feedData$]="feed$"></app-listing-activity-feed>
+		</div>
+	</div>
+</app-content>

@@ -1,0 +1,43 @@
+<app-header>
+    <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+    <p slot="title">{{ 'page.settings.about.title' | translate }}</p>
+</app-header>
+
+<app-content>
+    <div class="spacer spacer-4"></div>
+
+    <app-item class="item--about" (click)="openAppStore()">
+        <div>
+            <div class="icon-wrapper">
+                <i class="fa fa-star"></i>
+            </div>
+            <label>{{ 'page.settings.about.rate_us' | translate: { store: store } }}</label>
+        </div>
+    </app-item>
+    <app-item class="item--about">
+        <div (click)="openFacebookPage()">
+            <div class="icon-wrapper">
+                <i class="fab fa-facebook-f"></i>
+            </div>
+            <label>{{ 'page.settings.about.like_fb' | translate }}</label>
+        </div>
+    </app-item>
+    <app-item class="item--about" (click)="onTermOfUseClick()">
+        <a>
+            <div class="icon-wrapper">
+                <i class="fa fa-balance-scale"></i>
+            </div>
+            <label>{{ 'page.settings.about.termOfUse' | translate }}</label>
+        </a>
+    </app-item>
+    <app-item class="item--about" (click)="onPrivacyPolicyClick()">
+        <a>
+            <div class="icon-wrapper">
+                <i class="fa fa-user-secret"></i>
+            </div>
+            <label>{{ 'page.settings.about.privacyPolicy' | translate }}</label>
+        </a>
+    </app-item>
+
+    <label class="version-info">{{ version }} ({{ branch }}/{{ gitHash }})</label>
+</app-content>

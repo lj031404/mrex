@@ -1,0 +1,45 @@
+@import '../../../../assets/scss/variables.scss';
+.input-number2 {
+	&__title {
+		font-size: 1rem;
+		font-weight: 600;
+		line-height: 1rem;
+		color: $color-gray-19;
+		font-style: normal;
+		margin-bottom: 0.3rem;
+	}
+
+	&__content {
+		display: flex;
+		padding: 0.37rem 0.4rem;
+		align-items: center;
+		background-color: white;
+		border-radius: 0.3rem;
+
+		.fa {
+			width: 1.688rem;
+    		height: 1.4rem;
+			border: 1px solid $color-gray-20;
+			border-radius: 50%;
+			color: $color-gray-20;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 0.7rem;
+		}
+
+		input {
+			border: unset;
+			color: $color-gray-19;
+			font-size: 1.29rem;
+			font-weight: 400;
+			line-height: 1.54rem;
+			text-align: center;
+		}
+	}
+}
+
+:host(.ng-touched.ng-invalid .input-number2__content) {
+	background-color: rgba(238, 88, 88, 0.2)!important;
+}
+  

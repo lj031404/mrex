@@ -1,0 +1,14 @@
+<!-- <div class="label">
+    {{ title | translate }}
+    <span class="reset" (click)="reset()" *ngIf="showResetButton">{{ 'literals.reset' | translate }}</span>
+</div> -->
+
+<div class="logos">
+    <div *ngFor="let bank of banks" class="logo-item" 
+        (click)="bankClick(bank.name)"
+        [class.disabled]="disabledBanks.includes(bank.name)"
+        [class.selected]="bank.name === activeItem">
+        <img [src]="bank.src" [class.selected]="bank.name === activeItem"/>
+        <span >{{ 'literals.financing.' + bank.name | translate}}</span>
+    </div>
+</div>

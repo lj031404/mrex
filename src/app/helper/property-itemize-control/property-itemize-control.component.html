@@ -1,0 +1,77 @@
+<form [formGroup]="form">
+	<app-form-field [rtl]="true" *ngIf="!itemsOnly">
+	  <span appFormFieldLabel [span]="labelSpan">{{ label | translate }}</span>
+	  <label>
+		<app-input-number
+		  tabindex="tabIndex"
+		  [placeholder]="placeholder | translate"
+		  [digitsFormat]="totalFormat"
+		  [disabled]="checked"
+		  [control]="form.get('total')">
+		  </app-input-number>
+		<span appFormFieldSuffix>{{ totalUnit | translate }}</span>
+	  </label>
+	</app-form-field>
+  
+	<app-form-field [leftMargin]="false" *ngIf="displayCheck">
+	  <div class="custom-control custom-checkbox">
+		<input [id]="checkControlId" 
+			   type="checkbox" 
+			   class="custom-control-input" 
+			   [tabindex]="itemsOnly ? tabIndex : tabIndex + 1"
+			   [checked]="checked"             
+			   (change)="onCheckChange($event.target.checked)">
+  
+		<!-- Fixed label for checkbox -->
+		<label class="custom-control-label mb-0" [for]="checkControlId" *ngIf="checkLabel">{{ checkLabel | translate }}</label>
+  
+		<!-- Different labels based on checkbox value -->
+		<label class="custom-control-label mb-0" [for]="checkControlId" >{{ (checked ? checkLabelTrue : checkLabelFalse) | translate }}</label>
+	  </div>
+	</app-form-field>
+	
+	<h4 *ngIf="title" class="title">{{title}}</h4>
+  
+	  <ng-container *ngIf="checked">
+  
+		  <div appLockedDirective 
+				appLockedDirective 
+				[title]  = "'directives.locked.title' | translate" 
+				[text]   = "'directives.locked.' + ruleId | translate" 
+				[locked] = "showLocked"
+				  > 
+				  
+			  <div class="property-itemized-fields-wrapper" 
+				  formArrayName="items" 
+  
+				  appSubscriptionRequire
+				  [show]="showSubscriptionRequired"
+				  [ruleId]="ruleId"
+				  [featureName]="featureName"
+			  >
+  
+			  <ng-container *ngFor="let control of itemControls; let i=index" [formGroupName]="i">
+				  <app-form-field *ngIf="!control.value.hide" [rtl]="true" [leftMargin]="leftMargin" [disabled]="control.value.disabled">
+				  {{ control.value.label | translate }}
+				  <label>
+					  <app-input-number              
+					  tabindex="i"
+					  [placeholder]="control.value.placeholder | translate"
+					  [digitsFormat]="'1.' + control.value.decimals + '-' + control.value.decimals"
+					  [style.text-align]="align"
+					  [disabled]="control.value.disabled"
+					  [control]="control.get('amount')">
+					  </app-input-number>
+  
+					  &nbsp;
+					  <span appFormFieldSuffix>{{ control.value.unit | translate }}</span>
+				  </label>
+				  </app-form-field>
+			  </ng-container>
+			  </div>
+		  </div>
+  
+	  </ng-container>
+  
+  </form>
+  

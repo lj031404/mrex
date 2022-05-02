@@ -1,0 +1,33 @@
+<div class="p-2">
+	<div class="options">
+		<button class="btn" *ngFor="let chart of stackChart" (click)="switchChart(chart)" [ngClass]="chart.id === currentChartId ? 'btn-green' : 'btn-inactive-gray'" >{{ chart.title }}</button>
+	</div>
+	
+	<ng-container *ngFor="let chart of stackChart">
+		<app-stack-chart [stackChart]="chart"></app-stack-chart>
+		<div class="mt-2 mb-2 filter-option">
+			<i class="fa fa-chevron-left" aria-hidden="true" (click)="viewPrevYear()" [class.invisible]="!currentYearIndex"></i>
+				<ng-container *ngFor="let graph of chart.graphData; index as idx">
+					<span class="pr-2 pl-2" *ngIf="currentYearIndex === idx">{{ graph.year }}</span>
+				</ng-container>
+			<i class="fa fa-chevron-right" aria-hidden="true" (click)="viewNextYear()" [class.invisible]="currentYearIndex ===  chart.graphData.length - 1"></i>
+		</div>	
+		<div class="legend">
+			<div *ngFor="let valueField of chart.valueFieldData" class="legend-item d-flex align-items-center justify-content-between">
+				<div class="d-flex align-items-center">
+					<span class="legend-mark mr-1" [ngStyle]="{'background-color': valueField.color}"></span>
+					<span class="legend-text">{{ valueField.title }}</span>
+				</div>
+				<div class="legend-value">{{ chart.graphData[currentYearIndex][valueField.name] | currency: 'CAD': 'symbol-narrow': '1.0-0' }} </div>
+			</div>
+			<div class="legend-item d-flex align-items-center justify-content-between">
+				<div class="d-flex align-items-center">
+					<span class="legend-mark mr-1 total-gain" [ngStyle]="{'background-color': '#fff'}"></span>
+					<span class="legend-text">{{ 'pages.watchlist.total_gain' | translate }}</span>
+				</div>
+				<div class="legend-value">{{ chart.graphData[currentYearIndex]['total'] | currency: 'CAD': 'symbol-narrow': '1.0-0' }}</div>
+			</div>
+		</div>
+	</ng-container>
+	
+</div>

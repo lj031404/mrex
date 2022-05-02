@@ -1,0 +1,122 @@
+@import '../../../../../assets/scss/variables.scss';
+
+:host {
+	display: block;
+}
+
+$media-title-line-height: 1.286rem;
+
+.media-article-card  {
+	.media-article-information {
+		min-height: 7rem;
+		margin-left: 0.7rem;
+		width: 62%;
+		border-bottom: 1px dashed rgb(75 75 75 / 0.3);
+		padding-bottom: 4px;
+		
+		&.text-white {
+			border-bottom: 1px solid white;
+		}
+
+		.media-title {
+			font-weight: bold;
+			font-size: 1rem;
+			color: black;
+			display: -webkit-box;
+			overflow: hidden;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;
+			word-wrap: break-word;
+			padding: 0 0 0.1em 0;
+			flex: 1;
+		}
+
+		.play-item-summary {
+			line-height: $media-title-line-height;
+			max-height: $media-title-line-height * 4;
+		}
+
+		.media-title-content {
+			display: -webkit-box;
+			overflow: hidden;
+			-webkit-line-clamp: 4;
+			-webkit-box-orient: vertical;
+			word-wrap: break-word;
+			line-height: 1.142rem;
+		}
+
+		.posted-date {
+			padding-bottom: 3px;
+
+		}
+	}
+
+	.media-thumbnail {
+		width: 38%;
+		display: flex;
+		border-radius: 8px;
+		height: 6.78rem;
+		position: relative;
+		align-items: center;
+		justify-content: center;
+
+		.thumbnail-image {
+			border-radius: 8px;
+			width: 100%;
+			object-fit: cover;
+			z-index: 2;
+		}
+
+		.play {
+			position: absolute;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+			z-index: 2;
+
+			span {
+				background-color: black;
+				opacity: 0.6;
+				border-radius: 50%;
+				height: 1.8rem;
+				width: 1.8rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+		
+
+		youtube-player {
+			width: 100%;
+			border-radius: 18px;
+			iframe {
+				width: 100%;
+			}
+		}
+	}
+}
+
+.playitem-summary {
+	line-height: 1.286rem;
+}
+
+.placeholder-img {
+	background-color: $color-green;
+	background-repeat: no-repeat;
+	background-image: url(assets/icons/default_logo.svg);
+	background-position: center;
+	background-size: 58% 58%;
+}
+  
+.img-placeholder-text {
+	width: 100%;
+	font-size: 1rem;
+	color: white;
+	text-align: center;
+	z-index: 1;
+	position: absolute;
+	bottom: 0.3rem;
+}

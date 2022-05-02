@@ -1,0 +1,136 @@
+<form class="property-form" [formGroup]="form">
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.property-info.name.label' | translate }}
+    </label>
+    <app-form-field [leftMargin]="false">
+        <label>
+            <input
+                type="text"
+                tabindex="1"
+                placeholder="{{ 'helper.property-add.components.property-info.name.placeholder' | translate }}"
+                formControlName="name">
+        </label>
+    </app-form-field>
+
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.property-info.location.label' | translate }}
+    </label>
+    <app-address-control [startTabIndex]="2" [form]="form.get('address')"></app-address-control>
+
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.property-info.features.label' | translate }}
+    </label>
+    <app-form-field>
+        <span appFormFieldLabel [span]="4">
+            {{ 'helper.property-add.components.property-info.propertyType.label' | translate }}
+        </span>
+        <label>
+            <select tabindex="8" formControlName="type">
+                <option value="">
+                    {{ 'helper.property-add.components.property-info.select' | translate}}
+                </option>
+                <option *ngFor="let key of propertyOptionKeys" [value]="key">{{PropertyType[key] | translate }}</option>
+            </select>
+        </label>
+    </app-form-field>
+
+    <app-form-field [rtl]="true">
+        <span appFormFieldLabel [span]="8">
+            {{ 'helper.property-add.components.property-info.yearOfConstruction.label' | translate }}
+        </span>
+        <label>
+            <input numbersOnly type="number" tabindex="9" placeholder="1998" step="1" min="0" formControlName="yearOfConstruction">
+        </label>
+    </app-form-field>
+
+    <app-form-field [rtl]="true">
+        <span appFormFieldLabel [span]="8">
+            {{ 'helper.property-add.components.property-info.floors.label' | translate }}
+        </span>
+        <label>
+            <input numbersOnly type="number" tabindex="10" placeholder="0" step="1" min="0" formControlName="floors">
+        </label>
+    </app-form-field>
+
+    <div class="form-group">
+        <span class="form-label" cols="6" [innerHTML]="'helper.property-add.components.property-info.area.label' | translate">
+        </span>
+
+        <div class="d-flex align-items-center" cols="8">
+            <app-form-field [rtl]="true" [span]="8">
+                <label>
+                    <input type="number" tabindex="11" step="1" min="0" placeholder="0" formControlName="footageWidth">
+                </label>
+                <span appFormFieldSuffix 
+                    [innerHTML]="'helper.property-add.components.property-info.area.suffix' | translate" class="max-text-input">                    
+                </span>
+            </app-form-field>
+
+            <span>&#10005;</span>
+
+            <app-form-field [rtl]="true" [span]="5">
+                <label>
+                    <input type="number" tabindex="12" step="1" min="0" placeholder="0" formControlName="footageHeight" class="max-text-input">
+                </label>
+                <span appFormFieldSuffix
+                [innerHTML]="'helper.property-add.components.property-info.area.suffix' | translate">
+                </span>
+            </app-form-field>
+        </div>
+    </div>
+
+    <app-form-field [rtl]="true">
+        <span appFormFieldLabel [span]="8">
+            {{ 'helper.property-add.components.property-info.units.label' | translate }}
+        </span>
+        <label>
+            <input
+                type="tel"
+                tabindex="13"
+                placeholder="{{ 'helper.property-add.components.property-info.units.placeholder' | translate }}"
+                step="1"
+                min="1"
+                max="100"
+                mask="99"
+                [attr.disabled]="itemizeUnitsCheck ? '' : null"
+                formControlName="residentialUnits">
+        </label>
+        <span appFormFieldSuffix
+        [innerHTML]="'helper.property-add.components.property-info.units.suffix' | translate"></span>
+    </app-form-field>
+
+    <app-form-field>
+        <div class="custom-control custom-checkbox">
+            <input id="itemize_units_check" type="checkbox" class="custom-control-input" tabindex="14"
+                   [checked]="itemizeUnitsCheck"
+                   (change)="onItemizeUnitsCheck($event)"
+            >
+            <label class="custom-control-label mb-0" for="itemize_units_check">
+                {{ 'helper.property-add.components.property-info.units.itemize' | translate }}
+            </label>
+        </div>
+    </app-form-field>
+
+    <ng-container *ngIf="itemizeUnitsCheck">
+        <ng-container formGroupName="residentialDistribution">
+            <div class="property-itemized-fields-wrapper" formArrayName="items">
+                <ng-container *ngFor="let itemizeUnit of itemizeUnitsArray.controls; let i=index" [formGroupName]="i">
+                    <app-form-field [rtl]="true" [leftMargin]="true">
+                        <label>
+                            <span appFormFieldLabel [span]="4">{{itemizeUnit.get('label')?.value}} <span class="ml-auto">&#10005;</span></span>
+                            <input
+                                type="number"
+                                step="1"
+                                min="0"
+                                [tabindex]="15 + i"
+                                placeholder="0"
+                                formControlName="amount"
+                                oninput="validity.valid || (value=null)">
+                        </label>
+                    </app-form-field>
+                </ng-container>
+            </div>
+        </ng-container>
+    </ng-container>
+
+</form>

@@ -1,0 +1,193 @@
+<app-header>
+    <p slot="title">{{ 'page.portfolio.summary.title' | translate }}</p>
+</app-header>
+
+<app-content [noPadding]="true" customClassName="portfolioSummaryScreen">
+    <div class="portfolio-summary-content">
+        <ng-container *ngIf="true">
+            <ng-container *ngIf="portfolioSummary && !spinnerService.isLoading && (portfolioSummary.buildings || portfolioSummary.units || pendingProperties.length || draftProperties.length)">
+                <div class="back">
+                    <div class="d-flex flex-column align-items-center property-building-unit">
+                        <div class="properties">{{ 'page.portfolio.summary.your_properties' | translate }}</div>
+                        <div class="buildings">{{ portfolioSummary.buildings || 0}} 
+                            <ng-container *ngIf="portfolioSummary.buildings <= 1">
+                                {{ 'page.portfolio.summary.building' | translate }}
+                            </ng-container>
+                            <ng-container *ngIf="portfolioSummary.buildings > 1">
+                                {{ 'page.portfolio.summary.buildings' | translate }}
+                            </ng-container>
+                        </div>
+                        <div class="units">
+                            <ng-container  *ngIf="portfolioSummary.units <= 1">
+                                {{ portfolioSummary.units || 0}} {{ 'page.portfolio.summary.unit' | translate }}
+                            </ng-container>
+                            <ng-container  *ngIf="portfolioSummary.units > 1">
+                                {{ portfolioSummary.units }} {{ 'page.portfolio.summary.units' | translate }}
+                            </ng-container>
+                        </div>
+                    </div>
+    
+                    <div [class]="'portfolio-images w-100' + ' ' + 'portfolio-img' + portfolioImages.length " [class.d-grid]="portfolioImages.length > 1">
+                        <ng-container *ngFor="let img of portfolioImages; index as idx">
+                            <div [class]="'portfolio-box-' + idx">
+                                <img [src]="img" appDefaultImage>
+                            </div>
+                        </ng-container>
+                    </div>
+                  
+                </div>
+                <ng-container *ngIf="portfolioSummary.buildings || portfolioSummary.units">
+                    <div class="summary-section section--probability" *ngIf="portfolioSummary.portfolio && portfolioSummary.portfolio.length">
+                        <div class="probability-item" *ngFor="let portfolio of portfolioSummary.portfolio">
+                            <span class="category">{{'page.home.your_portfolio.' + portfolio.type | translate}}</span>
+                            <p class="value" *ngIf="portfolio.value !== null">{{ portfolio.value | shortNumber }} $</p>
+                            <p class="value" *ngIf="portfolio.value == null"> - </p>
+                        </div>
+                    </div>
+            
+                    <div class="chartarea">
+                        <ng-container *ngFor="let item of portfolioSummary.chartInputDataList">
+                            <div>
+                                <app-chart-collapse 
+                                    *ngIf="item.chartType === ChartTypes.METER"
+                                    [label]="item.label | translate" 
+                                    [value]="item.value" 
+                                    [chartData]="item.meterInfo"
+                                    [chartType]="item.chartType" 
+                                    [showData]="item.showData">
+                                </app-chart-collapse>
+
+                                <app-chart-collapse 
+                                    *ngIf="item.chartType === ChartTypes.PROGRESS_BAR_GROUP"
+                                    [label]="item.label | translate" 
+                                    [value]="item.value" 
+                                    [chartData]="item.progressBar"
+                                    [chartType]="item.chartType" 
+                                    [showData]="item.showData">
+                                </app-chart-collapse>
+
+                                <app-chart-collapse 
+                                    *ngIf="item.chartType === ChartTypes.PIE || item.chartType === ChartTypes.FILL_BETWEEN_LINES"
+                                    [label]="item.label | translate" 
+                                    [value]="item.value" 
+                                    [chartData]="item.chartData"
+                                    [chartType]="item.chartType" 
+                                    [showData]="item.showData">
+                                </app-chart-collapse>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="refinances" *ngIf="portfolioSummary.upcomingRefinances && portfolioSummary.upcomingRefinances.length">
+                        <div class="title">{{ 'page.portfolio.summary.upcoming_refinances' | translate }}</div>
+                        <app-listing-activity-feed [feedData$]="feed$"></app-listing-activity-feed>
+                    </div>
+                    <hr>
+                </ng-container>
+            </ng-container>
+            
+            <div class="p-1" *ngIf="spinnerService.isLoading">
+                <app-skeleton Cwidth="100%" Cheight="269"></app-skeleton>
+
+                <div class="activity-options-skeleton pt-2">
+                    <div>
+                        <app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+                    </div>
+                    <div>
+                        <app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+                    </div>
+                    <div>
+                        <app-skeleton Cwidth="100%" Cheight="73"></app-skeleton>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-1" *ngIf="!draftProperties || !pendingProperties">
+                <div class="d-flex align-items-start mb-2" *ngFor="let empty of emptyProps">
+                    <div class="mr-2">
+                        <app-skeleton Cwidth="113px" Cheight="113"></app-skeleton>
+                    </div>
+                    <div class="w-100">
+                        <app-skeleton Cwidth="100%" Cheight="35"></app-skeleton>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="draftProperties">
+                <div class="property-card"  *ngFor="let draftCard of draftProperties">
+                    <app-property-pending-card 
+                        [onPropertyClicked]="navigateToEditProperties.bind(this)"
+                        [onDelete]="onDeletePortfolioProp.bind(this)"
+                        [pendingProperty]="draftCard">
+                    </app-property-pending-card>
+                </div>
+            </div>
+
+            <div *ngIf="pendingProperties">
+                <div class="property-card" *ngFor="let pendingProperty of pendingProperties">
+                    <app-property-pending-card 
+                        [onDelete]="onDeletePendingPortfolioProp.bind(this)"
+                        [pendingProperty]="pendingProperty">
+                    </app-property-pending-card>
+                </div>
+            </div>
+
+            <div *ngIf="portfolioSummary && portfolioSummary.properties && portfolioSummary.properties.length">
+                <div class="property-card" *ngFor="let card of portfolioSummary.properties">
+                    <app-property-card 
+                        [onDelete]="onDeletePortfolioProp.bind(this)"
+                        [countModels]="countModels[card.propertyId]"
+                        [portfolioCard]="card" 
+                        [onPropertyClicked]="navigateToProperties.bind(this)"
+                        >
+                    </app-property-card>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="portfolio-empty-state" *ngIf="!spinnerService.isLoading && !portfolioSummary.buildings && !portfolioSummary.units && !pendingProperties.length && !draftProperties.length">
+            <div class="no-prop-yet">{{ 'pages.portfolio.portfolio_summary.still_no_prop_on_summary' |  translate }}</div>
+            <div class="start-do-add-now">
+                <div class="start-do-add text-center">{{ 'pages.portfolio.portfolio_summary.start_do_add' | translate }}</div>
+                <div class="start-do-now text-center">{{ 'pages.portfolio.portfolio_summary.now' |  translate }}</div>
+            </div>
+            <div class="w-50 super-user" [innerHTML]="'pages.portfolio.portfolio_summary.super-user' | translate"></div>
+
+            <div class="benefits-content position-relative">
+                <img src="assets/icons/super-user.png" class="super-user-icon bg-white">
+                <div>
+                    <div class="benefits-title">{{ 'pages.portfolio.portfolio_summary.benefits' | translate }}</div>
+                    <div>
+                        <div class="d-flex align-items-start benefit-item">
+                            <img src="assets/icons/green-check.svg">
+                            <span [innerHTML]="'pages.portfolio.portfolio_summary.track_value_in_realtime' | translate"></span>
+                        </div>
+                        <div class="d-flex align-items-start benefit-item">
+                            <img src="assets/icons/green-check.svg">
+                            <span [innerHTML]="'pages.portfolio.portfolio_summary.maximize_rent' | translate"></span>
+                        </div>
+                        <div class="d-flex align-items-start benefit-item">
+                            <img src="assets/icons/green-check.svg">
+                            <span [innerHTML]="'pages.portfolio.portfolio_summary.make_better_decision' | translate"></span>
+                        </div>
+                        <div class="d-flex align-items-start benefit-item">
+                            <img src="assets/icons/green-check.svg">
+                            <span [innerHTML]="'pages.portfolio.portfolio_summary.refinancing_decisions' | translate"></span>
+                        </div>
+                        <div class="d-flex align-items-start benefit-item">
+                            <img src="assets/icons/green-check.svg">
+                            <span [innerHTML]="'pages.portfolio.portfolio_summary.beat_market' | translate"></span>
+                        </div>
+                        <div class="d-flex align-items-start benefit-item">
+                            <img src="assets/icons/green-check.svg">
+                            <span [innerHTML]="'pages.portfolio.portfolio_summary.cashflow' | translate"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-first-prop">
+                <button class="btn btn-primary w-100" (click)="openSearchDrawer()">{{ 'pages.portfolio.portfolio_summary.add_your_first_property' |  translate }}</button>
+            </div>
+        </div>
+    </div>
+</app-content>
+<app-progress-spinner [enabled]="isLoading"></app-progress-spinner>

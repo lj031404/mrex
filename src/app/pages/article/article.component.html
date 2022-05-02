@@ -1,0 +1,19 @@
+<app-header>
+    <app-go-back-button [action]="back" [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+    <p *ngIf="articleInformation?.type=='video'" slot="title" class="text-capitalize">
+        {{ 'pages.article.article.type-video' | translate }}
+    </p>
+    <p *ngIf="articleInformation?.type=='article'" slot="title" class="text-capitalize">
+        {{ 'pages.article.article.type-article' | translate }}
+    </p>
+</app-header>
+<div class="article-detail w-100" [ngClass]="articleInformation && articleInformation.type + '_content'">
+    <ng-container *ngIf="articleInformation && articleInformation.type === 'article'">
+        <app-blog-article [articleInformation]="articleInformation" [close]="back"></app-blog-article>
+    </ng-container>
+
+    <ng-container *ngIf="articleInformation && articleInformation.type !== 'article'">
+        <app-video-article [articleInformation]="articleInformation" [close]="back"></app-video-article>
+    </ng-container>
+</div>
+

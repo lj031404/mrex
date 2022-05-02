@@ -1,0 +1,43 @@
+					
+
+<div class="sales-comparables bg-white" *ngIf="salesComparison">
+	<div class="sales-address p-2 pt-1">
+		<div class="sales-address__street">{{ salesComparison.address.street }}</div>
+		<div class="sales-address__state">{{ salesComparison.address.state }}</div>
+	</div>
+	<div class="comparable-list mt-1">
+		<div *ngFor="let comparable of salesComparison.comparables" >
+			<app-item class="" [ngClass]="'d-flex comparable'">
+				<div class="image position-relative" (click)="openAdvancedSalesComps(comparable)">
+					<img [src]="comparable.imageUrl" width="114px" height="114px">
+					<div class="comparable-type position-absolute">
+						{{ comparable.eventType }} {{ comparable.eventDate | date: 'MM/dd/y'}}
+					</div>
+				</div>
+				<div class="comparable-detail">
+					<div class="price d-flex align-items-center justify-content-between">
+						<span (click)="openAdvancedSalesComps(comparable)">{{ comparable.price | number: '1.0-0' }} $ </span>
+						<mat-slide-toggle class="app-slide-toggle" [checked]="comparable.isChecked" (change)="changeActivity(comparable)"></mat-slide-toggle>
+					</div>
+					<div class="address" (click)="openAdvancedSalesComps(comparable)">
+						<div class="street">{{ comparable.address.street }}</div>
+						<div class="state">{{ comparable.address.state }} - <b>{{ comparable.distance | shortNumber: '1.0-1' }} km </b></div>
+					</div>
+					<div class="kpis" (click)="openAdvancedSalesComps(comparable)">
+						<div class="kpi" *ngFor="let kpi of comparable.kpis; index as idx">
+							<div class="kpi-label" [class.text-center]="kpi.label !== 'caprate'">
+								{{ 'page.sales_comparison.potential_header_' + kpi.label | translate }}
+							</div>
+							<div class="kpi-value text-center" [class.text-center]="kpi.label !== 'caprate'">
+								{{ kpi.value | number: '1.0-2'}}{{ kpi.label === 'caprate' ? '%' : '$'}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="comparable-toggle">
+					
+				</div> -->
+			</app-item>
+		</div>
+	</div>
+</div>		

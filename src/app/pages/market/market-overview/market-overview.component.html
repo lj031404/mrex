@@ -1,0 +1,40 @@
+<!-- tabs -->
+<div class="secondary-header d-flex flex-column">
+    <app-tab-controller class="w-100 pr-1 pl-1">
+        <app-tab-indicator (click)="switchTab(MarketMap.LIST)" [class.active]="currentTab === MarketMap.LIST" routerLinkActive="active">
+            <span class="indicator-label font-weight-normal text-uppercase">{{ 'page.market.overview.tab_list' | translate }}</span>
+        </app-tab-indicator>
+        <app-tab-indicator (click)="switchTab(MarketMap.MAP)" [class.active]="currentTab === MarketMap.MAP" routerLinkActive="active">
+            <span class="indicator-label font-weight-normal text-uppercase">{{ 'page.market.overview.tab_map' | translate }}</span>
+        </app-tab-indicator>
+        <!-- hidden in v2
+            <app-tab-indicator (click)="switchTab(MarketMap.SAVED)" [class.active]="currentTab === MarketMap.SAVED" routerLinkActive="active">
+                <span class="indicator-label font-weight-normal text-uppercase">{{ 'page.market.overview.tab_saved' | translate }}</span>
+            </app-tab-indicator>
+        -->
+    </app-tab-controller>
+
+    <div class="address-search" (click)="middleware.listeningMarketContentClicked.next(true)">
+        <app-autocomplete 
+            (chosenAddress)="addressClick($event)" 
+            (chosenPlace)="onUpdatePlace($event)" 
+            [address]="address"
+            icon="assets/images/search.png" 
+            placeholder="{{ 'literals.searchAddress' | translate }}"></app-autocomplete>  
+    </div>
+
+    <label class="results-count" *ngIf="false"> {{ propertyCount$ | async }} {{ 'page.market.overview.search_result' | translate }}</label>
+</div>
+
+<div class="market-content" >
+    <ng-container *ngIf="isGeoReady">
+        <router-outlet></router-outlet>
+    </ng-container>
+</div>
+
+<div class="map-loading-status d-flex align-items-center" *ngIf="currentTab === MarketMap.MAP && isMapLoading">
+	<div class="position-relative spinner-container">
+		<app-progress-spinner class="position-absolute" [align]="'left'" [enabled]="true" class="fb-loading-spinner"></app-progress-spinner>
+	</div>
+	<span class="spinner-loading">{{ 'spinner.loading' | translate}}</span>
+</div>

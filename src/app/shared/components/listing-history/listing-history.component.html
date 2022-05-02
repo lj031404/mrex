@@ -1,0 +1,9 @@
+<ng-container *ngFor="let list of lists">
+	<div class="history-list">
+		<div class="price-event">
+			<div class="price">{{list.price | number}} {{list.unit}}</div>
+			<div class="event">{{list.eventType}}</div>
+		</div>
+		<div class="date">List: {{list.from | dateFormat}} | End: {{list.to | dateFormat}}</div>
+	</div>
+</ng-container>

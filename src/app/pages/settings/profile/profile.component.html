@@ -1,0 +1,43 @@
+
+
+    <app-header>
+        <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+        <p slot="title">{{'page.settings.profile.title' | translate}}</p>
+    </app-header>
+    
+    <app-content>
+        <div class="spacer spacer-3"></div>
+    
+        <form [formGroup]="profileFormGroup">
+            <app-item>
+                <div class="icon-wrapper">
+                    <i class="mi mi-email"></i>
+                </div>
+                <app-form-field>
+                    <label>
+                        <input formControlName="email" [placeholder]="'page.settings.profile.email' | translate" tabindex="1" type="text">
+                    </label>
+                </app-form-field>
+            </app-item>
+            <app-item>
+                <div class="icon-wrapper">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <app-form-field>
+                    <label>
+                        <input formControlName="street" [placeholder]="'page.settings.profile.street' | translate" tabindex="2" type="text">
+                    </label>
+                </app-form-field>
+            </app-item>
+            <app-item>
+                <div class="icon-wrapper"></div>
+                <app-form-field>
+                    <label>
+                        <input formControlName="postalCode" [placeholder]="'page.settings.profile.postal_code' | translate" tabindex="3" type="text">
+                    </label>
+                </app-form-field>
+            </app-item>
+        </form>
+    </app-content>
+    
+

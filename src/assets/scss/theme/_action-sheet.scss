@@ -1,0 +1,31 @@
+
+.action-sheet {
+  @include flex-column();
+
+  .app-item {
+    margin-bottom: 0;
+  }
+
+  .app-item.item--action-sheet-item {
+    padding: 8px 20px;
+    text-align: center;
+  }
+}
+
+.app-action-drawer-outlet {
+  .action-drawer-overlay,
+  .app-action-button .btn-wrapper,
+  .app-action-drawer .action-drawer-container {
+    z-index: 1030;
+  }
+
+  .app-action-drawer .action-drawer-container {
+    font-size: 16px;
+    color: black;
+
+    .item--action-item {
+      font-size: inherit;
+      color: inherit;
+    }
+  }
+}

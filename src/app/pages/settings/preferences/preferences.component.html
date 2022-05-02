@@ -1,0 +1,24 @@
+
+    <app-header>
+        <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+        <p slot="title">{{'page.settings.preferences.title' | translate}}</p>
+    </app-header>
+    
+    <app-content>
+        <div class="spacer spacer-5"></div>
+    
+        <app-item class="item-flex">
+            <span>{{'literals.language' | translate}}</span>
+            <select class="custom-select lang-select border-bottom-0 mr-0" (change)="onLanguageChange($event)" [value]="language">
+                <option [value]="AppLanguage.English">{{ 'language.english' | translate }}</option>
+                <option [value]="AppLanguage.French_CA">{{ 'language.french' | translate }}</option>
+            </select>
+        </app-item>
+    
+        <app-item class="item-flex">
+            <span>{{'page.settings.preferences.receive_notifications' | translate}}</span>
+            <mat-slide-toggle class="app-slide-toggle" [checked]="notification" (change)="onNotificationChange($event)"></mat-slide-toggle>
+        </app-item>
+    </app-content>
+    
+

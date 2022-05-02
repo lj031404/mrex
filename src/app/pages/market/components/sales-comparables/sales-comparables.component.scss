@@ -1,0 +1,96 @@
+@import '../../../../../assets/scss/variables.scss';
+
+.sales-comparables {
+	
+	.sales-address {
+		border-bottom: 1px solid $color-gray-11;
+		&__street {
+			font-size: 1.7em;
+			font-weight: normal;
+			color: black;
+		}
+		&__state {
+			font-size: 1em;
+			color: $color-gray-10;
+		}
+	}
+
+	.comparable-list {
+		.comparable {
+			margin-bottom: 0.6rem;
+		}
+
+		.image {
+			margin-left: 0.3rem;
+			img {
+				border-radius: 0.857rem;
+			}
+
+			.comparable-type {
+				font-size: .7em;
+				color: white;
+				background-color: rgba(242, 153, 74, .9);
+				position: relative;
+			    bottom: 0.1rem;
+				border-bottom-right-radius: 0.857rem;
+				border-bottom-left-radius: 0.857rem;
+				text-align: center;
+				padding-top: 3px;
+				padding-bottom: 3px;
+				width: 100%;
+				text-transform: capitalize;
+			}
+			
+		}
+
+		.comparable-detail {
+			padding: 0 0.642rem;
+
+			.kpis {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				justify-content: space-between;
+				margin-top: 6px;
+				justify-items: left;
+
+				.kpi {
+					width: 100%;
+					.kpi-label {
+						color: $color-gray-12;
+						font-size: 0.85em;
+						font-weight: bold;
+						text-align: left;
+					}
+					.kpi-value {
+						text-align: left;
+						color: $color-cadet-blue;
+						font-weight: 700;
+						font-size: 1.43rem;
+					}
+				}
+
+				> div {
+					&:nth-child(2) {
+						padding: 0 0.3rem;
+					}
+				}
+			}
+
+			.price {
+				font-size: 1.7em;
+				font-weight: bold;
+				color: #000000;
+			}
+
+			.address {
+				font-size: .9em;
+				color: #000000;
+				line-height: 1.2em;
+			}
+		}
+		.comparable-toggle {
+			margin-right: 0.6rem;
+		}
+		
+	}
+}																																																

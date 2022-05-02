@@ -1,0 +1,122 @@
+@import "../../../../assets/scss/mixin";
+@import "../../../../assets/scss/variables.scss";
+
+:host {
+
+  .pac-container:after {
+    /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+
+    background-image: none !important;
+    height: 0px;
+  }
+
+  ::ng-deep {
+    .btn-filter {
+      width: 90px;
+      height: 35px;
+      margin-right: -4px;
+      border: 1px solid white;
+      border-radius: 3px;
+      background-color: transparent;
+      font-size: $font-size-text-md;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+  }
+
+  .secondary-header {
+    width: 100%;
+    height: 8.71rem;
+    background-color: $color-green;
+    position: relative;
+    z-index: 100;
+
+    .app-tab-controller {
+      width: 70%;
+      height: 100%;
+      background-color: transparent;
+    }
+
+    .address-search {
+      background-color: $color-green;
+        position: relative;
+        padding: 1.07rem 1.142rem 0.92rem 1.142rem;
+    }
+
+    .results-count {
+      margin-left: auto;
+      margin-right: 12px;
+      color: white;
+    }
+
+  }
+
+  .app-tab-controller {
+    .app-tab-indicator {
+      height: 100%;
+      border-bottom: 8px solid transparent;
+
+      &.active {
+        border-bottom: 8px solid white;
+      }
+    }
+
+    ::ng-deep {
+      .tab-indicator {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-end;
+        margin-bottom: 0.7rem;
+      }
+    }
+
+    .indicator-label {
+      font-weight: bold;
+      color: white;
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.focus-in {
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+.marketmapbox-content {
+  display: flex;
+  height: calc(100% - 5rem);
+  flex: 1;
+  flex-direction: column;
+}
+
+.market-skeleton-content {
+  z-index: 1000;
+  width: 100%;
+  top: 16.1rem;
+  background: white;
+  height: calc(100vh - 20.5rem);
+  position: absolute;
+  overflow: hidden;
+}
+
+
+.indicator-label {
+  font-weight: normal!important;
+  line-height: 1.142rem;
+}
+
+.map-loading-status {
+	width: 65%;
+	background-color: $color-gray-21;
+	padding: 0.2rem 1.14rem;
+	position: absolute;
+    bottom: 4.4rem;
+}
+
+.spinner-container {
+	width: 2rem;
+}

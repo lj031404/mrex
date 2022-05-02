@@ -1,0 +1,143 @@
+<!-- Bank selector -->
+<app-banks-selector
+    title = "helper.property-add.components.purchase-info.financingType.label"
+    [itemClick]="updateFinancingParameters.bind(this)"
+    [onReset]="reset.bind(this)"
+    [excludeBank]="[]"
+    [disabledBanks]="disabledBanks"
+    [activeItem] = "_bank"
+    [showResetButton]=true
+></app-banks-selector>   
+
+<!-- Financing parameters -->
+<div [formGroup]="economicValues.at(this._financingTypeIndex)"
+
+    appSubscriptionRequire
+    [show]="_financingType !== 'CHMC'"
+    ruleId="watchlist.financing"
+    [featureName]="featureName"    
+    >
+    
+    <!-- CHMC insured -->
+    <app-form-field [rtl]="true">
+        <span appFormFieldLabel [span]="11">
+            {{ 'purchase-info-config.cmhc_insured' | translate }}
+        </span>
+        <label>
+            <ion-toggle (ionChange)="onInsuredChange($event)" [checked]="isInsured" [disabled]="isBaseModel"></ion-toggle>
+        </label>
+    </app-form-field>
+
+    <div appLockedDirective 
+        [title] = "'directives.locked.title' | translate" 
+        [text]  = "'directives.locked.watchlist.financing' | translate" 
+        [locked]  = "isBaseModel">  
+    
+        <!-- Qualification Rate -->
+        <app-form-field [rtl]="true">
+            <span appFormFieldLabel [class.disabled]="!enabled.qualificationRate">
+                {{ 'purchase-info-config.qualificationRate' | translate }}
+            </span>
+            <label>      
+                <app-input-number
+                    tabindex="1"
+                    placeholder="0"
+                    [digitsFormat]="'1.2-2'"
+                    [placeholder]="0"
+                    [disabled]="!enabled.qualificationRate"
+                    [control]="economicValues.at(this._financingTypeIndex).get('qualificationRate')">
+                </app-input-number>      
+                <span appFormFieldSuffix>%</span>
+            </label>
+        </app-form-field>
+
+        <!-- Interest Rate -->
+        <app-form-field [rtl]="true">
+            <span appFormFieldLabel [class.disabled]="!enabled.interestRate">
+                {{ 'purchase-info-config.interestRate' | translate }}
+            </span>
+            <label>      
+                <app-input-number
+                    tabindex="1"
+                    placeholder="0"
+                    [digitsFormat]="'1.2-2'"
+                    [placeholder]="0"
+                    [disabled]="!enabled.interestRate"
+                    [control]="economicValues.at(this._financingTypeIndex).get('interestRate')">
+                </app-input-number>      
+                <span appFormFieldSuffix>%</span>
+            </label>
+        </app-form-field>
+
+        <!-- DCR -->
+        <app-form-field [rtl]="true">
+            <span appFormFieldLabel [class.disabled]="!enabled.DCR">
+                {{ 'purchase-info-config.DCR' | translate }}
+            </span>
+            <label>      
+                <app-input-number
+                    tabindex="2"
+                    placeholder="0"
+                    [digitsFormat]="'1.2-2'"
+                    [placeholder]="0"
+                    [disabled]="!enabled.DCR"
+                    [control]="economicValues.at(this._financingTypeIndex).get('DCR')">
+                </app-input-number>      
+                <span appFormFieldSuffix></span>
+            </label>
+        </app-form-field>
+
+        <!-- LTV -->
+        <app-form-field [rtl]="true">
+            <span appFormFieldLabel [class.disabled]="!enabled.LTV">
+                {{ 'purchase-info-config.LTV' | translate }}
+            </span>
+            <label>      
+                <div>
+                    <select [formControl]="economicValues.at(this._financingTypeIndex).get('LTV')" [attr.disabled]="!enabled.LTV ? '' :  null">
+                        <option *ngFor="let choice of ltvValues; let i = index" [value]="choice.value">
+                        {{ choice.label | translate }}
+                        </option>
+                    </select>
+                </div>       
+                <span appFormFieldSuffix></span>
+            </label>
+        </app-form-field>
+
+        <!-- amortization -->
+        <app-form-field [rtl]="true">
+            <span appFormFieldLabel [class.disabled]="!enabled.amortization">
+                {{ 'purchase-info-config.amortization' | translate }}
+            </span>
+            <label>      
+                <div>
+                    <select [formControl]="economicValues.at(this._financingTypeIndex).get('amortization')" [attr.disabled]="!enabled.amortization ? '' :  null">
+                        <option *ngFor="let choice of amortizationValues; let i = index" [value]="choice.value">
+                        {{ choice.label | translate }}
+                        </option>
+                    </select>
+                </div>     
+                <span appFormFieldSuffix></span>
+            </label>
+        </app-form-field>
+
+        <!-- term -->
+        <app-form-field [rtl]="true" *ngIf="false">
+            <span appFormFieldLabel [class.disabled]="!enabled.term">
+                {{ 'purchase-info-config.term' | translate }}
+            </span>
+            <label>    
+                <div>
+                    <select [formControl]="economicValues.at(this._financingTypeIndex).get('term')" [attr.disabled]="!enabled.term ? '' :  null">
+                        <option *ngFor="let choice of termValues; let i = index" [value]="choice.value">
+                        {{ choice.label | translate }}
+                        </option>
+                    </select>
+                </div>     
+                <span appFormFieldSuffix></span>
+            </label>
+        </app-form-field>
+    
+    </div>
+</div>
+

@@ -1,0 +1,17 @@
+.upload-border {
+    margin: 1em;
+    padding: 1em 3em;
+    text-align: center;
+    font-size: 125%;
+    border: 2px dotted;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    img {
+        width: 4em !important;
+        display: flex;
+    }
+}

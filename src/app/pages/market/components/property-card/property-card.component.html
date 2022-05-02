@@ -1,0 +1,91 @@
+<app-item class="shadow-sm">
+    <div class="left-rail"
+         [class.public-listing]="listing.listingType === ListingType.Public"
+         [class.offMarket-listing]="listing.listingType === ListingType.OffMarket"
+         [class.pocket-listing]="listing.listingType === ListingType.Pocket"
+         [class.placeholder-img]="!listing.isLoaded"
+    >
+        <div class="position-relative img-placeholder-text" *ngIf="!listing.isLoaded">
+            {{ 'literals.loading' | translate }}
+        </div>
+        <img [src]="listing.image" appDefaultImage alt="Property Picture" (error)="listing.imageLoadErr = true; listing.isLoaded=true" (load)="listing.isLoaded = true">
+        <span class="header-text">{{ ('market_listing_type.full.' + listing.listingType) | translate }}</span>
+        <span class="footer-text publish-date" *ngIf="listing.listingType === ListingType.Public">{{ listing.createdAt |
+            timeAgo }}</span>
+    </div>
+    <div class="main-rail">
+        <div class="type-buildings">
+            <p class="property-type">{{ 'literals.propertyType.' + listing?.propertyType | translate }}</p>
+            <div class="d-flex align-items-center ">
+
+                <div class="eye-calc">
+                    <div>
+                        <img *ngIf="isWatched" src="assets/images/viewicon.png" alt="" class="icon"
+                            (click)="viewWatch()">
+                    </div>
+                    <div class="calc" *ngIf="countModels > 0">
+                        <img *ngIf="true" src="assets/images/calculator.png" alt="" class="icon" (click)="viewModels()">
+                        <p class="calc-number" *ngIf="countModels">{{ countModels }}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Price-->
+        <p class="price" *ngIf="listing.listingType === ListingType.Public && listing.askPrice">
+            {{ listing.askPrice | appNumber: '1.0-0' : '' : '' : '$' }}
+        </p>
+
+        <!-- address-->
+        <p class="address">
+            <!-- Show district -->
+            <ng-container *ngIf="listing.hideFields">
+                {{ listing.address.district }}<br />
+            </ng-container>
+            <ng-container *ngIf="!listing.hideFields">
+                {{ first }}<br />
+            </ng-container>
+            <span [innerHTML]="second"></span>
+        </p>
+
+        <div class="factors">
+            <div class="building-date">
+                <img src="assets/icons/units.png">
+                <span class="text-value">
+                    <ng-container *ngIf="listing.residentialUnits">{{ listing.residentialUnits }}</ng-container>
+                    <ng-container *ngIf="!listing.residentialUnits">{{ 'literals.na' | translate }}</ng-container>
+                </span>
+            </div>
+
+            <div class="building-date">
+                <img src="assets/icons/home.png">
+                <span class="text-value">
+                    <ng-container *ngIf="listing.yearOfConstruction">{{ listing.yearOfConstruction }}</ng-container>
+                    <ng-container *ngIf="!listing.yearOfConstruction">{{ 'literals.na' | translate }}</ng-container>
+                </span>
+            </div>
+            <div class="building-date ">
+                <ng-container *ngIf="heatingType">
+                    <img src="assets/icons/heat2.png">
+                    <span class="text-break c-text-wrapper text-value">
+                        {{ heatingType }}
+                    </span>
+                </ng-container>
+                <ng-container *ngIf="!heatingType">
+                    <img src="assets/icons/heat2.png">
+                    <span class="text-break c-text-wrapper text-value">
+                        {{ 'literals.na' | translate }}
+                    </span>
+                </ng-container>
+            </div>
+            <!--
+                    <div class="cap-rate" *ngIf="listing?.listingType === ListingType.Public">
+                    <span>{{ 'market_listing_type.caprate' | translate }}</span>
+                    <span>{{ listing?.caprate | appNumber: '1.1-1' }}%</span>
+                </div>
+                -->
+
+        </div>
+    </div>
+</app-item>

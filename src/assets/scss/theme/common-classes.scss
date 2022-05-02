@@ -1,0 +1,42 @@
+
+// color classes
+.color-white {
+  color: white;
+}
+
+.color-black {
+  color: black;
+}
+
+.color-green {
+  color: $color-green;
+}
+.color-forest-green {
+  color: $color-forest-green;
+}
+.color-light-green {
+  color: $color-light-sea-green;
+}
+.color-cadet-blue {
+  color: $color-cadet-blue;
+}
+
+// background classes
+.background-color-white {
+  background-color: white;
+}
+
+.background-color-green {
+  background-color: $color-green;
+}
+.background-color-forest-green {
+  background-color: $color-forest-green;
+}
+.background-color-light-green {
+  background-color: $color-light-sea-green;
+}
+
+.separator {
+  width: 100%;
+  border-top: 1px solid #ccc;
+}

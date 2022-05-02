@@ -1,0 +1,23 @@
+:host {
+
+}
+
+.action-drawer-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(4.4rem);
+  transition: all 200ms ease;
+  
+  .action-drawer-content {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+  }
+
+  &.show {
+    transform: translateY(0);
+    transition: transform 200ms linear;
+  }
+}

@@ -1,0 +1,115 @@
+:host ::ng-deep {
+
+	.meter {
+		position: relative;
+		mwl-gauge {
+			height: 35vw;
+			display: block;
+			overflow: hidden;
+		}
+
+		mwl-gauge > .gauge > .dial {
+			stroke: black;
+			stroke-width: 1;
+			fill: rgba(0, 0, 0, 0);
+		}
+
+		mwl-gauge > .gauge > .value {
+			stroke: #5cb09f;
+			stroke-width: 2;
+		}
+
+		mwl-gauge > .gauge > .value-text {
+			fill: rgb(47, 227, 255) !important;
+			font-family: Arial;
+			font-weight: bold;
+			font-size: 0.33rem;
+		}
+	}
+
+	.label-value {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 70%;
+		margin: auto;
+		font-size: 1.28rem;
+		line-height: 1.78rem;
+		font-family: Arial;
+
+		.wrap {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			width: max-content;
+
+			font-family: Arial;
+			font-style: normal;
+			font-weight: normal;
+			line-height: 1.78rem;
+			.label {
+				font-size: 1rem;
+			}
+			.value {
+				font-size: 1.28rem;
+			}
+		}
+
+		.low {
+			margin-left: -50%;
+		}
+		.high {
+			margin-left: 50%;
+		}
+	}
+
+	.meter-value {
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		.val {
+			width: max-content;
+			span {
+				margin-left: -50%;
+				font-family: Arial;
+				font-style: normal;
+				font-weight: normal;
+				font-size: 1.28rem;
+				line-height: 142%;
+			}
+		}
+
+		.block {
+			width: max-content;
+			height: max-content;
+			background-color: black;
+			position: relative;
+			z-index: 5;
+
+			.line {
+				width: 0.2rem;
+				margin-left: -0.1rem;
+				background-color: black;
+			}
+		}
+
+		.circle {
+			width: max-content;
+			height: max-content;
+			z-index: 4;
+
+			.dot {
+				width: 1.2rem !important;
+				height: 1.2rem !important;
+				object-fit: contain;
+				border-radius: 50%;
+				background-color: #5cb09f;
+				margin-left: -50%;
+				margin-top: -50%;
+			}
+		}
+	}
+}

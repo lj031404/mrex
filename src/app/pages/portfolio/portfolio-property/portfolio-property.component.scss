@@ -1,0 +1,182 @@
+@import '../../../../assets/scss/variables.scss';
+
+:host {
+	.processing-bar {
+		color: white;
+		background-color: #aaa;
+		padding: 0.5rem;
+	}
+}
+
+.listing-calculator {
+	
+    .portfolio-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 1rem;
+        justify-content: space-between;
+		align-items: center;
+		
+        .portfolio {
+            background-color: $color-cadet-blue;
+            border-radius: 0.57rem;
+			padding: 1rem;
+			
+			&.disabled {
+				background-color: $color-gray-11;
+			}
+
+            img {
+				margin-bottom: 0.42rem;
+				height: 2.1rem;
+            }
+
+            .value {
+                color: white;
+                font-size: $line-height-title-sm;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 320px) { 
+    .portfolio-content {
+        grid-template-columns: 1fr!important;
+        grid-row-gap: 1rem;
+        grid-template-rows: 1fr 1fr 1fr!important;		
+	}
+}
+
+:host {
+	::ng-deep {
+  
+		.back {
+			background: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			color: white;
+			font-family: Arial;
+			font-style: normal;
+			position: relative;
+
+			.portfolio-image {
+				width: 100%;
+				height: 15rem;
+			}
+	
+			.properties {
+				font-weight: normal;
+				font-size: 0.92rem;
+				line-height: 148%;
+			}
+
+			.property-actions {
+				width: 100%;
+				position: absolute;
+				bottom: 0;
+				padding: 13px 15px;
+				display: flex;
+				align-items: center;
+			}
+		}
+  
+		.chartarea {
+			> div {
+				padding: 0.5rem !important;
+			}
+		}
+  
+		.refinances, .status {
+			.title {
+				font-family: Arial;
+				font-style: normal;
+				font-weight: bold;
+				font-size: 0.857rem;
+				line-height: 0.685rem;
+				padding: 1rem;
+				color: black;
+			}
+		}
+		  
+		.address {
+			padding: 25px 23px 17px 23px;
+
+			.street {
+				font-size: 24px;
+				font-family: Arial;
+				line-height: 25.5px;
+				color: black;
+			}
+
+			.state {
+				font-size: 16px;
+				font-family: Arial;
+				line-height: 25.5px;
+				color: rgba(0, 0, 0, 0.4);;
+			}
+		}
+	}
+}
+
+.purchase-offerkeys {
+	width: fit-content
+}
+
+.btn-white-outline {
+	background: rgba(92, 176, 159, 0.8);
+	border: 1px solid #FFFFFF;
+	box-sizing: border-box;
+	border-radius: 0.357rem;
+	margin: 0 1.07rem;
+	font-size: 0.857rem;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	padding-right: 1.21rem;
+	flex: 1;
+	justify-content: space-between;
+
+	img {
+		margin-left: 0.357rem;
+	}
+}
+  
+.summary-section.section--probability {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+	border-bottom: 1px solid $color-gray-23;
+
+    .probability-item {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+		.category {
+            font-size: 0.7rem;
+            color: $color-gray-24;
+            line-height: 1.82rem;
+        }
+        .value {
+            font-size: 1.142rem;
+            font-weight: 700;
+            margin-bottom: 0;
+            line-height: 1.53rem;
+            color: black;        
+        }
+    }
+}
+
+.portfolio-property-content {
+	padding-bottom: 1rem;
+}
+
+.activity-options-skeleton {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 1.5rem;
+}

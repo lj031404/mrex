@@ -1,0 +1,19 @@
+<nav class="header-navbar navbar-expand-lg navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-shadow bg-mrex-green">
+    <div class="navbar-wrapper">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mobile-menu d-lg-none">
+                    <ng-content select="[slot='left-button']"></ng-content>
+                </li>
+                <li class="nav-item">
+                    <a class="header-text">
+                        <ng-content select="[slot='title']"></ng-content>
+                    </a>
+                </li>
+                <li class="nav-item ml-auto">
+                    <ng-content select="[slot='right-button']"></ng-content>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

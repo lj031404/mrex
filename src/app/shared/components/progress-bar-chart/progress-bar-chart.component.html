@@ -1,0 +1,9 @@
+<div class="progressbar-group">
+	<div class="progress-item w-100" *ngFor="let item of data">
+		<div class="progress-title">{{ item.title }}</div>
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" [style.width.%]="item.value / item.total * 100" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ item.value | shortNumber }} $ </div>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,45 @@
+@import '../../../../../assets/scss/variables.scss';
+
+.sales-comparison-overview {
+	background-color: $color-cadet-blue;
+	color: white;
+	.potential-price {
+		&__title {
+			font-size: 0.9em;
+		}
+
+		&__value {
+			font-size: 3em;
+			font-weight: bold;
+		}
+	}
+
+	.seperator {
+		border: 2px solid #FFFFFF;
+		opacity: .4;
+	}
+
+	.kpis {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		column-gap: 0.8em;
+		color: white;
+		text-align: center;
+
+		.kpi-label {
+			font-size: .9em;
+			font-weight: normal;
+		}
+
+		.kpi-value {
+			font-size: 2.1em;													
+			font-weight: bold;
+		}
+
+		.kpi-amount {
+			font-size: 1.3em;
+			font-weight: bold;
+		}
+	}
+
+}

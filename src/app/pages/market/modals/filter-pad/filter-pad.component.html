@@ -1,0 +1,135 @@
+<div class="modal-header">
+    <app-toolbar>
+        <a class="left-button" appModalClose [modalRef]="modalRef">
+            <i class="fa fa-times"></i>
+        </a>
+        <div class="title">{{ 'page.market.filter_pad.title' | translate }}</div>
+        <button class="right-button btn-clear" (click)="clearAll()">{{ 'page.market.filter_pad.clear_all' | translate }}</button>
+    </app-toolbar>
+</div>
+
+<div class="modal-content">
+
+    <!-- address -->
+    <app-item>
+        <label class="text-uppercase">{{ 'page.market.filter_pad.item_address' | translate }}</label>
+        <app-autocomplete 
+            class="position-relative"
+            (chosenAddress)="addressClick($event)" 
+            (chosenPlace)="onUpdatePlace($event)" 
+            [address]="address"></app-autocomplete>
+    </app-item>
+
+    <!-- distance -->
+    <app-item>
+        <label class="text-uppercase">{{ 'page.market.filter_pad.item_include_with' | translate }}</label>
+        <ng5-slider class="slider-theme-green"
+                    [(value)]="filterCriteria.criteria.distance"
+                    [options]="sliderOptions.distance"
+                    (valueChange)="valueChangeSubject.next()">
+        </ng5-slider>
+    </app-item>
+
+    <!-- price -->
+    <app-item>
+        <label class="text-uppercase">{{ 'page.market.filter_pad.item_price' | translate }}</label>
+        <ng5-slider class="slider-theme-green"
+                    [(value)]="filterCriteria.criteria.price[0]"
+                    [(highValue)]="filterCriteria.criteria.price[1]"
+                    [options]="sliderOptions.price"
+                    (valueChange)="valueChangeSubject.next()">
+        </ng5-slider>
+    </app-item>
+
+    <!-- cashdown -->
+    <app-item>
+        <label class="text-uppercase">{{ 'page.market.filter_pad.item_cashdown_required' | translate }}</label>
+        <ng5-slider class="slider-theme-green"
+                    [(value)]="filterCriteria.criteria.cashdown[0]"
+                    [(highValue)]="filterCriteria.criteria.cashdown[1]"
+                    [options]="sliderOptions.cashdown"
+                    (valueChange)="valueChangeSubject.next()">
+        </ng5-slider>
+    </app-item>
+
+    <!-- residential units -->
+    <app-item>
+        <label>{{ 'page.market.filter_pad.item_units' | translate }}</label>
+        <ng5-slider class="slider-theme-green"
+                    [(value)]="filterCriteria.criteria.residentialUnits[0]"
+                    [(highValue)]="filterCriteria.criteria.residentialUnits[1]"
+                    [options]="sliderOptions.units"
+                    (valueChange)="valueChangeSubject.next()">
+        </ng5-slider>
+    </app-item>
+
+    <!-- Days on the market -->
+    <app-item>
+        <label>{{ 'page.market.filter_pad.item_days' | translate }}</label>
+        <ng5-slider class="slider-theme-green"
+                    [(value)]="filterCriteria.criteria.publishDays[0]"
+                    [(highValue)]="filterCriteria.criteria.publishDays[1]"
+                    [options]="sliderOptions.publishDays"
+                    (valueChange)="valueChangeSubject.next()">
+        </ng5-slider>
+    </app-item>
+
+    <!-- listing types -->
+    <app-item>
+        <label>{{ 'page.market.filter_pad.item_type_of_listing' | translate }}</label>
+        <div class="button-group">
+            <button class="btn btn-green btn-listing-type"
+                    [class.btn-inactive-gray]="!filterCriteria.criteria.listingType.includes(MARKET_LISTING_TYPE.Public)"
+                    (click)="toggleListingType(MARKET_LISTING_TYPE.Public)">
+                {{ 'market_listing_type.public' | translate }}
+            </button>
+            <button class="btn btn-green btn-listing-type"
+                    [class.btn-inactive-gray]="!filterCriteria.criteria.listingType.includes(MARKET_LISTING_TYPE.Pocket)"
+                    (click)="toggleListingType(MARKET_LISTING_TYPE.Pocket)">
+                {{ 'market_listing_type.private' | translate }}
+            </button>
+            <button class="btn btn-green btn-listing-type"
+                    [class.btn-inactive-gray]="!filterCriteria.criteria.listingType.includes(MARKET_LISTING_TYPE.OffMarket)"
+                    (click)="toggleListingType(MARKET_LISTING_TYPE.OffMarket)">
+                {{ 'market_listing_type.offMarket' | translate }}
+            </button>
+        </div>
+    </app-item>
+
+    <!-- accept / don't accept offers -->
+    <app-item *ngIf="filterCriteria.criteria.listingType.includes(MARKET_LISTING_TYPE.Pocket)">
+        <div class="button-group">
+            <button class="btn btn-green btn-listing-type"
+                [class.btn-inactive-gray]="!filterCriteria.criteria.acceptOffers"
+                (click)="toggleAcceptingOffer()">
+                    {{ 'market_accepting_offer' | translate }}
+            </button>
+            <button class="btn btn-green btn-listing-type"
+                [class.btn-inactive-gray]="!filterCriteria.criteria.notAcceptOffers"
+                (click)="toggleNotAcceptingOffer()">
+                    {{ 'market_no_accepting_offer' | translate }}
+            </button>
+        </div>
+    </app-item>
+
+    <!-- construction year -->
+    <app-item>
+        <label>{{ 'page.market.filter_pad.item_construction' | translate }}</label>
+        <ng5-slider class="slider-theme-green"
+                    [(value)]="filterCriteria.criteria.yearOfConstruction[0]"
+                    [(highValue)]="filterCriteria.criteria.yearOfConstruction[1]"
+                    [options]="sliderOptions.yearOfConstruction"
+                    (valueChange)="valueChangeSubject.next()">
+        </ng5-slider>
+    </app-item>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-green w-100" (click)="showListings()" [disabled]="isLoading">
+        <app-progress-spinner [enabled]="isLoading"></app-progress-spinner>
+        <ng-container *ngIf="!isLoading">{{ 'page.market.filter_pad.show_listings' | translate }} </ng-container> 
+        <ng-container *ngIf="!isLoading && totalCount !== null">
+            ({{totalCount}}{{totalCount >= 500 ? '+' : '' }})
+        </ng-container>
+    </button>
+</div>

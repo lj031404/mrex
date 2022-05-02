@@ -1,0 +1,51 @@
+<span class="indicator" [class.align-left]="indicator.align === 'left'" [class.align-right]="indicator.align === 'right'">
+    <span class="value" [className]="indicator.className ? indicator.className : ''">
+        <ng-container *ngIf="indicator && isNumber(indicator.value)">
+            <ng-container *ngIf="indicator.unit === '$'">
+                <ng-container *ngIf="!!indicator.value">
+                    {{ indicator.value | currency: indicator.currencyCode : indicator.display: indicator.digitsInfo: indicator.locale }}
+                </ng-container>
+                <span class="text-dark" *ngIf="indicator.value === undefined || indicator.value === null">-</span>
+            </ng-container>
+            <ng-container *ngIf="indicator.unit === '%'">
+                <ng-container *ngIf="!!indicator.value">
+                    {{ indicator.value * 100 | number: indicator.digitsInfo }} %
+                </ng-container>
+                <span class="text-dark" *ngIf="indicator.value === undefined || indicator.value === null">-</span>
+            </ng-container>
+            <ng-container *ngIf="indicator.unit !== '$' && indicator.unit !== '%'">
+                <ng-container *ngIf="!!indicator.value">
+                    {{ indicator.value | number: indicator.digitsInfo }} {{ indicator.unit }}
+                </ng-container>
+                <span class="text-dark" *ngIf="indicator.value === undefined || indicator.value === null">-</span>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!indicator">-</ng-container>
+    </span>     
+    
+    <!--
+        Removed: bottom indicators 
+    -->
+    <!--
+        <span 
+            [class.green]="indicator.diff > 0" 
+            [class.red]="indicator.diff < 0" 
+            class="trend" 
+            *ngIf="indicator.value !== null && indicator.diff !== 0 && indicator.diff !== indicator.value">
+            <i class="fa fa-caret-up" *ngIf="indicator.diff > 0"></i>
+            <i class="fa fa-caret-down" *ngIf="indicator.diff < 0"></i>
+    
+            <ng-container>
+                <ng-container *ngIf="indicator.unit === '$'">
+                    {{ diff | currency: indicator.currencyCode : indicator.display: indicator.digitsInfo: indicator.locale }}
+                </ng-container>
+                <ng-container *ngIf="indicator.unit === '%'">
+                    {{ diff * 100 | number: indicator.digitsInfo }} {{ indicator.unit }}
+                </ng-container>
+                <ng-container *ngIf="indicator.unit !== '$' && indicator.unit !== '%'">
+                    {{ diff | number: indicator.digitsInfo }} {{ indicator.unit }}
+                </ng-container>
+            </ng-container>  
+        </span>
+    -->
+</span>

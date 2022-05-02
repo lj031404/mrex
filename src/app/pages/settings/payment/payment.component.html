@@ -1,0 +1,42 @@
+<app-header>
+    <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+    <p slot="title">{{'page.settings.payment.title' | translate}}</p>
+</app-header>
+<div>
+    <div class="alert alert-danger text-center" *ngIf="err && err.status >= 400">
+        <div>{{ err.message }}</div>
+        <div *ngIf="err.details">{{ err.details }}</div>
+    </div>
+    
+    <app-content>
+        <div class="settings-page-header">
+            <div class="title">{{'page.settings.payment.payment_methods' | translate}}</div>
+        </div>
+    
+        <div class="payment-list">
+            <app-item class="item--payment" *ngFor="let payment of payments">
+                <div class="icon-wrapper text-center">
+                    <img [src]="'assets/' + payment.brand + '.png'" width="20">
+                </div>
+                <div class="card-num">{{payment?.last4 | paymentCardNumber}}</div>
+                <div class="exp-date">{{payment?.expMonth }} / {{ payment.expYear }}</div>
+                <div class="make-primary" (click)="onMakePrimary(payment)">
+                    {{ payment?.isDefault ? '' : ('page.settings.payment.make_primary' | translate) }}
+                </div>
+                <i class="fa fa-times" (click)="deletePayment(payment)"></i>
+            </app-item>
+            <div class="text-center empty-data" *ngIf="!isLoading && !payments.length">
+                {{ 'page.payment.empty' | translate }}
+            </div>
+        </div>
+    </app-content>
+    
+    <app-action-drawer-outlet>
+        <app-action-button right="1.25rem" bottom="6.25rem" borderRadius="50%" (triggered)="addPaymentMethod()">
+            +
+        </app-action-button>
+    </app-action-drawer-outlet>
+    
+</div>
+
+

@@ -1,0 +1,63 @@
+<app-header>
+     <p slot="title">{{'page.settings.subscriptions.title' | translate}}</p>
+</app-header>
+<app-content *ngIf="userDBInfo" [noPadding]="true">
+    <div class="alert alert-danger text-center mb-0" *ngIf="err && err.status >= 400">
+        <div>{{ err.message }}</div>
+        <div *ngIf="err.details">{{ err.details }}</div>
+    </div>
+    <div class="p-1">
+        <div class="settings-page-header">
+            <div class="title">{{'page.settings.subscriptions.subtitle' | translate}}</div>
+        </div>
+    
+        <div class="btn-group mb-3">
+            <button type="button" class="btn" *ngFor="let plan of plans;" [ngClass]="plan.isChecked ? 'btn-green' : 'btn-white'" (click)="selectPlan(plan)">{{ plan.planName | translate}}</button>
+        </div>
+        <ng-container *ngFor="let plan of plans;">
+            <div [class]="'subscription-list pr-1 pl-1 pb-1 ' + plan.nickname" *ngIf="plan.isChecked">
+                <app-item class="item--subscription" >
+                    <div class="control">
+                        <label class="custom-control-label mb-2" for="standard">
+                            <div class="planName">{{ plan.planName | translate }}</div>
+                            <span *ngIf="plan.amount">{{ plan.amount }}$ / {{ 'page.subscription.month' | translate }}</span>
+                            <span *ngIf="!plan.amount">{{ 'page.subscription.free' | translate }}</span>
+                        </label>
+                    </div>
+                    <div class="description">
+                        <p *ngFor="let metadata of plan.metadataList" class="d-flex align-items-center">
+                            <span *ngIf="metadata.status" class="plan-check"><i class="fa fa-check"></i></span>
+                            <span *ngIf="!metadata.status" class="plan-times"><i class="fa fa-times"></i></span>
+                            <span class="plan-name" [innerHTML]="metadata.planText"></span>
+                        </p>
+                    </div>
+                </app-item>
+                <div class="pr-2 pl-2">
+                    <!-- Subscribe button -->
+                    <button class="btn w-100 mt-2 mb-2 text-uppercase purchase-btn" 
+                        [disabled]="isLoading || userDBInfo.subscription.plan === plan.nickname" 
+                        [ngClass]="isLoading || userDBInfo.subscription.plan === plan.nickname ? 'btn-outline-grey' : 'btn-green'" 
+                        *ngIf="plan.nickname !== 'Basic' && plan.isChecked && availablePlan(plan)" 
+                        (click)="purchase(plan)">                
+                        <span *ngIf="userDBInfo.subscription.plan !== plan.nickname">{{ 'page.subscription.purchase' | translate: { amount: plan.amount, interval: plan.interValText } }}</span>
+                        <span *ngIf="userDBInfo.subscription.plan === plan.nickname">{{ 'page.subscription.subscribed' | translate }}</span>                
+                    </button>
+    
+                    <!-- Cancel membership button   -->
+                    <button class="btn btn-outline-none w-100 mb-2 cancel-membership-btn" 
+                        [disabled]="isLoading || !userDBInfo.subscription || !userDBInfo.subscription.plan" 
+                        (click)="onCancelClick(plan)" 
+                        *ngIf="plan.nickname !== 'Basic' && plan.isChecked && plan.nickname === userDBInfo.subscription.plan"
+                        >
+                            {{'page.settings.subscriptions.cancel_membership' | translate}}
+                    </button>
+    
+                </div>
+            </div>
+        </ng-container>
+    </div>
+   
+    
+</app-content>
+    
+

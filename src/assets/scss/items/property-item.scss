@@ -1,0 +1,117 @@
+@import '../variables.scss';
+
+.app-item.item--property,
+.app-item.item--property-model {
+  background-color: white;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 0;
+  border-bottom: 1px solid $color-gainsboro;
+  @include flex-row();
+  @include flex-align(space-between, center);
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  $card-content-height: 5rem;
+
+  &:last-child {
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+
+  .col-left {
+    width: $card-content-height;
+    min-width: $card-content-height;
+    height: $card-content-height;
+    border-radius: 5px;
+    background-color: $color-gainsboro;
+    @include flex-row();
+    @include flex-align(center, center);
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+    }
+  }
+
+  .information {
+    margin-left: 15px;
+    line-height: 125%;
+    width: calc(100% - $card-content-height - 1em);
+    height: $card-content-height;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 5.5rem;
+
+    .master {
+      color: $color-green;
+      font-weight: 600;
+      line-height: 1.25rem;
+    }
+
+    .name {
+      font-size: 115%;
+      font-weight: 600;
+      color: black;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .address-1 {
+      color: black;     
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-height: 1.25rem;
+      white-space: normal !important;
+    }
+
+    .address-2 {
+      color: #666;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25rem;
+      white-space: normal !important
+    }
+
+    .indicators {
+      font-size: 85%;
+      color: #666;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .cashflow-value {
+      font-weight: bold;
+    }
+
+    .cap-value {
+      font-weight: bold;
+    }
+
+    .metrics {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .action {
+    .btn-add {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  // work around
+  .empty-content {
+    .cdk-virtual-scroll-content-wrapper {
+      height: 100%!important;
+    }
+  }
+}

@@ -1,0 +1,109 @@
+@import '../../../../../../assets/scss/variables.scss';
+.all-property-types {
+	&__summary {
+		background-color: rgba(52, 158, 137, 0.1);
+		padding: 1.14rem;
+		.summary-date {
+			font-size: 1.14rem;
+			color: black;
+			font-weight: 700;
+			line-height: 1.7rem;
+			margin-bottom: 0.57rem;
+		}
+
+		.summary-information {
+			.summary-item {
+				.summary-title {
+					font-size: 1.14rem;
+					color: black;
+					font-weight: 400;
+					line-height: 1.7rem;
+					margin-bottom: 0.57rem;
+				}
+
+				.summary-value {
+					font-size: 1.42rem;
+					line-height: 1.14rem;
+					font-weight: 400;
+
+				}
+
+				.summary-value2 {
+					margin-bottom: 0.24rem;
+
+					.year {
+						font-size: 1.14rem;
+						color: black;
+						font-weight: 400;
+						line-height: 1.7rem;
+					}
+
+					.value {
+						font-size: 1.14rem;
+						color: $color-green;
+						font-weight: 700;
+						line-height: 1.7rem;
+						span {
+							margin-right: .3rem;
+						}
+
+						img {
+							margin-bottom: 0.1rem;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.year-btn {
+		padding: 3.4rem 1.1rem 3.4rem 1.1rem;
+
+		button {
+			font-size: 1.14rem;
+			color: black;
+			font-weight: 400;
+			line-height: 1.7rem;
+			background-color: white;
+			border: 1px solid  rgba(52, 158, 137, 0.2);
+			width: 100%;
+			padding: 0;
+		
+			&.active {
+				color: white;
+				font-weight: 700;
+				background-color: $color-green;
+			}
+		}
+	}
+
+	.chart-item {
+		margin-bottom: 4.57rem;
+		padding: 0 1.1rem;
+		
+		&__title {
+			font-size: 1.42rem;
+			color: black;
+			font-weight: 700;
+			line-height: 1.14rem;
+			margin-bottom: 1rem;
+		}
+
+		.legend {
+			margin-top: 0.6rem;
+			margin-bottom: 1.1rem;
+			
+			span {
+				font-size: 1.1rem;
+				font-weight: normal;
+				line-height: 1.7rem;
+				margin-left: 0.4rem;
+			}
+		}
+	
+	}
+}
+
+.rotate-180 {
+	transform: rotate(180deg);
+}

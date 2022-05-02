@@ -1,0 +1,97 @@
+<app-header>
+    <p slot="title">{{ 'page.properties.title' | translate }}</p>
+</app-header>
+
+<div class="list" #content>
+    <div *ngIf="pendingProperties?.length || properties?.length" class="bg-white d-flex justify-space-between watchlist-status  ">
+        <img src="assets/icons/watchlist_office.svg">
+        <div class="ml-3">
+            <div class="watchlist-total-status" [innerHTML]="(pendingProperties?.length + properties?.length) | i18nPlural: propsCountMapping | translate: {count: pendingProperties?.length + properties?.length}">
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="p-2" *ngIf="!propertiesLoaded || !properties || !pendingProperties">
+        <div class="d-flex align-items-start mb-1" *ngFor="let empty of emptyProps">
+            <div class="mr-2">
+                <app-skeleton Cwidth="113px" Cheight="113"></app-skeleton>
+            </div>
+            <div class="w-100">
+                <app-skeleton Cwidth="100%" Cheight="35"></app-skeleton>
+            </div>
+        </div>
+    </div>
+
+    <ng-container *ngIf="pendingProperties">
+        <div class="property-card" *ngFor="let pendingProperty of pendingProperties">
+            <app-property-pending-card
+                [slidable]="true"
+                [onDelete]="onPendingDelete.bind(this)"
+                [pendingProperty]="pendingProperty">
+            </app-property-pending-card>
+        </div>
+    </ng-container>
+    
+    <ng-container *ngIf="properties && properties.length">
+        <div class="position-relative" *ngFor="let property of properties">
+            <app-property-card 
+                [item]="property" 
+                [countModels]="property.models.length"
+                [onPropertyClicked]="onPropertyClicked.bind(this)"
+                [onDelete]="onDelete.bind(this)"
+            >
+            </app-property-card>
+        </div>
+    </ng-container>
+
+    <div class="watchlist-empty-state" *ngIf="propertiesLoaded && (!properties || (properties && !properties.length)) && (pendingProperties && !pendingProperties.length)">
+        <div class="no-prop-yet">{{ 'pages.watchlist.properties.still_no_prop_on_summary' |  translate }}</div>
+        <div class="start-do-add-now">
+            <div class="start-do-add text-center">{{ 'pages.watchlist.properties.start_do_add' | translate }}</div>
+            <div class="start-do-now text-center">{{ 'pages.watchlist.watchlist.now' |  translate }}</div>
+        </div>
+        <div class="super-user" [innerHTML]="'pages.watchlist.watchlist.super-user' | translate"></div>
+
+        <div class="benefits-content position-relative">
+            <img src="assets/icons/watchlist_empty.png" class="super-user-icon bg-white">
+            <div class="position-relative">
+                <div class="benefits-title position-relative">{{ 'pages.portfolio.portfolio_summary.benefits' | translate }}</div>
+                <div>
+                    <div class="d-flex align-items-start benefit-item">
+                        <img src="assets/icons/green-check.svg">
+                        <span [innerHTML]="'pages.watchlist.watchlist.save_and_track_props_interest_you' | translate"></span>
+                    </div>
+                    <div class="d-flex align-items-start benefit-item">
+                        <img src="assets/icons/green-check.svg" >
+                        <span [innerHTML]="'pages.watchlist.watchlist.analyse_underwrite_create_different' | translate"></span>
+                    </div>
+                    <div class="d-flex align-items-start benefit-item">
+                        <img src="assets/icons/green-check.svg" >
+                        <span [innerHTML]="'pages.watchlist.watchlist.compare_your_model' | translate"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="add-first-prop pb-3 text-center">
+            <button class="btn btn-primary" (click)="addPropertySearchDrawer()">{{ 'pages.portfolio.portfolio_summary.add_your_first_property' |  translate }}</button>
+        </div>
+    </div>
+
+    <app-loader sizeClass="fa-2x" [isLoading]="true" *ngIf="!propertiesLoaded"></app-loader>
+    
+</div>
+  
+<app-action-drawer-outlet #drawerOutlet>
+    <app-action-button right="1.25rem" bottom="6.25rem" (triggered)="addPropertySearchDrawer()" [class.d-none]="propertiesLoaded && (!properties || (properties && !properties.length)) && (pendingProperties && !pendingProperties.length)">
+        +
+    </app-action-button>
+    <app-action-drawer #mainDrawer (closed)="removePropertySearchDrawer()">
+        <ng-container *ngIf="activePropertySearchDrawer">
+            <app-property-search-drawer maxHeight="540"
+                (cast)="drawerOutlet.closeDrawers(); onPropertySearchDrawerEventEmitted($event)">
+            </app-property-search-drawer>
+        </ng-container>
+    </app-action-drawer>
+</app-action-drawer-outlet>

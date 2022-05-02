@@ -1,0 +1,138 @@
+<form class="property-form" [formGroup]="form">
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.property-cashflow.averageRents.title' | translate }}
+    </label>
+    
+    <!-- Rent increases -->
+    <app-form-field [rtl]="true">
+        <span appFormFieldLabel [span]="11">
+            {{ 'helper.property-add.components.property-cashflow.averageRents.label' | translate }}
+        </span>
+        <label>      
+            <app-input-number
+                tabindex="1"
+                placeholder="0"
+                [digitsFormat]="'1.0-0'"
+                [placeholder]="0"
+                [disabled]="true"
+                [control]="form.get('avgRents')">
+            </app-input-number>      
+            <span appFormFieldSuffix>$</span>
+        </label>
+    </app-form-field>
+
+    <app-form-field [leftMargin]="false">
+        <div class="custom-control custom-checkbox">
+            <input id="itemized_rent" type="checkbox" class="custom-control-input" tabindex="2"
+                [checked]="itemizeRents"
+                [disabled]="true"
+                (change)="onRentItemizeCheck($event.target.checked)"
+            >
+            <label class="custom-control-label mb-0" for="itemized_rent">
+                {{ 'helper.property-add.components.property-cashflow.averageRents.itemize' | translate }}
+            </label>
+        </div>
+    </app-form-field>
+
+    <ng-container *ngIf="itemizeRents">
+        <ng-container formGroupName="itemizedRent">
+            <div class="property-itemized-fields-wrapper" formArrayName="items">
+                <ng-container *ngFor="let control of rentItemControls.controls; let i=index" [formGroupName]="i">
+                    <ng-container *ngIf="i < 3">
+                        <app-form-field [rtl]="true" [leftMargin]="true">
+                            <span appFormFieldLabel [span]="11">{{ control.value.label | translate }}</span>
+                            <label>
+                                <app-input-number
+                                    tabindex="1"
+                                    placeholder="0"
+                                    [digitsFormat]="'1.1-1'"
+                                    [placeholder]="control?.value?.placeholder"
+                                    [disabled]= "control?.value?.disabled"
+                                    [control]="control.get('amount')">
+                                </app-input-number>
+                                <span appFormFieldSuffix>{{ control.value.unit }}</span>
+                            </label>
+                        </app-form-field>
+                    </ng-container>
+                </ng-container>
+
+                <!-- years 1 to 5 -->
+                <div class="projections">
+                    <h2>
+                        {{ 'helper.property-add.components.property-cashflow.projections.label' | translate }}
+                    </h2>
+                    <div class="row">
+                        <ng-container *ngFor="let control of rentItemControls.controls; let i=index">
+                            <div class="col year label" *ngIf="i >= 3">
+                                {{ 'helper.property-add.components.property-cashflow.projections.year' | translate }} 
+                                {{i-2}}
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="row">
+                        <ng-container *ngFor="let control of rentItemControls.controls; let i=index">
+                            <div class="col year amount" *ngIf="i >= 3">
+                                ${{ control.value.amount | number: '1.0-0' }}
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <!-- Future financial parameters -->
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.property-cashflow.futureFinancialParams.title' | translate }}
+    </label>
+    <app-property-itemize-control   itemsOnly = "true"
+                                    [checkInit] = "false"
+                                    [tabIndex]="7"
+                                    checkLabel="{{ 'helper.property-add.components.property-cashflow.futureFinancialParams.itemize' | translate }}"
+                                    [config]="cashflow"
+                                    [form]="form.get('futureFinancialParams')"
+                                    ruleId="watchlist.futureParameters"
+                                    [locked]="isBaseModel"
+                                    lockedDirectiveText="directives.locked.watchlist.futureParameters"
+                                    [isBaseModel]="isBaseModel"
+                                    [featureName]="'helper.property-add.components.property-cashflow.futureFinancialParams.featureName' | translate"
+    ></app-property-itemize-control>
+
+    <!--CAPEX-->
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.property-cashflow.capex.title' | translate }}
+    </label>
+    <app-property-itemize-control   itemsOnly = "true"
+                                    [checkInit] = "false"
+                                    [tabIndex]="8"
+                                    checkLabel="{{ 'helper.property-add.components.property-cashflow.capex.itemize' | translate }}"
+                                    [config]="cashflow"
+                                    [form]="form.get('capex')"
+                                    ruleId="watchlist.capex"
+                                    [locked]="isBaseModel"
+                                    lockedDirectiveText="directives.locked.watchlist.capex"
+                                    [isBaseModel]="isBaseModel"
+                                    [featureName]="'helper.property-add.components.property-cashflow.capex.featureName' | translate"
+    ></app-property-itemize-control>
+
+    <!--OPEX-->
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.property-cashflow.opex.title' | translate }}
+    </label>
+    <app-property-itemize-control   itemsOnly = "true"
+                                    [checkInit] = "false"
+                                    [tabIndex]="8"
+                                    checkLabel="{{ 'helper.property-add.components.property-cashflow.opex.itemize' | translate }}"
+                                    [config]="cashflow"
+                                    [form]="form.get('opex')"
+                                    ruleId="watchlist.opex"
+                                    [locked]="isBaseModel"
+                                    lockedDirectiveText="directives.locked.watchlist.opex"
+                                    [isBaseModel]="isBaseModel"
+                                    [featureName]="'helper.property-add.components.property-cashflow.opex.featureName' | translate"
+    ></app-property-itemize-control>
+
+    <!-- Refinancing Section -->
+    <app-refinancing [propertyAddForm]="propertyAddForm" [isBaseModel]="isBaseModel"></app-refinancing>
+
+</form>

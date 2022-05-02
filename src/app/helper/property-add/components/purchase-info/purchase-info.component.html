@@ -1,0 +1,139 @@
+<form class="property-form" [formGroup]="form">
+    <!-- Price Section -->
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.purchase-info.price.title' | translate }}
+    </label>
+    <app-form-field [rtl]="true">
+        <span appFormFieldLabel [span]="11">
+            {{ 'helper.property-add.components.purchase-info.askingPrice.label' | translate }}
+        </span>
+        <label>
+            <app-input-number
+                tabindex="1"
+                placeholder="0"
+                [digitsFormat]="'1.0-0'"
+                [control]="form.get('askPrice')">
+            </app-input-number>
+            <span appFormFieldSuffix>$</span>
+        </label>
+    </app-form-field>
+
+    <app-property-itemize-control label="{{ 'helper.property-add.components.purchase-info.grossIncome.label' | translate }}"
+                                  [placeholder]="0"
+                                  itemsUnit="$"
+                                  totalUnit="$"
+                                  [suffix]="'literals._$PerYear' | translate"                                  
+                                  [tabIndex]="2"
+                                  checkLabel="{{ 'helper.property-add.components.purchase-info.grossIncome.itemize' | translate }}"
+                                  (checkedChange)="incomesCheckChange($event)"
+                                  [calcTotalFunc]="PropertyFormHelper.sumOfMonthlyItems"
+                                  [form]="form.get('incomes')"
+    ></app-property-itemize-control>
+
+    <!-- Expenses Section -->
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.purchase-info.expenses.label' | translate }}
+    </label>
+    <app-form-field [rtl]="true">
+        <span appFormFieldLabel [span]="10">
+            {{ 'helper.property-add.components.purchase-info.vacancy.label' | translate }}
+        </span>
+        <label>
+            <app-input-number
+                tabindex="3"
+                placeholder="0"
+                [digitsFormat]="'1.1-1'"
+                [placeholder]="0"
+                [control]="form.get('vacancy')">
+            </app-input-number>  
+            <span appFormFieldSuffix>%</span>
+        </label>        
+    </app-form-field>
+
+    <app-property-itemize-control label="{{ 'helper.property-add.components.purchase-info.taxes.label' | translate }}"
+                                    [placeholder]="0"
+                                    [suffix]="'literals._$PerYear' | translate"
+                                    [tabIndex]="4"
+                                    checkLabel="{{ 'helper.property-add.components.purchase-info.taxes.itemize' | translate }}"
+                                    [totalUnit]="'literals._$PerYear' | translate"
+                                    (checkedChange)="taxesCheckChange($event)"
+                                    [calcTotalFunc]="PropertyFormHelper.sumOfItems"
+                                    [form]="form.get('taxes')">
+                                </app-property-itemize-control>
+
+    <app-form-field [rtl]="true">
+        <span appFormFieldLabel [span]="10">{{ 'helper.property-add.components.purchase-info.insurance.label' | translate }}</span>
+        <label>
+            <app-input-number
+                tabindex="5"
+                placeholder="0"
+                [digitsFormat]="'1.0-0'"
+                [placeholder]="0"
+                [control]="form.get('insurance')">
+            </app-input-number>  
+            <span appFormFieldSuffix>{{ 'literals._$PerYear' | translate }}</span>
+        </label>
+    </app-form-field>
+
+    <app-property-itemize-control label="{{ 'helper.property-add.components.purchase-info.utilities.label' | translate }}"
+                                    [placeholder]="0"
+                                    [suffix]="'literals._$PerYear' | translate"
+                                    [tabIndex]="6"
+                                    checkLabel="{{ 'helper.property-add.components.purchase-info.utilities.itemize' | translate }}"
+                                    [config]="purchaseInfoConfig.utilities"
+                                    [totalUnit]="'literals._$PerYear' | translate"
+                                    (checkedChange)="utilitiesCheckChange($event)"
+                                    [calcTotalFunc]="PropertyFormHelper.sumOfItems"
+                                    [form]="form.get('utilities')">
+                                </app-property-itemize-control>
+
+    <!--Other expenses-->
+    <app-property-itemize-control label="{{ 'helper.property-add.components.purchase-info.otherExpenses.label' | translate }}"
+                                [placeholder]="0"
+                                [suffix]="'literals._$PerYear' | translate"
+                                [tabIndex]="7"
+                                checkLabel="{{ 'helper.property-add.components.purchase-info.otherExpenses.itemize' | translate }}"
+                                [totalUnit]="'literals._$PerYear' | translate"
+                                (checkedChange)="otherExpensesCheckChange($event)"
+                                [calcTotalFunc]="PropertyFormHelper.sumOfItems"
+                                [form]="form.get('otherExpenses')">
+                            </app-property-itemize-control>
+
+
+    <!-- Financing Section -->
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.purchase-info.financing.label' | translate }}
+    </label>
+  
+    <!-- Financing parameters -->
+    <app-financing
+        [propertyAddForm]="propertyAddForm"
+        [financingType]="propertyAddForm.get('purchase.financingType')"
+        [isBaseModel]="isBaseModel"
+        [bank]="propertyAddForm.get('purchase.bank')"
+        [economicValues]="propertyAddForm.get('purchase.economicValues')">
+    </app-financing>
+
+ 
+    <!-- Financing chart -->
+    <app-financing-chart [data]="financingData$"></app-financing-chart>    
+
+    <!-- Acquisition Fees Section -->
+    <label appFormSectionName>
+        {{ 'helper.property-add.components.purchase-info.acquisitionFees.label' | translate }}
+    </label>
+    <app-property-itemize-control   [label]="'helper.property-add.components.purchase-info.acquisitionFees.label' | translate"
+                                    placeholder="0"
+                                    suffix="$"
+                                    [tabIndex]="14"
+                                    checkLabel="{{ 'helper.property-add.components.purchase-info.acquisitionFees.itemize' | translate }}"
+                                    totalUnit="$"
+                                    (checkedChange)="acquisitionFeesCheckChange($event)"
+                                    [form]="form.get('estimatedAcquisitionFees')"
+                                    [calcTotalFunc]="PropertyFormHelper.sumOfItems">
+                                </app-property-itemize-control>
+
+    <!-- Second financing section -->
+    <app-second-financing [propertyAddForm]="propertyAddForm" [isBaseModel]="isBaseModel"></app-second-financing>
+
+</form>

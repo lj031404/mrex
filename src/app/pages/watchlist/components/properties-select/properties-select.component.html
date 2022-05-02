@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <app-toolbar>
+        <a class="left-button" appModalClose [modalRef]="modalRef">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <span class="title">{{ "page.watchlist.components.properties-select.pageTitle" | translate }}</span>
+        <span class="subtitle">{{ subtitle }}</span>
+    </app-toolbar>
+</div>
+
+<app-content [noPadding]="true">
+    <ng-container *ngIf="propertiesLoaded && properties?.length">
+        <ng-container *ngFor="let property of properties">
+            <app-model-card [model]="property" (click)="chooseProperty(property)"> </app-model-card>
+        </ng-container>
+    </ng-container>
+
+    <div class="p-1" *ngIf="!propertiesLoaded">
+        <div class="mb-1" *ngFor="let item of ['', '', '', '', '', '']">
+            <app-skeleton Cwidth="100%" Cheight="70"></app-skeleton>
+        </div>
+    </div>
+</app-content>
+
+<app-footer-navigate (click)="modalRef.closeModal()"></app-footer-navigate>

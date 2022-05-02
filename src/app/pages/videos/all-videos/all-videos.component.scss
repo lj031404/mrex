@@ -1,0 +1,27 @@
+@import '../../../../assets/scss/variables.scss';
+
+.show-social-tab {
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	margin-bottom: 2.5rem;
+
+	.tab {
+		padding: 0  1rem;
+		font-size: 1.4rem;
+		font-weight: 400;
+		color: $color-gray-7;
+		&.active {
+			border-bottom: 2px solid $color-cadet-blue;
+			color: black;
+			padding-bottom: 0.5rem;
+		}
+	}
+}
+
+.spinner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

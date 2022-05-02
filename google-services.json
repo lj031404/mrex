@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "824013910552",
+    "project_id": "mrex-app",
+    "storage_bucket": "mrex-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824013910552:android:34fe957472c1948f37096d",
+        "android_client_info": {
+          "package_name": "com.app.mrex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824013910552-n2n3n7pp2f6rjuh9rgc3sqd44bd9hirj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJ8UlSgLXnZaVrAyv6W_Uq6V4mw-iJH2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824013910552-n2n3n7pp2f6rjuh9rgc3sqd44bd9hirj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "824013910552-c35pnpeapbuqo99o63dlonhkgjhp87vq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.app.mrex1",
+                "app_store_id": "123"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

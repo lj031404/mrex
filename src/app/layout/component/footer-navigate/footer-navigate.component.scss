@@ -1,0 +1,72 @@
+@import "../../../../assets/scss/mixin";
+
+.nav-items {
+	background: white;
+    box-shadow: 0px -2px 4px rgb(0 0 0 / 15%);
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 4.4rem;
+    padding: 0 1.5rem;
+    z-index: 100;
+	
+	> div {
+		margin-right: 0.5rem;
+		height: 3.21rem;
+
+		&.ios-mb {
+			margin-bottom: 0.7rem;
+		}
+
+		
+		.active-nav {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-between;
+			height: 100%;
+
+			span {
+				color: $color-gray-bold;
+				font-size: 1rem;
+				line-height: 1.14rem;
+				letter-spacing: 0.05rem;
+			}
+
+			&.hidden {
+				display: none;
+			}
+		}
+	}
+
+	.normal-nav {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		height: 100%;
+
+		span {
+			color: black;
+			font-size: 1rem;
+			line-height: 1.14rem;
+			letter-spacing: 0.05rem;
+		}
+		
+	}
+
+}
+
+.icon-content {
+	height: 1.785rem;
+	display: flex;
+	align-items: center;
+}
+
+.footer-spinner {
+	top: 0;
+    right: 0;
+    left: 0;
+    height: 100%!important;
+    background: rgb(255, 255, 255, 0.75);
+}

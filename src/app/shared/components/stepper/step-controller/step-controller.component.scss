@@ -1,0 +1,74 @@
+@import "../../../../../assets/scss/mixin";
+
+:host {
+  width: 100%;
+  display: inline-flex;
+  @include flex-align(space-between, center);
+}
+
+::ng-deep {
+  .step-trigger {
+    flex: 1 100%;
+    position: relative;
+    padding: 0 4px;
+    @include flex-row();
+    @include flex-align(flex-start, center);
+
+    .trigger-icon {
+      width: 14px;
+      height: 14px;
+      border: none;
+      border-radius: 50%;
+      background-color: $color-whisper;
+      @include flex-row();
+      @include flex-align(center, center);
+
+      &>* {
+        display: none;
+      }
+    }
+    .trigger-label {
+    }
+
+    &:not(:last-child) {
+      .step-horizontal-line {
+        flex: auto;
+        margin: 0 -8px 0 0;
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-color: $color-whisper;
+      }
+    }
+
+    &:last-child {
+      flex: 0;
+    }
+
+    &.interacted {
+      .trigger-icon {
+        background-color: $color-green;
+
+        &>* {
+          display: none;
+        }
+      }
+      .trigger-label {
+      }
+    }
+
+    &.active {
+      .trigger-icon {
+        width: 26px;
+        height: 26px;
+        background-color: $color-green;
+
+        &>* {
+          display: block;
+          color: white;
+        }
+      }
+      .trigger-label {
+      }
+    }
+  }
+}

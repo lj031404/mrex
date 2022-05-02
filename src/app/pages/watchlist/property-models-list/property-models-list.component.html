@@ -1,0 +1,39 @@
+<app-header>
+    <app-go-back-button [classes]="['nav-link', 'nav-menu-main']" [action]="back.bind(this)" slot="left-button"></app-go-back-button>
+    <p slot="title">{{ 'page.watchlist.property-model-list.title' | translate }}</p>
+</app-header>
+
+<app-content [noPadding]="true">
+    <ng-container *ngIf="!isLoading && models && !models.length">
+        <div class="card mt-2">
+            <div class="card-body" [innerHTML]="'page.watchlist.property-models-list.noPropertyText' | translate">
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="models && models.length">
+        <div  *ngFor="let model of models">
+            <app-model-card 
+                [onDelete]="onDelete.bind(this)"
+                [onPropertyClicked]="onModelClicked.bind(this)" 
+                [model]="model"
+            >
+            </app-model-card>
+        </div>        
+    </ng-container>
+
+    <div class="p-1" *ngIf="!models">
+        <div class="d-flex align-items-start mb-1" *ngFor="let empty of emptyModels">
+            <div class="mr-2">
+                <app-skeleton Cwidth="66px" Cheight="66"></app-skeleton>
+            </div>
+            <div class="w-100">
+                <app-skeleton Cwidth="100%" Cheight="20"></app-skeleton>
+            </div>
+        </div>
+    </div>
+
+</app-content>
+
+<app-action-button right="1.25rem" bottom="6.25rem" (triggered)="addModel()">
+  +
+</app-action-button>

@@ -1,0 +1,45 @@
+::ng-deep {
+  .user-profile {
+    height: 194px;
+    display: flex;
+    background-image: linear-gradient(360deg, #5CB09F 0%, rgba(92, 176, 159, 0) 185.47%, rgba(92, 176, 159, 0.47219) 185.47%),
+      url(../../../../assets/images/building-bg.png) !important;
+    object-fit: scale-down;
+  }
+
+  .user-info{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent !important;
+
+    .user-img {
+      width: 65px !important;
+      height: 65px !important;
+      min-width: 65px !important;
+      min-height: 65px !important;
+    }
+
+    .profile {
+      font-family: Arial;
+      font-style: normal;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      color: white;
+    }
+
+    .name {
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    .email {
+      font-size: 16px;
+      line-height: 18px;
+      text-align: center;
+    }
+  }
+}

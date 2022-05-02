@@ -1,0 +1,68 @@
+<app-header>
+	<app-go-back-button [action]="back" [classes]="['nav-link', 'nav-menu-main']" slot="left-button"></app-go-back-button>
+	<p slot="title">{{ 'page.watchlist.property-compare.title' | translate }}</p>
+</app-header>
+
+<app-content [noPadding]="true">
+
+	<!-- Header -->
+	<div class="header bg-mrex-green bg-lighten-1">
+		<div class="property-container align-center" (click)="changeProperty(1, propertyDoc1)">
+			<img [src]="header1?.image || 'assets/images/building.jpg'" alt="Property Picture">
+			<span class="name">{{propertyDoc1?.propertyData?.name}}</span>
+			<span>{{header1?.line1}}</span>
+			<span>{{header1?.line2}}</span>
+		</div>
+
+		<div class="property-container align-center" (click)="changeProperty(2, propertyDoc2)">
+			<img [src]="header2?.image || 'assets/images/building.jpg'" alt="Property Picture">
+			<span class="name">{{propertyDoc2?.propertyData?.name}}</span>
+			<span>{{header2?.line1}}</span>
+			<span>{{header2?.line2}}</span>
+		</div>		
+	</div>
+
+	<!-- Indicators -->
+	<div class="indicators">
+		<h4>{{ 'page.watchlist.property-compare.acquisitionMetrics' | translate }}</h4>
+
+		<table>
+			<tr *ngFor="let indicator of group1">	
+				<td><app-indicator [indicator]="indicator[0]"></app-indicator></td>				
+				<td><span class="btn-outline-mrex-green btn-outline-lighten-2">{{ indicator[0].label }}</span></td>
+				<td><app-indicator [indicator]="indicator[1]"></app-indicator></td>
+			</tr>
+		</table>
+
+		<h4>{{ 'page.watchlist.property-compare.performanceMetrics' | translate }}</h4>
+
+		<table>
+			<tr *ngFor="let indicator of group2">	
+				<td><app-indicator [indicator]="indicator[0]"></app-indicator></td>				
+				<td><span class="btn-outline-mrex-green btn-outline-lighten-2">{{ indicator[0].label }}</span></td>
+				<td><app-indicator [indicator]="indicator[1]"></app-indicator></td>
+			</tr>
+		</table>
+
+		<h4>{{ 'page.watchlist.property-compare.financialMetrics' | translate }}</h4>
+
+		<table>
+			<tr *ngFor="let indicator of group3">	
+				<td><app-indicator [indicator]="indicator[0]"></app-indicator></td>				
+				<td><span class="btn-outline-mrex-green btn-outline-lighten-2">{{ indicator[0].label }}</span></td>
+				<td><app-indicator [indicator]="indicator[1]"></app-indicator></td>
+			</tr>
+		</table>
+
+		<h4>{{ 'page.watchlist.property-compare.projections' | translate }}</h4>
+
+		<table>
+			<tr *ngFor="let indicator of group4">	
+				<td><app-indicator [indicator]="indicator[0]"></app-indicator></td>				
+				<td><span class="btn-outline-mrex-green btn-outline-lighten-2">{{ indicator[0].label }}</span></td>
+				<td><app-indicator [indicator]="indicator[1]"></app-indicator></td>
+			</tr>
+		</table>
+	</div>
+</app-content>
+

@@ -1,0 +1,13 @@
+<form [formGroup]="form">    
+    <input 
+        type="text" 
+        pattern="[0-9,.-]*"
+        inputmode="decimal"
+        tabindex="{{tabindex}}"                  
+        placeholder="0" 
+        placeholder="{{placeholder}}"
+        formControlName="field"
+        (keyup)="format()"  
+        (focusout)="format(true)"        
+        [attr.disabled]="disabled ? '' : null">
+</form>

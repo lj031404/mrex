@@ -1,0 +1,42 @@
+<table class="market-data-table" cdk-table [dataSource]="data">
+
+    <ng-container *ngFor="let column of _columns">
+        <ng-container [cdkColumnDef]="column.name">
+            <th cdk-header-cell *cdkHeaderCellDef></th>
+            <td
+                [class.computed]="element['computed']"
+                [class.total]="element['total']"
+                [class.zero-value]="element[column.name] === null"
+                cdk-cell *cdkCellDef="let element"
+            >
+                <ng-container *ngIf="column.pipe && element[column.name] !== null">
+                    <div>
+                        <span
+                            placement="bottom"
+                            tooltip-class="estimate-tooltip-handset"
+                            [tooltip]="'pages.market_data_table.estimated' |  translate"
+                            class="estimated"
+                            *ngIf="element['isEstimated'] === true && column.name === 'value'">
+                            E
+                        </span>
+                        <span class="element-value" *ngIf="!element['label'] && element['feature'] !== 'Lot Area (ft<sup>2</sup>)' && element['feature'] !== 'Building Area (ft<sup>2</sup>)'" [innerHTML]="element[column.name]"></span>
+                        <span class="element-value" *ngIf="element['feature'] === 'Lot Area (ft<sup>2</sup>)' || element['feature'] == 'Building Area (ft<sup>2</sup>)'">{{ column.pipe.pipe.transform(element[column.name], column.pipe.args[0], null, null, null) }}</span>
+                        <span class="element-value" *ngIf="!element['feature']">{{ column.pipe.pipe.transform(element[column.name], column.pipe.args[0], null, column.pipe.args[2], column.pipe.args[3])}}</span>
+                    </div>
+
+                </ng-container>
+                <span *ngIf="!column.pipe" [innerHTML]="element[column.name]">
+
+                </span>
+            </td>
+        </ng-container>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="_columnNames"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: _columnNames;"></tr>
+</table>
+
+<div class="no-data" *ngIf="!(data && data.length)">
+    {{ 'page.market.market-data-table.no-data' | translate }}
+</div>
+
